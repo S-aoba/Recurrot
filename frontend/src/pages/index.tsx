@@ -1,4 +1,5 @@
-import Head from 'next/head';
+import { Button } from '@mantine/core'
+import Head from 'next/head'
 
 const Home = () => {
   return (
@@ -9,8 +10,12 @@ const Home = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main></main>
+      <main className=' flex justify-center items-center h-screen'>
+        <div className='text-red-400 text-3xl'>
+          <Button>Hello</Button>
+        </div>
+      </main>
     </>
-  );
-};
-export default Home;
+  )
+}
+export default Home
