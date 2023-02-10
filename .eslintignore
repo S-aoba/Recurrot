@@ -2,5 +2,6 @@
 **/out/*
 **/.next/*
 next.config.js
+postcss.config.js
 /.eslintrc.js
 tailwind.config.js
