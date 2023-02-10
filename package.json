@@ -47,6 +47,7 @@
     "tailwindcss": "^3.2.4"
   },
   "lint-staged": {
-    "./src/**/*.{ts,tsx}": "npm run fix:prettier && npm run fix:eslint"
+    "./src/**/*.{ts,tsx}": "npm run fix:eslint",
+    "*": "npm run fix:prettier"
   }
 }
