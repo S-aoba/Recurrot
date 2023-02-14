@@ -56,11 +56,11 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/pages/**/*.tsx', 'src/pages/api/**/*.ts'], //pages配下はexport defaultにする必要があるため、"import/no-default-export"をオーバーライドしてオフにする
+      files: ['src/pages/**/*.tsx', 'src/pages/api/**/*.ts', 'type/index.d.ts'], //pages配下はexport defaultにする必要があるため、"import/no-default-export"をオーバーライドしてオフにする
       rules: {
         'import/no-default-export': 'off',
         'react/destructuring-assignment': ['error', 'always'],
-      },
+      }
     },
   ],
 }
