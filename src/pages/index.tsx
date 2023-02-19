@@ -1,5 +1,6 @@
-import { Button } from '@mantine/core'
 import Head from 'next/head'
+
+import { Card } from '@/component/Card'
 
 const Home = () => {
   return (
@@ -10,9 +11,9 @@ const Home = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex justify-center items-center h-screen'>
-        <div className='text-red-400 text-3xl'>
-          <Button>Hello</Button>
+      <main className=' col-span-10 flex h-full justify-center'>
+        <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
+          <Card />
         </div>
       </main>
     </>
