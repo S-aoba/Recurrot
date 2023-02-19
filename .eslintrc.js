@@ -23,7 +23,7 @@ module.exports = {
         checkInlineFunction: true,
       },
     ],
-    'react/destructuring-assignment': ['error', 'never'],
+    'react/destructuring-assignment': ['error', 'always'],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'import/newline-after-import': 'error',
