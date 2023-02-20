@@ -83,4 +83,22 @@ const dummyUserDataArray: DummyUser[] = [
     questionTitle: 'この文章はダミーです。文字の大きさ、量、字間、行間',
     replayCount: 4,
   },
+  {
+    userName: 'hikern',
+    postedDate: '2023/1/19',
+    questionTitle: 'この文章はダミーです。文字の大きさ、量、字間、行間',
+    replayCount: 4,
+  },
+  {
+    userName: 'hikern',
+    postedDate: '2023/1/19',
+    questionTitle: 'この文章はダミーです。文字の大きさ、量、字間、行間',
+    replayCount: 4,
+  },
+  {
+    userName: 'hikern',
+    postedDate: '2023/1/19',
+    questionTitle: 'この文章はダミーです。文字の大きさ、量、字間、行間',
+    replayCount: 4,
+  },
 ]
