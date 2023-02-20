@@ -11,7 +11,7 @@ const Home = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' col-span-10 flex h-full justify-center'>
+      <main className=' flex h-fit justify-center'>
         <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
           <Card />
         </div>
