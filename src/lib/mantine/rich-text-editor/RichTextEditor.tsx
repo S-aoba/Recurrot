@@ -1,5 +1,4 @@
 import { Link, RichTextEditor } from '@mantine/tiptap'
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import Highlight from '@tiptap/extension-highlight'
 import SubScript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
@@ -7,11 +6,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import Underline from '@tiptap/extension-underline'
 import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import tsLanguageSyntax from 'highlight.js/lib/languages/typescript'
-import { lowlight } from 'lowlight'
 import { useState } from 'react'
-// register languages that your are planning to use
-lowlight.registerLanguage('typescript', tsLanguageSyntax)
 
 const escapeHtml = (unsafe: string) => {
   return unsafe
@@ -37,9 +32,6 @@ export const RichTextEditorDemo = () => {
       SubScript,
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      CodeBlockLowlight.configure({
-        lowlight,
-      }),
     ],
     content: escapeHtml(''),
     onUpdate({ editor }) {
