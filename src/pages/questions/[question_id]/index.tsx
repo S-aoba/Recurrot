@@ -48,6 +48,7 @@ const QuestionDetail = () => {
 export default QuestionDetail
 
 const DummyBody = () => {
+  const codeExample = `const hello = 0`
   return (
     <div>
       <ul>
@@ -70,11 +71,7 @@ const DummyBody = () => {
         <li>ソースコード:</li>
       </ul>
       <div className=' bg-gray-200 p-5'>
-        <code>
-          def perfectNumberList(n): output = for i in range(1, n + 1): # 調べる数は1からnまで(n含む) sumDivisor = 0 for
-          j in range(1, i): # その数自身を除く数字 if i % j == 0: sumDivisor += j if sumDivisor == i: output += str(i) +
-          - if output == : return none else: return output[:-1]
-        </code>
+        <code>{codeExample}</code>
       </div>
       <ul>
         <li>試したこと</li>
