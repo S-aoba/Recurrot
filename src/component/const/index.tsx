@@ -1,0 +1,7 @@
+export const TOP_PAGE_URL = '/'
+export const QUESTION_WAITING_ANSWERS_PAGE_URL = '/question-waiting-answers'
+export const EVENT_PAGE_URL = '/event'
+export const INFORMATION_PAGE_URL = '/information'
+export const DASHBOARD_QUESTIONS_PAGE_URL = '/dashboard/questions'
+export const DASHBOARD_ANSWERS_PAGE_URL = '/dashboard/answers'
+export const DASHBOARD_PROFILE_PAGE_URL = '/dashboard/profile'
