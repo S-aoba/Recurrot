@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { Navigation } from '../Navigation'
+import { Navigation } from '../ui/Navigation'
 import { Footer } from './Footer'
 import { Header } from './Header'
 

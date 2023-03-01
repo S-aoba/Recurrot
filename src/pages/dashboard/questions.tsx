@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { Card } from '@/component/Card'
+import { Card } from '@/component/ui/Card'
 
 const questions = () => {
   return (

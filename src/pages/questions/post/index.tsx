@@ -1,4 +1,4 @@
-import { Form } from '@/component/Form'
+import { Form } from '@/component/ui/Form'
 
 const QuestionPost = () => {
   return (
