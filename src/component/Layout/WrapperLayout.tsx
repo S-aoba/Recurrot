@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-// import { Navigation } from '../ui/Navigation'
+import { Navigation } from '../ui/Navigation'
 import { Footer } from './Footer'
 import { Header } from './Header'
 
@@ -12,7 +12,7 @@ export const WrapperLayout = ({ children }: WrapperLayoutProps) => {
   return (
     <div className=' flex h-screen w-screen flex-col'>
       <Header />
-      {/* <Navigation /> */}
+      <Navigation />
       {children}
       <Footer />
     </div>
