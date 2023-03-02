@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
-import type { UrlVal } from '@/component/type'
+import type { MainUrlVal, SubUrlVal } from '@/component/type'
 
 /**
  * @package
  */
 
 type NextLinkProps = {
-  href: UrlVal
+  href: MainUrlVal | SubUrlVal
   children: ReactNode
 }
 
