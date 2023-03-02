@@ -1,7 +1,8 @@
 import { Avatar } from '@mantine/core'
 import { IconMessageCircle2 } from '@tabler/icons-react'
 import Image from 'next/image'
-import Link from 'next/link'
+
+import { Link } from '@/lib/next/Link'
 
 /**
  * @package
@@ -16,7 +17,11 @@ export const Card = () => {
             key={dummyQuestionItem.questionId}
             className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'
           >
-            <Link href={`questions/${dummyQuestionItem.questionId}`} className=' absolute block h-64 w-80'></Link>
+            <Link
+              href={'questions/[questionId]'}
+              as={`questions/${dummyQuestionItem.questionId}`}
+              className=' absolute block h-64 w-80'
+            ></Link>
             <div className=' px row-span-2 flex items-center'>
               <div className=' p-5'>
                 <Image src={'/typescript.png'} height={95} width={95} alt={'typescript'} className=' rounded-xl' />

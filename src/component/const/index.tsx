@@ -1,5 +1,6 @@
 export const MAIN_URL = {
   TOP: '/',
+  QUESTION_DETAIL: 'questions/[questionId]',
   EVENT: '/event',
   INFORMATION: '/information',
   DASHBOARD_QUESTIONS: '/dashboard/questions',

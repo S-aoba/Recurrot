@@ -9,9 +9,15 @@ import type { MainUrlVal, SubUrlVal } from '@/component/type'
 
 type NextLinkProps = {
   href: MainUrlVal | SubUrlVal
-  children: ReactNode
+  children?: ReactNode
+  as?: string
+  className?: string
 }
 
-export const NextLink: React.FC<NextLinkProps> = ({ href, children }) => {
-  return <Link href={href}>{children}</Link>
+export const NextLink: React.FC<NextLinkProps> = ({ href, children, as, className }) => {
+  return (
+    <Link href={href} as={as} className={className}>
+      {children}
+    </Link>
+  )
 }
