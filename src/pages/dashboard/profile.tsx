@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { ProfileCard } from '@/component/ProfileCard'
+import { ProfileCard } from '@/component/ui/ProfileCard'
 
 const profile = () => {
   return (
