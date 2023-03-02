@@ -1,6 +1,7 @@
 import { Avatar } from '@mantine/core'
 import { IconMessageCircle2 } from '@tabler/icons-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 /**
  * @package
@@ -12,16 +13,14 @@ export const Card = () => {
       {dummyUserDataArray.map((dummyUserData) => {
         return (
           <div
-            className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white px-5'
             key={dummyUserData.userName}
+            className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'
           >
-            <div className=' row-span-2 flex items-center'>
-              {/* 質問の言語のアイコン */}
+            <Link href={'/questions/1'} className=' absolute block h-64 w-80'></Link>
+            <div className=' px row-span-2 flex items-center bg-red-500'>
               <div className=' p-5'>
                 <Image src={'/typescript.png'} height={95} width={95} alt={'typescript'} className=' rounded-xl' />
               </div>
-
-              {/* 質問の投稿者の情報 */}
               <div className='w-full p-2'>
                 <div className=' flex w-full items-center gap-x-3 py-3'>
                   <Avatar radius='xl' />
@@ -36,8 +35,6 @@ export const Card = () => {
                 </div>
               </div>
             </div>
-
-            {/* 質問のタイトル */}
             <div className=' row-span-4 p-3 text-lg'>
               <p className=' line-clamp-3'>{dummyUserData.questionTitle}</p>
             </div>
