@@ -1,4 +1,4 @@
-import { RichTextEditorDemo } from '@/lib/mantine/rich-text-editor'
+import { RichTextEditorDemo } from '@/lib/mantine/RichTextEditor'
 
 export const Form = () => {
   return <RichTextEditorDemo />
