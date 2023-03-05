@@ -4,7 +4,8 @@
 
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import type { SubUrlVal } from 'type'
+
+import type { SubUrlVal } from '@/common/type'
 
 export const SubNavTab = () => {
   return (

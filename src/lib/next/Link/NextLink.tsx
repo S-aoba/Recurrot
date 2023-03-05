@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import type { MainUrlVal, SubUrlVal } from 'type'
+
+import type { MainUrlVal, SubUrlVal } from '@/common/type'
 
 /**
  * @package
