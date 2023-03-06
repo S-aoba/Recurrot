@@ -1,3 +1,4 @@
+import { TextInput } from '@mantine/core'
 import { Link, RichTextEditor } from '@mantine/tiptap'
 import Highlight from '@tiptap/extension-highlight'
 import SubScript from '@tiptap/extension-subscript'
@@ -38,10 +39,11 @@ export const QuestionForm = () => {
   })
 
   return (
-    <>
-      <RichTextEditor editor={editor} className=' h-full w-9/12'>
+    <div className=' flex h-full w-11/12 flex-col items-center gap-y-5 py-5'>
+      <TextInput placeholder='質問のタイトル' variant='filled' size='md' withAsterisk className=' w-9/12' />
+      <RichTextEditor editor={editor} className=' h-full min-h-fit w-9/12 '>
         <RichTextEditor.Content />
       </RichTextEditor>
-    </>
+    </div>
   )
 }
