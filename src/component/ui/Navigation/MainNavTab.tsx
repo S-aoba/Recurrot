@@ -12,7 +12,7 @@ export const MainNavTab = () => {
     <>
       {MainNavTabItem.map(({ href, children }) => {
         return (
-          <Link key={href} href={href}>
+          <Link key={href} href={href} className=' text-black no-underline'>
             {children}
           </Link>
         )
