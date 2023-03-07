@@ -6,7 +6,7 @@ export const Footer = () => {
         <div>
           <ul className=' flex list-none flex-col gap-y-3'>
             <li className=' text-xl font-semibold'>About</li>
-            <li>CeilSpotについて</li>
+            <li>Recurrotについて</li>
             <li>コミュニティガイドライン</li>
             <li>使い方</li>
             <li>よくある質問</li>
