@@ -4,7 +4,7 @@ import type { MainNavTabStyleType } from '@/common/type'
 import { mainNavTabStyleAtom } from '@/store/question-atom'
 
 export const useMainNavTabStyle = () => {
-  const [currentNavTabStyle, setNavTabStyle] = useAtom(mainNavTabStyleAtom)
+  const [mainNavTabStyle, setNavTabStyle] = useAtom(mainNavTabStyleAtom)
 
   const defaultMainNavTabStyle = ' text-black no-underline hover:text-red-500'
   const selectedMainNavTabStyle = 'text-blue-500 no-underline'
@@ -14,30 +14,30 @@ export const useMainNavTabStyle = () => {
   let informationStyle = defaultMainNavTabStyle
   let dashboardStyle = defaultMainNavTabStyle
 
-  if (currentNavTabStyle === 'questions') {
+  if (mainNavTabStyle === 'questions') {
     questionsStyle = selectedMainNavTabStyle
     eventStyle = defaultMainNavTabStyle
     informationStyle = defaultMainNavTabStyle
     dashboardStyle = defaultMainNavTabStyle
-  } else if (currentNavTabStyle === 'event') {
+  } else if (mainNavTabStyle === 'event') {
     eventStyle = selectedMainNavTabStyle
     questionsStyle = defaultMainNavTabStyle
     informationStyle = defaultMainNavTabStyle
     dashboardStyle = defaultMainNavTabStyle
-  } else if (currentNavTabStyle === 'information') {
+  } else if (mainNavTabStyle === 'information') {
     informationStyle = selectedMainNavTabStyle
     questionsStyle = defaultMainNavTabStyle
     eventStyle = defaultMainNavTabStyle
     dashboardStyle = defaultMainNavTabStyle
-  } else if (currentNavTabStyle === 'dashboard') {
+  } else if (mainNavTabStyle === 'dashboard') {
     dashboardStyle = selectedMainNavTabStyle
     informationStyle = defaultMainNavTabStyle
     questionsStyle = defaultMainNavTabStyle
     eventStyle = defaultMainNavTabStyle
   }
 
-  const handleNavTabStyle = (currentNavTabStyle: MainNavTabStyleType) => {
-    setNavTabStyle(currentNavTabStyle)
+  const handleNavTabStyle = (currentMainNavTabStyle: MainNavTabStyleType) => {
+    setNavTabStyle(currentMainNavTabStyle)
   }
   return { handleNavTabStyle, questionsStyle, eventStyle, informationStyle, dashboardStyle }
 }
