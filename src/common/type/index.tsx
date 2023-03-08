@@ -21,4 +21,4 @@ export type HashtagType = {
 }
 
 export type MainNavTabStyleType = 'questions' | 'event' | 'information' | 'dashboard'
-// export type SubNavTabStyleType = 'new-questions' | 'question-waiting-answers'
+export type SubNavTabStyleType = 'new-questions' | 'question-waiting-answers'
