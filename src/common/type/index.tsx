@@ -19,3 +19,6 @@ export type QuestionType = {
 export type HashtagType = {
   hashtag: string
 }
+
+export type MainNavTabStyleType = 'questions' | 'event' | 'information' | 'dashboard'
+// export type SubNavTabStyleType = 'new-questions' | 'question-waiting-answers'

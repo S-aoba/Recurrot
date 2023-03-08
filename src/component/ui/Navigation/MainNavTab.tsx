@@ -3,44 +3,66 @@ import type { ReactNode } from 'react'
 
 import type { MainUrlVal } from '@/common/type'
 
+import { useMainNavTabStyle } from './useMainNavTabStyle'
+
 /**
  * @package
  */
 
-export const MainNavTab = () => {
-  return (
-    <>
-      {MainNavTabItem.map(({ href, children }) => {
-        return (
-          <Link key={href} href={href} className=' text-black no-underline'>
-            {children}
-          </Link>
-        )
-      })}
-    </>
-  )
-}
-
 type MainNavTabType = {
   href: MainUrlVal
   children: ReactNode
+  handleOnClick: () => void
+  className?: string
 }
 
-const MainNavTabItem: MainNavTabType[] = [
-  {
-    href: '/',
-    children: '質問',
-  },
-  {
-    href: '/event',
-    children: 'イベント',
-  },
-  {
-    href: '/information',
-    children: 'お知らせ',
-  },
-  {
-    href: '/dashboard/questions',
-    children: 'ダッシュボード',
-  },
-]
+export const MainNavTab = () => {
+  const { handleNavTabStyle, questionsStyle, eventStyle, informationStyle, dashboardStyle } = useMainNavTabStyle()
+  const MainNavTabItem: MainNavTabType[] = [
+    {
+      href: '/',
+      children: '質問',
+      handleOnClick: () => {
+        return handleNavTabStyle('questions')
+      },
+      className: questionsStyle,
+    },
+    {
+      children: 'イベント',
+      href: '/event',
+      handleOnClick: () => {
+        return handleNavTabStyle('event')
+      },
+      className: eventStyle,
+    },
+    {
+      href: '/information',
+      children: 'お知らせ',
+      handleOnClick: () => {
+        return handleNavTabStyle('information')
+      },
+      className: informationStyle,
+    },
+    {
+      href: '/dashboard/questions',
+      children: 'ダッシュボード',
+      handleOnClick: () => {
+        return handleNavTabStyle('dashboard')
+      },
+      className: dashboardStyle,
+    },
+  ]
+
+  return (
+    <>
+      {MainNavTabItem &&
+        MainNavTabItem.map(({ href, children, handleOnClick, className }) => {
+          return (
+            <Link key={href} href={href} className={className} onClick={handleOnClick}>
+              {children}
+            </Link>
+          )
+        })}
+    </>
+  )
+}
