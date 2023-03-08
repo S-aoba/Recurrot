@@ -39,7 +39,7 @@ export const SubNavTab = () => {
   ]
   return (
     <>
-      {SubNavTabItem.map(({ href, children, handleOnClick, className }) => {
+      {SubNavTabItem.map(({ href, children, className, handleOnClick }) => {
         return (
           <Link key={href} href={href} className={className} onClick={handleOnClick}>
             {children}

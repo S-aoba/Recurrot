@@ -56,7 +56,7 @@ export const MainNavTab = () => {
   return (
     <>
       {MainNavTabItem &&
-        MainNavTabItem.map(({ href, children, handleOnClick, className }) => {
+        MainNavTabItem.map(({ href, children, className, handleOnClick }) => {
           return (
             <Link key={href} href={href} className={className} onClick={handleOnClick}>
               {children}
