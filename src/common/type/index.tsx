@@ -1,4 +1,4 @@
-import type { MAIN_URL, SUB_URL } from '../../component/const'
+import type { MAIN_URL, SUB_URL } from '../const'
 
 export type MainUrlKeys = keyof typeof MAIN_URL
 export type MainUrlVal = (typeof MAIN_URL)[MainUrlKeys]
@@ -19,3 +19,6 @@ export type QuestionType = {
 export type HashtagType = {
   hashtag: string
 }
+
+export type MainNavTabStyleType = 'questions' | 'event' | 'information' | 'dashboard'
+export type SubNavTabStyleType = 'new-questions' | 'question-waiting-answers'

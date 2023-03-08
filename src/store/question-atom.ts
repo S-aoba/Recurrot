@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 
-import type { QuestionType } from '@/common/type'
+import type { MainNavTabStyleType, QuestionType, SubNavTabStyleType } from '@/common/type'
 
 const initialQuestion: QuestionType = {
   questionId: '',
@@ -14,3 +14,6 @@ const initialQuestion: QuestionType = {
 
 export const questionAtom = atom<QuestionType>(initialQuestion)
 export const questionListAtom = atom<QuestionType[]>([])
+
+export const mainNavTabStyleAtom = atom<MainNavTabStyleType>('questions')
+export const subNavTabStyleAtom = atom<SubNavTabStyleType>('new-questions')
