@@ -12,11 +12,12 @@ type NextLinkProps = {
   children?: ReactNode
   as?: string
   className?: string
+  onClick?: () => void
 }
 
-export const NextLink: React.FC<NextLinkProps> = ({ href, children, as, className }) => {
+export const NextLink: React.FC<NextLinkProps> = ({ href, children, as, className, onClick: handleOnClick }) => {
   return (
-    <Link href={href} as={as} className={className}>
+    <Link href={href} as={as} className={className} onClick={handleOnClick}>
       {children}
     </Link>
   )
