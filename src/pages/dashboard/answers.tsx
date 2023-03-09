@@ -1,8 +1,18 @@
 import Head from 'next/head'
+import { useLayoutEffect } from 'react'
 
 import { Card } from '@/component/ui/Card'
+import { useMainNavTabStyle } from '@/component/ui/Navigation/useMainNavTabStyle'
+import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
-const answers = () => {
+const Answers = () => {
+  const { handleNavTabStyle } = useMainNavTabStyle()
+  const { handleSubNavTabStyle } = useSubNavTabStyle()
+
+  useLayoutEffect(() => {
+    handleNavTabStyle('dashboard')
+    handleSubNavTabStyle('dashboard-answers')
+  })
   return (
     <>
       <Head>
@@ -19,4 +29,4 @@ const answers = () => {
     </>
   )
 }
-export default answers
+export default Answers

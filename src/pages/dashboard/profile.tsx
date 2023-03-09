@@ -1,8 +1,18 @@
 import Head from 'next/head'
+import { useLayoutEffect } from 'react'
 
+import { useMainNavTabStyle } from '@/component/ui/Navigation/useMainNavTabStyle'
+import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 import { ProfileCard } from '@/component/ui/ProfileCard'
 
-const profile = () => {
+const Profile = () => {
+  const { handleNavTabStyle } = useMainNavTabStyle()
+  const { handleSubNavTabStyle } = useSubNavTabStyle()
+
+  useLayoutEffect(() => {
+    handleNavTabStyle('dashboard')
+    handleSubNavTabStyle('dashboard-profile')
+  })
   return (
     <>
       <Head>
@@ -19,4 +29,4 @@ const profile = () => {
     </>
   )
 }
-export default profile
+export default Profile
