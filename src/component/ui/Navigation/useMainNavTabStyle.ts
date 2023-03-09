@@ -9,7 +9,7 @@ export const useMainNavTabStyle = () => {
   const defaultMainNavTabStyle = ' text-black no-underline hover:text-red-500'
   const selectedMainNavTabStyle = 'text-blue-500 no-underline'
 
-  let questionsStyle = selectedMainNavTabStyle
+  let questionsStyle = defaultMainNavTabStyle
   let eventStyle = defaultMainNavTabStyle
   let informationStyle = defaultMainNavTabStyle
   let dashboardStyle = defaultMainNavTabStyle

@@ -9,7 +9,7 @@ export const useSubNavTabStyle = () => {
   const defaultSubNavTabStyle = ' text-black no-underline hover:text-red-500'
   const selectedSubNavTabStyle = 'text-blue-500 no-underline'
 
-  let newQuestionsStyle = selectedSubNavTabStyle
+  let newQuestionsStyle = defaultSubNavTabStyle
   let questionsWaitingAnswerStyle = defaultSubNavTabStyle
   let dashboardQuestionsStyle = defaultSubNavTabStyle
   let dashboardAnswersStyle = defaultSubNavTabStyle
