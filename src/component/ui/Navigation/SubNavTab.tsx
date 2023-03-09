@@ -74,30 +74,27 @@ export const SubNavTab = () => {
       className: dashboardProfileStyle,
     },
   ]
-
-  if (mainNavTabStyle === 'questions') {
-    return (
-      <>
-        {SubNavTabItem.map(({ href, children, className, handleOnClick }) => {
+  return (
+    <>
+      {mainNavTabStyle === 'questions' &&
+        SubNavTabItem.map(({ href, children, className, handleOnClick }) => {
           return (
             <Link key={href} href={href} className={className} onClick={handleOnClick}>
               {children}
             </Link>
           )
         })}
-      </>
-    )
-  } else if (mainNavTabStyle === 'dashboard') {
-    return (
-      <>
-        {SubDashboardNavTabItem.map(({ href, children, className, handleOnClick }) => {
-          return (
-            <Link key={href} href={href} className={className} onClick={handleOnClick}>
-              {children}
-            </Link>
-          )
-        })}
-      </>
-    )
-  }
+      {mainNavTabStyle === 'dashboard' && (
+        <>
+          {SubDashboardNavTabItem.map(({ href, children, className, handleOnClick }) => {
+            return (
+              <Link key={href} href={href} className={className} onClick={handleOnClick}>
+                {children}
+              </Link>
+            )
+          })}
+        </>
+      )}
+    </>
+  )
 }
