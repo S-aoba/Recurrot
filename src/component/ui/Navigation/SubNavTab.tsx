@@ -19,7 +19,7 @@ type SubNavTabType = {
 }
 
 export const SubNavTab = () => {
-  const mainNabTabStyle = useAtomValue(mainNavTabStyleAtom)
+  const mainNavTabStyle = useAtomValue(mainNavTabStyleAtom)
   const {
     handleSubNavTabStyle,
     newQuestionsStyle,
@@ -75,7 +75,7 @@ export const SubNavTab = () => {
     },
   ]
 
-  if (mainNabTabStyle === 'questions') {
+  if (mainNavTabStyle === 'questions') {
     return (
       <>
         {SubNavTabItem.map(({ href, children, className, handleOnClick }) => {
@@ -87,7 +87,7 @@ export const SubNavTab = () => {
         })}
       </>
     )
-  } else if (mainNabTabStyle === 'dashboard') {
+  } else if (mainNavTabStyle === 'dashboard') {
     return (
       <>
         {SubDashboardNavTabItem.map(({ href, children, className, handleOnClick }) => {
