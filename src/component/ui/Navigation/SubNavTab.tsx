@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import type { SubUrlVal } from '@/common/type'
+import { Link } from '@/lib/next/Link'
 
 import { useSubNavTabStyle } from './useSubNavTabStyle'
 
