@@ -11,5 +11,9 @@ type CustomButtonProps = {
  */
 
 export const CustomButton: React.FC<CustomButtonProps> = ({ color, children }) => {
-  return <Button color={color}>{children}</Button>
+  return (
+    <Button color={color} className='hover:scale-0'>
+      {children}
+    </Button>
+  )
 }

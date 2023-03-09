@@ -1,4 +1,6 @@
-import { Avatar, Button } from '@mantine/core'
+import { Avatar } from '@mantine/core'
+
+import { Button } from '@/lib/mantine'
 
 /**
  * @package
@@ -9,7 +11,7 @@ export const ProfileCard = () => {
     <div className=' grid grid-cols-12 border-t border-r-0 border-b border-l-0 border-solid border-gray-200'>
       <div className=' col-span-4 flex flex-col items-center justify-center gap-y-5 px-5'>
         <Avatar size={'lg'} radius={'xl'} variant={'outline'} />
-        <Button>変更する</Button>
+        <Button color='blue'>変更する</Button>
       </div>
       <div className=' col-span-8 flex flex-col items-center p-5'>
         <div className=' flex w-11/12 flex-col items-start gap-y-5'>
@@ -35,7 +37,7 @@ export const ProfileCard = () => {
             Website
             <input type='url' />
           </label>
-          <Button>変更する</Button>
+          <Button color='blue'>変更する</Button>
         </div>
         <hr />
       </div>
