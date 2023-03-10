@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 
 import { useMainNavTabStyle } from '@/component/ui/Navigation/useMainNavTabStyle'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
@@ -9,7 +9,7 @@ const Profile = () => {
   const { handleNavTabStyle } = useMainNavTabStyle()
   const { handleSubNavTabStyle } = useSubNavTabStyle()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     handleNavTabStyle('dashboard')
     handleSubNavTabStyle('dashboard-profile')
   })

@@ -1,3 +1,3 @@
-/* @tailwind base;  mantineのwithNormalizeCSSと競合するためコメントアウト*/
+@tailwind base;
 @tailwind components;
 @tailwind utilities;

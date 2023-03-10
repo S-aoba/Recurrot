@@ -8,7 +8,7 @@ export const Header = () => {
         <span className=' text-3xl'>Recurrot</span>
         <Menu shadow='md' width={200}>
           <Menu.Target>
-            <Button className=' hover:scale-0'>投稿する</Button>
+            <Button className=' hover:transform-none'>投稿する</Button>
           </Menu.Target>
           <Menu.Dropdown>
             <Menu.Item icon={<IconZoomQuestion size={14} />} component='a' href='/questions/post'>
