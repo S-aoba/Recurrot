@@ -11,5 +11,8 @@ module.exports = {
       "xl"	:"1400"
     }
   },
-  plugins: [require('prettier-plugin-tailwindcss'),require('@tailwindcss/line-clamp'),],
+  plugins: [require('prettier-plugin-tailwindcss'), require('@tailwindcss/line-clamp'),],
+  corePlugins:{
+    preflight: false
+  }
 }
