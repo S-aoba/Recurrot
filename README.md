@@ -4,7 +4,7 @@
 - [Typescript](https://www.typescriptlang.org/)
 - [React](https://ja.reactjs.org/)
 - [Next.js](https://nextjs.org/)
-- [SWR](https://swr.vercel.app/ja)
+- [tanstack/react-query](https://tanstack.com/query/latest/docs/react/overview)
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 - [huskey](https://typicode.github.io/husky/#/)
