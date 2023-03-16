@@ -11,7 +11,14 @@ export default function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient()
 
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        // Todo:ダークモード,ライトモードの切り替え
+        colorScheme: 'light',
+      }}
+    >
       <QueryClientProvider client={queryClient}>
         <JotaiProvider>
           <WrapperLayout>
