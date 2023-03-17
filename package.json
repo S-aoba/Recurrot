@@ -17,6 +17,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
     "@mantine/core": "^5.10.4",
+    "@mantine/form": "^6.0.2",
     "@mantine/hooks": "^5.10.4",
     "@mantine/next": "^5.10.2",
     "@mantine/tiptap": "^5.10.4",
@@ -42,7 +43,8 @@
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@next/font": "^13.1.6",
