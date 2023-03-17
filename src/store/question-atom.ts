@@ -2,7 +2,7 @@ import { atom } from 'jotai'
 
 import type { MainNavTabStyleType, QuestionType, SubNavTabStyleType } from '@/common/type'
 
-const initialQuestion: QuestionType = {
+export const initialQuestion: QuestionType = {
   questionId: '',
   postedUseId: '',
   title: '',
