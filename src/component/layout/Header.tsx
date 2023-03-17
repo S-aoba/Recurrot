@@ -135,7 +135,12 @@ export const Header = () => {
                   {...handleForm.getInputProps('password')}
                 />
                 <Group mt='xl' position='right'>
-                  <Button leftIcon={<IconDatabase size={14} />} color='blue' type='submit'>
+                  <Button
+                    className=' hover:transform-none'
+                    leftIcon={<IconDatabase size={14} />}
+                    color='blue'
+                    type='submit'
+                  >
                     新規登録する
                   </Button>
                 </Group>
@@ -167,7 +172,12 @@ export const Header = () => {
                   {...handleForm.getInputProps('password')}
                 />
                 <Group mt='xl' position='right'>
-                  <Button leftIcon={<IconDatabase size={14} />} color='blue' type='submit'>
+                  <Button
+                    className=' hover:transform-none'
+                    leftIcon={<IconDatabase size={14} />}
+                    color='blue'
+                    type='submit'
+                  >
                     ログイン
                   </Button>
                 </Group>
