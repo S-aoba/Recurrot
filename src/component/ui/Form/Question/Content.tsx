@@ -22,10 +22,10 @@ const escapeHtml = (unsafe: string) => {
  */
 
 type ContentProps = {
-  setContent: Dispatch<SetStateAction<string>>
+  setDescription: Dispatch<SetStateAction<string>>
 }
 
-export const Content: React.FC<ContentProps> = ({ setContent }) => {
+export const Content: React.FC<ContentProps> = ({ setDescription }) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -38,7 +38,7 @@ export const Content: React.FC<ContentProps> = ({ setContent }) => {
     ],
     content: escapeHtml(''),
     onUpdate({ editor }) {
-      setContent(editor.getHTML())
+      setDescription(editor.getHTML())
     },
   })
 

@@ -16,7 +16,7 @@ import { Title } from './Title'
 export const QuestionForm = () => {
   // const [question, setQuestion] = useAtom(questionAtom)
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
-  const [_, setContent] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
 
   const { createQuestionMutation } = useMutateQuestion()
 
@@ -25,14 +25,14 @@ export const QuestionForm = () => {
     if (editedQuestion.id === 0)
       createQuestionMutation.mutate({
         title: editedQuestion.title,
-        description: editedQuestion.description,
+        description,
       })
   }
 
   return (
     <form className=' flex h-full w-11/12 flex-col items-center gap-y-5 py-5' onSubmit={handleSubmit}>
       <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
-      <Content setContent={setContent} />
+      <Content setDescription={setDescription} />
       <Button color='blue' type='submit'>
         送信
       </Button>
