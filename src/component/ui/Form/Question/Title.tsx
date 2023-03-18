@@ -8,13 +8,13 @@ import type { EditedQuestion } from '@/common/type'
  */
 
 type TitleProps = {
-  question: EditedQuestion
-  setQuestion: Dispatch<SetStateAction<EditedQuestion>>
+  editedQuestion: EditedQuestion
+  setEditedQuestion: Dispatch<SetStateAction<EditedQuestion>>
 }
 
-export const Title: React.FC<TitleProps> = ({ question, setQuestion }) => {
+export const Title: React.FC<TitleProps> = ({ editedQuestion, setEditedQuestion }) => {
   const handleChangeTitle = (evt: ChangeEvent<HTMLInputElement>) => {
-    setQuestion({ ...question, title: evt.target.value })
+    setEditedQuestion({ ...editedQuestion, title: evt.target.value })
   }
   return (
     <TextInput
