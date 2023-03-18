@@ -1,15 +1,15 @@
 import { TextInput } from '@mantine/core'
 import type { ChangeEvent, Dispatch, SetStateAction } from 'react'
 
-import type { QuestionType } from '@/common/type'
+import type { EditedQuestion } from '@/common/type'
 
 /**
  * @package
  */
 
 type TitleProps = {
-  question: QuestionType
-  setQuestion: Dispatch<SetStateAction<QuestionType>>
+  question: EditedQuestion
+  setQuestion: Dispatch<SetStateAction<EditedQuestion>>
 }
 
 export const Title: React.FC<TitleProps> = ({ question, setQuestion }) => {
