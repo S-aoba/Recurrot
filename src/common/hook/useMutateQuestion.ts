@@ -20,7 +20,7 @@ export const useMutateQuestion = () => {
       return res.data
     },
     {
-      onSuccess: (res: any) => {
+      onSuccess: (res: Question) => {
         const previousQuestions = queryClient.getQueryData<Question[]>(['questions'])
         if (previousQuestions) {
           queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
@@ -36,5 +36,34 @@ export const useMutateQuestion = () => {
       },
     }
   )
-  return { createQuestionMutation }
+
+  const updateQuestionMutation = useMutation(
+    ['questions'],
+    async (question: EditedQuestion) => {
+      const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/question/${question.id}`, question)
+      return res.data
+    },
+    {
+      onSuccess: (res: Question) => {
+        const previousQuestion = queryClient.getQueryData<Question[]>(['questions'])
+        if (previousQuestion) {
+          queryClient.setQueryData(
+            ['questions'],
+            previousQuestion.map((question) => {
+              return question.id === res.id ? res : question
+            })
+          )
+        }
+        setResetEditedQuestion(initialQuestion)
+        router.push('/')
+      },
+      onError: (err: any) => {
+        if (err.response.status === 401 || err.response.status === 403) {
+          setResetEditedQuestion(initialQuestion)
+          router.push('/')
+        }
+      },
+    }
+  )
+  return { createQuestionMutation, updateQuestionMutation }
 }
