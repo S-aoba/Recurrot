@@ -14,7 +14,6 @@ import { Title } from './Title'
  */
 
 export const QuestionForm = () => {
-  // const [question, setQuestion] = useAtom(questionAtom)
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
   const [description, setDescription] = useState<string>('')
 
