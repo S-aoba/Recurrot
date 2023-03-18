@@ -26,6 +26,7 @@ export const useMutateQuestion = () => {
           queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
         }
         setResetEditedQuestion(initialQuestion)
+        router.push('/')
       },
       onError: (err: any) => {
         setResetEditedQuestion(initialQuestion)
