@@ -27,3 +27,10 @@ export type SubNavTabStyleType =
   | 'dashboard-questions'
   | 'dashboard-answers'
   | 'dashboard-profile'
+
+////////////////////////////////////
+export type EditedQuestion = {
+  id: number
+  title: string
+  description?: string | null
+}
