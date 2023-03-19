@@ -1,5 +1,4 @@
 import { Avatar, Loader } from '@mantine/core'
-// import { IconMessageCircle2 } from '@tabler/icons-react'
 import Image from 'next/image'
 
 import { useQueryQuestions } from '@/common/hook/useQueryQuestions'
@@ -32,11 +31,7 @@ export const Card = () => {
                     <span>userId: {userId}</span>
                   </div>
                   <div className=' flex w-full items-center gap-x-3 pb-3'>
-                    <span>投稿日: {`${year} / ${month} / ${day}`}</span>
-                    {/* <div className=' flex items-center gap-x-1'>
-                      <IconMessageCircle2 />
-                      <span>{dummyQuestionItem.replayCount}</span>
-                    </div> */}
+                    <span>投稿日: {`${year} / ${month} / ${day}`}</span>{' '}
                   </div>
                 </div>
               </div>
