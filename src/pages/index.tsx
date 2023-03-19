@@ -13,6 +13,7 @@ const Home = () => {
     handleNavTabStyle('questions')
     handleSubNavTabStyle('new-questions')
   })
+
   return (
     <>
       <Head>
