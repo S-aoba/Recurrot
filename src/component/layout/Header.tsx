@@ -14,6 +14,7 @@ export const Header = () => {
 
   const handleLogout = async () => {
     queryClient.removeQueries(['user'])
+    queryClient.removeQueries(['questions'])
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
     router.push('/')
   }
