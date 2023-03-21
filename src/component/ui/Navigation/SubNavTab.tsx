@@ -31,7 +31,7 @@ export const SubNavTab = () => {
 
   const SubNavTabItem: SubNavTabType[] = [
     {
-      href: '/',
+      href: '/dashboard',
       children: '新着',
       handleOnClick: () => {
         return handleSubNavTabStyle('new-questions')

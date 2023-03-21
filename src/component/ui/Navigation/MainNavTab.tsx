@@ -20,7 +20,7 @@ export const MainNavTab = () => {
   const { handleNavTabStyle, questionsStyle, eventStyle, informationStyle, dashboardStyle } = useMainNavTabStyle()
   const MainNavTabItem: MainNavTabType[] = [
     {
-      href: '/',
+      href: '/dashboard',
       children: '質問',
       handleOnClick: () => {
         return handleNavTabStyle('questions')
