@@ -1,6 +1,7 @@
 export const MAIN_URL = {
   AUTH: '/',
   QUESTION: '/dashboard/new-questions',
+  QUESTION_POST: '/dashboard/questions/post',
   EVENT: '/dashboard/new-event',
   INFORMATION: '/dashboard/new-information',
 } as const
