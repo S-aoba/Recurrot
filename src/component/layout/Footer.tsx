@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className=' flex flex-1 justify-center border-t border-r-0 border-b-0 border-l-0 border-solid border-gray-200 py-5'>
+    <footer className=' flex justify-center border-t border-r-0 border-b-0 border-l-0 border-solid border-gray-200 py-5'>
       <div className=' flex w-9/12'>
         <span className=' text-3xl'>Recurrot</span>
         <div>
