@@ -9,37 +9,37 @@ export const useSubNavTabStyle = () => {
   const defaultSubNavTabStyle = ' text-black no-underline hover:text-red-500'
   const selectedSubNavTabStyle = 'text-blue-500 no-underline'
 
-  let newQuestionsStyle = defaultSubNavTabStyle
+  let newQuestionsStyle = selectedSubNavTabStyle
   let questionsWaitingAnswerStyle = defaultSubNavTabStyle
   let dashboardQuestionsStyle = defaultSubNavTabStyle
   let dashboardAnswersStyle = defaultSubNavTabStyle
   let dashboardProfileStyle = defaultSubNavTabStyle
 
-  if (subNavTabStyle === 'new-questions') {
+  if (subNavTabStyle === 'dashboard/new-questions') {
     newQuestionsStyle = selectedSubNavTabStyle
     questionsWaitingAnswerStyle = defaultSubNavTabStyle
     dashboardQuestionsStyle = defaultSubNavTabStyle
     dashboardAnswersStyle = defaultSubNavTabStyle
     dashboardProfileStyle = defaultSubNavTabStyle
-  } else if (subNavTabStyle === 'question-waiting-answers') {
+  } else if (subNavTabStyle === 'dashboard/question-waiting-answers') {
     questionsWaitingAnswerStyle = selectedSubNavTabStyle
     newQuestionsStyle = defaultSubNavTabStyle
     dashboardQuestionsStyle = defaultSubNavTabStyle
     dashboardAnswersStyle = defaultSubNavTabStyle
     dashboardProfileStyle = defaultSubNavTabStyle
-  } else if (subNavTabStyle === 'dashboard-questions') {
+  } else if (subNavTabStyle === 'dashboard/my-questions') {
     dashboardQuestionsStyle = selectedSubNavTabStyle
     dashboardAnswersStyle = defaultSubNavTabStyle
     dashboardProfileStyle = defaultSubNavTabStyle
     newQuestionsStyle = defaultSubNavTabStyle
     questionsWaitingAnswerStyle = defaultSubNavTabStyle
-  } else if (subNavTabStyle === 'dashboard-answers') {
+  } else if (subNavTabStyle === 'dashboard/my-answers') {
     dashboardAnswersStyle = selectedSubNavTabStyle
     dashboardQuestionsStyle = defaultSubNavTabStyle
     dashboardProfileStyle = defaultSubNavTabStyle
     newQuestionsStyle = defaultSubNavTabStyle
     questionsWaitingAnswerStyle = defaultSubNavTabStyle
-  } else if (subNavTabStyle === 'dashboard-profile') {
+  } else if (subNavTabStyle === 'dashboard/my-profile') {
     dashboardProfileStyle = selectedSubNavTabStyle
     dashboardAnswersStyle = defaultSubNavTabStyle
     dashboardQuestionsStyle = defaultSubNavTabStyle

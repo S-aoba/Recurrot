@@ -1,15 +1,15 @@
 export const MAIN_URL = {
-  TOP: '/dashboard',
-  QUESTION_DETAIL: 'questions/[questionId]',
-  EVENT: '/event',
-  INFORMATION: '/information',
-  DASHBOARD_QUESTIONS: '/dashboard/questions',
+  AUTH: '/',
+  QUESTION: '/dashboard/new-questions',
+  EVENT: '/dashboard/new-event',
+  INFORMATION: '/dashboard/new-information',
 } as const
 
 export const SUB_URL = {
-  NEW_QUESTIONS: '/dashboard',
-  QUESTION_WAITING_ANSWERS: '/question-waiting-answers',
-  DASHBOARD_QUESTIONS: '/dashboard/questions',
-  DASHBOARD_ANSWERS: '/dashboard/answers',
-  DASHBOARD_PROFILE: '/dashboard/profile',
+  DASHBOARD_NEW_QUESTIONS: '/dashboard/new-questions',
+  DASHBOARD_QUESTIONS_WAITING_ANSWERS: '/dashboard/question-waiting-answers',
+  DASHBOARD_QUESTION_DETAIL: '/dashboard/questions/[id]',
+  DASHBOARD_MY_QUESTIONS: '/dashboard/my-questions',
+  DASHBOARD_MY_ANSWERS: '/dashboard/my-answers',
+  DASHBOARD_MY_PROFILE: '/dashboard/my-profile',
 } as const

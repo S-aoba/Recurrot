@@ -17,7 +17,7 @@ export const initialEditedQuestion: EditedQuestion = { id: 0, title: '', descrip
 export const questionAtom = atom<QuestionType>(initialQuestion)
 export const questionListAtom = atom<QuestionType[]>([])
 
-export const mainNavTabStyleAtom = atom<MainNavTabStyleType>('questions')
-export const subNavTabStyleAtom = atom<SubNavTabStyleType>('new-questions')
+export const mainNavTabStyleAtom = atom<MainNavTabStyleType>('question')
+export const subNavTabStyleAtom = atom<SubNavTabStyleType>('dashboard/new-questions')
 
 export const editedQuestionAtom = atom<EditedQuestion>(initialEditedQuestion)

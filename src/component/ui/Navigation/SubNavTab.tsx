@@ -1,10 +1,10 @@
-import { useAtomValue } from 'jotai'
+// import { useAtomValue } from 'jotai'
 import type { ReactNode } from 'react'
 
 import type { SubUrlVal } from '@/common/type'
 import { Link } from '@/lib/next/Link'
-import { mainNavTabStyleAtom } from '@/store/question-atom'
 
+// import { mainNavTabStyleAtom } from '@/store/question-atom'
 import { useSubNavTabStyle } from './useSubNavTabStyle'
 
 /**
@@ -19,7 +19,8 @@ type SubNavTabType = {
 }
 
 export const SubNavTab = () => {
-  const mainNavTabStyle = useAtomValue(mainNavTabStyleAtom)
+  // 2023/3/21 一旦コメントアウト　後ほど実装
+  // const mainNavTabStyle = useAtomValue(mainNavTabStyleAtom)
   const {
     handleSubNavTabStyle,
     newQuestionsStyle,
@@ -31,70 +32,56 @@ export const SubNavTab = () => {
 
   const SubNavTabItem: SubNavTabType[] = [
     {
-      href: '/dashboard',
+      href: '/dashboard/new-questions',
       children: '新着',
       handleOnClick: () => {
-        return handleSubNavTabStyle('new-questions')
+        return handleSubNavTabStyle('dashboard/new-questions')
       },
       className: newQuestionsStyle,
     },
     {
-      href: '/question-waiting-answers',
+      href: '/dashboard/question-waiting-answers',
       children: '回答募集中',
       handleOnClick: () => {
-        return handleSubNavTabStyle('question-waiting-answers')
+        return handleSubNavTabStyle('dashboard/question-waiting-answers')
       },
       className: questionsWaitingAnswerStyle,
     },
-  ]
-
-  const SubDashboardNavTabItem: SubNavTabType[] = [
     {
-      href: '/dashboard/questions',
+      href: '/dashboard/my-questions',
       children: '自分質問',
       handleOnClick: () => {
-        return handleSubNavTabStyle('dashboard-questions')
+        return handleSubNavTabStyle('dashboard/my-questions')
       },
       className: dashboardQuestionsStyle,
     },
     {
-      href: '/dashboard/answers',
+      href: '/dashboard/my-answers',
       children: '自分の回答',
       handleOnClick: () => {
-        return handleSubNavTabStyle('dashboard-answers')
+        return handleSubNavTabStyle('dashboard/my-answers')
       },
       className: dashboardAnswersStyle,
     },
     {
-      href: '/dashboard/profile',
+      href: '/dashboard/my-profile',
       children: 'プロフィール',
       handleOnClick: () => {
-        return handleSubNavTabStyle('dashboard-profile')
+        return handleSubNavTabStyle('dashboard/my-profile')
       },
       className: dashboardProfileStyle,
     },
   ]
+
   return (
     <>
-      {mainNavTabStyle === 'questions' &&
-        SubNavTabItem.map(({ href, children, className, handleOnClick }) => {
-          return (
-            <Link key={href} href={href} className={className} onClick={handleOnClick}>
-              {children}
-            </Link>
-          )
-        })}
-      {mainNavTabStyle === 'dashboard' && (
-        <>
-          {SubDashboardNavTabItem.map(({ href, children, className, handleOnClick }) => {
-            return (
-              <Link key={href} href={href} className={className} onClick={handleOnClick}>
-                {children}
-              </Link>
-            )
-          })}
-        </>
-      )}
+      {SubNavTabItem.map(({ href, children, className, handleOnClick }) => {
+        return (
+          <Link key={href} href={href} className={className} onClick={handleOnClick}>
+            {children}
+          </Link>
+        )
+      })}
     </>
   )
 }

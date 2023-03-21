@@ -17,40 +17,33 @@ type MainNavTabType = {
 }
 
 export const MainNavTab = () => {
-  const { handleNavTabStyle, questionsStyle, eventStyle, informationStyle, dashboardStyle } = useMainNavTabStyle()
+  const { handleNavTabStyle, questionsStyle } = useMainNavTabStyle()
   const MainNavTabItem: MainNavTabType[] = [
     {
-      href: '/dashboard',
+      href: 'dashboard/new-event',
       children: '質問',
       handleOnClick: () => {
-        return handleNavTabStyle('questions')
+        return handleNavTabStyle('question')
       },
       className: questionsStyle,
     },
-    {
-      children: 'イベント',
-      href: '/event',
-      handleOnClick: () => {
-        return handleNavTabStyle('event')
-      },
-      className: eventStyle,
-    },
-    {
-      href: '/information',
-      children: 'お知らせ',
-      handleOnClick: () => {
-        return handleNavTabStyle('information')
-      },
-      className: informationStyle,
-    },
-    {
-      href: '/dashboard/questions',
-      children: 'ダッシュボード',
-      handleOnClick: () => {
-        return handleNavTabStyle('dashboard')
-      },
-      className: dashboardStyle,
-    },
+    // 2023/3/21 一旦コメントアウト　後ほど実装
+    // {
+    //   children: 'イベント',
+    //   href: '/event',
+    //   handleOnClick: () => {
+    //     return handleNavTabStyle('event')
+    //   },
+    //   className: eventStyle,
+    // },
+    // {
+    //   href: '/information',
+    //   children: 'お知らせ',
+    //   handleOnClick: () => {
+    //     return handleNavTabStyle('information')
+    //   },
+    //   className: informationStyle,
+    // },
   ]
 
   return (

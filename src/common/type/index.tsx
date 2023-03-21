@@ -20,13 +20,13 @@ export type HashtagType = {
   hashtag: string
 }
 
-export type MainNavTabStyleType = 'questions' | 'event' | 'information' | 'dashboard'
+export type MainNavTabStyleType = 'auth' | 'question' | 'event' | 'information'
 export type SubNavTabStyleType =
-  | 'new-questions'
-  | 'question-waiting-answers'
-  | 'dashboard-questions'
-  | 'dashboard-answers'
-  | 'dashboard-profile'
+  | 'dashboard/new-questions'
+  | 'dashboard/question-waiting-answers'
+  | 'dashboard/my-questions'
+  | 'dashboard/my-answers'
+  | 'dashboard/my-profile'
 
 ////////////////////////////////////
 export type EditedQuestion = {
