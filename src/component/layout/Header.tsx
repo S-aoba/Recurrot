@@ -5,6 +5,7 @@ import axios from 'axios'
 import router from 'next/router'
 
 import { useQueryUser } from '@/common/hook/useQueryUser'
+import { Link } from '@/lib/next/Link'
 
 export const Header = () => {
   const queryClient = useQueryClient()
@@ -21,7 +22,12 @@ export const Header = () => {
       <div className=' flex w-9/12 items-center gap-x-5'>
         <span className=' text-3xl'>Recurrot</span>
         <p>{user?.email}</p>
-        <Button type='button' onClick={handleLogout}>
+        <Link href='/dashboard/questions/post'>
+          <Button type='button' className=' hover:transform-none'>
+            質問する
+          </Button>
+        </Link>
+        <Button type='button' className=' hover:transform-none' onClick={handleLogout}>
           ログアウト
         </Button>
       </div>
