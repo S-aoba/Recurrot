@@ -1,9 +1,17 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
 
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { Card } from '@/component/ui/Card'
+import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 const QuestionWaitingAnswers = () => {
+  const { handleSubNavTabStyle } = useSubNavTabStyle()
+
+  useEffect(() => {
+    handleSubNavTabStyle('dashboard/question-waiting-answers')
+  })
+
   return (
     <>
       <Head>
