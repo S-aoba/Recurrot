@@ -49,7 +49,7 @@ export const SubNavTab = () => {
     },
     {
       href: '/dashboard/my-questions',
-      children: '自分質問',
+      children: '自分の質問',
       handleOnClick: () => {
         return handleSubNavTabStyle('dashboard/my-questions')
       },
