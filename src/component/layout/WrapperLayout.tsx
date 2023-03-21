@@ -10,7 +10,7 @@ type WrapperLayoutProps = {
 
 export const WrapperLayout = ({ children }: WrapperLayoutProps) => {
   return (
-    <div className=' flex min-h-screen  w-full flex-col'>
+    <div className=' flex min-h-screen w-full flex-col'>
       <Header />
       <Navigation />
       {children}
