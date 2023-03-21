@@ -4,11 +4,8 @@ import { IconDatabase } from '@tabler/icons-react'
 import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as Yup from 'yup'
-
-import { useMainNavTabStyle } from '@/component/ui/Navigation/useMainNavTabStyle'
-import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 const schema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('No email provided'),
@@ -26,9 +23,6 @@ const Home = () => {
   const [isRegister, setIsRegister] = useState(false)
 
   const router = useRouter()
-
-  const { handleNavTabStyle } = useMainNavTabStyle()
-  const { handleSubNavTabStyle } = useSubNavTabStyle()
 
   const handleForm = useForm<AuthForm>({
     validate: yupResolver(schema),
@@ -51,16 +45,11 @@ const Home = () => {
         password: handleForm.values.password,
       })
       handleForm.reset()
-      router.push('/dashboard')
+      router.push('/dashboard/new-questions')
     } catch (e: any) {
       setError(e.response.data.message)
     }
   }
-
-  useEffect(() => {
-    handleNavTabStyle('questions')
-    handleSubNavTabStyle('new-questions')
-  })
 
   return (
     <div className=' flex min-h-screen flex-col items-center justify-center'>
@@ -71,9 +60,6 @@ const Home = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className=' flex h-fit justify-center'>
-        {/* <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-          <Card />
-        </div> */}
         {error && (
           <Alert my='md' variant='filled' title='Authorization Error' color='red' radius='md'>
             {error}

@@ -20,7 +20,11 @@ export const Card = () => {
           const day = createdAt.toString().slice(8, 10)
           return (
             <div key={id} className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'>
-              <Link href={'questions/[questionId]'} as={`questions/${id}`} className=' absolute block h-64 w-80'></Link>
+              <Link
+                href={'/dashboard/questions/[id]'}
+                as={`questions/${id}`}
+                className=' absolute block h-64 w-80'
+              ></Link>
               <div className=' px row-span-2 flex items-center'>
                 <div className=' p-5'>
                   <Image src={'/typescript.png'} height={95} width={95} alt={'typescript'} className=' rounded-xl' />

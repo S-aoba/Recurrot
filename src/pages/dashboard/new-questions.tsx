@@ -1,7 +1,7 @@
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { Card } from '@/component/ui/Card'
 
-const Dashboard = () => {
+const DashboardNewQuestions = () => {
   return (
     <WrapperLayout>
       <main className=' flex h-fit justify-center'>
@@ -13,4 +13,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default DashboardNewQuestions

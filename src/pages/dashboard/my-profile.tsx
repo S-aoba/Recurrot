@@ -1,17 +1,14 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import { Card } from '@/component/ui/Card'
-import { useMainNavTabStyle } from '@/component/ui/Navigation/useMainNavTabStyle'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
+import { ProfileCard } from '@/component/ui/ProfileCard'
 
-const Answers = () => {
-  const { handleNavTabStyle } = useMainNavTabStyle()
+const MyProfile = () => {
   const { handleSubNavTabStyle } = useSubNavTabStyle()
 
   useEffect(() => {
-    handleNavTabStyle('dashboard')
-    handleSubNavTabStyle('dashboard-answers')
+    handleSubNavTabStyle('dashboard/my-profile')
   })
   return (
     <>
@@ -21,12 +18,12 @@ const Answers = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex h-fit justify-center'>
-        <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-          <Card />
+      <main className=' flex h-full justify-center'>
+        <div className=' w-9/12 py-5'>
+          <ProfileCard />
         </div>
       </main>
     </>
   )
 }
-export default Answers
+export default MyProfile

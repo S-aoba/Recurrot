@@ -26,7 +26,7 @@ export const useMutateQuestion = () => {
           queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
         }
         setResetEditedQuestion(initialQuestion)
-        router.push('/')
+        router.push('/dashboard/new-questions')
       },
       onError: (err: any) => {
         setResetEditedQuestion(initialQuestion)
@@ -55,7 +55,7 @@ export const useMutateQuestion = () => {
           )
         }
         setResetEditedQuestion(initialQuestion)
-        router.push('/')
+        router.push('/dashboard/new-questions')
       },
       onError: (err: any) => {
         if (err.response.status === 401 || err.response.status === 403) {

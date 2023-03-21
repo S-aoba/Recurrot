@@ -2,18 +2,14 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { Card } from '@/component/ui/Card'
-import { useMainNavTabStyle } from '@/component/ui/Navigation/useMainNavTabStyle'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
-const Questions = () => {
-  const { handleNavTabStyle } = useMainNavTabStyle()
+const MyAnswers = () => {
   const { handleSubNavTabStyle } = useSubNavTabStyle()
 
   useEffect(() => {
-    handleNavTabStyle('dashboard')
-    handleSubNavTabStyle('dashboard-questions')
+    handleSubNavTabStyle('dashboard/my-answers')
   })
-
   return (
     <>
       <Head>
@@ -30,4 +26,4 @@ const Questions = () => {
     </>
   )
 }
-export default Questions
+export default MyAnswers
