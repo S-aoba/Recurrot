@@ -12,7 +12,7 @@ model Question {
   createdAt   DateTime @default(now())
   updatedAt   DateTime
   title       String
-  description String?
+  description String
   userId      Int
   User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
