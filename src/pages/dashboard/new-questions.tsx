@@ -1,9 +1,14 @@
+import { Loader } from '@mantine/core'
+import type { Question } from '@prisma/client'
 import Head from 'next/head'
 
+import { useQueryQuestions } from '@/common/hook/useQueryQuestions'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { Card } from '@/component/ui/Card'
 
 const NewQuestions = () => {
+  const { data, status } = useQueryQuestions()
+  if (status == 'loading') return <Loader />
   return (
     <>
       <Head>
@@ -15,7 +20,14 @@ const NewQuestions = () => {
       <WrapperLayout>
         <main className=' flex h-fit flex-1 justify-center'>
           <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-            <Card />
+            {data &&
+              data.map((question: Question) => {
+                return (
+                  <>
+                    <Card key={question.id} type='question' data={question} />
+                  </>
+                )
+              })}
           </div>
         </main>
       </WrapperLayout>
