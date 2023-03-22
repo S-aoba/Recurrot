@@ -18,6 +18,7 @@ export const Title: React.FC<TitleProps> = ({ editedQuestion, setEditedQuestion 
   }
   return (
     <TextInput
+      value={editedQuestion.title}
       placeholder='質問のタイトル'
       variant='filled'
       size='md'
