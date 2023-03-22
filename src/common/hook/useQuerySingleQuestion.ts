@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 export const useQuerySingleQuestions = (id: number) => {
   const router = useRouter()
-  const getQuestions = async (id: number) => {
+  const getSingleQuestions = async (id: number) => {
     const res = await axios.get<Question>(`${process.env.NEXT_PUBLIC_API_URL}/question/${id}`, {
       withCredentials: true,
     })
@@ -14,7 +14,7 @@ export const useQuerySingleQuestions = (id: number) => {
   return useQuery<Question, Error>({
     queryKey: ['singleQuestion', id],
     queryFn: () => {
-      return getQuestions(id)
+      return getSingleQuestions(id)
     },
     enabled: !!id,
     staleTime: Infinity,
