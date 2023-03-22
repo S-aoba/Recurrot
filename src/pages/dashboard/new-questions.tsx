@@ -30,12 +30,8 @@ const NewQuestions = () => {
         <main className=' flex h-fit flex-1 justify-center'>
           <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
             {data &&
-              data.map((question: Question) => {
-                return (
-                  <>
-                    <Card key={question.id} type='question' data={question} />
-                  </>
-                )
+              data.map((question: Question, index) => {
+                return <Card key={index} type='question' data={question} />
               })}
           </div>
         </main>
