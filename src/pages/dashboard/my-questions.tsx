@@ -1,17 +1,21 @@
+import { Loader } from '@mantine/core'
+import type { Question } from '@prisma/client'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
+import { useQueryUserQuestions } from '@/common/hook/useQueryUserQuestion'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { Card } from '@/component/ui/Card'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 const MyQuestions = () => {
   const { handleSubNavTabStyle } = useSubNavTabStyle()
+  const { data, status } = useQueryUserQuestions()
 
   useEffect(() => {
     handleSubNavTabStyle('dashboard/my-questions')
   })
-
+  if (status === 'loading') return <Loader />
   return (
     <>
       <Head>
@@ -23,7 +27,14 @@ const MyQuestions = () => {
       <WrapperLayout>
         <main className=' flex h-fit flex-1 justify-center'>
           <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-            <Card />
+            {data &&
+              data.map((question: Question) => {
+                return (
+                  <>
+                    <Card key={question.id} type='question' data={question} />
+                  </>
+                )
+              })}
           </div>
         </main>
       </WrapperLayout>
