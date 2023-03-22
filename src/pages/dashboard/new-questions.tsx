@@ -1,13 +1,22 @@
 import { Loader } from '@mantine/core'
 import type { Question } from '@prisma/client'
 import Head from 'next/head'
+import { useEffect } from 'react'
 
 import { useQueryQuestions } from '@/common/hook/useQueryQuestions'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { Card } from '@/component/ui/Card'
+import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 const NewQuestions = () => {
   const { data, status } = useQueryQuestions()
+
+  const { handleSubNavTabStyle } = useSubNavTabStyle()
+
+  useEffect(() => {
+    handleSubNavTabStyle('dashboard/new-questions')
+  })
+
   if (status == 'loading') return <Loader />
   return (
     <>
