@@ -1,10 +1,12 @@
-import { Avatar, Loader } from '@mantine/core'
+import { Avatar, Button, Loader } from '@mantine/core'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
+import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 
 const QuestionDetail = () => {
@@ -17,9 +19,10 @@ const QuestionDetail = () => {
     }
   }, [router])
 
-  const { data: question, status } = useQuerySingleQuestions(Number(id))
+  const { data: question, status: questionStatus } = useQuerySingleQuestions(Number(id))
+  const { data: user, status: userStatus } = useQueryUser()
 
-  if (status === 'loading') return <Loader />
+  if (questionStatus === 'loading' || userStatus === 'loading') return <Loader />
 
   const year = question?.createdAt.toString().slice(0, 4)
   const month = question?.createdAt.toString().slice(5, 7)
@@ -33,7 +36,8 @@ const QuestionDetail = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      {question && (
+
+      {question && user && (
         <WrapperLayout>
           <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
             <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
@@ -47,6 +51,13 @@ const QuestionDetail = () => {
                   <span>
                     質問投稿日: {year} / {month} / {day}
                   </span>
+                  {user.id === question.userId && (
+                    <Link href={'/dashboard/questions/post'} type='button'>
+                      <Button type='button' className=' hover:transform-none'>
+                        編集する
+                      </Button>
+                    </Link>
+                  )}
                 </div>
                 <div className=' py-5'>
                   <a className=' rounded-3xl border border-solid border-gray-200 p-3'>
