@@ -1,8 +1,8 @@
 // import { useAtomValue } from 'jotai'
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import type { SubUrlVal } from '@/common/type'
-import { Link } from '@/lib/next/Link'
 
 // import { mainNavTabStyleAtom } from '@/store/question-atom'
 import { useSubNavTabStyle } from './useSubNavTabStyle'

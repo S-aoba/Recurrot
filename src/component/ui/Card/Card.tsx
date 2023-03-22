@@ -1,8 +1,7 @@
 import { Avatar } from '@mantine/core'
 import type { Question } from '@prisma/client'
 import Image from 'next/image'
-
-import { Link } from '@/lib/next/Link'
+import Link from 'next/link'
 
 /**
  * @package

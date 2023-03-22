@@ -1,7 +1,7 @@
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import type { MainUrlVal } from '@/common/type'
-import { Link } from '@/lib/next/Link'
 
 import { useMainNavTabStyle } from './useMainNavTabStyle'
 

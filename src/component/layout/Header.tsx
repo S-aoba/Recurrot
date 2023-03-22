@@ -2,10 +2,10 @@ import { Button } from '@mantine/core'
 import { Loader } from '@mantine/core'
 import { useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
+import Link from 'next/link'
 import router from 'next/router'
 
 import { useQueryUser } from '@/common/hook/useQueryUser'
-import { Link } from '@/lib/next/Link'
 
 export const Header = () => {
   const queryClient = useQueryClient()
