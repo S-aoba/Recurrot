@@ -17,7 +17,7 @@ export const useQuerySingleQuestions = (id: number) => {
       return getSingleQuestions(id)
     },
     enabled: !!id,
-    staleTime: Infinity,
+    staleTime: 10000, //5分
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) router.push('/')
     },

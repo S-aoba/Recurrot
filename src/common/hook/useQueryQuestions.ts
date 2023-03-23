@@ -12,6 +12,7 @@ export const useQueryQuestions = () => {
   return useQuery<Question[], Error>({
     queryKey: ['questions'],
     queryFn: getQuestions,
+    staleTime: 10000, //5分
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) router.push('/')
     },
