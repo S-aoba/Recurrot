@@ -32,5 +32,5 @@ export type SubNavTabStyleType =
 export type EditedQuestion = {
   id: number
   title: string
-  description?: string | null
+  description: string
 }
