@@ -22,10 +22,12 @@ const escapeHtml = (unsafe: string) => {
  */
 
 type ContentProps = {
+  id: number
+  description: string
   setDescription: Dispatch<SetStateAction<string>>
 }
 
-export const Content: React.FC<ContentProps> = ({ setDescription }) => {
+export const Content: React.FC<ContentProps> = ({ id, description, setDescription }) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -36,7 +38,7 @@ export const Content: React.FC<ContentProps> = ({ setDescription }) => {
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: escapeHtml(''),
+    content: id === 0 ? escapeHtml(description) : description,
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
     },
