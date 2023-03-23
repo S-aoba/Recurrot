@@ -21,3 +21,4 @@ export const mainNavTabStyleAtom = atom<MainNavTabStyleType>('question')
 export const subNavTabStyleAtom = atom<SubNavTabStyleType>('dashboard/new-questions')
 
 export const editedQuestionAtom = atom<EditedQuestion>(initialEditedQuestion)
+export const descriptionAtom = atom<string>('')
