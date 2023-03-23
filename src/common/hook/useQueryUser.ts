@@ -12,6 +12,7 @@ export const useQueryUser = () => {
   return useQuery<Omit<User, 'hashedPassword'>, Error>({
     queryKey: ['user'],
     queryFn: getUser,
+    staleTime: Infinity,
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) router.push('/')
     },
