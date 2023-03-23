@@ -1,4 +1,5 @@
 import { Avatar, Button, Loader } from '@mantine/core'
+import { useAtom, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
+import { descriptionAtom, editedQuestionAtom } from '@/store/question-atom'
 
 const QuestionDetail = () => {
   const [id, setId] = useState<string | string[] | undefined>()
@@ -21,12 +23,21 @@ const QuestionDetail = () => {
 
   const { data: question, status: questionStatus } = useQuerySingleQuestions(Number(id))
   const { data: user, status: userStatus } = useQueryUser()
+  const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
+  const setDescription = useSetAtom(descriptionAtom)
 
   if (questionStatus === 'loading' || userStatus === 'loading') return <Loader />
 
   const year = question?.createdAt.toString().slice(0, 4)
   const month = question?.createdAt.toString().slice(5, 7)
   const day = question?.createdAt.toString().slice(8, 10)
+
+  const handleSetQuestion = () => {
+    if (question) {
+      setDescription(question.description)
+      setEditedQuestion({ ...editedQuestion, id: question.id, title: question.title })
+    }
+  }
 
   return (
     <>
@@ -52,8 +63,8 @@ const QuestionDetail = () => {
                     質問投稿日: {year} / {month} / {day}
                   </span>
                   {user.id === question.userId && (
-                    <Link href={'/dashboard/questions/post'} type='button'>
-                      <Button type='button' className=' hover:transform-none'>
+                    <Link href={'/dashboard/questions/edit'} type='button'>
+                      <Button type='button' className=' hover:transform-none' onClick={handleSetQuestion}>
                         編集する
                       </Button>
                     </Link>
