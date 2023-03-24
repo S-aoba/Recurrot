@@ -1,4 +1,5 @@
 import { Avatar, Button, Loader } from '@mantine/core'
+import type { Answer } from '@prisma/client'
 import { useAtom, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -6,6 +7,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
+import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
@@ -22,11 +24,13 @@ const QuestionDetail = () => {
   }, [router])
 
   const { data: question, status: questionStatus } = useQuerySingleQuestions(Number(id))
+  const { data: answers, status: answersStatus } = useQueryAnswers(Number(id))
   const { data: user, status: userStatus } = useQueryUser()
+
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
   const setDescription = useSetAtom(descriptionAtom)
 
-  if (questionStatus === 'loading' || userStatus === 'loading') return <Loader />
+  if (questionStatus === 'loading' || answersStatus === 'loading' || userStatus === 'loading') return <Loader />
 
   const year = question?.createdAt.toString().slice(0, 4)
   const month = question?.createdAt.toString().slice(5, 7)
@@ -48,7 +52,7 @@ const QuestionDetail = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      {question && user && (
+      {question && answers && user && (
         <WrapperLayout>
           <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
             <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
@@ -86,16 +90,15 @@ const QuestionDetail = () => {
               </div>
             </div>
 
-            {/* <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
+            <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
               <p className=' mb-0 pb-2 text-2xl'>
-                <span className=' font-semibold text-blue-500'>4</span> 件の回答
+                <span className=' font-semibold text-blue-500'>{answers.length}</span> 件の回答
               </p>
-            </div> */}
+            </div>
 
-            {/* <DummyAnswer />
-            <DummyAnswer />
-            <DummyAnswer />
-            <DummyAnswer /> */}
+            {answers.map((answer) => {
+              return <Answer key={answer.id} answer={answer} />
+            })}
           </main>
         </WrapperLayout>
       )}
@@ -104,56 +107,31 @@ const QuestionDetail = () => {
 }
 export default QuestionDetail
 
-// // const DummyBody = () => {
-// //   const codeExample = `const hello = 0`
-// //   return (
-// //     <div>
-// //       <ul>
-// //         <li>何に困っているか:</li>
-// //       </ul>
-// //       <p>
-// //         画面左側にある関数の入出力例を試したところ、最後の例（perfectNumberList(10000)）でタイムアウトによるエラーが発生する。
-// //       </p>
-// //       <ul>
-// //         <li>期待する動作:</li>
-// //       </ul>
-// //       <p>タイムアウトが発生しないようにしたい。</p>
-// //       <ul>
-// //         <li>エラーの内容:</li>
-// //       </ul>
-// //       <p>
-// //         エラーを検出しました。提出したコードはタイムアウトしました。提出したコードの計算量が多い、あるいは無限ループを持つ可能性があります。サーバで問題がありました。
-// //       </p>
-// //       <ul>
-// //         <li>ソースコード:</li>
-// //       </ul>
-// //       <div className=' bg-gray-200 p-5'>
-// //         <code>{codeExample}</code>
-// //       </div>
-// //       <ul>
-// //         <li>試したこと</li>
-// //       </ul>
-// //       <p>
-// //         とにかく効率化しなければならないと思い、以下の二点を試しました。 1.
-// //         出力がnoneになるのはnが1～5の時なので、nがこれらの時はループに入らないよう、最初に例外的に処理しました。 2. j を
-// //         1～i まで動かすのではなく、1～i//2+1までしか動かさないようにしました。（内側ループは j が i
-// //         の約数かどうかを調べるループですが、i が奇数でも偶数でも「2×○+ 1or0」の形をとるため。）
-// //       </p>
-// //     </div>
-// //   )
-// // }
+type Props = {
+  answer: Answer
+}
 
-// // const DummyAnswer = () => {
-// //   return (
-// //     <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
-// //       <div className=' py-5'>
-// //         <div className=' flex items-center gap-x-2 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
-// //           <Avatar radius={'xl'} />
-// //           <span>回答者: Aoba</span>
-// //           <span>回答日: 2023 / 2 / 20</span>
-// //         </div>
-// //         <DummyBody />
-// //       </div>
-// //     </div>
-// //   )
-// }
+const AnswerBody: React.FC<Props> = ({ answer }) => {
+  return <div dangerouslySetInnerHTML={{ __html: answer.description }}></div>
+}
+
+const Answer: React.FC<Props> = ({ answer }) => {
+  const year = answer.createdAt.toString().slice(0, 4)
+  const month = answer.createdAt.toString().slice(5, 7)
+  const day = answer.createdAt.toString().slice(8, 10)
+
+  return (
+    <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
+      <div className=' py-5'>
+        <div className=' flex items-center gap-x-2 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
+          <Avatar radius={'xl'} />
+          <span>回答者: {answer.userId}</span>
+          <span>
+            回答日: {year} / {month} / {day}
+          </span>
+        </div>
+        <AnswerBody answer={answer} />
+      </div>
+    </div>
+  )
+}
