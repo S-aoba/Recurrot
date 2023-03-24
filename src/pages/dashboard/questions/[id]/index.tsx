@@ -104,7 +104,7 @@ const QuestionDetail = () => {
             <div className=' flex w-8/12 flex-col justify-center'>
               <div>
                 <h2>あなたの回答</h2>
-                <AnswerForm />
+                <AnswerForm questionId={question.id} />
               </div>
             </div>
           </main>
