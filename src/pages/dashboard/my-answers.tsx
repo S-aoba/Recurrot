@@ -1,16 +1,22 @@
+import { Loader } from '@mantine/core'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
+import { useQueryUserAnswers } from '@/common/hook/useQueryUserAnswers'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
-// import { Card } from '@/component/ui/Card'
+import { Card } from '@/component/ui/Card'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 const MyAnswers = () => {
   const { handleSubNavTabStyle } = useSubNavTabStyle()
 
+  const { data: questions, status: answersStatus } = useQueryUserAnswers()
+
   useEffect(() => {
     handleSubNavTabStyle('dashboard/my-answers')
   })
+
+  if (answersStatus === 'loading') return <Loader />
   return (
     <>
       <Head>
@@ -21,7 +27,12 @@ const MyAnswers = () => {
       </Head>
       <WrapperLayout>
         <main className=' flex h-fit flex-1 justify-center'>
-          <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>{/* <Card /> */}</div>
+          <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
+            {questions &&
+              questions.map((question, index) => {
+                return <Card key={index} question={question} />
+              })}
+          </div>
         </main>
       </WrapperLayout>
     </>
