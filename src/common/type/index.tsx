@@ -34,3 +34,8 @@ export type EditedQuestion = {
   title: string
   description: string
 }
+
+export type EditedAnswer = {
+  id: number
+  description: string
+}
