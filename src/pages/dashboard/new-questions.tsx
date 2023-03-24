@@ -31,7 +31,7 @@ const NewQuestions = () => {
           <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
             {data &&
               data.map((question: Question, index) => {
-                return <Card key={index} type='question' data={question} />
+                return <Card key={index} question={question} />
               })}
           </div>
         </main>
