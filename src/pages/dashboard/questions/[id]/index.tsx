@@ -11,6 +11,7 @@ import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
+import { AnswerForm } from '@/component/ui/Form/Answer'
 import { descriptionAtom, editedQuestionAtom } from '@/store/question-atom'
 
 const QuestionDetail = () => {
@@ -99,6 +100,13 @@ const QuestionDetail = () => {
             {answers.map((answer) => {
               return <Answer key={answer.id} answer={answer} />
             })}
+
+            <div className=' flex w-8/12 flex-col justify-center'>
+              <div>
+                <h2>あなたの回答</h2>
+                <AnswerForm />
+              </div>
+            </div>
           </main>
         </WrapperLayout>
       )}
