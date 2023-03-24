@@ -8,40 +8,35 @@ import Link from 'next/link'
  */
 
 type CardProps = {
-  type: 'question' | 'answer'
-  data: Question
+  question: Question
 }
 
-export const Card: React.FC<CardProps> = ({ type, data }) => {
-  if (type == 'question') {
-    const { id, createdAt, title, userId } = data
-    const year = createdAt.toString().slice(0, 4)
-    const month = createdAt.toString().slice(5, 7)
-    const day = createdAt.toString().slice(8, 10)
+export const Card: React.FC<CardProps> = ({ question }) => {
+  const { id, createdAt, title, userId } = question
+  const year = createdAt.toString().slice(0, 4)
+  const month = createdAt.toString().slice(5, 7)
+  const day = createdAt.toString().slice(8, 10)
 
-    return (
-      <div key={id} className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'>
-        <Link href={'/dashboard/questions/[id]'} as={`questions/${id}`} className=' absolute block h-64 w-80'></Link>
-        <div className=' px row-span-2 flex items-center'>
-          <div className=' p-5'>
-            <Image src={'/typescript.png'} height={95} width={95} alt={'typescript'} className=' rounded-xl' />
-          </div>
-          <div className='w-full p-2'>
-            <div className=' flex w-full items-center gap-x-3 py-3'>
-              <Avatar radius='xl' />
-              <span>userId: {userId}</span>
-            </div>
-            <div className=' flex w-full items-center gap-x-3 pb-3'>
-              <span>投稿日: {`${year} / ${month} / ${day}`}</span>{' '}
-            </div>
-          </div>
+  return (
+    <div key={id} className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'>
+      <Link href={'/dashboard/questions/[id]'} as={`questions/${id}`} className=' absolute block h-64 w-80'></Link>
+      <div className=' px row-span-2 flex items-center'>
+        <div className=' p-5'>
+          <Image src={'/typescript.png'} height={95} width={95} alt={'typescript'} className=' rounded-xl' />
         </div>
-        <div className=' row-span-4 p-3 text-lg'>
-          <p className=' line-clamp-3'>{title}</p>
+        <div className='w-full p-2'>
+          <div className=' flex w-full items-center gap-x-3 py-3'>
+            <Avatar radius='xl' />
+            <span>userId: {userId}</span>
+          </div>
+          <div className=' flex w-full items-center gap-x-3 pb-3'>
+            <span>投稿日: {`${year} / ${month} / ${day}`}</span>{' '}
+          </div>
         </div>
       </div>
-    )
-  } else {
-    return <div>ANswer</div>
-  }
+      <div className=' row-span-4 p-3 text-lg'>
+        <p className=' line-clamp-3'>{title}</p>
+      </div>
+    </div>
+  )
 }
