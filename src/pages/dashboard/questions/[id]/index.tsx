@@ -1,5 +1,5 @@
 import { Avatar, Button, Loader } from '@mantine/core'
-import type { Answer } from '@prisma/client'
+import { Answer } from '@prisma/client'
 import { useAtom, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import Image from 'next/image'
