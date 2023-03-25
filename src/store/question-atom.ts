@@ -24,9 +24,14 @@ export const resetEditedQuestionAtom = atom(null, (_, set) => {
   return set(editedQuestionAtom, initialEditedQuestion)
 })
 
-export const descriptionAtom = atom<string>('')
-export const resetDescriptionAtom = atom(null, (_, set) => {
-  set(descriptionAtom, '')
+export const questionDescriptionAtom = atom<string>('')
+export const resetQuestionDescriptionAtom = atom(null, (_, set) => {
+  set(questionDescriptionAtom, '')
+})
+
+export const answerDescriptionAtom = atom<string>('')
+export const resetAnswerDescriptionAtom = atom(null, (_, set) => {
+  set(answerDescriptionAtom, '')
 })
 
 const initialEditedAnswer: EditedAnswer = { id: 0, description: '' }
