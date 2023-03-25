@@ -45,7 +45,7 @@ export const QuestionForm = () => {
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: editedQuestion.id !== 0 ? escapeHtml(description) : description,
+    content: editedQuestion.id === 0 ? escapeHtml(description) : description,
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
     },
