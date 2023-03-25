@@ -12,7 +12,7 @@ import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { AnswerForm } from '@/component/ui/Form/Answer'
-import { descriptionAtom, editedQuestionAtom } from '@/store/question-atom'
+import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-atom'
 
 const QuestionDetail = () => {
   const [id, setId] = useState<string | string[] | undefined>()
@@ -29,7 +29,7 @@ const QuestionDetail = () => {
   const { data: user, status: userStatus } = useQueryUser()
 
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
-  const setDescription = useSetAtom(descriptionAtom)
+  const setDescription = useSetAtom(questionDescriptionAtom)
 
   if (questionStatus === 'loading' || answersStatus === 'loading' || userStatus === 'loading') return <Loader />
 
