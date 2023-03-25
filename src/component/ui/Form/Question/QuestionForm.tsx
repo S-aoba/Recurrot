@@ -37,7 +37,7 @@ export const QuestionForm = () => {
     <form className=' flex h-full w-11/12 flex-col items-center gap-y-5 py-5' onSubmit={handleSubmit}>
       <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
       <Content id={editedQuestion.id} description={description} setDescription={setDescription} />
-      <Button color='blue' type='submit'>
+      <Button color='blue' type='submit' className=' hover:transform-none'>
         {editedQuestion.id === 0 ? '投稿' : '更新'}
       </Button>
     </form>
