@@ -46,7 +46,7 @@ export const AnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: editedAnswer.id !== 0 ? escapeHtml(description) : description,
+    content: editedAnswer.id === 0 ? escapeHtml(description) : description,
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
     },
