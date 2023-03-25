@@ -1,17 +1,18 @@
 import type { Question } from '@prisma/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-import { useSetAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 
-import { initialQuestion, questionAtom } from '@/store/question-atom'
+import { resetDescriptionAtom, resetEditedQuestionAtom } from '@/store/question-atom'
 
 import type { EditedQuestion } from '../type'
 
 export const useMutateQuestion = () => {
   const queryClient = useQueryClient()
   const router = useRouter()
-  const setResetEditedQuestion = useSetAtom(questionAtom)
+  const [, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)
+  const [, resetDescription] = useAtom(resetDescriptionAtom)
 
   const createQuestionMutation = useMutation(
     ['questions'],
@@ -25,12 +26,14 @@ export const useMutateQuestion = () => {
         if (previousQuestions) {
           queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
         }
-        setResetEditedQuestion(initialQuestion)
+        resetEditedQuestion()
+        resetDescription()
         router.push('/dashboard/new-questions')
       },
       onError: (err: any) => {
-        setResetEditedQuestion(initialQuestion)
         if (err.response.status === 401 || err.response.status === 403) {
+          resetEditedQuestion()
+          resetDescription()
           router.push('/')
         }
       },
@@ -54,12 +57,14 @@ export const useMutateQuestion = () => {
             })
           )
         }
-        setResetEditedQuestion(initialQuestion)
+        resetEditedQuestion()
+        resetDescription()
         router.push('/dashboard/new-questions')
       },
       onError: (err: any) => {
         if (err.response.status === 401 || err.response.status === 403) {
-          setResetEditedQuestion(initialQuestion)
+          resetEditedQuestion()
+          resetDescription()
           router.push('/')
         }
       },
