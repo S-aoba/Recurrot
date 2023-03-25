@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 
-import { resetDescriptionAtom, resetEditedQuestionAtom } from '@/store/question-atom'
+import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/question-atom'
 
 import type { EditedQuestion } from '../type'
 
@@ -12,7 +12,7 @@ export const useMutateQuestion = () => {
   const queryClient = useQueryClient()
   const router = useRouter()
   const [, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)
-  const [, resetDescription] = useAtom(resetDescriptionAtom)
+  const [, resetDescription] = useAtom(resetQuestionDescriptionAtom)
 
   const createQuestionMutation = useMutation(
     ['questions'],
