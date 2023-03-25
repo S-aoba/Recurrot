@@ -55,6 +55,7 @@ export const useMutateAnswer = (questionId: number) => {
             })
           )
         }
+        queryClient.invalidateQueries(['answers'])
         resetDescription()
         router.push(`/dashboard/questions/${questionId}`)
       },
