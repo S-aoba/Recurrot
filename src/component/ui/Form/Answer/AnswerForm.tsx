@@ -8,9 +8,10 @@ import Underline from '@tiptap/extension-underline'
 import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useAtom, useAtomValue } from 'jotai'
+import type { FormEvent } from 'react'
 
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
-import { descriptionAtom, editedAnswerAtom } from '@/store/question-atom'
+import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
 
 /**
  * @package
@@ -31,7 +32,7 @@ type AnswerFormProps = {
 
 export const AnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
   const editedAnswer = useAtomValue(editedAnswerAtom)
-  const [description, setDescription] = useAtom(descriptionAtom)
+  const [description, setDescription] = useAtom(answerDescriptionAtom)
 
   const { createAnswerMutation } = useMutateAnswer(questionId)
 
@@ -45,24 +46,25 @@ export const AnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: editedAnswer.id === 0 ? escapeHtml(description) : description,
+    content: editedAnswer.id !== 0 ? escapeHtml(description) : description,
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
     },
   })
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (editedAnswer.id === 0) {
+    if (editedAnswer.id === 0 && editor) {
       createAnswerMutation.mutate({
         description,
       })
+      editor.commands.setContent('')
     }
   }
 
   return (
     <form className=' w-full' onSubmit={handleSubmit}>
-      <RichTextEditor editor={editor} className=' h-96 w-full '>
+      <RichTextEditor editor={editor} className=' h-96 w-full'>
         <RichTextEditor.Content />
       </RichTextEditor>
       <div className=' mt-3 flex justify-end'>
