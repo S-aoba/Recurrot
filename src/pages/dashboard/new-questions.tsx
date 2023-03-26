@@ -9,7 +9,7 @@ import { Card } from '@/component/ui/Card'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 const NewQuestions = () => {
-  const { data, status } = useQueryQuestions()
+  const { data: questions, status: questionsStatus } = useQueryQuestions()
 
   const { handleSubNavTabStyle } = useSubNavTabStyle()
 
@@ -17,7 +17,8 @@ const NewQuestions = () => {
     handleSubNavTabStyle('dashboard/new-questions')
   })
 
-  if (status == 'loading') return <Loader />
+  if (questionsStatus == 'loading') return <Loader />
+
   return (
     <>
       <Head>
@@ -29,8 +30,8 @@ const NewQuestions = () => {
       <WrapperLayout>
         <main className=' flex h-fit flex-1 justify-center'>
           <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-            {data &&
-              data.map((question: Question, index) => {
+            {questions &&
+              questions.map((question: Question, index) => {
                 return <Card key={index} question={question} />
               })}
           </div>
