@@ -11,7 +11,8 @@ import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
-import { AnswerForm } from '@/component/ui/Form/Answer'
+import { CreateAnswerForm } from '@/component/ui/Form/Answer/CreateAnswerForm'
+import { UpdateAnswerForm } from '@/component/ui/Form/Answer/UpdateAnswerForm'
 import {
   answerDescriptionAtom,
   editedAnswerAtom,
@@ -109,7 +110,7 @@ const QuestionDetail = () => {
             <div className=' flex w-8/12 flex-col justify-center'>
               <div>
                 <h2>あなたの回答</h2>
-                <AnswerForm questionId={question.id} />
+                <CreateAnswerForm questionId={question.id} />
               </div>
             </div>
           </main>
@@ -130,7 +131,7 @@ const AnswerBody: React.FC<Props> = ({ answer, isEdit, setIsEdit }) => {
   return (
     <>
       {isEdit && setIsEdit ? (
-        <AnswerForm questionId={answer.questionId} setIsEdit={setIsEdit} />
+        <UpdateAnswerForm questionId={answer.questionId} setIsEdit={setIsEdit} answerId={answer.id} />
       ) : (
         <div dangerouslySetInnerHTML={{ __html: answer.description }}></div>
       )}
@@ -148,7 +149,7 @@ const Answer: React.FC<Props> = ({ answer }) => {
   const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
 
   const handleSetAnswer = () => {
-    if (answer) {
+    if (answer && setIsEdit) {
       setDescription(answer.description)
       setEditedAnswer({ ...editedAnswer, id: answer.id })
       setIsEdit(!isEdit)

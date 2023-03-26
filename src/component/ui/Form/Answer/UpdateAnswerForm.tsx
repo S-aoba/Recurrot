@@ -29,13 +29,14 @@ const escapeHtml = (unsafe: string) => {
 type AnswerFormProps = {
   questionId: number
   setIsEdit?: Dispatch<SetStateAction<boolean>>
+  answerId: number
 }
 
-export const AnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsEdit }) => {
+export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsEdit, answerId }) => {
   const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
   const [description, setDescription] = useAtom(answerDescriptionAtom)
 
-  const { createAnswerMutation, updateAnswerMutation } = useMutateAnswer(questionId)
+  const { updateAnswerMutation } = useMutateAnswer(questionId)
 
   const editor = useEditor({
     extensions: [
@@ -51,16 +52,14 @@ export const AnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsEdit })
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
     },
+    onFocus() {
+      setEditedAnswer({ ...editedAnswer, id: answerId })
+    },
   })
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (editedAnswer.id === 0 && editor) {
-      createAnswerMutation.mutate({
-        description,
-      })
-      editor.commands.setContent('')
-    } else if (editedAnswer.id !== 0 && editor && setIsEdit) {
+    if (editedAnswer.id !== 0 && editor && setIsEdit) {
       setIsEdit(false)
       updateAnswerMutation.mutate({
         id: editedAnswer.id,
