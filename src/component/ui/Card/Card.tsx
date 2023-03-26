@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 type CardProps = {
   question: Question
-  answerLength: number
+  answerLength?: number
 }
 
 export const Card: React.FC<CardProps> = ({ question, answerLength }) => {
@@ -35,7 +35,7 @@ export const Card: React.FC<CardProps> = ({ question, answerLength }) => {
             <span>投稿日: {`${year} / ${month} / ${day}`}</span>
             <div className=' flex gap-x-1'>
               <IconMessageDots />
-              <span>{answerLength}</span>
+              {answerLength && <span>{answerLength}</span>}
             </div>
           </div>
         </div>
