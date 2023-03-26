@@ -103,7 +103,7 @@ const QuestionDetail = () => {
             </div>
 
             {answers.map((answer) => {
-              return <Answer key={answer.id} answer={answer} />
+              return <Answer key={answer.id} answer={answer} userId={user.id} />
             })}
 
             <div className=' flex w-8/12 flex-col justify-center'>
@@ -122,6 +122,7 @@ export default QuestionDetail
 
 type Props = {
   answer: Answer
+  userId?: number
   isEdit?: boolean
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -138,7 +139,7 @@ const AnswerBody: React.FC<Props> = ({ answer, isEdit, setIsEdit }) => {
   )
 }
 
-const Answer: React.FC<Props> = ({ answer }) => {
+const Answer: React.FC<Props> = ({ answer, userId }) => {
   const year = answer.createdAt.toString().slice(0, 4)
   const month = answer.createdAt.toString().slice(5, 7)
   const day = answer.createdAt.toString().slice(8, 10)
@@ -164,7 +165,7 @@ const Answer: React.FC<Props> = ({ answer }) => {
           <span>
             回答日: {year} / {month} / {day}
           </span>
-          <Button onClick={handleSetAnswer}>編集</Button>
+          {answer.userId === userId && <Button onClick={handleSetAnswer}>編集</Button>}
         </div>
         <AnswerBody answer={answer} isEdit={isEdit} setIsEdit={setIsEdit} />
       </div>
