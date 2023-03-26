@@ -1,9 +1,9 @@
 import { Loader } from '@mantine/core'
-import type { Question } from '@prisma/client'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryQuestions } from '@/common/hook/useQueryQuestions'
+import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { Card } from '@/component/ui/Card'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
@@ -31,7 +31,7 @@ const NewQuestions = () => {
         <main className=' flex h-fit flex-1 justify-center'>
           <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
             {questions &&
-              questions.map((question: Question, index) => {
+              questions.map((question: QuestionAndAnswerIdListType, index) => {
                 return <Card key={index} question={question} answerLength={question.answers.length} />
               })}
           </div>

@@ -35,7 +35,7 @@ export const Card: React.FC<CardProps> = ({ question, answerLength }) => {
             <span>投稿日: {`${year} / ${month} / ${day}`}</span>
             <div className=' flex gap-x-1'>
               <IconMessageDots />
-              {answerLength && <span>{answerLength}</span>}
+              <span>{answerLength}</span>
             </div>
           </div>
         </div>

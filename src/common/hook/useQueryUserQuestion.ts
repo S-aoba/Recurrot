@@ -1,17 +1,21 @@
-import type { Question } from '@prisma/client'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
+import type { QuestionAndAnswerIdListType } from '../type'
+
 export const useQueryUserQuestions = () => {
   const router = useRouter()
   const getUserQuestions = async () => {
-    const res = await axios.get<Question[]>(`${process.env.NEXT_PUBLIC_API_URL}/question/user/:userName`, {
-      withCredentials: true,
-    })
+    const res = await axios.get<QuestionAndAnswerIdListType[]>(
+      `${process.env.NEXT_PUBLIC_API_URL}/question/user/:userName`,
+      {
+        withCredentials: true,
+      }
+    )
     return res.data
   }
-  return useQuery<Question[], Error>({
+  return useQuery<QuestionAndAnswerIdListType[], Error>({
     queryKey: ['userQuestions'],
     queryFn: getUserQuestions,
     staleTime: 10000, //5分
