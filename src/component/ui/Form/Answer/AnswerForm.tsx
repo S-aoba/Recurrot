@@ -7,8 +7,8 @@ import TextAlign from '@tiptap/extension-text-align'
 import Underline from '@tiptap/extension-underline'
 import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useAtom, useAtomValue } from 'jotai'
-import type { FormEvent } from 'react'
+import { useAtom } from 'jotai'
+import type { Dispatch, FormEvent, SetStateAction } from 'react'
 
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
@@ -28,13 +28,14 @@ const escapeHtml = (unsafe: string) => {
 
 type AnswerFormProps = {
   questionId: number
+  setIsEdit?: Dispatch<SetStateAction<boolean>>
 }
 
-export const AnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
-  const editedAnswer = useAtomValue(editedAnswerAtom)
+export const AnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsEdit }) => {
+  const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
   const [description, setDescription] = useAtom(answerDescriptionAtom)
 
-  const { createAnswerMutation } = useMutateAnswer(questionId)
+  const { createAnswerMutation, updateAnswerMutation } = useMutateAnswer(questionId)
 
   const editor = useEditor({
     extensions: [
@@ -59,7 +60,15 @@ export const AnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
         description,
       })
       editor.commands.setContent('')
+    } else if (editedAnswer.id !== 0 && editor && setIsEdit) {
+      setIsEdit(false)
+      updateAnswerMutation.mutate({
+        id: editedAnswer.id,
+        description,
+      })
+      editor.commands.setContent('')
     }
+    setEditedAnswer({ ...editedAnswer, id: 0 })
   }
 
   return (

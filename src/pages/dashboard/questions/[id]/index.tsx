@@ -12,7 +12,12 @@ import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { AnswerForm } from '@/component/ui/Form/Answer'
-import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-atom'
+import {
+  answerDescriptionAtom,
+  editedAnswerAtom,
+  editedQuestionAtom,
+  questionDescriptionAtom,
+} from '@/store/question-atom'
 
 const QuestionDetail = () => {
   const [id, setId] = useState<string | string[] | undefined>()
@@ -117,16 +122,38 @@ export default QuestionDetail
 
 type Props = {
   answer: Answer
+  isEdit?: boolean
+  setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AnswerBody: React.FC<Props> = ({ answer }) => {
-  return <div dangerouslySetInnerHTML={{ __html: answer.description }}></div>
+const AnswerBody: React.FC<Props> = ({ answer, isEdit, setIsEdit }) => {
+  return (
+    <>
+      {isEdit && setIsEdit ? (
+        <AnswerForm questionId={answer.questionId} setIsEdit={setIsEdit} />
+      ) : (
+        <div dangerouslySetInnerHTML={{ __html: answer.description }}></div>
+      )}
+    </>
+  )
 }
 
 const Answer: React.FC<Props> = ({ answer }) => {
   const year = answer.createdAt.toString().slice(0, 4)
   const month = answer.createdAt.toString().slice(5, 7)
   const day = answer.createdAt.toString().slice(8, 10)
+
+  const [isEdit, setIsEdit] = useState(false)
+  const [_, setDescription] = useAtom(answerDescriptionAtom)
+  const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
+
+  const handleSetAnswer = () => {
+    if (answer) {
+      setDescription(answer.description)
+      setEditedAnswer({ ...editedAnswer, id: answer.id })
+      setIsEdit(!isEdit)
+    }
+  }
 
   return (
     <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
@@ -137,8 +164,9 @@ const Answer: React.FC<Props> = ({ answer }) => {
           <span>
             回答日: {year} / {month} / {day}
           </span>
+          <Button onClick={handleSetAnswer}>編集</Button>
         </div>
-        <AnswerBody answer={answer} />
+        <AnswerBody answer={answer} isEdit={isEdit} setIsEdit={setIsEdit} />
       </div>
     </div>
   )
