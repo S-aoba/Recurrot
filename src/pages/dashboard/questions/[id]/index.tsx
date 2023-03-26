@@ -11,8 +11,7 @@ import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
-import { CreateAnswerForm } from '@/component/ui/Form/Answer/CreateAnswerForm'
-import { UpdateAnswerForm } from '@/component/ui/Form/Answer/UpdateAnswerForm'
+import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
 import {
   answerDescriptionAtom,
   editedAnswerAtom,

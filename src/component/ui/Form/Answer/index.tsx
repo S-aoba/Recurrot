@@ -1,1 +1,2 @@
-export { AnswerForm } from './CreateAnswerForm'
+export { CreateAnswerForm } from './CreateAnswerForm'
+export { UpdateAnswerForm } from './UpdateAnswerForm'
