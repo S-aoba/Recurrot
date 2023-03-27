@@ -18,6 +18,7 @@ export type AuthForm = {
 }
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
   const [isRegister, setIsRegister] = useState(false)
@@ -33,6 +34,7 @@ const Home = () => {
   })
 
   const handleSubmit = async () => {
+    setIsLoading(true)
     try {
       if (isRegister) {
         await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, {
@@ -46,7 +48,9 @@ const Home = () => {
       })
       handleForm.reset()
       router.push('/dashboard/new-questions')
+      setIsLoading(false)
     } catch (e: any) {
+      setIsLoading(false)
       setError(e.response.data.message)
     }
   }
@@ -94,7 +98,13 @@ const Home = () => {
             >
               {isRegister ? 'ログインはこちら' : '新規作成はこちら'}
             </Anchor>
-            <Button className=' hover:transform-none' leftIcon={<IconDatabase size={14} />} color='blue' type='submit'>
+            <Button
+              className=' hover:transform-none'
+              leftIcon={<IconDatabase size={14} />}
+              color='blue'
+              type='submit'
+              loading={isLoading}
+            >
               {isRegister ? 'Register' : 'Login'}
             </Button>
           </Group>
