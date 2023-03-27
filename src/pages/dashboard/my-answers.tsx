@@ -32,7 +32,7 @@ const MyAnswers = () => {
           <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
             {questions &&
               questions.map((question: QuestionAndAnswerIdListType, index) => {
-                return <Card key={index} question={question} answerLength={question.answers.length} />
+                return <Card key={index} question={question} />
               })}
           </div>
         </main>

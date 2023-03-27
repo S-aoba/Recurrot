@@ -29,7 +29,7 @@ const MyQuestions = () => {
           <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
             {data &&
               data.map((question: QuestionAndAnswerIdListType) => {
-                return <Card key={question.id} question={question} answerLength={question.answers.length} />
+                return <Card key={question.id} question={question} />
               })}
           </div>
         </main>

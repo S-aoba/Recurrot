@@ -1,19 +1,19 @@
 import { Avatar } from '@mantine/core'
-import type { Question } from '@prisma/client'
 import { IconMessageDots } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import type { QuestionAndAnswerIdListType } from '@/common/type'
 
 /**
  * @package
  */
 
 type CardProps = {
-  question: Question
-  answerLength?: number
+  question: QuestionAndAnswerIdListType
 }
 
-export const Card: React.FC<CardProps> = ({ question, answerLength }) => {
+export const Card: React.FC<CardProps> = ({ question }) => {
   const { id, createdAt, title, userId } = question
   const year = createdAt.toString().slice(0, 4)
   const month = createdAt.toString().slice(5, 7)
@@ -35,7 +35,7 @@ export const Card: React.FC<CardProps> = ({ question, answerLength }) => {
             <span>投稿日: {`${year} / ${month} / ${day}`}</span>
             <div className=' flex gap-x-1'>
               <IconMessageDots />
-              <span>{answerLength}</span>
+              <span>{question.answers.length}</span>
             </div>
           </div>
         </div>
