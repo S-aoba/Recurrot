@@ -1,4 +1,3 @@
-import type { Question } from '@prisma/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useAtom } from 'jotai'
@@ -6,7 +5,7 @@ import { useRouter } from 'next/router'
 
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/question-atom'
 
-import type { EditedQuestion } from '../type'
+import type { EditedQuestion, QuestionAndAnswerIdListType } from '../type'
 
 export const useMutateQuestion = () => {
   const queryClient = useQueryClient()
@@ -21,8 +20,8 @@ export const useMutateQuestion = () => {
       return res.data
     },
     {
-      onSuccess: (res: Question) => {
-        const previousQuestions = queryClient.getQueryData<Question[]>(['questions'])
+      onSuccess: (res: QuestionAndAnswerIdListType) => {
+        const previousQuestions = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
         if (previousQuestions) {
           queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
         }
@@ -47,8 +46,8 @@ export const useMutateQuestion = () => {
       return res.data
     },
     {
-      onSuccess: (res: Question) => {
-        const previousQuestion = queryClient.getQueryData<Question[]>(['questions'])
+      onSuccess: (res: QuestionAndAnswerIdListType) => {
+        const previousQuestion = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
         if (previousQuestion) {
           queryClient.setQueryData(
             ['questions'],
@@ -59,6 +58,7 @@ export const useMutateQuestion = () => {
         }
         resetEditedQuestion()
         resetDescription()
+        queryClient.invalidateQueries(['singleQuestion', res.id])
         router.push('/dashboard/new-questions')
       },
       onError: (err: any) => {
@@ -70,5 +70,33 @@ export const useMutateQuestion = () => {
       },
     }
   )
-  return { createQuestionMutation, updateQuestionMutation }
+
+  const deleteQuestionMutation = useMutation(
+    ['questions'],
+    async (questionId: number) => {
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/question/${questionId}`)
+      return res.data
+    },
+    {
+      onSuccess: (_, variables) => {
+        const previousQuestion = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
+        if (previousQuestion) {
+          queryClient.setQueryData(
+            ['questions'],
+            previousQuestion.filter((question) => {
+              return question.id !== variables
+            })
+          )
+        }
+        router.push('/dashboard/new-questions')
+      },
+      onError: (err: any) => {
+        if (err.response.status === 401 || err.response.status === 403) {
+          router.push('/')
+        }
+      },
+    }
+  )
+
+  return { createQuestionMutation, updateQuestionMutation, deleteQuestionMutation }
 }
