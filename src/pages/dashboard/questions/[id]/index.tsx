@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
+import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
@@ -32,6 +33,7 @@ const QuestionDetail = () => {
   const { data: question, status: questionStatus } = useQuerySingleQuestions(Number(id))
   const { data: answers, status: answersStatus } = useQueryAnswers(Number(id))
   const { data: user, status: userStatus } = useQueryUser()
+  const { deleteQuestionMutation } = useMutateQuestion()
 
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
   const setDescription = useSetAtom(questionDescriptionAtom)
@@ -46,6 +48,12 @@ const QuestionDetail = () => {
     if (question) {
       setDescription(question.description)
       setEditedQuestion({ ...editedQuestion, id: question.id, title: question.title })
+    }
+  }
+
+  const handleDeleteQuestion = () => {
+    if (question) {
+      deleteQuestionMutation.mutate(question.id)
     }
   }
 
@@ -73,11 +81,16 @@ const QuestionDetail = () => {
                     質問投稿日: {year} / {month} / {day}
                   </span>
                   {user.id === question.userId && (
-                    <Link href={'/dashboard/questions/edit'} type='button'>
-                      <Button type='button' className=' hover:transform-none' onClick={handleSetQuestion}>
-                        編集する
+                    <>
+                      <Link href={'/dashboard/questions/edit'} type='button'>
+                        <Button type='button' className=' hover:transform-none' onClick={handleSetQuestion}>
+                          編集する
+                        </Button>
+                      </Link>
+                      <Button type='button' className=' hover:transform-none' onClick={handleDeleteQuestion}>
+                        削除する
                       </Button>
-                    </Link>
+                    </>
                   )}
                 </div>
                 <div className=' py-5'>
