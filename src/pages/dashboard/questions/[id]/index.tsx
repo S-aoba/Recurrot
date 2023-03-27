@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
-import { useQuerySingleQuestions } from '@/common/hook/useQuerySingleQuestion'
+import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
@@ -30,7 +30,7 @@ const QuestionDetail = () => {
     }
   }, [router])
 
-  const { data: question, status: questionStatus } = useQuerySingleQuestions(Number(id))
+  const { data: question, status: questionStatus } = useQuerySingleQuestion(Number(id))
   const { data: answers, status: answersStatus } = useQueryAnswers(Number(id))
   const { data: user, status: userStatus } = useQueryUser()
   const { deleteQuestionMutation } = useMutateQuestion()
