@@ -1,1 +1,1 @@
-export { NextLink as Link } from './NextLink'
+export { NextLink } from './NextLink'
