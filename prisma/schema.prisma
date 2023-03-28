@@ -14,6 +14,7 @@ model Question {
   title       String
   description String
   userId      Int
+  hashtags    String[]
   Answer      Answer[]
   User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
