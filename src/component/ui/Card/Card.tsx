@@ -24,7 +24,13 @@ export const Card: React.FC<CardProps> = ({ question }) => {
       <Link href={'/dashboard/questions/[id]'} as={`questions/${id}`} className=' absolute block h-64 w-80'></Link>
       <div className=' px row-span-2 flex items-center'>
         <div className=' p-5'>
-          <Image src={'/typescript.png'} height={95} width={95} alt={'typescript'} className=' rounded-xl' />
+          <Image
+            src={`/langIcon/${question.hashtags[0]}.svg`}
+            height={95}
+            width={95}
+            alt={question.hashtags[0] == 'csharp' ? 'C#' : `${question.hashtags[0]}`}
+            className=' rounded-xl'
+          />
         </div>
         <div className='w-full p-2'>
           <div className=' flex w-full items-center gap-x-3 py-3'>
