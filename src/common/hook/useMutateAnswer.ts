@@ -67,5 +67,36 @@ export const useMutateAnswer = (questionId: number) => {
       },
     }
   )
-  return { createAnswerMutation, updateAnswerMutation }
+
+  const deleteAnswerMutation = useMutation(
+    ['answers'],
+    async (answerId: number) => {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/answer/${answerId}`)
+    },
+    {
+      onSuccess: (_, variables) => {
+        const previousAnswers = queryClient.getQueryData<Answer[]>(['answers'])
+        if (previousAnswers) {
+          queryClient.setQueryData(
+            ['answers'],
+            previousAnswers.filter((answer) => {
+              return answer.id !== variables
+            })
+          )
+        }
+        queryClient.invalidateQueries(['answers'])
+        queryClient.invalidateQueries(['userAnswers'])
+        resetDescription()
+        router.push(`/dashboard/questions/${questionId}`)
+      },
+      onError: (err: any) => {
+        resetDescription()
+        if (err.response.status === 401 || err.response.status === 403) {
+          router.push('/')
+        }
+      },
+    }
+  )
+
+  return { createAnswerMutation, updateAnswerMutation, deleteAnswerMutation }
 }

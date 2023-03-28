@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
+import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
@@ -161,11 +162,19 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
   const [_, setDescription] = useAtom(answerDescriptionAtom)
   const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
 
+  const { deleteAnswerMutation } = useMutateAnswer(answer.questionId)
+
   const handleSetAnswer = () => {
     if (answer && setIsEdit) {
       setDescription(answer.description)
       setEditedAnswer({ ...editedAnswer, id: answer.id })
       setIsEdit(!isEdit)
+    }
+  }
+
+  const handleDeleteAnswer = () => {
+    if (answer) {
+      deleteAnswerMutation.mutate(answer.id)
     }
   }
 
@@ -178,7 +187,12 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
           <span>
             回答日: {year} / {month} / {day}
           </span>
-          {answer.userId === userId && <Button onClick={handleSetAnswer}>編集</Button>}
+          {answer.userId === userId && (
+            <>
+              <Button onClick={handleSetAnswer}>編集</Button>
+              <Button onClick={handleDeleteAnswer}>削除</Button>
+            </>
+          )}
         </div>
         <AnswerBody answer={answer} isEdit={isEdit} setIsEdit={setIsEdit} />
       </div>
