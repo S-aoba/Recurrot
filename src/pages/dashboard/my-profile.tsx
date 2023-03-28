@@ -1,16 +1,23 @@
+import { Loader } from '@mantine/core'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
+import { useQueryUser } from '@/common/hook/useQueryUser'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 import { ProfileCard } from '@/component/ui/ProfileCard'
 
 const MyProfile = () => {
+  const { data: user, status: UserStatus } = useQueryUser()
+
   const { handleSubNavTabStyle } = useSubNavTabStyle()
 
   useEffect(() => {
     handleSubNavTabStyle('dashboard/my-profile')
   })
+
+  if (UserStatus === 'loading') return <Loader />
+
   return (
     <>
       <Head>
@@ -21,9 +28,7 @@ const MyProfile = () => {
       </Head>
       <WrapperLayout>
         <main className=' flex h-fit flex-1 justify-center'>
-          <div className=' w-9/12 py-5'>
-            <ProfileCard />
-          </div>
+          <div className=' flex w-9/12 flex-col items-center justify-center'>{user && <ProfileCard user={user} />}</div>
         </main>
       </WrapperLayout>
     </>
