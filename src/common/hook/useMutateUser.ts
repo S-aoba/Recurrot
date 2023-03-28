@@ -33,12 +33,11 @@ export const useMutateUser = () => {
   const deleteUserMutation = useMutation(
     ['user'],
     async () => {
-      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/user`)
-      return res.data
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/user`)
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(['user'])
+        queryClient.removeQueries(['user'])
         router.push('/')
       },
       onError: (err: any) => {

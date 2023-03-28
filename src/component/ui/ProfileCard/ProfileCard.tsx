@@ -14,7 +14,7 @@ type ProfileCardProps = {
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
-  const { updateUserMutation } = useMutateUser()
+  const { updateUserMutation, deleteUserMutation } = useMutateUser()
 
   const [editedUser, setEditedUser] = useState<
     Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'email' | 'hashedPassword'>
@@ -52,6 +52,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
     updateUserMutation.mutate(editedUser)
   }
 
+  const handleDeleteUser = () => {
+    deleteUserMutation.mutate()
+  }
+
   return (
     <>
       {user && (
@@ -62,53 +66,56 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
               変更する
             </Button>
           </div>
-          <form onSubmit={handleSubmit}>
-            <div className=' col-span-8 flex flex-col items-center p-5'>
-              <div className=' flex w-11/12 flex-col items-start gap-y-5'>
+          <form className=' col-span-8 flex flex-col items-center p-5' onSubmit={handleSubmit}>
+            <div className=' flex w-11/12 flex-col items-start gap-y-5'>
+              <label className=' flex flex-col'>
+                ユーザーネーム
+                <input
+                  type='text'
+                  value={editedUser.userName == null ? '' : editedUser.userName}
+                  onChange={handleSetUserName}
+                />
+              </label>
+              <label className=' flex flex-col'>
+                自己紹介
+                <textarea
+                  className=' h-52 w-96 resize-none'
+                  value={editedUser.selfIntroduction == null ? '' : editedUser.selfIntroduction}
+                  onChange={handleSetSelfIntroduction}
+                />
+              </label>
+              <div className=' flex gap-x-3'>
                 <label className=' flex flex-col'>
-                  ユーザーネーム
-                  <input
-                    type='text'
-                    value={editedUser.userName == null ? '' : editedUser.userName}
-                    onChange={handleSetUserName}
-                  />
-                </label>
-                <label className=' flex flex-col'>
-                  自己紹介
-                  <textarea
-                    className=' h-52 w-96 resize-none'
-                    value={editedUser.selfIntroduction == null ? '' : editedUser.selfIntroduction}
-                    onChange={handleSetSelfIntroduction}
-                  />
-                </label>
-                <div className=' flex gap-x-3'>
-                  <label className=' flex flex-col'>
-                    Twitter
-                    <input
-                      type='url'
-                      value={editedUser.twitterUrl == null ? '' : editedUser.twitterUrl}
-                      onChange={handleSetTwitterUrl}
-                    />
-                  </label>
-                  <label className=' flex flex-col'>
-                    Github
-                    <input
-                      type='url'
-                      value={editedUser.githubUrl == null ? '' : editedUser.githubUrl}
-                      onChange={handleSetGithubUrl}
-                    />
-                  </label>
-                </div>
-                <label className=' flex flex-col'>
-                  Website
+                  Twitter
                   <input
                     type='url'
-                    value={editedUser.websiteUrl == null ? '' : editedUser.websiteUrl}
-                    onChange={handleSetWebsiteUrl}
+                    value={editedUser.twitterUrl == null ? '' : editedUser.twitterUrl}
+                    onChange={handleSetTwitterUrl}
                   />
                 </label>
+                <label className=' flex flex-col'>
+                  Github
+                  <input
+                    type='url'
+                    value={editedUser.githubUrl == null ? '' : editedUser.githubUrl}
+                    onChange={handleSetGithubUrl}
+                  />
+                </label>
+              </div>
+              <label className=' flex flex-col'>
+                Website
+                <input
+                  type='url'
+                  value={editedUser.websiteUrl == null ? '' : editedUser.websiteUrl}
+                  onChange={handleSetWebsiteUrl}
+                />
+              </label>
+              <div className=' flex w-full justify-between'>
                 <Button color='blue' type='submit' className=' hover:transform-none'>
                   変更する
+                </Button>
+                <Button color='red' type='button' className=' hover:transform-none' onClick={handleDeleteUser}>
+                  ユーザーを削除する
                 </Button>
               </div>
             </div>
