@@ -73,7 +73,7 @@ export const useMutateQuestion = () => {
 
   const deleteQuestionMutation = useMutation(
     ['questions'],
-    async (questionId: number) => {
+    async (questionId: string) => {
       const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/question/${questionId}`)
       return res.data
     },

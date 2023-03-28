@@ -3,12 +3,10 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-export const useQuerySingleQuestion = (id: number) => {
+export const useQuerySingleQuestion = (id: string) => {
   const router = useRouter()
-  const getSingleQuestion = async (id: number) => {
-    const res = await axios.get<Question>(`${process.env.NEXT_PUBLIC_API_URL}/question/${id}`, {
-      withCredentials: true,
-    })
+  const getSingleQuestion = async (id: string) => {
+    const res = await axios.get<Question>(`${process.env.NEXT_PUBLIC_API_URL}/question/${id}`)
     return res.data
   }
   return useQuery<Question, Error>({

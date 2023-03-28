@@ -9,7 +9,7 @@ export type SubUrlKeys = keyof typeof SUB_URL
 export type SubUrlVal = (typeof SUB_URL)[SubUrlKeys]
 
 type AnswerId = {
-  id: number
+  id: string
 }
 
 export type QuestionAndAnswerIdListType = {
@@ -30,13 +30,13 @@ export type SubNavTabStyleType =
 
 ////////////////////////////////////
 export type EditedQuestion = {
-  id: number
+  id: string
   title: string
   description: string
   hashtags: string[]
 }
 
 export type EditedAnswer = {
-  id: number
+  id: string
   description: string
 }

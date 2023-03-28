@@ -3,9 +3,9 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-export const useQueryAnswers = (questionId: number) => {
+export const useQueryAnswers = (questionId: string) => {
   const router = useRouter()
-  const getAnswers = async (questionId: number) => {
+  const getAnswers = async (questionId: string) => {
     const { data } = await axios.get<Answer[]>(`${process.env.NEXT_PUBLIC_API_URL}/answer/${questionId}`)
     return data
   }

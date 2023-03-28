@@ -27,9 +27,9 @@ const escapeHtml = (unsafe: string) => {
 }
 
 type AnswerFormProps = {
-  questionId: number
+  questionId: string
   setIsEdit?: Dispatch<SetStateAction<boolean>>
-  answerId: number
+  answerId: string
 }
 
 export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsEdit, answerId }) => {
@@ -48,7 +48,7 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: editedAnswer.id === 0 ? escapeHtml(description) : description,
+    content: editedAnswer.id === '0' ? escapeHtml(description) : description,
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
     },
@@ -59,7 +59,7 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (editedAnswer.id !== 0 && editor && setIsEdit) {
+    if (editedAnswer.id !== '0' && editor && setIsEdit) {
       setIsEdit(false)
       updateAnswerMutation.mutate({
         id: editedAnswer.id,
@@ -67,7 +67,7 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
       })
       editor.commands.setContent('')
     }
-    setEditedAnswer({ ...editedAnswer, id: 0 })
+    setEditedAnswer({ ...editedAnswer, id: '0' })
   }
 
   return (
@@ -77,7 +77,7 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
       </RichTextEditor>
       <div className=' mt-3 flex justify-end'>
         <Button color='blue' type='submit' className=' hover:transform-none'>
-          {editedAnswer.id === 0 ? '投稿' : '更新'}
+          {editedAnswer.id === '0' ? '投稿' : '更新'}
         </Button>
       </div>
     </form>

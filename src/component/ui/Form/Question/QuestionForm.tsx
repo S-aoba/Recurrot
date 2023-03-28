@@ -46,7 +46,7 @@ export const QuestionForm = () => {
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: editedQuestion.id === 0 ? escapeHtml(description) : description,
+    content: editedQuestion.id === '0' ? escapeHtml(description) : description,
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
     },
@@ -54,14 +54,14 @@ export const QuestionForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (editedQuestion.id === 0 && editor) {
+    if (editedQuestion.id === '0' && editor) {
       createQuestionMutation.mutate({
         title: editedQuestion.title,
         description,
         hashtags: editedQuestion.hashtags,
       })
       editor.commands.setContent('')
-    } else if (editedQuestion.id !== 0 && editor) {
+    } else if (editedQuestion.id !== '0' && editor) {
       updateQuestionMutation.mutate({
         id: editedQuestion.id,
         title: editedQuestion.title,
@@ -78,7 +78,7 @@ export const QuestionForm = () => {
       <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
       <Content editor={editor} />
       <Button color='blue' type='submit' className=' hover:transform-none'>
-        {editedQuestion.id === 0 ? '投稿' : '更新'}
+        {editedQuestion.id === '0' ? '投稿' : '更新'}
       </Button>
     </form>
   )

@@ -8,7 +8,7 @@ import { resetAnswerDescriptionAtom } from '@/store/question-atom'
 
 import type { EditedAnswer } from '../type'
 
-export const useMutateAnswer = (questionId: number) => {
+export const useMutateAnswer = (questionId: string) => {
   const queryClient = useQueryClient()
   const router = useRouter()
   const [, resetDescription] = useAtom(resetAnswerDescriptionAtom)
@@ -70,7 +70,7 @@ export const useMutateAnswer = (questionId: number) => {
 
   const deleteAnswerMutation = useMutation(
     ['answers'],
-    async (answerId: number) => {
+    async (answerId: string) => {
       await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/answer/${answerId}`)
     },
     {

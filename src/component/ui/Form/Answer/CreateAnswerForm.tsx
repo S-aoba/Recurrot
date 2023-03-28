@@ -27,7 +27,7 @@ const escapeHtml = (unsafe: string) => {
 }
 
 type AnswerFormProps = {
-  questionId: number
+  questionId: string
 }
 
 export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
@@ -46,24 +46,24 @@ export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: editedAnswer.id === 0 ? escapeHtml(description) : description,
+    content: editedAnswer.id === '0' ? escapeHtml(description) : description,
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
     },
     onFocus() {
-      setEditedAnswer({ ...editedAnswer, id: 0 })
+      setEditedAnswer({ ...editedAnswer, id: '0' })
     },
   })
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (editedAnswer.id === 0 && editor) {
+    if (editedAnswer.id === '0' && editor) {
       createAnswerMutation.mutate({
         description,
       })
       editor.commands.setContent('')
     }
-    setEditedAnswer({ ...editedAnswer, id: 0 })
+    setEditedAnswer({ ...editedAnswer, id: '0' })
   }
 
   return (

@@ -8,19 +8,19 @@ datasource db {
 }
 
 model Question {
-  id          Int      @id @default(autoincrement())
+  id          String   @id
   createdAt   DateTime @default(now())
   updatedAt   DateTime
   title       String
   description String
-  userId      Int
+  userId      String
   hashtags    String[]
   Answer      Answer[]
   User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id               Int        @id @default(autoincrement())
+  id               String     @id
   createdAt        DateTime   @default(now())
   updatedAt        DateTime
   email            String     @unique
@@ -36,12 +36,12 @@ model User {
 }
 
 model Answer {
-  id          Int      @id @default(autoincrement())
+  id          String   @id
   createdAt   DateTime @default(now())
   updatedAt   DateTime
   description String
-  userId      Int
-  questionId  Int
+  userId      String
+  questionId  String
   Question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

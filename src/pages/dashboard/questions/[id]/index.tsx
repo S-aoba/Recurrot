@@ -22,17 +22,19 @@ import {
 } from '@/store/question-atom'
 
 const QuestionDetail = () => {
-  const [id, setId] = useState<string | string[] | undefined>()
+  const [id, setId] = useState<string>('')
   const router = useRouter()
 
   useEffect(() => {
     if (router.isReady) {
-      setId(router.query.id)
+      if (typeof router.query.id === 'string') {
+        setId(router.query.id)
+      }
     }
   }, [router])
 
-  const { data: question, status: questionStatus } = useQuerySingleQuestion(Number(id))
-  const { data: answers, status: answersStatus } = useQueryAnswers(Number(id))
+  const { data: question, status: questionStatus } = useQuerySingleQuestion(id)
+  const { data: answers, status: answersStatus } = useQueryAnswers(id)
   const { data: user, status: userStatus } = useQueryUser()
   const { deleteQuestionMutation } = useMutateQuestion()
 
@@ -130,7 +132,7 @@ export default QuestionDetail
 
 type Props = {
   answer: Answer
-  userId?: number
+  userId?: string
   isEdit?: boolean
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>
 }
