@@ -33,6 +33,7 @@ export type EditedQuestion = {
   id: number
   title: string
   description: string
+  hashtags: string[]
 }
 
 export type EditedAnswer = {

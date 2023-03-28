@@ -5,7 +5,7 @@ import type { EditedAnswer, EditedQuestion, MainNavTabStyleType, SubNavTabStyleT
 export const mainNavTabStyleAtom = atom<MainNavTabStyleType>('question')
 export const subNavTabStyleAtom = atom<SubNavTabStyleType>('dashboard/new-questions')
 
-const initialEditedQuestion: EditedQuestion = { id: 0, title: '', description: '' }
+const initialEditedQuestion: EditedQuestion = { id: 0, title: '', description: '', hashtags: [] }
 export const editedQuestionAtom = atom<EditedQuestion>(initialEditedQuestion)
 export const resetEditedQuestionAtom = atom(null, (_, set) => {
   return set(editedQuestionAtom, initialEditedQuestion)
