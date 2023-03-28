@@ -48,7 +48,7 @@ const QuestionDetail = () => {
   const handleSetQuestion = () => {
     if (question) {
       setDescription(question.description)
-      setEditedQuestion({ ...editedQuestion, id: question.id, title: question.title })
+      setEditedQuestion({ ...editedQuestion, id: question.id, title: question.title, hashtags: question.hashtags })
     }
   }
 
@@ -94,17 +94,11 @@ const QuestionDetail = () => {
                     </>
                   )}
                 </div>
-                <div className=' py-5'>
-                  <a className=' rounded-3xl border border-solid border-gray-200 p-3'>
-                    <Image
-                      src={'/typescript.png'}
-                      width={30}
-                      height={30}
-                      alt={'typescriptIcon'}
-                      className='mr-2 rounded-full'
-                    />
-                    <span>typescript</span>
-                  </a>
+                <div className=' flex gap-x-5 py-5'>
+                  {question.hashtags &&
+                    question.hashtags.map((hashtag) => {
+                      return <HashtagList key={hashtag} hashtag={hashtag} />
+                    })}
                 </div>
                 {question.description && <div dangerouslySetInnerHTML={{ __html: question.description }}></div>}
               </div>
@@ -197,5 +191,28 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
         <AnswerBody answer={answer} isEdit={isEdit} setIsEdit={setIsEdit} />
       </div>
     </div>
+  )
+}
+
+type HashtagListProps = {
+  hashtag: string
+}
+
+const HashtagList: React.FC<HashtagListProps> = ({ hashtag }) => {
+  return (
+    <Link
+      href={'/dashboard/new-questions'}
+      key={hashtag}
+      className=' flex items-center rounded-3xl border border-solid border-gray-200 px-3 py-1 text-black no-underline'
+    >
+      <Image
+        src={`/langIcon/${hashtag}.svg`}
+        width={20}
+        height={20}
+        alt={hashtag == 'csharp' ? 'C#' : `${hashtag}`}
+        className='mr-2 rounded-full'
+      />
+      {hashtag == 'csharp' ? 'C#' : hashtag}
+    </Link>
   )
 }

@@ -14,6 +14,7 @@ import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-atom'
 
 import { Content } from './Content'
+import { Hashtag } from './Hashtag'
 import { Title } from './Title'
 
 /**
@@ -57,6 +58,7 @@ export const QuestionForm = () => {
       createQuestionMutation.mutate({
         title: editedQuestion.title,
         description,
+        hashtags: editedQuestion.hashtags,
       })
       editor.commands.setContent('')
     } else if (editedQuestion.id !== 0 && editor) {
@@ -64,6 +66,7 @@ export const QuestionForm = () => {
         id: editedQuestion.id,
         title: editedQuestion.title,
         description,
+        hashtags: editedQuestion.hashtags,
       })
       editor.commands.setContent('')
     }
@@ -72,6 +75,7 @@ export const QuestionForm = () => {
   return (
     <form className=' flex h-full w-11/12 flex-col items-center gap-y-5 py-5' onSubmit={handleSubmit}>
       <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
+      <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
       <Content editor={editor} />
       <Button color='blue' type='submit' className=' hover:transform-none'>
         {editedQuestion.id === 0 ? '投稿' : '更新'}
