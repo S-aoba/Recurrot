@@ -191,8 +191,12 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
           </span>
           {answer.userId === userId && (
             <>
-              <Button onClick={handleSetAnswer}>編集</Button>
-              <Button onClick={handleDeleteAnswer}>削除</Button>
+              <Button className=' hover:transform-none' onClick={handleSetAnswer}>
+                編集
+              </Button>
+              <Button className=' hover:transform-none' onClick={handleDeleteAnswer}>
+                削除
+              </Button>
             </>
           )}
         </div>
