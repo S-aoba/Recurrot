@@ -14,10 +14,12 @@ type CardProps = {
 }
 
 export const Card: React.FC<CardProps> = ({ question }) => {
-  const { id, createdAt, title, userId } = question
+  const { id, createdAt, title, user } = question
   const year = createdAt.toString().slice(0, 4)
   const month = createdAt.toString().slice(5, 7)
   const day = createdAt.toString().slice(8, 10)
+
+  const defaultUserName = user.email.slice(0, user.email.indexOf('@'))
 
   return (
     <div key={id} className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'>
@@ -35,7 +37,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
         <div className='w-full p-2'>
           <div className=' flex w-full items-center gap-x-3 py-3'>
             <Avatar radius='xl' />
-            <span>userId: {userId}</span>
+            <span>{user.userName === null ? defaultUserName : user.userName}</span>
           </div>
           <div className=' flex w-full flex-col items-end gap-x-3 pb-3'>
             <span>投稿日: {`${year} / ${month} / ${day}`}</span>

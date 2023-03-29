@@ -1,4 +1,4 @@
-import type { Question } from '@prisma/client'
+import type { Answer, Question } from '@prisma/client'
 
 import type { MAIN_URL, SUB_URL } from '../const'
 
@@ -12,9 +12,19 @@ type AnswerId = {
   id: string
 }
 
+type UserName = {
+  userName: string
+  email: string
+}
+
 export type QuestionAndAnswerIdListType = {
   answers: AnswerId[]
+  user: UserName
 } & Question
+
+export type AnswerAndPostedUserNameType = {
+  user: UserName
+} & Answer
 
 export type HashtagType = {
   hashtag: string

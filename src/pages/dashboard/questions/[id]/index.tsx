@@ -1,5 +1,4 @@
 import { Avatar, Button, Loader } from '@mantine/core'
-import { Answer } from '@prisma/client'
 import { useAtom, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -12,6 +11,7 @@ import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
+import type { AnswerAndPostedUserNameType } from '@/common/type'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
 import {
@@ -43,9 +43,11 @@ const QuestionDetail = () => {
 
   if (questionStatus === 'loading' || answersStatus === 'loading' || userStatus === 'loading') return <Loader />
 
-  const year = question?.createdAt.toString().slice(0, 4)
-  const month = question?.createdAt.toString().slice(5, 7)
-  const day = question?.createdAt.toString().slice(8, 10)
+  const year = question && question.createdAt.toString().slice(0, 4)
+  const month = question && question.createdAt.toString().slice(5, 7)
+  const day = question && question.createdAt.toString().slice(8, 10)
+
+  const defaultUserName = question && question.user.email.slice(0, question.user.email.indexOf('@'))
 
   const handleSetQuestion = () => {
     if (question) {
@@ -79,7 +81,7 @@ const QuestionDetail = () => {
               <div className=' py-5'>
                 <div className=' flex items-center gap-x-2 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
                   <Avatar radius={'xl'} />
-                  <span>質問者: {question.userId}</span>
+                  <span>質問者: {question.user.userName === null ? defaultUserName : question.user.userName}</span>
                   <span>
                     質問投稿日: {year} / {month} / {day}
                   </span>
@@ -131,7 +133,7 @@ const QuestionDetail = () => {
 export default QuestionDetail
 
 type Props = {
-  answer: Answer
+  answer: AnswerAndPostedUserNameType
   userId?: string
   isEdit?: boolean
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>
@@ -160,6 +162,8 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
 
   const { deleteAnswerMutation } = useMutateAnswer(answer.questionId)
 
+  const defaultUserName = answer && answer.user.email.slice(0, answer.user.email.indexOf('@'))
+
   const handleSetAnswer = () => {
     if (answer && setIsEdit) {
       setDescription(answer.description)
@@ -179,7 +183,9 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
       <div className=' py-5'>
         <div className=' flex items-center gap-x-2 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
           <Avatar radius={'xl'} />
-          <span>回答者: {answer.userId}</span>
+          <span>
+            回答者: {answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}
+          </span>
           <span>
             回答日: {year} / {month} / {day}
           </span>
