@@ -146,7 +146,8 @@ const AnswerBody: React.FC<Props> = ({ answer, isEdit, setIsEdit }) => {
       {isEdit && setIsEdit ? (
         <UpdateAnswerForm questionId={answer.questionId} setIsEdit={setIsEdit} answerId={answer.id} />
       ) : (
-        <div dangerouslySetInnerHTML={{ __html: answer.description }}></div>
+        // <div dangerouslySetInnerHTML={{ __html: answer.description }}></div>
+        <DetailDescription description={answer.description} />
       )}
     </>
   )
