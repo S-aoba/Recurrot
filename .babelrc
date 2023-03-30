@@ -29,7 +29,6 @@
           "rust"
         ],
         "plugins": [
-          "line-highlight",
           "line-numbers",
           "show-language"
         ],
