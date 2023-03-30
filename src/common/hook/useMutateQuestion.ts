@@ -25,15 +25,15 @@ export const useMutateQuestion = () => {
         if (previousQuestions) {
           queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
         }
+        router.push('/dashboard/new-questions')
         resetEditedQuestion()
         resetDescription()
-        router.push('/dashboard/new-questions')
       },
       onError: (err: any) => {
         if (err.response.status === 401 || err.response.status === 403) {
+          router.push('/')
           resetEditedQuestion()
           resetDescription()
-          router.push('/')
         }
       },
     }
@@ -56,10 +56,10 @@ export const useMutateQuestion = () => {
             })
           )
         }
+        router.push(`/dashboard/questions/${res.id}`)
+        queryClient.invalidateQueries(['singleQuestion', res.id])
         resetEditedQuestion()
         resetDescription()
-        queryClient.invalidateQueries(['singleQuestion', res.id])
-        router.push(`/dashboard/questions/${res.id}`)
       },
       onError: (err: any) => {
         if (err.response.status === 401 || err.response.status === 403) {
