@@ -59,7 +59,7 @@ export const useMutateQuestion = () => {
         resetEditedQuestion()
         resetDescription()
         queryClient.invalidateQueries(['singleQuestion', res.id])
-        router.push('/dashboard/new-questions')
+        router.push(`/dashboard/questions/${res.id}`)
       },
       onError: (err: any) => {
         if (err.response.status === 401 || err.response.status === 403) {
