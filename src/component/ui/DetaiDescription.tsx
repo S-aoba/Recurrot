@@ -10,7 +10,7 @@ type DetailDescriptionProps = {
 export const DetailDescription: React.FC<DetailDescriptionProps> = ({ description }) => {
   useEffect(() => {
     Prism.highlightAll()
-  }, [])
+  }, [description])
 
   return <div dangerouslySetInnerHTML={{ __html: description }}></div>
 }
