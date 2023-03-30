@@ -1,5 +1,4 @@
-// prismjsのスタイルを読み込む
-import 'prismjs/themes/prism-tomorrow.min.css'
+import 'prismjs/themes/prism-tomorrow.css'
 
 import Prism from 'prismjs'
 import { useEffect } from 'react'
