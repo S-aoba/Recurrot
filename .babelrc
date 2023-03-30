@@ -1,0 +1,41 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    [
+      "prismjs",
+      {
+        "languages": [
+          "javascript",
+          "js",
+          "typescript",
+          "ts",
+          "html",
+          "css",
+          "json",
+          "jsx",
+          "tsx",
+          "php",
+          "java",
+          "python",
+          "c",
+          "cpp",
+          "csharp",
+          "go",
+          "ruby",
+          "swift",
+          "kotlin",
+          "rust"
+        ],
+        "plugins": [
+          "line-highlight",
+          "line-numbers",
+          "show-language"
+        ],
+        "theme": "tomorrow",
+        "css": true
+      }
+    ]
+  ]
+}
