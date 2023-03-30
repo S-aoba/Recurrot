@@ -13,6 +13,7 @@ import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import type { AnswerAndPostedUserNameType } from '@/common/type'
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
+import { DetailDescription } from '@/component/ui/DetaiDescription'
 import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
 import {
   answerDescriptionAtom,
@@ -104,7 +105,7 @@ const QuestionDetail = () => {
                       return <HashtagList key={hashtag} hashtag={hashtag} />
                     })}
                 </div>
-                {question.description && <div dangerouslySetInnerHTML={{ __html: question.description }}></div>}
+                <DetailDescription description={question.description} />
               </div>
             </div>
 
