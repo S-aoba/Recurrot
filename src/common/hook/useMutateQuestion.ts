@@ -13,90 +13,84 @@ export const useMutateQuestion = () => {
   const [, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)
   const [, resetDescription] = useAtom(resetQuestionDescriptionAtom)
 
-  const createQuestionMutation = useMutation(
-    ['questions'],
-    async (question: Omit<EditedQuestion, 'id'>) => {
+  const createQuestionMutation = useMutation({
+    mutationKey: ['questions'],
+    mutationFn: async (question: Omit<EditedQuestion, 'id'>) => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/question`, question)
       return res.data
     },
-    {
-      onSuccess: (res: QuestionAndAnswerIdListType) => {
-        const previousQuestions = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
-        if (previousQuestions) {
-          queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
-        }
-        router.push('/dashboard/new-questions')
+    onSuccess: (res: QuestionAndAnswerIdListType) => {
+      const previousQuestions = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
+      if (previousQuestions) {
+        queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
+      }
+      router.push('/dashboard/new-questions')
+      resetEditedQuestion()
+      resetDescription()
+    },
+    onError: (err: any) => {
+      if (err.response.status === 401 || err.response.status === 403) {
+        router.push('/')
         resetEditedQuestion()
         resetDescription()
-      },
-      onError: (err: any) => {
-        if (err.response.status === 401 || err.response.status === 403) {
-          router.push('/')
-          resetEditedQuestion()
-          resetDescription()
-        }
-      },
-    }
-  )
+      }
+    },
+  })
 
-  const updateQuestionMutation = useMutation(
-    ['questions'],
-    async (question: EditedQuestion) => {
+  const updateQuestionMutation = useMutation({
+    mutationKey: ['questions'],
+    mutationFn: async (question: EditedQuestion) => {
       const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/question/${question.id}`, question)
       return res.data
     },
-    {
-      onSuccess: (res: QuestionAndAnswerIdListType) => {
-        const previousQuestion = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
-        if (previousQuestion) {
-          queryClient.setQueryData(
-            ['questions'],
-            previousQuestion.map((question) => {
-              return question.id === res.id ? res : question
-            })
-          )
-        }
-        router.push(`/dashboard/questions/${res.id}`)
-        queryClient.invalidateQueries(['singleQuestion', res.id])
+    onSuccess: (res: QuestionAndAnswerIdListType) => {
+      const previousQuestion = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
+      if (previousQuestion) {
+        queryClient.setQueryData(
+          ['questions'],
+          previousQuestion.map((question) => {
+            return question.id === res.id ? res : question
+          })
+        )
+      }
+      router.push(`/dashboard/questions/${res.id}`)
+      queryClient.invalidateQueries(['singleQuestion', res.id])
+      resetEditedQuestion()
+      resetDescription()
+    },
+    onError: (err: any) => {
+      if (err.response.status === 401 || err.response.status === 403) {
         resetEditedQuestion()
         resetDescription()
-      },
-      onError: (err: any) => {
-        if (err.response.status === 401 || err.response.status === 403) {
-          resetEditedQuestion()
-          resetDescription()
-          router.push('/')
-        }
-      },
-    }
-  )
+        router.push('/')
+      }
+    },
+  })
 
-  const deleteQuestionMutation = useMutation(
-    ['questions'],
-    async (questionId: string) => {
+  const deleteQuestionMutation = useMutation({
+    mutationKey: ['questions'],
+    mutationFn: async (questionId: string) => {
       const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/question/${questionId}`)
       return res.data
     },
-    {
-      onSuccess: (_, variables) => {
-        const previousQuestion = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
-        if (previousQuestion) {
-          queryClient.setQueryData(
-            ['questions'],
-            previousQuestion.filter((question) => {
-              return question.id !== variables
-            })
-          )
-        }
-        router.push('/dashboard/new-questions')
-      },
-      onError: (err: any) => {
-        if (err.response.status === 401 || err.response.status === 403) {
-          router.push('/')
-        }
-      },
-    }
-  )
+    onSuccess: (_, variables) => {
+      const previousQuestion = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
+      if (previousQuestion) {
+        queryClient.setQueryData(
+          ['questions'],
+          previousQuestion.filter((question) => {
+            return question.id !== variables
+          })
+        )
+      }
+      router.push('/dashboard/new-questions')
+    },
+    onError: (err: any) => {
+      if (err.response.status === 401 || err.response.status === 403) {
+        router.push('/')
+      }
+    },
+  })
 
   return { createQuestionMutation, updateQuestionMutation, deleteQuestionMutation }
 }
