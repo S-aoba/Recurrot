@@ -50,6 +50,7 @@
   "devDependencies": {
     "@next/font": "^13.1.6",
     "@tailwindcss/line-clamp": "^0.4.2",
+    "@tanstack/eslint-plugin-query": "^4.27.0",
     "@types/node": "^18.11.18",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.27",
