@@ -30,8 +30,8 @@ export default function App({ Component, pageProps }: AppProps) {
     getCsrfToken()
   }, [])
 
-  // WrapperLayoutを使うページと使わないページで分ける処理
-  const isWrapperLayout = Component.name === 'Home'
+  // index.tsxのみWrapperLayoutを使わないページで,それ以外のページでは使用する処理
+  const isWrapperLayout = Component.name === 'Home' ? true : false
 
   return (
     <QueryClientProvider client={queryClient}>
