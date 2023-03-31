@@ -30,20 +30,20 @@ export default function App({ Component, pageProps }: AppProps) {
     getCsrfToken()
   }, [])
 
+  // WrapperLayoutを使うページと使わないページで分ける処理
+  const isWrapperLayout = Component.name === 'Home'
+
   return (
     <QueryClientProvider client={queryClient}>
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          // Todo:ダークモード,ライトモードの切り替え
-          colorScheme: 'light',
-        }}
-      >
+      <MantineProvider>
         <JotaiProvider>
-          <WrapperLayout>
+          {isWrapperLayout ? (
             <Component {...pageProps} />
-          </WrapperLayout>
+          ) : (
+            <WrapperLayout>
+              <Component {...pageProps} />
+            </WrapperLayout>
+          )}
         </JotaiProvider>
       </MantineProvider>
     </QueryClientProvider>
