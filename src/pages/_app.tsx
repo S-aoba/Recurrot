@@ -7,6 +7,8 @@ import { Provider as JotaiProvider } from 'jotai'
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react'
 
+import { WrapperLayout } from '@/component/layout/WrapperLayout'
+
 // import { WrapperLayout } from '@/component/layout/WrapperLayout'
 
 const queryClient = new QueryClient({
@@ -28,15 +30,28 @@ export default function App({ Component, pageProps }: AppProps) {
     getCsrfToken()
   }, [])
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <MantineProvider>
-        <JotaiProvider>
-          {/* <WrapperLayout> */}
-          <Component {...pageProps} />
-          {/* </WrapperLayout> */}
-        </JotaiProvider>
-      </MantineProvider>
-    </QueryClientProvider>
-  )
+  switch (pageProps.layout) {
+    case 'WrapperLayout':
+      return (
+        <QueryClientProvider client={queryClient}>
+          <MantineProvider>
+            <JotaiProvider>
+              <WrapperLayout>
+                <Component {...pageProps} />
+              </WrapperLayout>
+            </JotaiProvider>
+          </MantineProvider>
+        </QueryClientProvider>
+      )
+    default:
+      return (
+        <QueryClientProvider client={queryClient}>
+          <MantineProvider>
+            <JotaiProvider>
+              <Component {...pageProps} />
+            </JotaiProvider>
+          </MantineProvider>
+        </QueryClientProvider>
+      )
+  }
 }

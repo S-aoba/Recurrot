@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 
 import { useQuerySearchQuestions } from '@/common/hook/useQuerySearchQuestions'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
-import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { Card } from '@/component/ui/Card'
 
 const SearchQuestions = () => {
@@ -29,17 +28,24 @@ const SearchQuestions = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <WrapperLayout>
-        <main className=' flex h-fit flex-1 justify-center'>
-          <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-            {searchQuestions &&
-              searchQuestions.map((question: QuestionAndAnswerIdListType, index) => {
-                return <Card key={index} question={question} />
-              })}
-          </div>
-        </main>
-      </WrapperLayout>
+      <main className=' flex h-fit flex-1 justify-center'>
+        <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
+          {searchQuestions &&
+            searchQuestions.map((question: QuestionAndAnswerIdListType, index) => {
+              return <Card key={index} question={question} />
+            })}
+        </div>
+      </main>
     </>
   )
 }
+
+export const getServerSideProps = async () => {
+  return {
+    props: {
+      layout: 'WrapperLayout',
+    },
+  }
+}
+
 export default SearchQuestions

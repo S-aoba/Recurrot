@@ -1,6 +1,5 @@
 import Head from 'next/head'
 
-import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { QuestionForm } from '@/component/ui/Form/Question'
 
 const QuestionEdit = () => {
@@ -12,12 +11,19 @@ const QuestionEdit = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <WrapperLayout>
-        <main className=' flex flex-1 justify-center p-5'>
-          <QuestionForm />
-        </main>
-      </WrapperLayout>
+      <main className=' flex flex-1 justify-center p-5'>
+        <QuestionForm />
+      </main>
     </>
   )
 }
+
+export const getServerSideProps = async () => {
+  return {
+    props: {
+      layout: 'WrapperLayout',
+    },
+  }
+}
+
 export default QuestionEdit
