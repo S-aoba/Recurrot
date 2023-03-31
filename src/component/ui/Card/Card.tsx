@@ -24,7 +24,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
   return (
     <div key={id} className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'>
       <Link href={'/dashboard/questions/[id]'} as={`questions/${id}`} className=' absolute block h-64 w-80'></Link>
-      <div className=' px row-span-2 flex items-center'>
+      <div className=' row-span-2 flex items-center'>
         <div className=' p-5'>
           <Image
             src={`/langIcon/${question.hashtags[0]}.svg`}
@@ -39,8 +39,8 @@ export const Card: React.FC<CardProps> = ({ question }) => {
             <Avatar radius='xl' />
             <span>{user.userName === null ? defaultUserName : user.userName}</span>
           </div>
-          <div className=' flex w-full flex-col items-end gap-x-3 pb-3'>
-            <span>投稿日: {`${year} / ${month} / ${day}`}</span>
+          <div className=' flex w-full flex-col items-end gap-x-3 pb-3 text-sm '>
+            <span>投稿日: {`${year}/${month}/${day}`}</span>
             <div className=' flex gap-x-1'>
               <IconMessageDots />
               <span>{question.answers.length}</span>
