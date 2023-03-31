@@ -1,4 +1,3 @@
-import { Loader } from '@mantine/core'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -6,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useQuerySearchQuestions } from '@/common/hook/useQuerySearchQuestions'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { Card } from '@/component/ui/Card'
+import { Loading } from '@/component/ui/Loading'
 
 const SearchQuestions = () => {
   const [id, setId] = useState<string>('')
@@ -19,7 +19,7 @@ const SearchQuestions = () => {
     }
   }, [router])
   const { data: searchQuestions, status: searchQuestionsStatus } = useQuerySearchQuestions(id)
-  if (searchQuestionsStatus == 'loading') return <Loader />
+  if (searchQuestionsStatus == 'loading') return <Loading />
   return (
     <>
       <Head>

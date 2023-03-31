@@ -1,8 +1,8 @@
-import { Loader } from '@mantine/core'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryUser } from '@/common/hook/useQueryUser'
+import { Loading } from '@/component/ui/Loading'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 import { ProfileCard } from '@/component/ui/ProfileCard'
 
@@ -15,7 +15,7 @@ const MyProfile = () => {
     handleSubNavTabStyle('dashboard/my-profile')
   })
 
-  if (UserStatus === 'loading') return <Loader />
+  if (UserStatus === 'loading') return <Loading />
 
   return (
     <>

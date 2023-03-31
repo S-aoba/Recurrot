@@ -1,10 +1,10 @@
-import { Loader } from '@mantine/core'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryUserQuestions } from '@/common/hook/useQueryUserQuestion'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { Card } from '@/component/ui/Card'
+import { Loading } from '@/component/ui/Loading'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 const MyQuestions = () => {
@@ -14,7 +14,7 @@ const MyQuestions = () => {
   useEffect(() => {
     handleSubNavTabStyle('dashboard/my-questions')
   })
-  if (status === 'loading') return <Loader />
+  if (status === 'loading') return <Loading />
   return (
     <>
       <Head>

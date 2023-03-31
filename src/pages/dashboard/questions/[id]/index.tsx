@@ -1,4 +1,4 @@
-import { Avatar, Button, Loader } from '@mantine/core'
+import { Avatar, Button } from '@mantine/core'
 import { useAtom, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -14,6 +14,7 @@ import { useQueryUser } from '@/common/hook/useQueryUser'
 import type { AnswerAndPostedUserNameType } from '@/common/type'
 import { DetailDescription } from '@/component/ui/DetaiDescription'
 import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
+import { Loading } from '@/component/ui/Loading'
 import {
   answerDescriptionAtom,
   editedAnswerAtom,
@@ -41,7 +42,7 @@ const QuestionDetail = () => {
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
   const setDescription = useSetAtom(questionDescriptionAtom)
 
-  if (questionStatus === 'loading' || answersStatus === 'loading' || userStatus === 'loading') return <Loader />
+  if (questionStatus === 'loading' || answersStatus === 'loading' || userStatus === 'loading') return <Loading />
 
   const year = question && question.createdAt.toString().slice(0, 4)
   const month = question && question.createdAt.toString().slice(5, 7)
