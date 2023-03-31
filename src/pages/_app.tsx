@@ -38,9 +38,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <MantineProvider>
         <JotaiProvider>
           {isWrapperLayout ? (
-            <Component {...pageProps} />
+            <>
+              <p>true</p>
+              <Component {...pageProps} />
+            </>
           ) : (
             <WrapperLayout>
+              <p>false</p>
               <Component {...pageProps} />
             </WrapperLayout>
           )}
