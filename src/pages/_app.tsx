@@ -7,6 +7,8 @@ import { Provider as JotaiProvider } from 'jotai'
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react'
 
+import { WrapperLayout } from '@/component/layout/WrapperLayout'
+
 // import { WrapperLayout } from '@/component/layout/WrapperLayout'
 
 const queryClient = new QueryClient({
@@ -39,9 +41,9 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       >
         <JotaiProvider>
-          {/* <WrapperLayout> */}
-          <Component {...pageProps} />
-          {/* </WrapperLayout> */}
+          <WrapperLayout>
+            <Component {...pageProps} />
+          </WrapperLayout>
         </JotaiProvider>
       </MantineProvider>
     </QueryClientProvider>

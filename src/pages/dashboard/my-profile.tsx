@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryUser } from '@/common/hook/useQueryUser'
-import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 import { ProfileCard } from '@/component/ui/ProfileCard'
 
@@ -26,11 +25,9 @@ const MyProfile = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <WrapperLayout>
-        <main className=' flex h-fit flex-1 justify-center'>
-          <div className=' flex w-9/12 flex-col items-center justify-center'>{user && <ProfileCard user={user} />}</div>
-        </main>
-      </WrapperLayout>
+      <main className=' flex h-fit flex-1 justify-center'>
+        <div className=' flex w-9/12 flex-col items-center justify-center'>{user && <ProfileCard user={user} />}</div>
+      </main>
     </>
   )
 }

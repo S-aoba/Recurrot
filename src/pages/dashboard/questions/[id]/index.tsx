@@ -12,7 +12,6 @@ import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import type { AnswerAndPostedUserNameType } from '@/common/type'
-import { WrapperLayout } from '@/component/layout/WrapperLayout'
 import { DetailDescription } from '@/component/ui/DetaiDescription'
 import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
 import {
@@ -73,60 +72,58 @@ const QuestionDetail = () => {
       </Head>
 
       {question && answers && user && (
-        <WrapperLayout>
-          <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
-            <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
-              <h1>{question.title}</h1>
-            </div>
-            <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
-              <div className=' py-5'>
-                <div className=' flex items-center gap-x-2 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
-                  <Avatar radius={'xl'} />
-                  <span>質問者: {question.user.userName === null ? defaultUserName : question.user.userName}</span>
-                  <span>
-                    質問投稿日: {year} / {month} / {day}
-                  </span>
-                  {user.id === question.userId && (
-                    <>
-                      <Link href={'/dashboard/questions/edit'} type='button'>
-                        <Button type='button' className=' hover:transform-none' onClick={handleSetQuestion}>
-                          編集する
-                        </Button>
-                      </Link>
-                      <Button type='button' className=' hover:transform-none' onClick={handleDeleteQuestion}>
-                        削除する
+        <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
+          <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
+            <h1>{question.title}</h1>
+          </div>
+          <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
+            <div className=' py-5'>
+              <div className=' flex items-center gap-x-2 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
+                <Avatar radius={'xl'} />
+                <span>質問者: {question.user.userName === null ? defaultUserName : question.user.userName}</span>
+                <span>
+                  質問投稿日: {year} / {month} / {day}
+                </span>
+                {user.id === question.userId && (
+                  <>
+                    <Link href={'/dashboard/questions/edit'} type='button'>
+                      <Button type='button' className=' hover:transform-none' onClick={handleSetQuestion}>
+                        編集する
                       </Button>
-                    </>
-                  )}
-                </div>
-                <div className=' flex gap-x-5 py-5'>
-                  {question.hashtags &&
-                    question.hashtags.map((hashtag) => {
-                      return <HashtagList key={hashtag} hashtag={hashtag} />
-                    })}
-                </div>
-                <DetailDescription description={question.description} />
+                    </Link>
+                    <Button type='button' className=' hover:transform-none' onClick={handleDeleteQuestion}>
+                      削除する
+                    </Button>
+                  </>
+                )}
               </div>
-            </div>
-
-            <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
-              <p className=' mb-0 pb-2 text-2xl'>
-                <span className=' font-semibold text-blue-500'>{answers.length}</span> 件の回答
-              </p>
-            </div>
-
-            {answers.map((answer) => {
-              return <Answer key={answer.id} answer={answer} userId={user.id} />
-            })}
-
-            <div className=' flex w-8/12 flex-col justify-center'>
-              <div>
-                <h2>あなたの回答</h2>
-                <CreateAnswerForm questionId={question.id} />
+              <div className=' flex gap-x-5 py-5'>
+                {question.hashtags &&
+                  question.hashtags.map((hashtag) => {
+                    return <HashtagList key={hashtag} hashtag={hashtag} />
+                  })}
               </div>
+              <DetailDescription description={question.description} />
             </div>
-          </main>
-        </WrapperLayout>
+          </div>
+
+          <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
+            <p className=' mb-0 pb-2 text-2xl'>
+              <span className=' font-semibold text-blue-500'>{answers.length}</span> 件の回答
+            </p>
+          </div>
+
+          {answers.map((answer) => {
+            return <Answer key={answer.id} answer={answer} userId={user.id} />
+          })}
+
+          <div className=' flex w-8/12 flex-col justify-center'>
+            <div>
+              <h2>あなたの回答</h2>
+              <CreateAnswerForm questionId={question.id} />
+            </div>
+          </div>
+        </main>
       )}
     </>
   )
