@@ -32,6 +32,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
             width={95}
             alt={question.hashtags[0] == 'csharp' ? 'C#' : `${question.hashtags[0]}`}
             className=' rounded-xl'
+            priority
           />
         </div>
         <div className='w-full p-2'>
