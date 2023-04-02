@@ -8,7 +8,7 @@ export const useQueryUserQuestions = () => {
   const router = useRouter()
   const getUserQuestions = async () => {
     const res = await axios.get<QuestionAndAnswerIdListType[]>(
-      `${process.env.NEXT_PUBLIC_API_URL}/question/user/:userName`,
+      `${process.env.NEXT_PUBLIC_API_URL}/question/user/my-questions`,
       {
         withCredentials: true,
       }
