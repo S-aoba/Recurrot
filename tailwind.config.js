@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
-      "xs":	"576",
-      "sm"	:"768",
-      "md"	:"992",
-      "lg"	:"1200",
-      "xl"	:"1400"
+      "xs":	"599px",
+      "sm":"959px",
+      "md":"1279px",
+      "lg":"1919px",
+      "xl":"1400px"
     }
   },
   plugins: [require('prettier-plugin-tailwindcss'), require('@tailwindcss/line-clamp'),],
