@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
     case 'WrapperLayout':
       return (
         <QueryClientProvider client={queryClient}>
-          <MantineProvider>
+          <MantineProvider withGlobalStyles withNormalizeCSS>
             <JotaiProvider>
               <WrapperLayout>
                 <Component {...pageProps} />
@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
     default:
       return (
         <QueryClientProvider client={queryClient}>
-          <MantineProvider>
+          <MantineProvider withGlobalStyles withNormalizeCSS>
             <JotaiProvider>
               <Component {...pageProps} />
             </JotaiProvider>
