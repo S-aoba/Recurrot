@@ -42,6 +42,7 @@ model Answer {
   description String
   userId      String
   questionId  String
+  isRead      Boolean  @default(false)
   Question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
