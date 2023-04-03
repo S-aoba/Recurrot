@@ -3,9 +3,35 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
+import type { UserType } from '../type'
+
 export const useMutateUser = () => {
   const queryClient = useQueryClient()
   const router = useRouter()
+
+  const updateReadAnswerMutation = useMutation({
+    mutationKey: ['user'],
+    mutationFn: async (answerId: string) => {
+      const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/user/read-answer/${answerId}`)
+      return res.data
+    },
+    onSuccess: (res: UserType) => {
+      const previousUser = queryClient.getQueryData<User>(['user'])
+
+      if (previousUser) {
+        queryClient.setQueryData(['user'], res)
+      }
+      queryClient.invalidateQueries(['answers'])
+      queryClient.invalidateQueries(['questions'])
+      queryClient.invalidateQueries(['singleQuestion'])
+      queryClient.invalidateQueries(['user'])
+    },
+    onError: (err: any) => {
+      if (err.response.status === 401 || err.response.status === 403) {
+        router.push('/')
+      }
+    },
+  })
 
   const updateUserMutation = useMutation({
     mutationKey: ['user'],
@@ -44,5 +70,5 @@ export const useMutateUser = () => {
     },
   })
 
-  return { updateUserMutation, deleteUserMutation }
+  return { updateUserMutation, deleteUserMutation, updateReadAnswerMutation }
 }
