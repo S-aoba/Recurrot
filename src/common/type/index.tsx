@@ -26,7 +26,7 @@ export type AnswerAndPostedUserNameType = {
   user: UserName
 } & Answer
 
-type UnreadAnswer = {
+export type UnreadAnswer = {
   questionId: string
   questionTitle: string
   answerId: string
