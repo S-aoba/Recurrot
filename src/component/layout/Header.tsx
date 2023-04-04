@@ -1,21 +1,104 @@
-import { Avatar, Button, Menu, TextInput } from '@mantine/core'
+import { ActionIcon, Avatar, Button, Menu, TextInput } from '@mantine/core'
 import { Loader } from '@mantine/core'
-import { IconBell, IconCircle } from '@tabler/icons-react'
-import { useQueryClient } from '@tanstack/react-query'
+import { IconBell, IconCircle, IconLogout, IconSearch } from '@tabler/icons-react'
+import { QueryCache } from '@tanstack/react-query'
 import axios from 'axios'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 
+import { useGetWindowSize } from '@/common/hook/useGetWindowSize'
 import { useMutateUser } from '@/common/hook/useMutateUser'
 import { useQueryUser } from '@/common/hook/useQueryUser'
+import type { UnreadAnswer } from '@/common/type'
 
 export const Header = () => {
-  const queryClient = useQueryClient()
-
   const { data: user, status } = useQueryUser()
+  const [isOpen, setIsOpen] = useState(false)
+  const windowSize = useGetWindowSize()
+
+  const handleOpenSearchBar = () => {
+    setIsOpen(!isOpen)
+  }
+
+  if (status === 'loading') return <Loader />
+
+  return (
+    <header className=' max-w-screen flex h-14 max-h-14 items-center justify-center'>
+      <div className=' flex w-full max-w-[1656px] items-center justify-between px-8'>
+        <div className=' flex items-center'>
+          <h2>Recurrot</h2>
+        </div>
+        {/* height:{windowSize.height} width:{windowSize.width} */}
+        <div className=' flex w-6/12 items-center gap-x-4'>
+          {windowSize.width > 992 ? (
+            <SearchQuestionForm />
+          ) : (
+            <div className=' flex w-full justify-end'>
+              <ActionIcon className=' hover:transform-none hover:bg-white '>
+                <IconSearch color='gray' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
+              </ActionIcon>
+              {isOpen && (
+                <form>
+                  <TextInput placeholder='質問を検索する' className=' absolute right-4 top-14 w-11/12' />
+                </form>
+              )}
+            </div>
+          )}
+          {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
+          <LoginUserIcon />
+          {windowSize.width > 770 && <QuestionPostButton />}
+        </div>
+      </div>
+    </header>
+  )
+}
+
+// /////////////////////////////////////////////////////////////////////////////////
+type NotificationProps = {
+  unreadAnswers: UnreadAnswer[]
+}
+const Notification: React.FC<NotificationProps> = ({ unreadAnswers }) => {
   const { updateReadAnswerMutation } = useMutateUser()
+
+  return (
+    <div className=' relative flex items-center'>
+      <Menu>
+        <Menu.Target>
+          <ActionIcon className=' hover:transform-none'>
+            <IconBell color='gray' size={30} fill='white' stroke={0.5} className=' hover:cursor-pointer' />
+          </ActionIcon>
+        </Menu.Target>
+        <Menu.Dropdown className=' text-center'>
+          {unreadAnswers.map((question) => {
+            const handleClick = () => {
+              updateReadAnswerMutation.mutate(question.answerId)
+            }
+            return (
+              <Menu.Item key={question.answerId}>
+                <Link
+                  href={`/dashboard/questions/${question.questionId}`}
+                  className=' my-2 block py-3 text-center'
+                  onClick={handleClick}
+                >
+                  {question.questionTitle}に回答がありました
+                </Link>
+                <hr className=' border border-solid border-gray-200' />
+              </Menu.Item>
+            )
+          })}
+        </Menu.Dropdown>
+      </Menu>
+      {unreadAnswers.length > 0 && (
+        <IconCircle fill='red' color='red' size={15} className=' absolute right-0 -top-1 z-10' />
+      )}
+    </div>
+  )
+}
+
+// /////////////////////////////////////////////////////////////////////////////////
+const SearchQuestionForm = () => {
   const router = useRouter()
 
   const [searchWord, setSearchWord] = useState('')
@@ -31,67 +114,45 @@ export const Header = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value)
   }
+  return (
+    <form className=' flex w-full gap-x-3' onSubmit={handleSearch}>
+      <TextInput value={searchWord} onChange={handleChange} placeholder='質問を検索する' className=' w-full' />
+    </form>
+  )
+}
 
+// /////////////////////////////////////////////////////////////////////////////////
+const QuestionPostButton = () => {
+  return (
+    <Link href='/dashboard/questions/post'>
+      <Button type='button' className=' hover:transform-none'>
+        質問する
+      </Button>
+    </Link>
+  )
+}
+
+// /////////////////////////////////////////////////////////////////////////////////
+const LoginUserIcon = () => {
   const handleLogout = async () => {
-    queryClient.removeQueries(['user'])
-    queryClient.removeQueries(['questions'])
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
+    const queryCache = new QueryCache()
+    queryCache.clear()
     router.push('/')
   }
 
-  if (status === 'loading') return <Loader />
-
   return (
-    <>
-      {user && (
-        <header className=' flex h-14 max-h-14 w-full max-w-full justify-center py-3'>
-          <div className=' flex w-9/12 items-center gap-x-5'>
-            <span className=' text-3xl'>Recurrot</span>
-            <div className=' flex items-center gap-x-2'>
-              <Avatar radius={'lg'} />
-              <Menu shadow='md' width={200}>
-                <Menu.Target>
-                  <IconBell color='gray' className=' p-2 hover:cursor-pointer' />
-                </Menu.Target>
-                <Menu.Dropdown className=' text-center'>
-                  {user.unreadAnswers &&
-                    user.unreadAnswers.map((question) => {
-                      const handleClick = () => {
-                        updateReadAnswerMutation.mutate(question.answerId)
-                      }
-                      return (
-                        <div key={question.answerId}>
-                          <Link
-                            href={`/dashboard/questions/${question.questionId}`}
-                            className=' my-2 block py-3 text-center'
-                            onClick={handleClick}
-                          >
-                            {question.questionTitle}に回答がありました
-                          </Link>
-                          <hr className=' border border-solid border-gray-200' />
-                        </div>
-                      )
-                    })}
-                </Menu.Dropdown>
-              </Menu>
-              {user && user.unreadAnswers && user.unreadAnswers.length > 0 && (
-                <IconCircle fill='blue' color='blue' size={15} className=' -ml-4 -mt-3 mr-4' />
-              )}
-            </div>
-            <Link href='/dashboard/questions/post'>
-              <Button type='button' className=' hover:transform-none'>
-                質問する
-              </Button>
-            </Link>
-            <Button type='button' className=' hover:transform-none' onClick={handleLogout}>
-              ログアウト
-            </Button>
-            <form className=' flex gap-x-3' onSubmit={handleSearch}>
-              <TextInput value={searchWord} onChange={handleChange} placeholder='質問を検索する' />
-            </form>
-          </div>
-        </header>
-      )}
-    </>
+    <Menu>
+      <Menu.Target>
+        <Avatar color='cyan' radius='xl' className=' hover: cursor-pointer'>
+          MK
+        </Avatar>
+      </Menu.Target>
+      <Menu.Dropdown>
+        <Menu.Item icon={<IconLogout size={14} />} onClick={handleLogout}>
+          ログアウト
+        </Menu.Item>
+      </Menu.Dropdown>
+    </Menu>
   )
 }
