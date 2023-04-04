@@ -8,7 +8,6 @@ module.exports = {
       "sm":"959px",
       "md":"1279px",
       "lg":"1919px",
-      "xl":"1400px"
     }
   },
   plugins: [require('prettier-plugin-tailwindcss'), require('@tailwindcss/line-clamp'),],
