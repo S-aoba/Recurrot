@@ -6,8 +6,8 @@ import { subNavTabStyleAtom } from '@/store/question-atom'
 export const useSubNavTabStyle = () => {
   const [subNavTabStyle, setNavTabStyle] = useAtom(subNavTabStyleAtom)
 
-  const defaultSubNavTabStyle = ' text-black no-underline hover:text-red-500'
-  const selectedSubNavTabStyle = 'text-blue-500 no-underline'
+  const defaultSubNavTabStyle = ' whitespace-nowrap text-black no-underline hover:text-red-500'
+  const selectedSubNavTabStyle = 'whitespace-nowrap text-blue-500 no-underline'
 
   let newQuestionsStyle = selectedSubNavTabStyle
   let questionsWaitingAnswerStyle = defaultSubNavTabStyle
