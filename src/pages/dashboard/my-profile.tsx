@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryUser } from '@/common/hook/useQueryUser'
+import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
 import { Loading } from '@/component/ui/Loading'
-import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 import { ProfileCard } from '@/component/ui/ProfileCard'
 
 const MyProfile = () => {

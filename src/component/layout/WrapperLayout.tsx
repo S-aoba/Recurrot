@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 
-import { Navigation } from '../ui/Navigation'
 import { Footer } from './Footer'
 import { Header } from './Header'
+import { Navigation } from './Navigation'
 
 type WrapperLayoutProps = {
   children: ReactNode
