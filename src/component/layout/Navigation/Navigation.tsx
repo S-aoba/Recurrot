@@ -7,7 +7,7 @@ import { SubNavTab } from './SubNavTab'
 
 export const Navigation = () => {
   return (
-    <div className=' max-w-screen flex flex-col items-center justify-center text-sm'>
+    <div className=' flex flex-col items-center justify-center text-sm'>
       <NavigationWrapper>
         <MainNavTab />
       </NavigationWrapper>
