@@ -38,8 +38,8 @@ const NewQuestions: NextPage<NewQuestionsProps> = ({ initialData }) => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex h-fit flex-1 justify-center'>
-        <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
+      <main className=' flex h-fit flex-1 justify-center bg-red-500'>
+        <div className=' grid w-9/12 grid-cols-1 place-items-center gap-10 py-5 sm:grid-cols-2 md:grid-cols-3'>
           {questions.map((question: QuestionAndAnswerIdListType, index) => {
             return <Card key={index} question={question} />
           })}
