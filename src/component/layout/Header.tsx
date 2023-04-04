@@ -33,17 +33,13 @@ export const Header = () => {
         {/* height:{windowSize.height} width:{windowSize.width} */}
         <div className=' flex w-6/12 items-center gap-x-4'>
           {windowSize.width > 992 ? (
-            <SearchQuestionForm />
+            <SearchQuestionForm formClassName=' flex w-full gap-x-3' className=' w-full' />
           ) : (
             <div className=' flex w-full justify-end'>
               <ActionIcon className=' hover:transform-none hover:bg-white '>
                 <IconSearch color='gray' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
               </ActionIcon>
-              {isOpen && (
-                <form>
-                  <TextInput placeholder='質問を検索する' className=' absolute right-4 top-14 w-11/12' />
-                </form>
-              )}
+              {isOpen && <SearchQuestionForm className=' absolute right-4 top-14 w-11/12' setIsOpen={setIsOpen} />}
             </div>
           )}
           {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
@@ -98,13 +94,21 @@ const Notification: React.FC<NotificationProps> = ({ unreadAnswers }) => {
 }
 
 // /////////////////////////////////////////////////////////////////////////////////
-const SearchQuestionForm = () => {
+
+type SearchQuestionFormProps = {
+  formClassName?: string
+  className: string
+  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const SearchQuestionForm: React.FC<SearchQuestionFormProps> = ({ formClassName, className, setIsOpen }) => {
   const router = useRouter()
 
   const [searchWord, setSearchWord] = useState('')
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (setIsOpen) setIsOpen(false)
     router.push({
       pathname: '/dashboard/search',
       query: { q: searchWord },
@@ -115,8 +119,8 @@ const SearchQuestionForm = () => {
     setSearchWord(e.target.value)
   }
   return (
-    <form className=' flex w-full gap-x-3' onSubmit={handleSearch}>
-      <TextInput value={searchWord} onChange={handleChange} placeholder='質問を検索する' className=' w-full' />
+    <form className={formClassName} onSubmit={handleSearch}>
+      <TextInput value={searchWord} onChange={handleChange} placeholder='質問を検索する' className={className} />
     </form>
   )
 }
