@@ -6,8 +6,8 @@ import router from 'next/router'
 import { useEffect } from 'react'
 
 import type { QuestionAndAnswerIdListType } from '@/common/type'
+import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
 import { Card } from '@/component/ui/Card'
-import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 type NewQuestionsProps = {
   initialData: QuestionAndAnswerIdListType[]

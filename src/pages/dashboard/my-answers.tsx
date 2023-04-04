@@ -3,9 +3,9 @@ import { useEffect } from 'react'
 
 import { useQueryUserAnswers } from '@/common/hook/useQueryUserAnswers'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
+import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
 import { Card } from '@/component/ui/Card'
 import { Loading } from '@/component/ui/Loading'
-import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
 
 const MyAnswers = () => {
   const { handleSubNavTabStyle } = useSubNavTabStyle()

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 
 // import { Card } from '@/component/ui/Card'
-import { useSubNavTabStyle } from '@/component/ui/Navigation/useSubNavTabStyle'
+import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
 
 const QuestionWaitingAnswers = () => {
   const { handleSubNavTabStyle } = useSubNavTabStyle()
