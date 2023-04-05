@@ -78,7 +78,7 @@ export const QuestionForm = () => {
       <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
       <Content editor={editor} />
       <Button color='blue' type='submit' className=' hover:transform-none'>
-        {editedQuestion.id === '0' ? '投稿' : '更新'}
+        {editedQuestion.id === '0' ? '投稿する' : '更新する'}
       </Button>
     </form>
   )

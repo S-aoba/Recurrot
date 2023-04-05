@@ -73,7 +73,7 @@ export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
       </RichTextEditor>
       <div className=' mt-3 flex justify-end'>
         <Button color='blue' type='submit' className=' hover:transform-none'>
-          投稿
+          投稿する
         </Button>
       </div>
     </form>

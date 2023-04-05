@@ -77,7 +77,7 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
       </RichTextEditor>
       <div className=' mt-3 flex justify-end'>
         <Button color='blue' type='submit' className=' hover:transform-none'>
-          {editedAnswer.id === '0' ? '投稿' : '更新'}
+          更新する
         </Button>
       </div>
     </form>
