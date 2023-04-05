@@ -1,4 +1,5 @@
-import { Avatar, Button } from '@mantine/core'
+import { ActionIcon, Avatar, Menu, Tooltip } from '@mantine/core'
+import { IconChevronDown, IconEdit, IconTrash } from '@tabler/icons-react'
 import { useAtom, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -74,54 +75,69 @@ const QuestionDetail = () => {
 
       {question && answers && user && (
         <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
-          <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
-            <h1>{question.title}</h1>
-          </div>
-          <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
-            <div className=' py-5'>
-              <div className=' flex items-center gap-x-2 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
-                <Avatar radius={'xl'} />
-                <span>質問者: {question.user.userName === null ? defaultUserName : question.user.userName}</span>
-                <span>
-                  質問投稿日: {year} / {month} / {day}
-                </span>
-                {user.id === question.userId && (
-                  <>
-                    <Link href={'/dashboard/questions/edit'} type='button'>
-                      <Button type='button' className=' hover:transform-none' onClick={handleSetQuestion}>
-                        編集する
-                      </Button>
-                    </Link>
-                    <Button type='button' className=' hover:transform-none' onClick={handleDeleteQuestion}>
-                      削除する
-                    </Button>
-                  </>
-                )}
-              </div>
-              <div className=' flex gap-x-5 py-5'>
-                {question.hashtags &&
-                  question.hashtags.map((hashtag) => {
-                    return <HashtagList key={hashtag} hashtag={hashtag} />
-                  })}
-              </div>
-              <DetailDescription description={question.description} />
+          <div className=' flex w-full max-w-[1200px] flex-col items-center justify-center gap-y-5 px-8'>
+            <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
+              <h1>{question.title}</h1>
             </div>
-          </div>
+            <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
+              <div className=' py-5'>
+                <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
+                  <div className=' flex items-center gap-x-2'>
+                    <Avatar radius={'xl'} />
+                    <span>質問者: {question.user.userName === null ? defaultUserName : question.user.userName}</span>
+                    <span>
+                      質問投稿日: {year} / {month} / {day}
+                    </span>
+                  </div>
+                  {user.id === question.userId && (
+                    <div className=' flex items-center justify-center gap-x-2'>
+                      <Tooltip label='編集する'>
+                        <Link
+                          href={'/dashboard/questions/edit'}
+                          type='button'
+                          className=' flex justify-center text-black no-underline'
+                        >
+                          <IconEdit size={23} className=' hover:cursor-pointer' onClick={handleSetQuestion} />
+                        </Link>
+                      </Tooltip>
+                      <Menu>
+                        <Menu.Target>
+                          <IconChevronDown size={23} className=' hover:cursor-pointer' />
+                        </Menu.Target>
+                        <Menu.Dropdown>
+                          <Menu.Item onClick={handleDeleteQuestion} icon={<IconTrash size={14} />}>
+                            削除する
+                          </Menu.Item>
+                        </Menu.Dropdown>
+                      </Menu>
+                    </div>
+                  )}
+                </div>
+                <div className=' flex gap-x-5 py-5'>
+                  {question.hashtags &&
+                    question.hashtags.map((hashtag) => {
+                      return <HashtagList key={hashtag} hashtag={hashtag} />
+                    })}
+                </div>
+                <DetailDescription description={question.description} />
+              </div>
+            </div>
 
-          <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
-            <p className=' mb-0 pb-2 text-2xl'>
-              <span className=' font-semibold text-blue-500'>{answers.length}</span> 件の回答
-            </p>
-          </div>
+            <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
+              <p className=' mb-0 pb-2 text-2xl'>
+                <span className=' font-semibold text-blue-500'>{answers.length}</span> 件の回答
+              </p>
+            </div>
 
-          {answers.map((answer) => {
-            return <Answer key={answer.id} answer={answer} userId={user.id} />
-          })}
+            {answers.map((answer) => {
+              return <Answer key={answer.id} answer={answer} userId={user.id} />
+            })}
 
-          <div className=' flex w-8/12 flex-col justify-center'>
-            <div>
-              <h2>あなたの回答</h2>
-              <CreateAnswerForm questionId={question.id} />
+            <div className=' flex w-8/12 flex-col justify-center'>
+              <div>
+                <h2>あなたの回答</h2>
+                <CreateAnswerForm questionId={question.id} />
+              </div>
             </div>
           </div>
         </main>
@@ -153,7 +169,6 @@ const AnswerBody: React.FC<Props> = ({ answer, isEdit, setIsEdit }) => {
       {isEdit && setIsEdit ? (
         <UpdateAnswerForm questionId={answer.questionId} setIsEdit={setIsEdit} answerId={answer.id} />
       ) : (
-        // <div dangerouslySetInnerHTML={{ __html: answer.description }}></div>
         <DetailDescription description={answer.description} />
       )}
     </>
@@ -190,23 +205,34 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
   return (
     <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
       <div className=' py-5'>
-        <div className=' flex items-center gap-x-2 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
-          <Avatar radius={'xl'} />
-          <span>
-            回答者: {answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}
-          </span>
-          <span>
-            回答日: {year} / {month} / {day}
-          </span>
+        <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
+          <div className=' flex items-center gap-x-2'>
+            <Avatar radius={'xl'} />
+            <span>
+              回答者: {answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}
+            </span>
+            <span>
+              回答日: {year} / {month} / {day}
+            </span>
+          </div>
           {answer.userId === userId && (
-            <>
-              <Button className=' hover:transform-none' onClick={handleSetAnswer}>
-                編集
-              </Button>
-              <Button className=' hover:transform-none' onClick={handleDeleteAnswer}>
-                削除
-              </Button>
-            </>
+            <div className=' flex items-center justify-center gap-x-2'>
+              <Tooltip label='編集する'>
+                <IconEdit size={23} className=' hover:cursor-pointer' onClick={handleSetAnswer} />
+              </Tooltip>
+              <Menu>
+                <Menu.Target>
+                  <ActionIcon className=' hover:transform-none'>
+                    <IconChevronDown size={23} className=' hover:cursor-pointer' />
+                  </ActionIcon>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item onClick={handleDeleteAnswer} icon={<IconTrash size={14} />}>
+                    削除する
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            </div>
           )}
         </div>
         <AnswerBody answer={answer} isEdit={isEdit} setIsEdit={setIsEdit} />
