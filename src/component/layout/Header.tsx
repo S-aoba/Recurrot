@@ -1,6 +1,6 @@
 import { ActionIcon, Avatar, Button, Menu, TextInput } from '@mantine/core'
 import { Loader } from '@mantine/core'
-import { IconBell, IconCircle, IconLogout, IconSearch } from '@tabler/icons-react'
+import { IconBell, IconCircle, IconLogout, IconQuestionMark, IconSearch } from '@tabler/icons-react'
 import { QueryCache } from '@tanstack/react-query'
 import axios from 'axios'
 import Link from 'next/link'
@@ -138,6 +138,8 @@ const QuestionPostButton = () => {
 
 // /////////////////////////////////////////////////////////////////////////////////
 const LoginUserIcon = () => {
+  const windowSize = useGetWindowSize()
+
   const handleLogout = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
     const queryCache = new QueryCache()
@@ -153,6 +155,13 @@ const LoginUserIcon = () => {
         </Avatar>
       </Menu.Target>
       <Menu.Dropdown>
+        {windowSize.width <= 770 && (
+          <Menu.Item icon={<IconQuestionMark size={14} />}>
+            <Link href='/dashboard/questions/post' className=' text-black no-underline'>
+              質問する
+            </Link>
+          </Menu.Item>
+        )}
         <Menu.Item icon={<IconLogout size={14} />} onClick={handleLogout}>
           ログアウト
         </Menu.Item>
