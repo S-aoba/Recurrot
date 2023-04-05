@@ -26,7 +26,9 @@ const MyProfile = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className=' flex h-fit flex-1 justify-center'>
-        <div className=' flex w-9/12 flex-col items-center justify-center'>{user && <ProfileCard user={user} />}</div>
+        <div className=' flex w-full max-w-[1200px] justify-center px-8 '>
+          <div className=' h-fit w-full py-5 sm:w-9/12 '>{user && <ProfileCard user={user} />}</div>
+        </div>
       </main>
     </>
   )

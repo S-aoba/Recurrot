@@ -59,57 +59,49 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
   return (
     <>
       {user && (
-        <div className=' grid grid-cols-12 border-t border-r-0 border-b border-l-0 border-solid border-gray-200'>
-          <div className=' col-span-4 flex flex-col items-center justify-center gap-y-5 px-5'>
+        <div className=' grid rounded-lg border-2 border-solid border-gray-200 shadow-sm sm:grid-cols-12'>
+          <div className=' mx-10 flex flex-col items-center justify-center gap-y-5 border-r-0 border-b-2 border-l-0 border-t-0 border-solid border-gray-200 py-5 px-5 sm:col-span-4 sm:mx-0 sm:my-10 sm:border-r sm:border-l-0 sm:border-t-0 sm:border-b-0 sm:py-0'>
             <Avatar size={'lg'} radius={'xl'} variant={'outline'} />
             <Button color='blue' disabled>
               変更する
             </Button>
           </div>
-          <form className=' col-span-8 flex flex-col items-center p-5' onSubmit={handleSubmit}>
+          <form className=' flex flex-col items-center p-5 sm:col-span-8' onSubmit={handleSubmit}>
             <div className=' flex w-11/12 flex-col items-start gap-y-5'>
-              <label className=' flex flex-col'>
-                ユーザーネーム
-                <input
-                  type='text'
-                  value={editedUser.userName == null ? '' : editedUser.userName}
-                  onChange={handleSetUserName}
-                />
-              </label>
-              <label className=' flex flex-col'>
-                自己紹介
-                <textarea
-                  className=' h-52 w-96 resize-none'
+              <Input
+                labelWord='ユーザーネーム'
+                type='text'
+                value={editedUser.userName == null ? '' : editedUser.userName}
+                onChange={handleSetUserName}
+              />
+              <div className=' w-full'>
+                <TextArea
+                  labelWord='自己紹介'
                   value={editedUser.selfIntroduction == null ? '' : editedUser.selfIntroduction}
                   onChange={handleSetSelfIntroduction}
                 />
-              </label>
-              <div className=' flex gap-x-3'>
-                <label className=' flex flex-col'>
-                  Twitter
-                  <input
-                    type='url'
-                    value={editedUser.twitterUrl == null ? '' : editedUser.twitterUrl}
-                    onChange={handleSetTwitterUrl}
-                  />
-                </label>
-                <label className=' flex flex-col'>
-                  Github
-                  <input
-                    type='url'
-                    value={editedUser.githubUrl == null ? '' : editedUser.githubUrl}
-                    onChange={handleSetGithubUrl}
-                  />
-                </label>
               </div>
-              <label className=' flex flex-col'>
-                Website
-                <input
+              <div className=' flex w-full flex-col gap-y-3 sm:flex-row sm:gap-x-3'>
+                <Input
+                  labelWord='Twitter'
                   type='url'
-                  value={editedUser.websiteUrl == null ? '' : editedUser.websiteUrl}
-                  onChange={handleSetWebsiteUrl}
+                  value={editedUser.twitterUrl == null ? '' : editedUser.twitterUrl}
+                  onChange={handleSetTwitterUrl}
                 />
-              </label>
+
+                <Input
+                  labelWord='Github'
+                  type='url'
+                  value={editedUser.githubUrl == null ? '' : editedUser.githubUrl}
+                  onChange={handleSetGithubUrl}
+                />
+              </div>
+              <Input
+                labelWord='Website'
+                type='url'
+                value={editedUser.websiteUrl == null ? '' : editedUser.websiteUrl}
+                onChange={handleSetWebsiteUrl}
+              />
               <div className=' flex w-full justify-between'>
                 <Button color='blue' type='submit' className=' hover:transform-none'>
                   変更する
@@ -123,5 +115,45 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
         </div>
       )}
     </>
+  )
+}
+
+type InputProps = {
+  labelWord: string
+  type?: 'text' | 'url'
+  value: string | null
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const Input: React.FC<InputProps> = ({ labelWord, type, value, onChange: handleOnChange }) => {
+  return (
+    <label className=' flex flex-col'>
+      {labelWord}
+      <input
+        type={type}
+        value={value == null ? '' : value}
+        onChange={handleOnChange}
+        className=' w-full rounded-md border-2 border-solid border-gray-200 p-3'
+      />
+    </label>
+  )
+}
+
+type TextProps = {
+  labelWord: string
+  value: string | null
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+}
+
+const TextArea: React.FC<TextProps> = ({ labelWord, value, onChange: handleOnChange }) => {
+  return (
+    <label className=' flex flex-col'>
+      {labelWord}
+      <textarea
+        className=' h-52 w-full resize-none rounded-md border-2 border-solid border-gray-200 p-3'
+        value={value == null ? '' : value}
+        onChange={handleOnChange}
+      />
+    </label>
   )
 }
