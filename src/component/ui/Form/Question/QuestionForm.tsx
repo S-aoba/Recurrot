@@ -73,13 +73,15 @@ export const QuestionForm = () => {
   }
 
   return (
-    <form className=' flex h-full w-11/12 flex-col items-center gap-y-5 py-5' onSubmit={handleSubmit}>
+    <form className=' flex h-full w-full flex-col items-center gap-y-5 py-5' onSubmit={handleSubmit}>
       <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
       <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
       <Content editor={editor} />
-      <Button color='blue' type='submit' className=' hover:transform-none'>
-        {editedQuestion.id === '0' ? '投稿する' : '更新する'}
-      </Button>
+      <div className=' flex w-9/12 justify-end'>
+        <Button color='blue' type='submit' className=' hover:transform-none'>
+          {editedQuestion.id === '0' ? '投稿する' : '更新する'}
+        </Button>
+      </div>
     </form>
   )
 }
