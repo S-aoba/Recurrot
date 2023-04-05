@@ -14,16 +14,28 @@ export const Footer = () => {
         )}
         <div className=' flex w-full flex-col items-center whitespace-nowrap text-center text-sm text-gray-600 sm:flex-row'>
           <div className=' flex w-full flex-wrap justify-center gap-x-5'>
-            <Link href={'/dashboard/new-questions'} className=' block text-black no-underline hover:cursor-pointer'>
+            <Link
+              href={'/dashboard/new-questions'}
+              className=' block text-black no-underline hover:cursor-pointer hover:underline hover:underline-offset-4'
+            >
               利用規約
             </Link>
-            <Link href={'/dashboard/new-questions'} className=' block text-black no-underline hover:cursor-pointer'>
+            <Link
+              href={'/dashboard/new-questions'}
+              className=' block text-black no-underline hover:cursor-pointer hover:underline hover:underline-offset-4'
+            >
               プライバシー
             </Link>
-            <Link href={'/dashboard/new-questions'} className=' block text-black no-underline hover:cursor-pointer'>
+            <Link
+              href={'/dashboard/new-questions'}
+              className=' block text-black no-underline hover:cursor-pointer hover:underline hover:underline-offset-4'
+            >
               特定取引法に基づく表示
             </Link>
-            <Link href={'/dashboard/new-questions'} className=' block text-black no-underline hover:cursor-pointer'>
+            <Link
+              href={'/dashboard/new-questions'}
+              className=' block text-black no-underline hover:cursor-pointer hover:underline hover:underline-offset-4'
+            >
               お問い合わせ
             </Link>
           </div>
