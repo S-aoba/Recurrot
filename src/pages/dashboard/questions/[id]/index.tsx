@@ -75,19 +75,21 @@ const QuestionDetail = () => {
 
       {question && answers && user && (
         <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
-          <div className=' flex w-full max-w-[1200px] flex-col items-center justify-center gap-y-5 px-8'>
-            <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
-              <h1>{question.title}</h1>
+          <div className=' flex w-full max-w-[1200px] flex-col items-center justify-center gap-y-5'>
+            <div className=' w-full border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3 sm:w-10/12'>
+              <p className=' text-2xl font-semibold sm:text-3xl'>{question.title}</p>
             </div>
-            <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
+            <div className=' w-full border border-solid border-gray-200 p-5 sm:w-9/12'>
               <div className=' py-5'>
-                <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
-                  <div className=' flex items-center gap-x-2'>
+                <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
+                  <div className=' flex items-center gap-x-2 text-sm'>
                     <Avatar radius={'xl'} />
-                    <span>質問者: {question.user.userName === null ? defaultUserName : question.user.userName}</span>
-                    <span>
-                      質問投稿日: {year} / {month} / {day}
-                    </span>
+                    <div className=' flex gap-x-2'>
+                      <span>{question.user.userName === null ? defaultUserName : question.user.userName}</span>
+                      <span>
+                        投稿日: {year} / {month} / {day}
+                      </span>
+                    </div>
                   </div>
                   {user.id === question.userId && (
                     <div className=' flex items-center justify-center gap-x-2'>
@@ -123,7 +125,7 @@ const QuestionDetail = () => {
               </div>
             </div>
 
-            <div className=' w-10/12 border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3'>
+            <div className=' w-full border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3 sm:w-10/12'>
               <p className=' mb-0 pb-2 text-2xl'>
                 <span className=' font-semibold text-blue-500'>{answers.length}</span> 件の回答
               </p>
@@ -133,9 +135,9 @@ const QuestionDetail = () => {
               return <Answer key={answer.id} answer={answer} userId={user.id} />
             })}
 
-            <div className=' flex w-8/12 flex-col justify-center'>
+            <div className=' flex w-full flex-col justify-center sm:w-9/12'>
               <div>
-                <h2>あなたの回答</h2>
+                <p className=' text-xl'>あなたの回答</p>
                 <CreateAnswerForm questionId={question.id} />
               </div>
             </div>
@@ -203,17 +205,17 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
   }
 
   return (
-    <div className=' w-8/12 border border-solid border-gray-200 bg-white p-5'>
+    <div className=' w-full border border-solid border-gray-200 bg-white p-5 sm:w-9/12'>
       <div className=' py-5'>
-        <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2 text-lg'>
-          <div className=' flex items-center gap-x-2'>
+        <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
+          <div className=' flex items-center gap-x-2 text-sm'>
             <Avatar radius={'xl'} />
-            <span>
-              回答者: {answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}
-            </span>
-            <span>
-              回答日: {year} / {month} / {day}
-            </span>
+            <div className=' flex gap-x-2'>
+              <span>{answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}</span>
+              <span>
+                回答日: {year} / {month} / {day}
+              </span>
+            </div>
           </div>
           {answer.userId === userId && (
             <div className=' flex items-center justify-center gap-x-2'>
