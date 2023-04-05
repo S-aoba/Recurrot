@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
+import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 
 type NewQuestionsProps = {
@@ -38,15 +39,11 @@ const NewQuestions: NextPage<NewQuestionsProps> = ({ initialData }) => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex h-fit flex-1  justify-center'>
-        <div className=' flex w-full max-w-[1656px] justify-center px-8'>
-          <div className=' grid h-fit grid-cols-1 place-items-center gap-5 py-5 sm:grid-cols-2 sm:place-items-stretch md:grid-cols-3 md:place-items-stretch'>
-            {questions.map((question: QuestionAndAnswerIdListType, index) => {
-              return <Card key={index} question={question} />
-            })}
-          </div>
-        </div>
-      </main>
+      <QuestionLayout>
+        {questions.map((question: QuestionAndAnswerIdListType, index) => {
+          return <Card key={index} question={question} />
+        })}
+      </QuestionLayout>
     </>
   )
 }

@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useQueryUserAnswers } from '@/common/hook/useQueryUserAnswers'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
+import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { Loading } from '@/component/ui/Loading'
 
@@ -26,14 +27,12 @@ const MyAnswers = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex h-fit flex-1 justify-center'>
-        <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-          {questions &&
-            questions.map((question: QuestionAndAnswerIdListType, index) => {
-              return <Card key={index} question={question} />
-            })}
-        </div>
-      </main>
+      <QuestionLayout>
+        {questions &&
+          questions.map((question: QuestionAndAnswerIdListType, index) => {
+            return <Card key={index} question={question} />
+          })}
+      </QuestionLayout>
     </>
   )
 }

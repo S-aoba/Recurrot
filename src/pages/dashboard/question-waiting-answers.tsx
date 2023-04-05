@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 
 // import { Card } from '@/component/ui/Card'
 import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
+import { QuestionLayout } from '@/component/layout/QuestionLayout'
 
 const QuestionWaitingAnswers = () => {
   const { handleSubNavTabStyle } = useSubNavTabStyle()
@@ -19,9 +20,7 @@ const QuestionWaitingAnswers = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex h-fit flex-1 justify-center'>
-        <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>{/* <Card /> */}</div>
-      </main>
+      <QuestionLayout>{/* <Card /> */}</QuestionLayout>
     </>
   )
 }

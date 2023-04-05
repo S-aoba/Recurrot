@@ -4,17 +4,20 @@ import { useEffect } from 'react'
 import { useQueryUserQuestions } from '@/common/hook/useQueryUserQuestion'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
+import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { Loading } from '@/component/ui/Loading'
 
 const MyQuestions = () => {
   const { handleSubNavTabStyle } = useSubNavTabStyle()
-  const { data, status } = useQueryUserQuestions()
+  const { data: myQuestions, status: myQuestionsStatus } = useQueryUserQuestions()
 
   useEffect(() => {
     handleSubNavTabStyle('dashboard/my-questions')
   })
-  if (status === 'loading') return <Loading />
+
+  if (myQuestionsStatus === 'loading') return <Loading />
+
   return (
     <>
       <Head>
@@ -23,14 +26,12 @@ const MyQuestions = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex h-fit flex-1 justify-center'>
-        <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-          {data &&
-            data.map((question: QuestionAndAnswerIdListType) => {
-              return <Card key={question.id} question={question} />
-            })}
-        </div>
-      </main>
+      <QuestionLayout>
+        {myQuestions &&
+          myQuestions.map((question: QuestionAndAnswerIdListType) => {
+            return <Card key={question.id} question={question} />
+          })}
+      </QuestionLayout>
     </>
   )
 }
