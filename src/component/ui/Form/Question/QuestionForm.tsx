@@ -1,4 +1,5 @@
 import { Button } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { Link } from '@mantine/tiptap'
 import Highlight from '@tiptap/extension-highlight'
 import SubScript from '@tiptap/extension-subscript'
@@ -8,11 +9,11 @@ import Underline from '@tiptap/extension-underline'
 import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
-import type { FormEvent } from 'react'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-atom'
 
+import { Modal } from '../../Modal'
 import { Content } from './Content'
 import { Hashtag } from './Hashtag'
 import { Title } from './Title'
@@ -31,6 +32,8 @@ const escapeHtml = (unsafe: string) => {
 }
 
 export const QuestionForm = () => {
+  const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
+
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
   const [description, setDescription] = useAtom(questionDescriptionAtom)
 
@@ -52,8 +55,7 @@ export const QuestionForm = () => {
     },
   })
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = () => {
     if (editedQuestion.id === '0' && editor) {
       createQuestionMutation.mutate({
         title: editedQuestion.title,
@@ -73,15 +75,20 @@ export const QuestionForm = () => {
   }
 
   return (
-    <form className=' flex h-full w-full flex-col items-center gap-y-5 py-5' onSubmit={handleSubmit}>
-      <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
-      <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
-      <Content editor={editor} />
-      <div className=' flex w-9/12 justify-end'>
-        <Button color='blue' type='submit' className=' hover:transform-none'>
-          {editedQuestion.id === '0' ? '投稿する' : '更新する'}
-        </Button>
+    <>
+      <Modal opened={isOpened} onClose={handleClose} onSubmit={handleSubmit}>
+        {editedQuestion.id === '0' ? '投稿する' : '更新する'}
+      </Modal>
+      <div className=' flex h-full w-full flex-col items-center gap-y-5 py-5'>
+        <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
+        <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
+        <Content editor={editor} />
+        <div className=' flex w-9/12 justify-end'>
+          <Button color='blue' type='button' onClick={handleOpen} className=' hover:transform-none'>
+            {editedQuestion.id === '0' ? '投稿する' : '更新する'}
+          </Button>
+        </div>
       </div>
-    </form>
+    </>
   )
 }

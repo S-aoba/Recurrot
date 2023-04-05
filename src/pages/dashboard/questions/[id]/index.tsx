@@ -1,4 +1,5 @@
 import { ActionIcon, Avatar, Menu, Tooltip } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconEdit, IconTrash } from '@tabler/icons-react'
 import { useAtom, useSetAtom } from 'jotai'
 import Head from 'next/head'
@@ -16,6 +17,7 @@ import type { AnswerAndPostedUserNameType } from '@/common/type'
 import { DetailDescription } from '@/component/ui/DetaiDescription'
 import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
 import { Loading } from '@/component/ui/Loading'
+import { Modal } from '@/component/ui/Modal'
 import {
   answerDescriptionAtom,
   editedAnswerAtom,
@@ -24,6 +26,9 @@ import {
 } from '@/store/question-atom'
 
 const QuestionDetail = () => {
+  const [isDeleteQuestionOpened, { open: handleDeleteQuestionOpen, close: handleDeleteQuestionClose }] =
+    useDisclosure(false)
+
   const [id, setId] = useState<string>('')
   const router = useRouter()
 
@@ -61,6 +66,7 @@ const QuestionDetail = () => {
   const handleDeleteQuestion = () => {
     if (question) {
       deleteQuestionMutation.mutate(question.id)
+      handleDeleteQuestionClose()
     }
   }
 
@@ -72,6 +78,10 @@ const QuestionDetail = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      <Modal opened={isDeleteQuestionOpened} onClose={handleDeleteQuestionClose} onSubmit={handleDeleteQuestion}>
+        削除する
+      </Modal>
 
       {question && answers && user && (
         <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
@@ -104,10 +114,12 @@ const QuestionDetail = () => {
                       </Tooltip>
                       <Menu>
                         <Menu.Target>
-                          <IconChevronDown size={23} className=' hover:cursor-pointer' />
+                          <ActionIcon className=' hover:transform-none'>
+                            <IconChevronDown color='black' size={23} className=' hover:cursor-pointer' />
+                          </ActionIcon>
                         </Menu.Target>
                         <Menu.Dropdown>
-                          <Menu.Item onClick={handleDeleteQuestion} icon={<IconTrash size={14} />}>
+                          <Menu.Item onClick={handleDeleteQuestionOpen} icon={<IconTrash size={14} />}>
                             削除する
                           </Menu.Item>
                         </Menu.Dropdown>
@@ -182,6 +194,8 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
   const month = answer.createdAt.toString().slice(5, 7)
   const day = answer.createdAt.toString().slice(8, 10)
 
+  const [isDeleteAnswerOpened, { open: handleDeleteAnswerOpen, close: handleDeleteAnswerClose }] = useDisclosure(false)
+
   const [isEdit, setIsEdit] = useState(false)
   const [_, setDescription] = useAtom(answerDescriptionAtom)
   const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
@@ -201,45 +215,53 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
   const handleDeleteAnswer = () => {
     if (answer) {
       deleteAnswerMutation.mutate(answer.id)
+      handleDeleteAnswerClose()
     }
   }
 
   return (
-    <div className=' w-full border border-solid border-gray-200 bg-white p-5 sm:w-9/12'>
-      <div className=' py-5'>
-        <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
-          <div className=' flex items-center gap-x-2 text-sm'>
-            <Avatar radius={'xl'} />
-            <div className=' flex gap-x-2'>
-              <span>{answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}</span>
-              <span>
-                回答日: {year} / {month} / {day}
-              </span>
+    <>
+      <Modal opened={isDeleteAnswerOpened} onClose={handleDeleteAnswerClose} onSubmit={handleDeleteAnswer}>
+        削除する
+      </Modal>
+      <div className=' w-full border border-solid border-gray-200 bg-white p-5 sm:w-9/12'>
+        <div className=' py-5'>
+          <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
+            <div className=' flex items-center gap-x-2 text-sm'>
+              <Avatar radius={'xl'} />
+              <div className=' flex gap-x-2'>
+                <span>
+                  {answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}
+                </span>
+                <span>
+                  回答日: {year} / {month} / {day}
+                </span>
+              </div>
             </div>
+            {answer.userId === userId && (
+              <div className=' flex items-center justify-center gap-x-2'>
+                <Tooltip label='編集する'>
+                  <IconEdit size={23} className=' hover:cursor-pointer' onClick={handleSetAnswer} />
+                </Tooltip>
+                <Menu>
+                  <Menu.Target>
+                    <ActionIcon className=' hover:transform-none'>
+                      <IconChevronDown color='black' size={23} className=' hover:cursor-pointer' />
+                    </ActionIcon>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item onClick={handleDeleteAnswerOpen} icon={<IconTrash size={14} />}>
+                      削除する
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
+              </div>
+            )}
           </div>
-          {answer.userId === userId && (
-            <div className=' flex items-center justify-center gap-x-2'>
-              <Tooltip label='編集する'>
-                <IconEdit size={23} className=' hover:cursor-pointer' onClick={handleSetAnswer} />
-              </Tooltip>
-              <Menu>
-                <Menu.Target>
-                  <ActionIcon className=' hover:transform-none'>
-                    <IconChevronDown size={23} className=' hover:cursor-pointer' />
-                  </ActionIcon>
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item onClick={handleDeleteAnswer} icon={<IconTrash size={14} />}>
-                    削除する
-                  </Menu.Item>
-                </Menu.Dropdown>
-              </Menu>
-            </div>
-          )}
+          <AnswerBody answer={answer} isEdit={isEdit} setIsEdit={setIsEdit} />
         </div>
-        <AnswerBody answer={answer} isEdit={isEdit} setIsEdit={setIsEdit} />
       </div>
-    </div>
+    </>
   )
 }
 

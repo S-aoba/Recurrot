@@ -1,9 +1,11 @@
 import { Avatar, Button } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import type { User } from '@prisma/client'
-// import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
 
 import { useMutateUser } from '@/common/hook/useMutateUser'
+
+import { Modal } from '../Modal'
 
 /**
  * @package
@@ -14,6 +16,9 @@ type ProfileCardProps = {
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
+  const [isProfileOpened, { open: handleProfileOpen, close: handleProfileClose }] = useDisclosure(false)
+  const [isDeleteUserOpened, { open: handleDeleteUserOpen, close: handleDeleteUserClose }] = useDisclosure(false)
+
   const { updateUserMutation, deleteUserMutation } = useMutateUser()
 
   const [editedUser, setEditedUser] = useState<
@@ -47,17 +52,25 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
     setEditedUser({ ...editedUser, websiteUrl: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = () => {
     updateUserMutation.mutate(editedUser)
+    handleProfileClose()
   }
 
   const handleDeleteUser = () => {
     deleteUserMutation.mutate()
+    handleDeleteUserClose()
   }
 
   return (
     <>
+      <Modal opened={isProfileOpened} onClose={handleProfileClose} onSubmit={handleSubmit}>
+        変更する
+      </Modal>
+      <Modal opened={isDeleteUserOpened} onClose={handleDeleteUserClose} onSubmit={handleDeleteUser}>
+        削除する
+      </Modal>
+
       {user && (
         <div className=' grid rounded-lg border-2 border-solid border-gray-200 shadow-sm sm:grid-cols-12'>
           <div className=' mx-10 flex flex-col items-center justify-center gap-y-5 border-r-0 border-b-2 border-l-0 border-t-0 border-solid border-gray-200 py-5 px-5 sm:col-span-4 sm:mx-0 sm:my-10 sm:border-r sm:border-l-0 sm:border-t-0 sm:border-b-0 sm:py-0'>
@@ -66,7 +79,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
               変更する
             </Button>
           </div>
-          <form className=' flex flex-col items-center p-5 sm:col-span-8' onSubmit={handleSubmit}>
+          <div className=' flex flex-col items-center p-5 sm:col-span-8'>
             <div className=' flex w-11/12 flex-col items-start gap-y-5'>
               <Input
                 labelWord='ユーザーネーム'
@@ -103,15 +116,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
                 onChange={handleSetWebsiteUrl}
               />
               <div className=' flex w-full justify-between'>
-                <Button color='blue' type='submit' className=' hover:transform-none'>
+                <Button color='blue' type='button' onClick={handleProfileOpen} className=' hover:transform-none'>
                   変更する
                 </Button>
-                <Button color='red' type='button' className=' hover:transform-none' onClick={handleDeleteUser}>
+                <Button color='red' type='button' className=' hover:transform-none' onClick={handleDeleteUserOpen}>
                   ユーザーを削除する
                 </Button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       )}
     </>

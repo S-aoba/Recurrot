@@ -1,4 +1,5 @@
 import { Button } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { Link, RichTextEditor } from '@mantine/tiptap'
 import Highlight from '@tiptap/extension-highlight'
 import SubScript from '@tiptap/extension-subscript'
@@ -8,10 +9,11 @@ import Underline from '@tiptap/extension-underline'
 import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
-import type { FormEvent } from 'react'
 
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
+
+import { Modal } from '../../Modal'
 
 /**
  * @package
@@ -31,6 +33,8 @@ type AnswerFormProps = {
 }
 
 export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
+  const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
+
   const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
   const [description, setDescription] = useAtom(answerDescriptionAtom)
 
@@ -55,8 +59,7 @@ export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
     },
   })
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = () => {
     if (editedAnswer.id === '0' && editor) {
       createAnswerMutation.mutate({
         description,
@@ -64,18 +67,24 @@ export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
       editor.commands.setContent('')
     }
     setEditedAnswer({ ...editedAnswer, id: '0' })
+    handleClose()
   }
 
   return (
-    <form className=' w-full' onSubmit={handleSubmit}>
-      <RichTextEditor editor={editor} className=' h-96 w-full'>
-        <RichTextEditor.Content />
-      </RichTextEditor>
-      <div className=' mt-3 flex justify-end'>
-        <Button color='blue' type='submit' className=' hover:transform-none'>
-          投稿する
-        </Button>
+    <>
+      <Modal opened={isOpened} onClose={handleClose} onSubmit={handleSubmit}>
+        投稿する
+      </Modal>
+      <div className=' w-full'>
+        <RichTextEditor editor={editor} className=' h-96 w-full'>
+          <RichTextEditor.Content />
+        </RichTextEditor>
+        <div className=' mt-3 flex justify-end'>
+          <Button color='blue' type='button' onClick={handleOpen} className=' hover:transform-none'>
+            投稿する
+          </Button>
+        </div>
       </div>
-    </form>
+    </>
   )
 }
