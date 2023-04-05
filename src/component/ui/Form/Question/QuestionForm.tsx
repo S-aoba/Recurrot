@@ -76,9 +76,14 @@ export const QuestionForm = () => {
 
   return (
     <>
-      <Modal opened={isOpened} onClose={handleClose} onSubmit={handleSubmit}>
-        {editedQuestion.id === '0' ? '投稿する' : '更新する'}
-      </Modal>
+      <Modal
+        opened={isOpened}
+        onClose={handleClose}
+        onSubmit={handleSubmit}
+        buttonWord={editedQuestion.id === '0' ? '投稿する' : '更新する'}
+        modalTitle={editedQuestion.id === '0' ? 'Recurrotに投稿する' : '質問を更新する'}
+      />
+
       <div className=' flex h-full w-full flex-col items-center gap-y-5 py-5'>
         <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
         <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />

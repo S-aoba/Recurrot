@@ -64,12 +64,21 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
 
   return (
     <>
-      <Modal opened={isProfileOpened} onClose={handleProfileClose} onSubmit={handleSubmit}>
-        変更する
-      </Modal>
-      <Modal opened={isDeleteUserOpened} onClose={handleDeleteUserClose} onSubmit={handleDeleteUser}>
-        削除する
-      </Modal>
+      <Modal
+        opened={isProfileOpened}
+        onClose={handleProfileClose}
+        onSubmit={handleSubmit}
+        buttonWord='変更する'
+        modalTitle='プロフィールを変更する'
+      />
+
+      <Modal
+        opened={isDeleteUserOpened}
+        onClose={handleDeleteUserClose}
+        onSubmit={handleDeleteUser}
+        buttonWord='削除する'
+        modalTitle='本当に削除してもよろしいですか？'
+      />
 
       {user && (
         <div className=' grid rounded-lg border-2 border-solid border-gray-200 shadow-sm sm:grid-cols-12'>

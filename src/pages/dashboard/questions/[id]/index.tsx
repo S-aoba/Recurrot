@@ -79,9 +79,13 @@ const QuestionDetail = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Modal opened={isDeleteQuestionOpened} onClose={handleDeleteQuestionClose} onSubmit={handleDeleteQuestion}>
-        削除する
-      </Modal>
+      <Modal
+        opened={isDeleteQuestionOpened}
+        onClose={handleDeleteQuestionClose}
+        onSubmit={handleDeleteQuestion}
+        buttonWord='削除する'
+        modalTitle='本当に削除してもよろしいですか？'
+      />
 
       {question && answers && user && (
         <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
@@ -221,9 +225,14 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
 
   return (
     <>
-      <Modal opened={isDeleteAnswerOpened} onClose={handleDeleteAnswerClose} onSubmit={handleDeleteAnswer}>
-        削除する
-      </Modal>
+      <Modal
+        opened={isDeleteAnswerOpened}
+        onClose={handleDeleteAnswerClose}
+        onSubmit={handleDeleteAnswer}
+        buttonWord='削除する'
+        modalTitle='本当に削除してもよろしいですか？'
+      />
+
       <div className=' w-full border border-solid border-gray-200 bg-white p-5 sm:w-9/12'>
         <div className=' py-5'>
           <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>

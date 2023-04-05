@@ -72,9 +72,14 @@ export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
 
   return (
     <>
-      <Modal opened={isOpened} onClose={handleClose} onSubmit={handleSubmit}>
-        投稿する
-      </Modal>
+      <Modal
+        opened={isOpened}
+        onClose={handleClose}
+        onSubmit={handleSubmit}
+        buttonWord='回答する'
+        modalTitle='回答を投稿する'
+      />
+
       <div className=' w-full'>
         <RichTextEditor editor={editor} className=' h-96 w-full'>
           <RichTextEditor.Content />

@@ -77,9 +77,14 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
 
   return (
     <>
-      <Modal opened={isOpened} onClose={handleClose} onSubmit={handleSubmit}>
-        更新する
-      </Modal>
+      <Modal
+        opened={isOpened}
+        onClose={handleClose}
+        onSubmit={handleSubmit}
+        buttonWord='更新する'
+        modalTitle='回答を更新する'
+      />
+
       <div className=' w-full'>
         <RichTextEditor editor={editor} className=' h-96 w-full'>
           <RichTextEditor.Content />
