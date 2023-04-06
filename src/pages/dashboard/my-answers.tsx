@@ -1,21 +1,22 @@
+import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryUserAnswers } from '@/common/hook/useQueryUserAnswers'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
-import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { Loading } from '@/component/ui/Loading'
+import { navTabAtom } from '@/store/question-atom'
 
 const MyAnswers = () => {
-  const { handleSubNavTabStyle } = useSubNavTabStyle()
-
   const { data: questions, status: answersStatus } = useQueryUserAnswers()
 
+  const setNavTab = useSetAtom(navTabAtom)
+
   useEffect(() => {
-    handleSubNavTabStyle('dashboard/my-answers')
-  })
+    setNavTab({ main: 'questions', sub: 'my-answers' })
+  }, [setNavTab])
 
   if (answersStatus === 'loading') return <Loading />
 

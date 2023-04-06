@@ -1,16 +1,17 @@
+import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
 // import { Card } from '@/component/ui/Card'
-import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
+import { navTabAtom } from '@/store/question-atom'
 
 const QuestionWaitingAnswers = () => {
-  const { handleSubNavTabStyle } = useSubNavTabStyle()
+  const setNavTab = useSetAtom(navTabAtom)
 
   useEffect(() => {
-    handleSubNavTabStyle('dashboard/question-waiting-answers')
-  })
+    setNavTab({ main: 'questions', sub: 'question-waiting-answers' })
+  }, [setNavTab])
 
   return (
     <>

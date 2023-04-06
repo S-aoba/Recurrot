@@ -3,10 +3,8 @@ import axios from 'axios'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import router from 'next/router'
-import { useEffect } from 'react'
 
 import type { QuestionAndAnswerIdListType } from '@/common/type'
-import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 
@@ -23,12 +21,6 @@ const NewQuestions: NextPage<NewQuestionsProps> = ({ initialData }) => {
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) router.push('/')
     },
-  })
-
-  const { handleSubNavTabStyle } = useSubNavTabStyle()
-
-  useEffect(() => {
-    handleSubNavTabStyle('dashboard/new-questions')
   })
 
   return (

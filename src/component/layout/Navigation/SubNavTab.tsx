@@ -1,10 +1,10 @@
-// import { useAtomValue } from 'jotai'
+import { useAtom } from 'jotai'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import type { SubUrlVal } from '@/common/type'
+import { navTabAtom } from '@/store/question-atom'
 
-// import { mainNavTabStyleAtom } from '@/store/question-atom'
 import { useSubNavTabStyle } from './useSubNavTabStyle'
 
 /**
@@ -14,28 +14,22 @@ import { useSubNavTabStyle } from './useSubNavTabStyle'
 type SubNavTabType = {
   href: SubUrlVal
   children: ReactNode
-  handleOnClick: () => void
+  handleOnClick?: any
   className?: string
 }
 
 export const SubNavTab = () => {
-  // 2023/3/21 一旦コメントアウト　後ほど実装
-  // const mainNavTabStyle = useAtomValue(mainNavTabStyleAtom)
-  const {
-    handleSubNavTabStyle,
-    newQuestionsStyle,
-    questionsWaitingAnswerStyle,
-    dashboardQuestionsStyle,
-    dashboardAnswersStyle,
-    dashboardProfileStyle,
-  } = useSubNavTabStyle()
+  const { newQuestionsStyle, questionsWaitingAnswerStyle, myQuestionsStyle, myAnswersStyle, myProfileStyle } =
+    useSubNavTabStyle()
+
+  const [navTab, setNavTab] = useAtom(navTabAtom)
 
   const SubNavTabItem: SubNavTabType[] = [
     {
       href: '/dashboard/new-questions',
       children: '新着',
       handleOnClick: () => {
-        return handleSubNavTabStyle('dashboard/new-questions')
+        return setNavTab({ ...navTab, sub: 'new-questions' })
       },
       className: newQuestionsStyle,
     },
@@ -43,7 +37,7 @@ export const SubNavTab = () => {
       href: '/dashboard/question-waiting-answers',
       children: '回答募集中',
       handleOnClick: () => {
-        return handleSubNavTabStyle('dashboard/question-waiting-answers')
+        return setNavTab({ ...navTab, sub: 'question-waiting-answers' })
       },
       className: questionsWaitingAnswerStyle,
     },
@@ -51,25 +45,25 @@ export const SubNavTab = () => {
       href: '/dashboard/my-questions',
       children: '自分の質問',
       handleOnClick: () => {
-        return handleSubNavTabStyle('dashboard/my-questions')
+        return setNavTab({ ...navTab, sub: 'my-questions' })
       },
-      className: dashboardQuestionsStyle,
+      className: myQuestionsStyle,
     },
     {
       href: '/dashboard/my-answers',
       children: '自分の回答',
       handleOnClick: () => {
-        return handleSubNavTabStyle('dashboard/my-answers')
+        return setNavTab({ ...navTab, sub: 'my-answers' })
       },
-      className: dashboardAnswersStyle,
+      className: myAnswersStyle,
     },
     {
       href: '/dashboard/my-profile',
       children: 'プロフィール',
       handleOnClick: () => {
-        return handleSubNavTabStyle('dashboard/my-profile')
+        return setNavTab({ ...navTab, sub: 'my-profile' })
       },
-      className: dashboardProfileStyle,
+      className: myProfileStyle,
     },
   ]
 

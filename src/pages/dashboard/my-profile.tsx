@@ -1,19 +1,20 @@
+import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryUser } from '@/common/hook/useQueryUser'
-import { useSubNavTabStyle } from '@/component/layout/Navigation/useSubNavTabStyle'
 import { Loading } from '@/component/ui/Loading'
 import { ProfileCard } from '@/component/ui/ProfileCard'
+import { navTabAtom } from '@/store/question-atom'
 
 const MyProfile = () => {
   const { data: user, status: UserStatus } = useQueryUser()
 
-  const { handleSubNavTabStyle } = useSubNavTabStyle()
+  const setNavTab = useSetAtom(navTabAtom)
 
   useEffect(() => {
-    handleSubNavTabStyle('dashboard/my-profile')
-  })
+    setNavTab({ main: 'questions', sub: 'my-profile' })
+  }, [setNavTab])
 
   if (UserStatus === 'loading') return <Loading />
 

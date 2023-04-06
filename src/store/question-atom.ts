@@ -1,9 +1,8 @@
 import { atom } from 'jotai'
 
-import type { EditedAnswer, EditedQuestion, MainNavTabStyleType, SubNavTabStyleType } from '@/common/type'
+import type { EditedAnswer, EditedQuestion, MainNavTabStyleType, NavTab } from '@/common/type'
 
 export const mainNavTabStyleAtom = atom<MainNavTabStyleType>('question')
-export const subNavTabStyleAtom = atom<SubNavTabStyleType>('dashboard/new-questions')
 
 const initialEditedQuestion: EditedQuestion = { id: '0', title: '', description: '', hashtags: [] }
 export const editedQuestionAtom = atom<EditedQuestion>(initialEditedQuestion)
@@ -23,3 +22,5 @@ export const resetAnswerDescriptionAtom = atom(null, (_, set) => {
 
 const initialEditedAnswer: EditedAnswer = { id: '0', description: '' }
 export const editedAnswerAtom = atom<EditedAnswer>(initialEditedAnswer)
+
+export const navTabAtom = atom<NavTab>({ main: 'questions', sub: 'new-questions' })

@@ -1,7 +1,9 @@
+import { useAtom } from 'jotai'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import type { MainUrlVal } from '@/common/type'
+import { navTabAtom } from '@/store/question-atom'
 
 import { useMainNavTabStyle } from './useMainNavTabStyle'
 
@@ -17,13 +19,15 @@ type MainNavTabType = {
 }
 
 export const MainNavTab = () => {
-  const { handleNavTabStyle, questionsStyle } = useMainNavTabStyle()
+  const { questionsStyle } = useMainNavTabStyle()
+  const [navTab, setNavTab] = useAtom(navTabAtom)
+
   const MainNavTabItem: MainNavTabType[] = [
     {
       href: '/dashboard/new-questions',
       children: '質問',
       handleOnClick: () => {
-        return handleNavTabStyle('question')
+        return setNavTab({ ...navTab, main: 'questions', sub: 'new-questions' })
       },
       className: questionsStyle,
     },
