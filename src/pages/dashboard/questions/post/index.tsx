@@ -1,8 +1,9 @@
-import { Button } from '@mantine/core'
+import { Button, Tooltip } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconArrowLeft } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import { QuestionForm } from '@/component/ui/Form/Question'
 import { editedQuestionAtom } from '@/store/question-atom'
@@ -22,7 +23,11 @@ const QuestionPost = () => {
       <header className=' fixed z-10 w-full bg-white shadow'>
         <div className='flex h-14 max-h-14 items-center justify-center'>
           <div className=' flex w-full max-w-[900px] items-center justify-between px-6 py-2'>
-            <IconArrowLeft size={30} />
+            <Tooltip label='自分の質問一覧へ'>
+              <Link href={'/dashboard/my-questions'} className=' text-black'>
+                <IconArrowLeft size={30} />
+              </Link>
+            </Tooltip>
             <Button color='blue' type='button' onClick={handleOpen} className=' hover:transform-none'>
               {editedQuestion.id === '0' ? '投稿する' : '更新する'}
             </Button>
