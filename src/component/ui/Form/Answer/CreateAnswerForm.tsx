@@ -10,6 +10,7 @@ import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
 
+import { useAnswerForm } from '@/common/hook/useAnswerForm'
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
 
@@ -69,6 +70,8 @@ export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
     setEditedAnswer({ ...editedAnswer, id: '0' })
     handleClose()
   }
+
+  useAnswerForm(description, editor)
 
   return (
     <>

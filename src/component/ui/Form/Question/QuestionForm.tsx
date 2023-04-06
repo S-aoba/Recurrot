@@ -10,8 +10,8 @@ import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
 
-import { OnNavigateForm } from '@/common/hook/onNavigateForm'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
+import { useQuestionForm } from '@/common/hook/useQuestionForm'
 import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-atom'
 
 import { Modal } from '../../Modal'
@@ -76,7 +76,7 @@ export const QuestionForm = () => {
     }
   }
 
-  OnNavigateForm(editedQuestion, description, editor)
+  useQuestionForm(editedQuestion, description, editor)
 
   return (
     <>

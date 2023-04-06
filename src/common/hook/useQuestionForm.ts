@@ -7,7 +7,7 @@ import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/q
 
 import type { EditedQuestion } from '../type'
 
-export const OnNavigateForm = (editedQuestion: EditedQuestion, description: string, editor: Editor | null) => {
+export const useQuestionForm = (editedQuestion: EditedQuestion, description: string, editor: Editor | null) => {
   const router = useRouter()
 
   const [, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)

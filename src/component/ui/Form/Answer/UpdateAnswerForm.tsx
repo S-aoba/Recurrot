@@ -11,6 +11,7 @@ import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
 import type { Dispatch, SetStateAction } from 'react'
 
+import { useAnswerForm } from '@/common/hook/useAnswerForm'
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
 
@@ -74,6 +75,7 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
     setEditedAnswer({ ...editedAnswer, id: '0' })
     handleClose()
   }
+  useAnswerForm(description, editor)
 
   return (
     <>
