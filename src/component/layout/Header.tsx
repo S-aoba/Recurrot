@@ -25,10 +25,10 @@ export const Header = () => {
   if (status === 'loading') return <Loader />
 
   return (
-    <header className=' flex h-14 max-h-14 items-center justify-center'>
+    <header className=' flex h-14 max-h-14 items-center justify-center bg-blue-500'>
       <div className=' flex w-full max-w-[1200px] items-center justify-between px-8'>
         <div className=' flex items-center'>
-          <h2>Recurrot</h2>
+          <h2 className=' text-gray-100'>Recurrot</h2>
         </div>
         {/* height:{windowSize.height} width:{windowSize.width} */}
         <div className=' flex w-6/12 items-center gap-x-4'>
@@ -37,7 +37,7 @@ export const Header = () => {
           ) : (
             <div className=' flex w-full justify-end'>
               <ActionIcon className=' hover:transform-none hover:bg-white '>
-                <IconSearch color='gray' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
+                <IconSearch color='white' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
               </ActionIcon>
               {isOpen && <SearchQuestionForm className=' absolute right-4 top-14 w-11/12' setIsOpen={setIsOpen} />}
             </div>
@@ -129,7 +129,7 @@ const SearchQuestionForm: React.FC<SearchQuestionFormProps> = ({ formClassName, 
 const QuestionPostButton = () => {
   return (
     <Link href='/dashboard/questions/post'>
-      <Button type='button' className=' hover:transform-none'>
+      <Button type='button' variant='light' className=' text-gray-600 hover:transform-none'>
         質問する
       </Button>
     </Link>
