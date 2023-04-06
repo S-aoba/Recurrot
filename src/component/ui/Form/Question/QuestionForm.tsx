@@ -1,5 +1,3 @@
-import { Button } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
 import { Link } from '@mantine/tiptap'
 import Highlight from '@tiptap/extension-highlight'
 import SubScript from '@tiptap/extension-subscript'
@@ -32,9 +30,12 @@ const escapeHtml = (unsafe: string) => {
     .replace(/'/g, '&#039;')
 }
 
-export const QuestionForm = () => {
-  const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
+type QuestionFormProps = {
+  isOpened: boolean
+  onHandleClose: () => void
+}
 
+export const QuestionForm: React.FC<QuestionFormProps> = ({ isOpened, onHandleClose: handleClose }) => {
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
 
   const [description, setDescription] = useAtom(questionDescriptionAtom)
@@ -88,15 +89,10 @@ export const QuestionForm = () => {
         modalTitle={editedQuestion.id === '0' ? 'Recurrotに投稿する' : '質問を更新する'}
       />
 
-      <div className=' flex h-full w-full flex-col items-center gap-y-5 py-5'>
+      <div className=' flex h-fit w-full flex-col items-center gap-y-5 py-5'>
         <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
         <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
         <Content editor={editor} />
-        <div className=' flex w-9/12 justify-end'>
-          <Button color='blue' type='button' onClick={handleOpen} className=' hover:transform-none'>
-            {editedQuestion.id === '0' ? '投稿する' : '更新する'}
-          </Button>
-        </div>
       </div>
     </>
   )
