@@ -6,8 +6,10 @@ import { mainNavTabStyleAtom } from '@/store/question-atom'
 export const useMainNavTabStyle = () => {
   const [mainNavTabStyle, setNavTabStyle] = useAtom(mainNavTabStyleAtom)
 
-  const defaultMainNavTabStyle = ' text-black no-underline hover:text-red-500'
-  const selectedMainNavTabStyle = 'text-blue-500 no-underline'
+  const defaultMainNavTabStyle =
+    ' whitespace-nowrap text-black no-underline hover:text-black hover:opacity-100 opacity-50 p-2'
+  const selectedMainNavTabStyle =
+    'text-blue-500 no-underline p-2 whitespace-nowrap border-b-2 border-blue-500 border-solid border-r-0 border-l-0 border-t-0'
 
   let questionsStyle = selectedMainNavTabStyle
   let eventStyle = defaultMainNavTabStyle
