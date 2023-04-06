@@ -9,10 +9,9 @@ import Underline from '@tiptap/extension-underline'
 import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
-import { useEffect } from 'react'
 
+import { OnNavigateForm } from '@/common/hook/onNavigateForm'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
-import { useQuestionForm } from '@/common/hook/useQuestionForm'
 import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-atom'
 
 import { Modal } from '../../Modal'
@@ -77,21 +76,7 @@ export const QuestionForm = () => {
     }
   }
 
-  const { router, handleBeforeUnload, handleBeforePopState } = useQuestionForm(editedQuestion, description, editor)
-
-  useEffect(() => {
-    // ページコンポーネントのマウント時に、beforePopState関数を登録する
-    router.beforePopState(handleBeforePopState)
-    window.addEventListener('beforeunload', handleBeforeUnload)
-
-    // beforePopState関数をアンマウントするために、コンポーネントのクリーンアップ関数で呼び出す
-    return () => {
-      router.beforePopState(() => {
-        return true
-      })
-      window.removeEventListener('beforeunload', handleBeforeUnload)
-    }
-  }, [router, handleBeforePopState, handleBeforeUnload, description])
+  OnNavigateForm(editedQuestion, description, editor)
 
   return (
     <>
