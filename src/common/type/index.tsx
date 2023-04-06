@@ -41,12 +41,17 @@ export type HashtagType = {
 }
 
 export type MainNavTabStyleType = 'auth' | 'question' | 'event' | 'information'
-export type SubNavTabStyleType =
-  | 'dashboard/new-questions'
-  | 'dashboard/question-waiting-answers'
-  | 'dashboard/my-questions'
-  | 'dashboard/my-answers'
-  | 'dashboard/my-profile'
+
+////////////////////////////////////
+
+type MainNavTab = 'questions' | 'event' | 'information'
+
+type SubNavTab = 'new-questions' | 'question-waiting-answers' | 'my-questions' | 'my-answers' | 'my-profile'
+
+export type NavTab = {
+  main: MainNavTab
+  sub: SubNavTab
+}
 
 ////////////////////////////////////
 export type EditedQuestion = {
