@@ -68,24 +68,34 @@ const Notification: React.FC<NotificationProps> = ({ unreadAnswers }) => {
             <IconBell color='gray' size={30} fill='white' stroke={0.5} className=' hover:cursor-pointer' />
           </ActionIcon>
         </Menu.Target>
-        <Menu.Dropdown className=' text-center'>
-          {unreadAnswers.map((question) => {
-            const handleClick = () => {
-              updateReadAnswerMutation.mutate(question.answerId)
-            }
-            return (
-              <Menu.Item key={question.answerId}>
+        <Menu.Dropdown className=' mt-1 -ml-3 rounded-2xl p-4 shadow'>
+          <Menu.Label>通知</Menu.Label>
+          {unreadAnswers.length === 0 ? (
+            <div className=' flex h-40 w-60 flex-col items-center justify-center gap-y-3'>
+              <span className=' text-gray-400 hover:cursor-default'>まだ通知はありません</span>
+              <IconBell color='gray' size={50} fill='white' stroke={0.2} />
+            </div>
+          ) : (
+            unreadAnswers.map((question) => {
+              const handleClick = () => {
+                updateReadAnswerMutation.mutate(question.answerId)
+              }
+              return (
                 <Link
+                  key={question.answerId}
                   href={`/dashboard/questions/${question.questionId}`}
-                  className=' my-2 block py-3 text-center'
+                  className=' block h-fit w-60 border-b border-l-0 border-t-0 border-r-0 border-solid border-gray-300 px-5 py-3 text-black no-underline hover:cursor-pointer'
                   onClick={handleClick}
                 >
-                  {question.questionTitle}に回答がありました
+                  <Avatar color='blue' radius={'lg'} size={30}>
+                    MK
+                  </Avatar>
+                  <p className=' font-sans line-clamp-2'>{question.questionTitle}</p>
+                  <p className=' text-sm'>について回答がありました。</p>
                 </Link>
-                <hr className=' border border-solid border-gray-200' />
-              </Menu.Item>
-            )
-          })}
+              )
+            })
+          )}
         </Menu.Dropdown>
       </Menu>
       {unreadAnswers.length > 0 && (
