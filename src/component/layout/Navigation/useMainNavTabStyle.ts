@@ -6,9 +6,9 @@ export const useMainNavTabStyle = () => {
   const [navTab, _] = useAtom(navTabAtom)
 
   const defaultMainNavTabStyle =
-    ' whitespace-nowrap text-black no-underline hover:text-black hover:opacity-100 opacity-50 p-2'
+    ' whitespace-nowrap border-b-2 border-r-0 border-l-0 border-t-0 border-solid border-white p-2 text-black no-underline opacity-50 hover:text-black hover:opacity-100'
   const selectedMainNavTabStyle =
-    'text-blue-500 no-underline p-2 whitespace-nowrap border-b-2 border-blue-500 border-solid border-r-0 border-l-0 border-t-0'
+    ' whitespace-nowrap border-b-2 border-r-0 border-l-0 border-t-0 border-solid border-blue-500 p-2 text-blue-500 no-underline'
 
   let questionsStyle = defaultMainNavTabStyle
   // let eventStyle = defaultMainNavTabStyle

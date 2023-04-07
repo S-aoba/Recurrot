@@ -6,9 +6,9 @@ export const useSubNavTabStyle = () => {
   const [navTab, _] = useAtom(navTabAtom)
 
   const defaultSubNavTabStyle =
-    ' whitespace-nowrap text-black no-underline hover:text-black hover:opacity-100 px-2 py-1 ml-2 opacity-50'
+    ' my-2 ml-2 whitespace-nowrap px-2 py-1 text-black no-underline opacity-50 hover:text-black hover:opacity-100'
   const selectedSubNavTabStyle =
-    'whitespace-nowrap text-white no-underline px-2 py-1 outline rounded my-2 ml-2 bg-blue-500'
+    ' my-2 ml-2 whitespace-nowrap rounded bg-blue-500 px-2 py-1 text-white no-underline outline'
 
   let newQuestionsStyle = defaultSubNavTabStyle
   let questionsWaitingAnswerStyle = defaultSubNavTabStyle
