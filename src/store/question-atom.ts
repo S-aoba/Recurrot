@@ -23,4 +23,4 @@ export const resetAnswerDescriptionAtom = atom(null, (_, set) => {
 const initialEditedAnswer: EditedAnswer = { id: '0', description: '' }
 export const editedAnswerAtom = atom<EditedAnswer>(initialEditedAnswer)
 
-export const navTabAtom = atom<NavTab>({ main: 'questions', sub: 'new-questions' })
+export const navTabAtom = atom<NavTab>({ main: null, sub: null })
