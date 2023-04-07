@@ -22,6 +22,7 @@ import {
   answerDescriptionAtom,
   editedAnswerAtom,
   editedQuestionAtom,
+  navTabAtom,
   questionDescriptionAtom,
 } from '@/store/question-atom'
 
@@ -39,6 +40,12 @@ const QuestionDetail = () => {
       }
     }
   }, [router])
+
+  const setNavTab = useSetAtom(navTabAtom)
+
+  useEffect(() => {
+    setNavTab({ main: null, sub: null })
+  }, [setNavTab])
 
   const { data: question, status: questionStatus } = useQuerySingleQuestion(id)
   const { data: answers, status: answersStatus } = useQueryAnswers(id)
