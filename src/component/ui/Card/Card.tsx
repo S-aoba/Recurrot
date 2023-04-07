@@ -22,25 +22,32 @@ export const Card: React.FC<CardProps> = ({ question }) => {
   const defaultUserName = user.email.slice(0, user.email.indexOf('@'))
 
   return (
-    <div key={id} className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'>
-      <Link href={'/dashboard/questions/[id]'} as={`questions/${id}`} className=' absolute block h-64 w-80'></Link>
-      <div className=' flex items-center'>
-        <div className=' p-5'>
+    <div
+      key={id}
+      className=' relative col-span-1 box-content flex h-64 w-80 flex-col gap-y-2 rounded-2xl border-[3px] border-solid border-gray-200 bg-white p-3 shadow-lg duration-500 hover:relative hover:translate-x-2 hover:-translate-y-2 hover:cursor-pointer hover:shadow-[-8px_8px_0px_0px_#171717] hover:brightness-95'
+    >
+      <Link
+        href={'/dashboard/questions/[id]'}
+        as={`questions/${id}`}
+        className=' absolute top-0 left-0 h-full w-full rounded-2xl'
+      ></Link>
+      <div className=' flex h-2/4 justify-between pl-2'>
+        <div className=' flex h-full items-center'>
           <Image
             src={`/langIcon/${question.hashtags[0]}.svg`}
-            height={95}
-            width={95}
+            height={50}
+            width={50}
             alt={question.hashtags[0] == 'csharp' ? 'C#' : `${question.hashtags[0]}`}
             className=' rounded-xl'
             priority
           />
         </div>
-        <div className='w-full p-2'>
+        <div className='flex w-full flex-col px-4 py-2'>
           <div className=' flex w-full items-center gap-x-3 py-3'>
             <Avatar radius='xl' />
-            <span>{user.userName === null ? defaultUserName : user.userName}</span>
+            <span className=' line-clamp-1'>{user.userName === null ? defaultUserName : user.userName}</span>
           </div>
-          <div className=' flex w-full flex-col items-end gap-x-3 pb-3 text-sm '>
+          <div className=' flex w-full gap-x-3 p-2 text-sm '>
             <span>投稿日: {`${year}/${month}/${day}`}</span>
             <div className=' flex gap-x-1'>
               <IconMessageDots />
@@ -49,9 +56,19 @@ export const Card: React.FC<CardProps> = ({ question }) => {
           </div>
         </div>
       </div>
-      <div className=' p-3 text-lg'>
-        <p className=' line-clamp-3'>{title}</p>
-      </div>
+      <Title title={title} />
+    </div>
+  )
+}
+
+type TitleProps = {
+  title: string
+}
+
+const Title: React.FC<TitleProps> = ({ title }) => {
+  return (
+    <div className=' flex h-2/4 items-center justify-center rounded-2xl bg-blue-400 px-2'>
+      <p className=' text-white line-clamp-3'>{title}</p>
     </div>
   )
 }
