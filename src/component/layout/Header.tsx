@@ -39,7 +39,9 @@ export const Header = () => {
               <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
                 <IconSearch color='white' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
               </ActionIcon>
-              {isOpen && <SearchQuestionForm className=' absolute right-4 top-14 w-11/12' setIsOpen={setIsOpen} />}
+              {isOpen && (
+                <SearchQuestionForm className=' absolute right-4 top-[3.6rem] w-11/12' setIsOpen={setIsOpen} />
+              )}
             </div>
           )}
           {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
