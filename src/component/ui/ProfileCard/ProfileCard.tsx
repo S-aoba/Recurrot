@@ -81,7 +81,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
       />
 
       {user && (
-        <div className=' grid rounded-lg border-2 border-solid border-gray-200 shadow-sm sm:grid-cols-12'>
+        <div className=' grid rounded-lg border-[3px] border-solid border-gray-200 shadow-lg sm:grid-cols-12'>
           <div className=' mx-10 flex flex-col items-center justify-center gap-y-5 border-r-0 border-b-2 border-l-0 border-t-0 border-solid border-gray-200 py-5 px-5 sm:col-span-4 sm:mx-0 sm:my-10 sm:border-r sm:border-l-0 sm:border-t-0 sm:border-b-0 sm:py-0'>
             <Avatar size={'lg'} radius={'xl'} variant={'outline'} />
             <Button color='blue' disabled>
