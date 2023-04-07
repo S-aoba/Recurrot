@@ -44,9 +44,9 @@ export type MainNavTabStyleType = 'auth' | 'question' | 'event' | 'information'
 
 ////////////////////////////////////
 
-type MainNavTab = 'questions' | 'event' | 'information'
+type MainNavTab = 'questions' | 'event' | 'information' | null
 
-type SubNavTab = 'new-questions' | 'question-waiting-answers' | 'my-questions' | 'my-answers' | 'my-profile'
+type SubNavTab = 'new-questions' | 'question-waiting-answers' | 'my-questions' | 'my-answers' | 'my-profile' | null
 
 export type NavTab = {
   main: MainNavTab

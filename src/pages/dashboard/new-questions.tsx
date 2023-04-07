@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import { useSetAtom } from 'jotai'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import router from 'next/router'
+import { useEffect } from 'react'
 
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
+import { navTabAtom } from '@/store/question-atom'
 
 type NewQuestionsProps = {
   initialData: QuestionAndAnswerIdListType[]
@@ -22,6 +25,12 @@ const NewQuestions: NextPage<NewQuestionsProps> = ({ initialData }) => {
       if (err.response.status === 401 || err.response.status === 403) router.push('/')
     },
   })
+
+  const setNavTab = useSetAtom(navTabAtom)
+
+  useEffect(() => {
+    setNavTab({ main: 'questions', sub: 'new-questions' })
+  }, [setNavTab])
 
   return (
     <>
