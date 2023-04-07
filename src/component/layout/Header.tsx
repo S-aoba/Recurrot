@@ -36,7 +36,7 @@ export const Header = () => {
             <SearchQuestionForm formClassName=' flex w-full gap-x-3' className=' w-full' />
           ) : (
             <div className=' flex w-full justify-end'>
-              <ActionIcon className=' hover:transform-none hover:bg-white '>
+              <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
                 <IconSearch color='white' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
               </ActionIcon>
               {isOpen && <SearchQuestionForm className=' absolute right-4 top-14 w-11/12' setIsOpen={setIsOpen} />}
@@ -62,7 +62,7 @@ const Notification: React.FC<NotificationProps> = ({ unreadAnswers }) => {
     <div className=' relative flex items-center'>
       <Menu>
         <Menu.Target>
-          <ActionIcon className=' hover:transform-none'>
+          <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
             <IconBell color='gray' size={30} fill='white' stroke={0.5} className=' hover:cursor-pointer' />
           </ActionIcon>
         </Menu.Target>
