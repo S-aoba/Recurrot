@@ -24,7 +24,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
   return (
     <div key={id} className=' col-span-1 h-64 w-80 border border-solid border-gray-300 bg-white'>
       <Link href={'/dashboard/questions/[id]'} as={`questions/${id}`} className=' absolute block h-64 w-80'></Link>
-      <div className=' row-span-2 flex items-center'>
+      <div className=' flex items-center'>
         <div className=' p-5'>
           <Image
             src={`/langIcon/${question.hashtags[0]}.svg`}
@@ -49,7 +49,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
           </div>
         </div>
       </div>
-      <div className=' row-span-4 p-3 text-lg'>
+      <div className=' p-3 text-lg'>
         <p className=' line-clamp-3'>{title}</p>
       </div>
     </div>
