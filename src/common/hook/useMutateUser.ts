@@ -70,5 +70,21 @@ export const useMutateUser = () => {
     },
   })
 
-  return { updateUserMutation, deleteUserMutation, updateReadAnswerMutation }
+  const logoutMutation = useMutation({
+    mutationKey: ['user'],
+    mutationFn: async () => {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
+    },
+    onSuccess: () => {
+      queryClient.clear()
+      router.push('/')
+    },
+    onError: (err: any) => {
+      if (err.response.status === 401 || err.response.status === 403) {
+        router.push('/')
+      }
+    },
+  })
+
+  return { updateUserMutation, deleteUserMutation, updateReadAnswerMutation, logoutMutation }
 }

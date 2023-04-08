@@ -1,11 +1,9 @@
 import { ActionIcon, Avatar, Button, Menu, TextInput } from '@mantine/core'
 import { Loader } from '@mantine/core'
 import { IconBell, IconCircle, IconLogout, IconQuestionMark, IconSearch } from '@tabler/icons-react'
-import { QueryCache } from '@tanstack/react-query'
-import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 
@@ -167,12 +165,9 @@ type LoginUserIconProps = {
 
 const LoginUserIcon: React.FC<LoginUserIconProps> = ({ userIconURL }) => {
   const windowSize = useGetWindowSize()
-
-  const handleLogout = async () => {
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
-    const queryCache = new QueryCache()
-    queryCache.clear()
-    router.push('/')
+  const { logoutMutation } = useMutateUser()
+  const handleLogout = () => {
+    logoutMutation.mutate()
   }
 
   return (
