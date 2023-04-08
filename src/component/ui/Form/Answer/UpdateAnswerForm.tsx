@@ -23,20 +23,19 @@ import { Modal } from '../../Modal'
 
 const escapeHtml = (unsafe: string) => {
   return unsafe
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, `'`)
 }
 
 type AnswerFormProps = {
   questionId: string
   setIsEdit?: Dispatch<SetStateAction<boolean>>
-  answerId: string
 }
 
-export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsEdit, answerId }) => {
+export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsEdit }) => {
   const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
 
   const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
@@ -54,12 +53,9 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: editedAnswer.id === '0' ? escapeHtml(description) : description,
+    content: escapeHtml(description),
     onUpdate({ editor }) {
       setDescription(editor.getHTML())
-    },
-    onFocus() {
-      setEditedAnswer({ ...editedAnswer, id: answerId })
     },
   })
 

@@ -192,7 +192,7 @@ const AnswerBody: React.FC<Props> = ({ answer, isEdit, setIsEdit }) => {
   return (
     <>
       {isEdit && setIsEdit ? (
-        <UpdateAnswerForm questionId={answer.questionId} setIsEdit={setIsEdit} answerId={answer.id} />
+        <UpdateAnswerForm questionId={answer.questionId} setIsEdit={setIsEdit} />
       ) : (
         <DetailDescription description={answer.description} />
       )}
