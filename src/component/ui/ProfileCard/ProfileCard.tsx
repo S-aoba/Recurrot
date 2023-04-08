@@ -1,7 +1,7 @@
 import { Avatar, Button, FileButton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import type { User } from '@prisma/client'
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useState } from 'react'
 import { storage } from 'src/firebase'
 
@@ -61,6 +61,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
 
   const handleDeleteUser = () => {
     deleteUserMutation.mutate()
+    deleteObject(ref(storage, `images/${user.id}`))
     handleDeleteUserClose()
   }
 
