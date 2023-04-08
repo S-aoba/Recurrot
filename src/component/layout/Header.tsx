@@ -3,6 +3,7 @@ import { Loader } from '@mantine/core'
 import { IconBell, IconCircle, IconLogout, IconQuestionMark, IconSearch } from '@tabler/icons-react'
 import { QueryCache } from '@tanstack/react-query'
 import axios from 'axios'
+import Image from 'next/image'
 import Link from 'next/link'
 import router, { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
@@ -84,14 +85,24 @@ const Notification: React.FC<NotificationProps> = ({ unreadAnswers }) => {
                 <Link
                   key={question.answerId}
                   href={`/dashboard/questions/${question.questionId}`}
-                  className=' block h-fit w-60 border-b border-l-0 border-t-0 border-r-0 border-solid border-gray-300 px-5 py-3 text-black no-underline hover:cursor-pointer'
+                  className=' flex h-40 w-60 border-b border-l-0 border-t-0 border-r-0 border-solid border-gray-300 px-5 py-3 text-black no-underline hover:cursor-pointer hover:bg-gray-100'
                   onClick={handleClick}
                 >
-                  <Avatar color='blue' radius={'lg'} size={30}>
-                    MK
-                  </Avatar>
-                  <p className=' font-sans line-clamp-2'>{question.questionTitle}</p>
-                  <p className=' text-sm'>について回答がありました。</p>
+                  <div className=' flex items-center'>
+                    {question && question.answerUserProfileImage && (
+                      <Image
+                        src={question.answerUserProfileImage}
+                        width={60}
+                        height={60}
+                        className=' rounded-full'
+                        alt='userIcon'
+                      />
+                    )}
+                  </div>
+                  <div className=' flex w-full flex-col items-center justify-center p-3'>
+                    <span className=' line-clamp-2'>{question.questionTitle}</span>
+                    <span className=' text-sm'>について回答がありました。</span>
+                  </div>
                 </Link>
               )
             })
