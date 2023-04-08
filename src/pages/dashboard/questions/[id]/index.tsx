@@ -104,7 +104,7 @@ const QuestionDetail = () => {
               <div className=' py-5'>
                 <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
                   <div className=' flex items-center gap-x-2 text-sm'>
-                    <Avatar radius={'xl'} />
+                    <Avatar src={user.profileImage} radius={'xl'} />
                     <div className=' flex gap-x-2'>
                       <span>{question.user.userName === null ? defaultUserName : question.user.userName}</span>
                       <span>
@@ -244,7 +244,7 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
         <div className=' py-5'>
           <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
             <div className=' flex items-center gap-x-2 text-sm'>
-              <Avatar radius={'xl'} />
+              <Avatar src={answer.user.profileImage} radius={'xl'} />
               <div className=' flex gap-x-2'>
                 <span>
                   {answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}
