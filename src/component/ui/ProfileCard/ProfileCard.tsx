@@ -1,7 +1,7 @@
 import { Avatar, Button, FileButton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import type { User } from '@prisma/client'
-import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useState } from 'react'
 import { storage } from 'src/firebase'
 
@@ -67,8 +67,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
   // firebase storageに画像を保存する
   const handleUploadImage = async (e: File | null) => {
     if (e == null) return
-    // 前の画像を削除する
-    deleteObject(ref(storage, `images/${user.id}`))
     const file = e
     const storageRef = ref(storage, `images/${user.id}`)
     uploadBytes(storageRef, file).then((snapshot) => {
