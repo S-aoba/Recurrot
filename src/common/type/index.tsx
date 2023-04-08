@@ -31,6 +31,7 @@ export type UnreadAnswer = {
   questionId: string
   questionTitle: string
   answerId: string
+  answerUserProfileImage: string | null
 }
 
 export type UserType = {
