@@ -45,7 +45,7 @@ export const Header = () => {
             </div>
           )}
           {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
-          <LoginUserIcon />
+          {user && <LoginUserIcon userIconURL={user.profileImage === null ? '' : user.profileImage} />}
           {windowSize.width > 770 && <QuestionPostButton />}
         </div>
       </div>
@@ -149,7 +149,12 @@ const QuestionPostButton = () => {
 }
 
 // /////////////////////////////////////////////////////////////////////////////////
-const LoginUserIcon = () => {
+
+type LoginUserIconProps = {
+  userIconURL: string | null
+}
+
+const LoginUserIcon: React.FC<LoginUserIconProps> = ({ userIconURL }) => {
   const windowSize = useGetWindowSize()
 
   const handleLogout = async () => {
@@ -162,9 +167,7 @@ const LoginUserIcon = () => {
   return (
     <Menu>
       <Menu.Target>
-        <Avatar color='cyan' radius='xl' className=' hover: cursor-pointer'>
-          MK
-        </Avatar>
+        <Avatar src={userIconURL} color='cyan' radius='xl' className=' hover: cursor-pointer' />
       </Menu.Target>
       <Menu.Dropdown>
         {windowSize.width <= 770 && (

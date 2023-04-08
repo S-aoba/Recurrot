@@ -13,7 +13,7 @@ import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { useQueryUser } from '@/common/hook/useQueryUser'
-import type { AnswerAndPostedUserNameType } from '@/common/type'
+import type { AnswerAndPostedUserInfoType } from '@/common/type'
 import { DetailDescription } from '@/component/ui/DetaiDescription'
 import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
 import { Loading } from '@/component/ui/Loading'
@@ -182,7 +182,7 @@ export const getServerSideProps = async () => {
 export default QuestionDetail
 
 type Props = {
-  answer: AnswerAndPostedUserNameType
+  answer: AnswerAndPostedUserInfoType
   userId?: string
   isEdit?: boolean
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>

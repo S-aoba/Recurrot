@@ -12,18 +12,19 @@ type AnswerId = {
   id: string
 }
 
-type UserName = {
+type UserInfo = {
   userName: string
   email: string
+  profileImage: string
 }
 
 export type QuestionAndAnswerIdListType = {
   answers: AnswerId[]
-  user: UserName
+  user: UserInfo
 } & Question
 
-export type AnswerAndPostedUserNameType = {
-  user: UserName
+export type AnswerAndPostedUserInfoType = {
+  user: UserInfo
 } & Answer
 
 export type UnreadAnswer = {

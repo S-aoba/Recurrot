@@ -1,7 +1,9 @@
-import { Avatar, Button } from '@mantine/core'
+import { Avatar, Button, FileButton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import type { User } from '@prisma/client'
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useState } from 'react'
+import { storage } from 'src/firebase'
 
 import { useMutateUser } from '@/common/hook/useMutateUser'
 
@@ -62,6 +64,23 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
     handleDeleteUserClose()
   }
 
+  // firebase storageに画像を保存する
+  const handleUploadImage = async (e: File | null) => {
+    if (e == null) return
+    // 前の画像を削除する
+    deleteObject(ref(storage, `images/${user.id}`))
+    const file = e
+    const storageRef = ref(storage, `images/${user.id}`)
+    uploadBytes(storageRef, file).then((snapshot) => {
+      // アップロードが完了したら、画像のURLを取得し、updateUserMutation呼び出し更新する
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        const updatedUser = { ...editedUser, profileImage: downloadURL }
+        setEditedUser(updatedUser)
+        updateUserMutation.mutate(updatedUser)
+      })
+    })
+  }
+
   return (
     <>
       <Modal
@@ -83,10 +102,16 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
       {user && (
         <div className=' grid rounded-lg border-[3px] border-solid border-gray-200 shadow-lg sm:grid-cols-12'>
           <div className=' mx-10 flex flex-col items-center justify-center gap-y-5 border-r-0 border-b-2 border-l-0 border-t-0 border-solid border-gray-200 py-5 px-5 sm:col-span-4 sm:mx-0 sm:my-10 sm:border-r sm:border-l-0 sm:border-t-0 sm:border-b-0 sm:py-0'>
-            <Avatar size={'lg'} radius={'xl'} variant={'outline'} />
-            <Button color='blue' disabled>
-              変更する
-            </Button>
+            <Avatar src={user.profileImage} size={'lg'} radius={'xl'} variant={'outline'} />
+            <FileButton onChange={handleUploadImage} accept='image/png,image/jpeg'>
+              {(props) => {
+                return (
+                  <Button {...props} className=' hover:transform-none'>
+                    変更する
+                  </Button>
+                )
+              }}
+            </FileButton>
           </div>
           <div className=' flex flex-col items-center p-5 sm:col-span-8'>
             <div className=' flex w-11/12 flex-col items-start gap-y-5'>

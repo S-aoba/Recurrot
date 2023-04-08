@@ -2,17 +2,17 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-import type { AnswerAndPostedUserNameType } from '../type'
+import type { AnswerAndPostedUserInfoType } from '../type'
 
 export const useQueryAnswers = (questionId: string) => {
   const router = useRouter()
   const getAnswers = async (questionId: string) => {
-    const { data } = await axios.get<AnswerAndPostedUserNameType[]>(
+    const { data } = await axios.get<AnswerAndPostedUserInfoType[]>(
       `${process.env.NEXT_PUBLIC_API_URL}/answer/${questionId}`
     )
     return data
   }
-  return useQuery<AnswerAndPostedUserNameType[], Error>({
+  return useQuery<AnswerAndPostedUserInfoType[], Error>({
     queryKey: ['answers', questionId],
     queryFn: () => {
       return getAnswers(questionId)
