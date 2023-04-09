@@ -24,7 +24,7 @@ export const Header = () => {
   if (status === 'loading') return <Loader />
 
   return (
-    <header className=' flex h-14 max-h-14 items-center justify-center bg-blue-500'>
+    <header className=' flex h-14 max-h-14 items-center justify-center bg-[#1976d2]'>
       <div className=' flex w-full max-w-[1200px] items-center justify-between px-8'>
         <div className=' flex items-center'>
           <h2 className=' text-gray-100'>Recurrot</h2>

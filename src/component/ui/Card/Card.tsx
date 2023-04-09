@@ -67,8 +67,8 @@ type TitleProps = {
 
 const Title: React.FC<TitleProps> = ({ title }) => {
   return (
-    <div className=' flex h-2/4 items-center justify-center rounded-2xl bg-blue-400 px-2'>
-      <p className=' text-white line-clamp-3'>{title}</p>
+    <div className=' flex h-2/4 items-center justify-center rounded-2xl bg-[#1976d2] px-2'>
+      <p className='text-white line-clamp-3'>{title}</p>
     </div>
   )
 }
