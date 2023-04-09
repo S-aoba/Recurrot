@@ -99,8 +99,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
       />
 
       {user && (
-        <div className=' grid rounded-lg border-[3px] border-solid border-gray-200 shadow-lg sm:grid-cols-12'>
-          <div className=' mx-10 flex flex-col items-center justify-center gap-y-5 border-r-0 border-b-2 border-l-0 border-t-0 border-solid border-gray-200 py-5 px-5 sm:col-span-4 sm:mx-0 sm:my-10 sm:border-r sm:border-l-0 sm:border-t-0 sm:border-b-0 sm:py-0'>
+        <div className=' w-full max-w-[700px] rounded-lg border-[3px] border-solid border-gray-200 shadow-lg'>
+          <div className=' flex flex-col items-center justify-center gap-y-5 bg-[#1976d2] p-5'>
             <Avatar src={user.profileImage} size={'lg'} radius={'xl'} variant={'outline'} />
             <FileButton onChange={handleUploadImage} accept='image/png,image/jpeg'>
               {(props) => {
@@ -112,7 +112,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
               }}
             </FileButton>
           </div>
-          <div className=' flex flex-col items-center p-5 sm:col-span-8'>
+          <div className=' flex flex-col items-center p-5'>
             <div className=' flex w-11/12 flex-col items-start gap-y-5'>
               <Input
                 labelWord='ユーザーネーム'
@@ -127,7 +127,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
                   onChange={handleSetSelfIntroduction}
                 />
               </div>
-              <div className=' flex w-full flex-col gap-y-3 sm:flex-row sm:gap-x-3'>
+              <div className=' flex w-full flex-col gap-y-3'>
                 <Input
                   labelWord='Twitter'
                   type='url'
