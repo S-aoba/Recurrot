@@ -1,18 +1,24 @@
 import { Button, Tooltip } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconArrowLeft } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
+import { useAtomValue, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import Link from 'next/link'
 
 import { QuestionForm } from '@/component/ui/Form/Question'
-import { editedQuestionAtom, isQuestionDisabledAtom } from '@/store/question-atom'
+import { editedQuestionAtom, isQuestionDisabledAtom, resetQuestionAtom } from '@/store/question-atom'
 
 const QuestionPost = () => {
   const editedQuestion = useAtomValue(editedQuestionAtom)
   const isQuestionReady = useAtomValue(isQuestionDisabledAtom)
 
+  const resetEditedQuestion = useSetAtom(resetQuestionAtom)
+
   const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
+
+  const handleOnClick = () => {
+    resetEditedQuestion()
+  }
 
   return (
     <>
@@ -26,7 +32,7 @@ const QuestionPost = () => {
         <div className='flex h-14 max-h-14 items-center justify-center'>
           <div className=' flex w-full max-w-[900px] items-center justify-between px-6 py-2'>
             <Tooltip label='自分の質問一覧へ'>
-              <Link href={'/dashboard/my-questions'} className=' text-black'>
+              <Link href={'/dashboard/my-questions'} className=' text-black' onClick={handleOnClick}>
                 <IconArrowLeft size={30} />
               </Link>
             </Tooltip>
