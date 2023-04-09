@@ -32,3 +32,9 @@ export const isQuestionDisabledAtom = atom((get) => {
   if (title !== '' && hashtags.length !== 0 && questionDescription !== '') return false
   return true
 })
+
+// editedQuestionAtom questionDescriptionAtomのすべての値をリセットする
+export const resetQuestionAtom = atom(null, (_, set) => {
+  set(resetEditedQuestionAtom)
+  set(resetQuestionDescriptionAtom)
+})
