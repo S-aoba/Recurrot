@@ -35,7 +35,6 @@ export const Hashtag: React.FC<HashTagProps> = ({ editedQuestion, setEditedQuest
   return (
     <MultiSelect
       data={data}
-      label='select hashtag'
       placeholder='ハッシュタグを最大5つまで選択できます'
       searchable
       nothingFound='Nothing found'
