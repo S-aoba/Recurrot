@@ -24,11 +24,9 @@ export const Header = () => {
   if (status === 'loading') return <Loader />
 
   return (
-    <header className=' flex h-14 max-h-14 items-center justify-center bg-[#1976d2]'>
+    <header className=' flex h-14 max-h-14 items-center justify-center'>
       <div className=' flex w-full max-w-[1200px] items-center justify-between px-8'>
-        <div className=' flex items-center'>
-          <h2 className=' text-gray-100'>Recurrot</h2>
-        </div>
+        <Image src='/logo.svg' height={70} width={150} alt='Recurrot' />
         {/* height:{windowSize.height} width:{windowSize.width} */}
         <div className=' flex w-6/12 items-center gap-x-4'>
           {windowSize.width > 992 ? (
@@ -150,7 +148,7 @@ const SearchQuestionForm: React.FC<SearchQuestionFormProps> = ({ formClassName, 
 const QuestionPostButton = () => {
   return (
     <Link href='/dashboard/questions/post'>
-      <Button type='button' variant='light' className=' text-gray-600 hover:transform-none'>
+      <Button type='button' className=' hover:transform-none'>
         質問する
       </Button>
     </Link>
