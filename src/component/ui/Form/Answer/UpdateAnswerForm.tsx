@@ -55,7 +55,12 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
     ],
     content: escapeHtml(description),
     onUpdate({ editor }) {
-      setDescription(editor.getHTML())
+      // ここでeditorの中身が空の時にdescriptionを空にする
+      if (editor.getText() === '') {
+        setDescription('')
+      } else {
+        setDescription(editor.getHTML())
+      }
     },
   })
 
@@ -88,7 +93,13 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
           <RichTextEditor.Content />
         </RichTextEditor>
         <div className=' mt-3 flex justify-end'>
-          <Button color='blue' type='button' onClick={handleOpen} className=' hover:transform-none'>
+          <Button
+            color='blue'
+            type='button'
+            onClick={handleOpen}
+            className=' hover:transform-none'
+            disabled={description === ''}
+          >
             更新する
           </Button>
         </div>
