@@ -24,3 +24,11 @@ const initialEditedAnswer: EditedAnswer = { id: '0', description: '' }
 export const editedAnswerAtom = atom<EditedAnswer>(initialEditedAnswer)
 
 export const navTabAtom = atom<NavTab>({ main: null, sub: null })
+
+// editedQuestionAtom questionDescriptionAtomのすべての値がセットされたらfalseを返す
+export const isQuestionDisabledAtom = atom((get) => {
+  const { title, hashtags } = get(editedQuestionAtom)
+  const questionDescription = get(questionDescriptionAtom)
+  if (title !== '' && hashtags.length !== 0 && questionDescription !== '') return false
+  return true
+})

@@ -6,10 +6,12 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { QuestionForm } from '@/component/ui/Form/Question'
-import { editedQuestionAtom } from '@/store/question-atom'
+import { editedQuestionAtom, isQuestionDisabledAtom } from '@/store/question-atom'
 
 const QuestionPost = () => {
   const editedQuestion = useAtomValue(editedQuestionAtom)
+  const isQuestionReady = useAtomValue(isQuestionDisabledAtom)
+
   const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
 
   return (
@@ -28,7 +30,13 @@ const QuestionPost = () => {
                 <IconArrowLeft size={30} />
               </Link>
             </Tooltip>
-            <Button color='blue' type='button' onClick={handleOpen} className=' hover:transform-none'>
+            <Button
+              color='blue'
+              type='button'
+              onClick={handleOpen}
+              className=' hover:transform-none'
+              disabled={isQuestionReady}
+            >
               {editedQuestion.id === '0' ? '投稿する' : '更新する'}
             </Button>
           </div>
