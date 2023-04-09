@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="137.45682mm"
+   height="20.436081mm"
+   viewBox="0 0 137.45682 20.436081"
+   version="1.1"
+   id="svg5"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false" />
+  <defs
+     id="defs2">
+    <rect
+       x="132.25401"
+       y="230.62479"
+       width="556.34131"
+       height="140.99809"
+       id="rect236" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-41.683122,-158.73817)">
+    <g
+       id="g3223"
+       transform="translate(-1.4459591,13.013632)">
+      <g
+         id="g3262"
+         inkscape:export-filename="recurrot.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <g
+           id="g3299">
+          <text
+             xml:space="preserve"
+             transform="matrix(0.26458333,0,0,0.26458333,29.497566,80.106133)"
+             id="text234"
+             style="font-weight:bold;font-size:101.94px;font-family:'Avenir Next';-inkscape-font-specification:'Avenir Next, Bold';white-space:pre;shape-inside:url(#rect236);fill:#1976d2;fill-opacity:1;stroke:#1976d2;stroke-width:3.02362;stroke-linecap:round;stroke-opacity:1;paint-order:stroke markers fill"><tspan
+               x="132.25391"
+               y="322.48907"
+               id="tspan3386"><tspan
+                 style="font-weight:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal'"
+                 id="tspan3384">Recurrot</tspan></tspan></text>
+          <path
+             sodipodi:type="star"
+             style="fill:#ffffff;fill-opacity:1;stroke:#1976d2;stroke-width:4.93126;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+             id="path2868-1"
+             inkscape:flatsided="true"
+             sodipodi:sides="3"
+             sodipodi:cx="19.954235"
+             sodipodi:cy="5.7838364"
+             sodipodi:r1="8.9696093"
+             sodipodi:r2="4.4848046"
+             sodipodi:arg1="2.7790484"
+             sodipodi:arg2="3.826246"
+             inkscape:rounded="1.09"
+             inkscape:randomized="0"
+             d="M 11.567673,8.9649464 C 5.5619425,-6.8683415 4.6776995,-5.7852238 21.392594,-3.0696948 38.107489,-0.35416572 37.611603,-1.6615014 26.902438,11.456257 16.193274,24.574016 17.573403,24.798234 11.567673,8.9649464 Z"
+             inkscape:transform-center-x="-1.4842875"
+             inkscape:transform-center-y="-3.8890412"
+             transform="matrix(0.45805558,0.38421984,-0.36133934,0.45790698,44.419637,146.90635)"
+             inkscape:export-filename="recurrotFavicon.png"
+             inkscape:export-xdpi="96"
+             inkscape:export-ydpi="96" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
