@@ -1,11 +1,18 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  parserOptions: { project: './tsconfig.json' },
-  plugins: ['simple-import-sort', 'import-access', "@tanstack/query"],
-  extends: ['next/core-web-vitals', 'plugin:@typescript-eslint/recommended', 'plugin:jsx-a11y/recommended', 'prettier', "plugin:@tanstack/eslint-plugin-query/recommended"],
+  parserOptions: { project: './tsconfig.json', tsconfigRootDir: __dirname, sourceType: 'module' },
+  plugins: ['simple-import-sort', 'import-access', '@tanstack/query'],
+  extends: [
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+  ],
+  ignorePatterns: ['.eslintrc.js', 'postcss.config.js', 'tailwind.config.js'],
   rules: {
-    "@tanstack/query/exhaustive-deps": "error",
-    "@tanstack/query/prefer-query-object-syntax": "error",
+    '@tanstack/query/exhaustive-deps': 'error',
+    '@tanstack/query/prefer-query-object-syntax': 'error',
     'no-console': ['error', { allow: ['warn', 'info', 'error'] }],
     'no-restricted-syntax': ['error', { selector: 'TSEnumDeclaration', message: "Don't declare enums" }],
     'prefer-arrow-callback': 'error',
@@ -62,7 +69,7 @@ module.exports = {
       rules: {
         'import/no-default-export': 'off',
         'react/destructuring-assignment': ['error', 'always'],
-      }
+      },
     },
   ],
 }
