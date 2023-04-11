@@ -25,23 +25,21 @@ export const HeaderRight = () => {
   if (status === 'loading') return <HeaderRightLoading />
 
   return (
-    <>
-      <div className=' flex w-6/12 items-center gap-x-4'>
-        {windowSize.width > 992 ? (
-          <SearchQuestionForm formClassName=' flex w-full gap-x-3' className=' w-full' />
-        ) : (
-          <div className=' flex w-full justify-end'>
-            <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
-              <IconSearch color='white' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
-            </ActionIcon>
-            {isOpen && <SearchQuestionForm className=' absolute right-4 top-[3.6rem] w-11/12' setIsOpen={setIsOpen} />}
-          </div>
-        )}
-        {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
-        {user && <LoginUserIcon userIconURL={user.profileImage === null ? '' : user.profileImage} />}
-        {windowSize.width > 770 && <QuestionPostButton />}
-      </div>
-    </>
+    <div className=' flex w-6/12 items-center gap-x-4'>
+      {windowSize.width > 992 ? (
+        <SearchQuestionForm formClassName=' flex w-full gap-x-3' className=' w-full' />
+      ) : (
+        <div className=' flex w-full justify-end'>
+          <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
+            <IconSearch color='black' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
+          </ActionIcon>
+          {isOpen && <SearchQuestionForm className=' absolute right-4 top-[3.6rem] w-11/12' setIsOpen={setIsOpen} />}
+        </div>
+      )}
+      {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
+      {user && <LoginUserIcon userIconURL={user.profileImage === null ? '' : user.profileImage} />}
+      {windowSize.width > 770 && <QuestionPostButton />}
+    </div>
   )
 }
 
