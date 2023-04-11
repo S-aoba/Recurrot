@@ -1,5 +1,4 @@
 import { ActionIcon, Avatar, Button, Menu, TextInput } from '@mantine/core'
-import { Loader } from '@mantine/core'
 import { IconBell, IconCircle, IconLogout, IconQuestionMark, IconSearch } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,6 +11,8 @@ import { useMutateUser } from '@/common/hook/useMutateUser'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import type { UnreadAnswer } from '@/common/type'
 
+import { Loading } from '../ui/Loading'
+
 export const Header = () => {
   const { data: user, status } = useQueryUser()
   const [isOpen, setIsOpen] = useState(false)
@@ -21,7 +22,7 @@ export const Header = () => {
     setIsOpen(!isOpen)
   }
 
-  if (status === 'loading') return <Loader />
+  if (status === 'loading') return <Loading />
 
   return (
     <header className=' flex h-14 max-h-14 items-center justify-center'>
