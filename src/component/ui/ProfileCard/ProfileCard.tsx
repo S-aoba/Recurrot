@@ -113,7 +113,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
             </FileButton>
           </div>
           <div className=' flex flex-col items-center p-5'>
-            <div className=' flex w-11/12 flex-col items-start gap-y-5'>
+            <div className=' flex w-11/12 flex-col gap-y-5'>
               <Input
                 labelWord='ユーザーネーム'
                 type='text'

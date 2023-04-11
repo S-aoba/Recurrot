@@ -1,4 +1,4 @@
-import { Skeleton } from '@mantine/core'
+import { Button, Skeleton } from '@mantine/core'
 
 export const ProfileLoading = () => {
   return (
@@ -7,23 +7,40 @@ export const ProfileLoading = () => {
         <div className=' flex h-fit w-full items-center justify-center py-5 '>
           <div className=' w-full max-w-[700px] rounded-lg border-[3px] border-solid border-gray-200 shadow-lg'>
             <div className=' flex flex-col items-center justify-center gap-y-5 rounded-t bg-[#1976d2] p-5'>
-              <Skeleton height={65} width={50} circle />
-              <Skeleton height={35} width={80} />
+              <Skeleton height={56} width={50} circle />
+              <Button>変更する</Button>
             </div>
             <div className=' flex flex-col items-center p-5'>
-              <div className=' flex w-11/12 flex-col items-start gap-y-5'>
-                <Skeleton height={50} className=' w-full' />
+              <div className=' flex w-11/12 flex-col gap-y-5'>
+                <div>
+                  ユーザーネーム
+                  <Skeleton height={45} className=' w-full' />
+                </div>
                 <div className=' w-full'>
-                  <Skeleton height={300} className=' w-full' />
+                  自己紹介
+                  <Skeleton className=' h-52 w-full' />
                 </div>
                 <div className=' flex w-full flex-col gap-y-3'>
-                  <Skeleton height={50} width={50} className=' w-full' />
-                  <Skeleton height={50} width={50} className=' w-full' />
+                  <div>
+                    Twitter
+                    <Skeleton height={45} width={50} className=' w-full' />
+                  </div>
+                  <div>
+                    Github
+                    <Skeleton height={45} width={50} className=' w-full' />
+                  </div>
                 </div>
-                <Skeleton height={50} width={50} className=' w-full' />
+                <div>
+                  Website
+                  <Skeleton height={45} width={50} className=' w-full' />
+                </div>
                 <div className=' flex w-full justify-between'>
-                  <Skeleton height={30} width={80} />
-                  <Skeleton height={30} width={150} />
+                  <Button color='blue' type='button'>
+                    変更する
+                  </Button>
+                  <Button color='red' type='button'>
+                    ユーザーを削除する
+                  </Button>
                 </div>
               </div>
             </div>
