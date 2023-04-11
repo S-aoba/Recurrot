@@ -2,10 +2,13 @@ import { Alert, Anchor, Button, Group, PasswordInput, TextInput } from '@mantine
 import { useForm, yupResolver } from '@mantine/form'
 import { IconDatabase } from '@tabler/icons-react'
 import axios from 'axios'
+import { useAtom } from 'jotai'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import * as Yup from 'yup'
+
+import { isLoadingAtom } from '@/store/question-atom'
 
 const schema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('No email provided'),
@@ -18,7 +21,7 @@ export type AuthForm = {
 }
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
   const [error, setError] = useState('')
 
   const [isRegister, setIsRegister] = useState(false)
@@ -48,7 +51,6 @@ const Home = () => {
       })
       handleForm.reset()
       router.push('/dashboard/new-questions')
-      setIsLoading(false)
     } catch (e: any) {
       setIsLoading(false)
       setError(e.response.data.message)

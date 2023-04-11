@@ -7,12 +7,17 @@ import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { QuestionLoading } from '@/component/ui/Loading'
-import { navTabAtom } from '@/store/question-atom'
+import { isLoadingAtom, navTabAtom } from '@/store/question-atom'
 
 const NewQuestions = () => {
   const { data: questions, status: questionsStatus } = useQueryQuestions()
+  const setIsLoading = useSetAtom(isLoadingAtom)
 
   const setNavTab = useSetAtom(navTabAtom)
+
+  useEffect(() => {
+    setIsLoading(false)
+  }, [setIsLoading])
 
   useEffect(() => {
     setNavTab({ main: 'questions', sub: 'new-questions' })

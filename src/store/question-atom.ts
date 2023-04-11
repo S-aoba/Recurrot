@@ -38,3 +38,5 @@ export const resetQuestionAtom = atom(null, (_, set) => {
   set(resetEditedQuestionAtom)
   set(resetQuestionDescriptionAtom)
 })
+
+export const isLoadingAtom = atom<boolean>(false)
