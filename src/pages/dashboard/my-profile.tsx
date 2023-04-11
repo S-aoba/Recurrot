@@ -1,9 +1,9 @@
-import { Loader } from '@mantine/core'
 import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryUser } from '@/common/hook/useQueryUser'
+import { ProfileLoading } from '@/component/ui/Loading'
 import { ProfileCard } from '@/component/ui/ProfileCard'
 import { navTabAtom } from '@/store/question-atom'
 
@@ -16,7 +16,7 @@ const MyProfile = () => {
     setNavTab({ main: 'questions', sub: 'my-profile' })
   }, [setNavTab])
 
-  if (UserStatus === 'loading') return <Loader />
+  if (UserStatus === 'loading') return <ProfileLoading />
 
   return (
     <>
