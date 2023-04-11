@@ -18,7 +18,7 @@ type UserInfo = {
   profileImage: string
 }
 
-export type QuesddtionAndAnswerIdListType = {
+export type QuestionAndAnswerIdListType = {
   answers: AnswerId[]
   user: UserInfo
 } & Question
