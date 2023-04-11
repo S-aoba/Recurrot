@@ -1,3 +1,4 @@
+import { Loader } from '@mantine/core'
 import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -6,7 +7,6 @@ import { useEffect, useState } from 'react'
 import { useQuerySearchQuestions } from '@/common/hook/useQuerySearchQuestions'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { Card } from '@/component/ui/Card'
-import { Loading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/question-atom'
 
 const SearchQuestions = () => {
@@ -29,7 +29,7 @@ const SearchQuestions = () => {
     setNavTab({ main: null, sub: null })
   }, [setNavTab])
 
-  if (searchQuestionsStatus == 'loading') return <Loading />
+  if (searchQuestionsStatus == 'loading') return <Loader />
   return (
     <>
       <Head>

@@ -1,4 +1,4 @@
-import { ActionIcon, Avatar, Menu, Tooltip } from '@mantine/core'
+import { ActionIcon, Avatar, Loader, Menu, Tooltip } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconEdit, IconTrash } from '@tabler/icons-react'
 import { useAtom, useSetAtom } from 'jotai'
@@ -16,7 +16,6 @@ import { useQueryUser } from '@/common/hook/useQueryUser'
 import type { AnswerAndPostedUserInfoType } from '@/common/type'
 import { DetailDescription } from '@/component/ui/DetaiDescription'
 import { CreateAnswerForm, UpdateAnswerForm } from '@/component/ui/Form/Answer'
-import { Loading } from '@/component/ui/Loading'
 import { Modal } from '@/component/ui/Modal'
 import {
   answerDescriptionAtom,
@@ -55,7 +54,7 @@ const QuestionDetail = () => {
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
   const setDescription = useSetAtom(questionDescriptionAtom)
 
-  if (questionStatus === 'loading' || answersStatus === 'loading' || userStatus === 'loading') return <Loading />
+  if (questionStatus === 'loading' || answersStatus === 'loading' || userStatus === 'loading') return <Loader />
 
   const year = question && question.createdAt.toString().slice(0, 4)
   const month = question && question.createdAt.toString().slice(5, 7)
