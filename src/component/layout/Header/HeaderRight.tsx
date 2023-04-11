@@ -56,8 +56,14 @@ const Notification: React.FC<NotificationProps> = ({ unreadAnswers }) => {
     <div className=' relative flex items-center'>
       <Menu>
         <Menu.Target>
-          <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
-            <IconBell color='gray' size={30} fill='white' stroke={0.5} className=' hover:cursor-pointer' />
+          <ActionIcon className=' hover:transform-none hover:bg-white'>
+            <IconBell
+              color='gray'
+              size={30}
+              fill='white'
+              stroke={0.5}
+              className=' hover:cursor-pointer hover:fill-blue-500 hover:stroke-blue-500'
+            />
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown className=' mt-1 -ml-3 rounded-2xl p-4 shadow'>
