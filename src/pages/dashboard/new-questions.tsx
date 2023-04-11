@@ -1,4 +1,3 @@
-import { Loader } from '@mantine/core'
 import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
@@ -7,6 +6,7 @@ import { useQueryQuestions } from '@/common/hook/useQueryQuestions'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
+import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/question-atom'
 
 const NewQuestions = () => {
@@ -18,7 +18,7 @@ const NewQuestions = () => {
     setNavTab({ main: 'questions', sub: 'new-questions' })
   }, [setNavTab])
 
-  if (questionsStatus === 'loading') return <Loader />
+  if (questionsStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
