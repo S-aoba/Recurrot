@@ -1,4 +1,4 @@
-import { ActionIcon, Avatar, Button, Menu, TextInput } from '@mantine/core'
+import { ActionIcon, Avatar, Button, Loader, Menu, TextInput } from '@mantine/core'
 import { IconBell, IconCircle, IconLogout, IconQuestionMark, IconSearch } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,10 +11,9 @@ import { useMutateUser } from '@/common/hook/useMutateUser'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import type { UnreadAnswer } from '@/common/type'
 
-import { Loading } from '../ui/Loading'
-
-export const Header = () => {
+export const HeaderRight = () => {
   const { data: user, status } = useQueryUser()
+
   const [isOpen, setIsOpen] = useState(false)
   const windowSize = useGetWindowSize()
 
@@ -22,32 +21,26 @@ export const Header = () => {
     setIsOpen(!isOpen)
   }
 
-  if (status === 'loading') return <Loading />
+  if (status === 'loading') return <Loader />
 
   return (
-    <header className=' flex h-14 max-h-14 items-center justify-center'>
-      <div className=' flex w-full max-w-[1200px] items-center justify-between px-8'>
-        <Image src='/logo.svg' height={70} width={150} alt='Recurrot' />
-        {/* height:{windowSize.height} width:{windowSize.width} */}
-        <div className=' flex w-6/12 items-center gap-x-4'>
-          {windowSize.width > 992 ? (
-            <SearchQuestionForm formClassName=' flex w-full gap-x-3' className=' w-full' />
-          ) : (
-            <div className=' flex w-full justify-end'>
-              <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
-                <IconSearch color='white' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
-              </ActionIcon>
-              {isOpen && (
-                <SearchQuestionForm className=' absolute right-4 top-[3.6rem] w-11/12' setIsOpen={setIsOpen} />
-              )}
-            </div>
-          )}
-          {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
-          {user && <LoginUserIcon userIconURL={user.profileImage === null ? '' : user.profileImage} />}
-          {windowSize.width > 770 && <QuestionPostButton />}
-        </div>
+    <>
+      <div className=' flex w-6/12 items-center gap-x-4'>
+        {windowSize.width > 992 ? (
+          <SearchQuestionForm formClassName=' flex w-full gap-x-3' className=' w-full' />
+        ) : (
+          <div className=' flex w-full justify-end'>
+            <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
+              <IconSearch color='white' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
+            </ActionIcon>
+            {isOpen && <SearchQuestionForm className=' absolute right-4 top-[3.6rem] w-11/12' setIsOpen={setIsOpen} />}
+          </div>
+        )}
+        {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
+        {user && <LoginUserIcon userIconURL={user.profileImage === null ? '' : user.profileImage} />}
+        {windowSize.width > 770 && <QuestionPostButton />}
       </div>
-    </header>
+    </>
   )
 }
 
