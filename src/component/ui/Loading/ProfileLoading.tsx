@@ -8,7 +8,7 @@ export const ProfileLoading = () => {
           <div className=' w-full max-w-[700px] rounded-lg border-[3px] border-solid border-gray-200 shadow-lg'>
             <div className=' flex flex-col items-center justify-center gap-y-5 rounded-t bg-[#1976d2] p-5'>
               <Skeleton height={56} width={50} circle />
-              <Button>変更する</Button>
+              <Button disabled>変更する</Button>
             </div>
             <div className=' flex flex-col items-center p-5'>
               <div className=' flex w-11/12 flex-col gap-y-5'>
@@ -35,10 +35,10 @@ export const ProfileLoading = () => {
                   <Skeleton height={45} width={50} className=' w-full' />
                 </div>
                 <div className=' flex w-full justify-between'>
-                  <Button color='blue' type='button'>
+                  <Button color='blue' disabled>
                     変更する
                   </Button>
-                  <Button color='red' type='button'>
+                  <Button color='red' disabled>
                     ユーザーを削除する
                   </Button>
                 </div>
