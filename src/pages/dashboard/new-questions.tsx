@@ -1,36 +1,24 @@
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import { useSetAtom } from 'jotai'
-import type { NextPage } from 'next'
 import Head from 'next/head'
-import router from 'next/router'
 import { useEffect } from 'react'
 
+import { useQueryQuestions } from '@/common/hook/useQueryQuestions'
 import type { QuestionAndAnswerIdListType } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
+import { Loading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/question-atom'
 
-type NewQuestionsProps = {
-  initialData: QuestionAndAnswerIdListType[]
-}
-
-const NewQuestions: NextPage<NewQuestionsProps> = ({ initialData }) => {
-  const { data: questions } = useQuery<QuestionAndAnswerIdListType[], Error>({
-    queryKey: ['questions'],
-    queryFn: getQuestions,
-    initialData,
-    staleTime: 10000, //5分
-    onError: (err: any) => {
-      if (err.response.status === 401 || err.response.status === 403) router.push('/')
-    },
-  })
+const NewQuestions = () => {
+  const { data: questions, status: questionsStatus } = useQueryQuestions()
 
   const setNavTab = useSetAtom(navTabAtom)
 
   useEffect(() => {
     setNavTab({ main: 'questions', sub: 'new-questions' })
   }, [setNavTab])
+
+  if (questionsStatus === 'loading') return <Loading />
 
   return (
     <>
@@ -41,25 +29,19 @@ const NewQuestions: NextPage<NewQuestionsProps> = ({ initialData }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <QuestionLayout>
-        {questions.map((question: QuestionAndAnswerIdListType, index) => {
-          return <Card key={index} question={question} />
-        })}
+        {questions &&
+          questions.map((question: QuestionAndAnswerIdListType, index) => {
+            return <Card key={index} question={question} />
+          })}
       </QuestionLayout>
     </>
   )
 }
 
-const getQuestions = async () => {
-  const { data } = await axios.get<QuestionAndAnswerIdListType[]>(`${process.env.NEXT_PUBLIC_API_URL}/question`)
-  return data
-}
-
 export const getServerSideProps = async () => {
-  const initialData = await getQuestions()
   return {
     props: {
       layout: 'WrapperLayout',
-      initialData,
     },
   }
 }
