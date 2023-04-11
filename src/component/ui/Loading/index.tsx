@@ -1,1 +1,1 @@
-export { HeaderRightLoading } from './Loading'
+export { HeaderRightLoading } from './HeaderRightLoading'

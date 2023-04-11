@@ -1,4 +1,4 @@
-import { ActionIcon, Avatar, Button, Loader, Menu, TextInput } from '@mantine/core'
+import { ActionIcon, Avatar, Button, Menu, TextInput } from '@mantine/core'
 import { IconBell, IconCircle, IconLogout, IconQuestionMark, IconSearch } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,6 +10,7 @@ import { useGetWindowSize } from '@/common/hook/useGetWindowSize'
 import { useMutateUser } from '@/common/hook/useMutateUser'
 import { useQueryUser } from '@/common/hook/useQueryUser'
 import type { UnreadAnswer } from '@/common/type'
+import { HeaderRightLoading } from '@/component/ui/Loading'
 
 export const HeaderRight = () => {
   const { data: user, status } = useQueryUser()
@@ -21,7 +22,7 @@ export const HeaderRight = () => {
     setIsOpen(!isOpen)
   }
 
-  if (status === 'loading') return <Loader />
+  if (status === 'loading') return <HeaderRightLoading />
 
   return (
     <>
