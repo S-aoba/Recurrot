@@ -3,7 +3,7 @@ import { IconMessageDots } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { MyAnswer, MyQuestion, NewQuestion } from '@/common/type'
+import type { MyAnswer, MyQuestion, NewQuestion, SearchQuestion } from '@/common/type'
 
 /**
  * @package
