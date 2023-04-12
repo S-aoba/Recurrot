@@ -3,14 +3,14 @@ import { IconMessageDots } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { MyAnswer, NewQuestion } from '@/common/type'
+import type { MyAnswer, MyQuestion, NewQuestion } from '@/common/type'
 
 /**
  * @package
  */
 
 type CardProps = {
-  question: NewQuestion | MyAnswer
+  question: NewQuestion | MyAnswer | MyQuestion
 }
 
 export const Card: React.FC<CardProps> = ({ question }) => {

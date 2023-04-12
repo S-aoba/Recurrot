@@ -37,6 +37,7 @@ export type NewQuestion = {
 }
 
 export type MyAnswer = NewQuestion
+export type MyQuestion = NewQuestion
 
 export type AnswerAndPostedUserInfoType = {
   user: UserInfo
