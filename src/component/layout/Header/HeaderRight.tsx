@@ -1,6 +1,6 @@
 import { ActionIcon, Avatar, Button, Menu, TextInput } from '@mantine/core'
-import { IconBell, IconCircle, IconLogout, IconQuestionMark, IconSearch } from '@tabler/icons-react'
-import Image from 'next/image'
+import { IconLogout, IconQuestionMark, IconSearch } from '@tabler/icons-react'
+// import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
@@ -8,12 +8,13 @@ import { useState } from 'react'
 
 import { useGetWindowSize } from '@/common/hook/useGetWindowSize'
 import { useMutateUser } from '@/common/hook/useMutateUser'
-import { useQueryUser } from '@/common/hook/useQueryUser'
-import type { UnreadAnswer } from '@/common/type'
+// import type { UnreadAnswer } from '@/common/type'
 import { HeaderRightLoading } from '@/component/ui/Loading'
 
+import { useQueryHeaderRight } from './hook/useQueryHeaderRight'
+
 export const HeaderRight = () => {
-  const { data: user, status } = useQueryUser()
+  const { data: headerRight, status: headerRightStatus } = useQueryHeaderRight()
 
   const [isOpen, setIsOpen] = useState(false)
   const windowSize = useGetWindowSize()
@@ -22,7 +23,7 @@ export const HeaderRight = () => {
     setIsOpen(!isOpen)
   }
 
-  if (status === 'loading') return <HeaderRightLoading />
+  if (headerRightStatus === 'loading') return <HeaderRightLoading />
 
   return (
     <div className=' flex w-6/12 items-center gap-x-4'>
@@ -36,80 +37,80 @@ export const HeaderRight = () => {
           {isOpen && <SearchQuestionForm className=' absolute right-4 top-[3.6rem] w-11/12' setIsOpen={setIsOpen} />}
         </div>
       )}
-      {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />}
-      {user && <LoginUserIcon userIconURL={user.profileImage === null ? '' : user.profileImage} />}
+      {/* {user && user.unreadAnswers && <Notification unreadAnswers={user.unreadAnswers} />} */}
+      {headerRight && <LoginUserIcon userIconURL={headerRight.profileImage === null ? '' : headerRight.profileImage} />}
       {windowSize.width > 770 && <QuestionPostButton />}
     </div>
   )
 }
 
 // /////////////////////////////////////////////////////////////////////////////////
-type NotificationProps = {
-  unreadAnswers: UnreadAnswer[]
-}
-const Notification: React.FC<NotificationProps> = ({ unreadAnswers }) => {
-  const { updateReadAnswerMutation } = useMutateUser()
+// type NotificationProps = {
+//   unreadAnswers: UnreadAnswer[]
+// }
+// const Notification: React.FC<NotificationProps> = ({ unreadAnswers }) => {
+//   const { updateReadAnswerMutation } = useMutateUser()
 
-  return (
-    <div className=' relative flex items-center'>
-      <Menu>
-        <Menu.Target>
-          <ActionIcon className=' hover:transform-none hover:bg-white'>
-            <IconBell
-              color='gray'
-              size={30}
-              fill='white'
-              stroke={0.5}
-              className=' hover:cursor-pointer hover:fill-blue-500 hover:stroke-blue-500'
-            />
-          </ActionIcon>
-        </Menu.Target>
-        <Menu.Dropdown className=' mt-1 -ml-3 rounded-2xl p-4 shadow'>
-          <Menu.Label>通知</Menu.Label>
-          {unreadAnswers.length === 0 ? (
-            <div className=' flex h-40 w-60 flex-col items-center justify-center gap-y-3'>
-              <span className=' text-gray-400 hover:cursor-default'>まだ通知はありません</span>
-              <IconBell color='gray' size={50} fill='white' stroke={0.2} />
-            </div>
-          ) : (
-            unreadAnswers.map((question) => {
-              const handleClick = () => {
-                updateReadAnswerMutation.mutate(question.answerId)
-              }
-              return (
-                <Link
-                  key={question.answerId}
-                  href={`/dashboard/questions/${question.questionId}`}
-                  className=' flex h-40 w-60 border-b border-l-0 border-t-0 border-r-0 border-solid border-gray-300 px-5 py-3 text-black no-underline hover:cursor-pointer hover:bg-gray-100'
-                  onClick={handleClick}
-                >
-                  <div className=' flex items-center'>
-                    {question && question.answerUserProfileImage && (
-                      <Image
-                        src={question.answerUserProfileImage}
-                        width={60}
-                        height={60}
-                        className=' rounded-full'
-                        alt='userIcon'
-                      />
-                    )}
-                  </div>
-                  <div className=' flex w-full flex-col items-center justify-center p-3'>
-                    <span className=' line-clamp-2'>{question.questionTitle}</span>
-                    <span className=' text-sm'>について回答がありました。</span>
-                  </div>
-                </Link>
-              )
-            })
-          )}
-        </Menu.Dropdown>
-      </Menu>
-      {unreadAnswers.length > 0 && (
-        <IconCircle fill='red' color='red' size={15} className=' absolute right-0 -top-1 z-10' />
-      )}
-    </div>
-  )
-}
+//   return (
+//     <div className=' relative flex items-center'>
+//       <Menu>
+//         <Menu.Target>
+//           <ActionIcon className=' hover:transform-none hover:bg-white'>
+//             <IconBell
+//               color='gray'
+//               size={30}
+//               fill='white'
+//               stroke={0.5}
+//               className=' hover:cursor-pointer hover:fill-blue-500 hover:stroke-blue-500'
+//             />
+//           </ActionIcon>
+//         </Menu.Target>
+//         <Menu.Dropdown className=' mt-1 -ml-3 rounded-2xl p-4 shadow'>
+//           <Menu.Label>通知</Menu.Label>
+//           {unreadAnswers.length === 0 ? (
+//             <div className=' flex h-40 w-60 flex-col items-center justify-center gap-y-3'>
+//               <span className=' text-gray-400 hover:cursor-default'>まだ通知はありません</span>
+//               <IconBell color='gray' size={50} fill='white' stroke={0.2} />
+//             </div>
+//           ) : (
+//             unreadAnswers.map((question) => {
+//               const handleClick = () => {
+//                 updateReadAnswerMutation.mutate(question.answerId)
+//               }
+//               return (
+//                 <Link
+//                   key={question.answerId}
+//                   href={`/dashboard/questions/${question.questionId}`}
+//                   className=' flex h-40 w-60 border-b border-l-0 border-t-0 border-r-0 border-solid border-gray-300 px-5 py-3 text-black no-underline hover:cursor-pointer hover:bg-gray-100'
+//                   onClick={handleClick}
+//                 >
+//                   <div className=' flex items-center'>
+//                     {question && question.answerUserProfileImage && (
+//                       <Image
+//                         src={question.answerUserProfileImage}
+//                         width={60}
+//                         height={60}
+//                         className=' rounded-full'
+//                         alt='userIcon'
+//                       />
+//                     )}
+//                   </div>
+//                   <div className=' flex w-full flex-col items-center justify-center p-3'>
+//                     <span className=' line-clamp-2'>{question.questionTitle}</span>
+//                     <span className=' text-sm'>について回答がありました。</span>
+//                   </div>
+//                 </Link>
+//               )
+//             })
+//           )}
+//         </Menu.Dropdown>
+//       </Menu>
+//       {unreadAnswers.length > 0 && (
+//         <IconCircle fill='red' color='red' size={15} className=' absolute right-0 -top-1 z-10' />
+//       )}
+//     </div>
+//   )
+// }
 
 // /////////////////////////////////////////////////////////////////////////////////
 
