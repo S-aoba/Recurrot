@@ -1,3 +1,5 @@
+export { AnswerLoading } from './AnswerLoading'
 export { HeaderRightLoading } from './HeaderRightLoading'
 export { ProfileLoading } from './ProfileLoading'
+export { QuestionDetailLoading } from './QuestionDetailLoading'
 export { QuestionLoading } from './QuestionLoading'
