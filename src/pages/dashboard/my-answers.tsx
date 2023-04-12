@@ -2,7 +2,7 @@ import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import { useQueryUserAnswers } from '@/common/hook/useQueryUserAnswers'
+import { useQueryMyAnsweredQuestionList } from '@/common/hook/useQueryMyAnsweredQuestionList'
 import type { MyAnswer } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
@@ -10,7 +10,7 @@ import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/question-atom'
 
 const MyAnswers = () => {
-  const { data: questions, status: answersStatus } = useQueryUserAnswers()
+  const { data: questions, status: answersStatus } = useQueryMyAnsweredQuestionList()
 
   const setNavTab = useSetAtom(navTabAtom)
 
