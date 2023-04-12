@@ -9,8 +9,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
+import { useQueryCurrentUser } from '@/common/hook/useQueryCurrentUser'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
-import { useQueryUser } from '@/common/hook/useQueryUser'
 import { AnswerList } from '@/component/ui/Answer'
 import { DetailDescription } from '@/component/ui/DetaiDescription'
 import { CreateAnswerForm } from '@/component/ui/Form/Answer'
@@ -40,7 +40,7 @@ const QuestionDetail = () => {
   }, [setNavTab])
 
   const { data: question, status: questionStatus } = useQuerySingleQuestion(id)
-  const { data: user, status: userStatus } = useQueryUser()
+  const { data: currentUser, status: currentUserStatus } = useQueryCurrentUser()
   const { deleteQuestionMutation } = useMutateQuestion()
 
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
@@ -66,7 +66,7 @@ const QuestionDetail = () => {
     }
   }
 
-  if (questionStatus == 'loading' || userStatus === 'loading') return <QuestionDetailLoading />
+  if (questionStatus == 'loading' || currentUserStatus === 'loading') return <QuestionDetailLoading />
 
   return (
     <>
@@ -85,7 +85,7 @@ const QuestionDetail = () => {
         modalTitle='本当に削除してもよろしいですか？'
       />
 
-      {question && user && (
+      {question && currentUser && (
         <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
           <div className=' flex w-full max-w-[1200px] flex-col items-center justify-center gap-y-5'>
             <div className=' w-full border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3 sm:w-10/12'>
@@ -95,7 +95,7 @@ const QuestionDetail = () => {
               <div className=' py-5'>
                 <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
                   <div className=' flex items-center gap-x-2 text-sm'>
-                    <Avatar src={user.profileImage} radius={'xl'} />
+                    <Avatar src={currentUser.profileImage} radius={'xl'} />
                     <div className=' flex gap-x-2'>
                       <span>{question.user.userName === null ? defaultUserName : question.user.userName}</span>
                       <span>
@@ -103,7 +103,7 @@ const QuestionDetail = () => {
                       </span>
                     </div>
                   </div>
-                  {user.id === question.userId && (
+                  {currentUser.id === question.userId && (
                     <div className=' flex items-center justify-center gap-x-2'>
                       <Tooltip label='編集する'>
                         <Link
@@ -139,7 +139,7 @@ const QuestionDetail = () => {
               </div>
             </div>
 
-            <AnswerList questionId={id} userId={user.id} />
+            <AnswerList questionId={id} userId={currentUser.id} />
 
             <div className=' flex w-full flex-col justify-center sm:w-9/12'>
               <div>

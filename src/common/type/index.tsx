@@ -55,6 +55,11 @@ export type MyProfile = {
   websiteUrl: string | null
 }
 
+export type CurrentUser = {
+  id: string
+  profileImage: string | null
+}
+
 export type HashtagType = {
   hashtag: string
 }
