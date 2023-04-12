@@ -2,7 +2,7 @@ import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import { useQueryUserQuestions } from '@/common/hook/useQueryUserQuestion'
+import { useQueryMyQuestionList } from '@/common/hook/useQueryMyQuestionList'
 import type { MyQuestion } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
@@ -10,7 +10,7 @@ import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/question-atom'
 
 const MyQuestions = () => {
-  const { data: myQuestions, status: myQuestionsStatus } = useQueryUserQuestions()
+  const { data: myQuestionList, status: myQuestionListStatus } = useQueryMyQuestionList()
 
   const setNavTab = useSetAtom(navTabAtom)
 
@@ -18,7 +18,7 @@ const MyQuestions = () => {
     setNavTab({ main: 'questions', sub: 'my-questions' })
   }, [setNavTab])
 
-  if (myQuestionsStatus === 'loading') return <QuestionLoading />
+  if (myQuestionListStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
@@ -29,8 +29,8 @@ const MyQuestions = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <QuestionLayout>
-        {myQuestions &&
-          myQuestions.map((question: MyQuestion) => {
+        {myQuestionList &&
+          myQuestionList.map((question: MyQuestion) => {
             return <Card key={question.id} question={question} />
           })}
       </QuestionLayout>
