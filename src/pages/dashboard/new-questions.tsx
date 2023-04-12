@@ -2,15 +2,15 @@ import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import { useQueryQuestions } from '@/common/hook/useQueryQuestions'
-import type { QuestionAndAnswerIdListType } from '@/common/type'
+import { useQueryNewQuestionList } from '@/common/hook/useQueryNewQuestionList'
+import type { NewQuestion } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { isLoadingAtom, navTabAtom } from '@/store/question-atom'
 
 const NewQuestions = () => {
-  const { data: questions, status: questionsStatus } = useQueryQuestions()
+  const { data: newQuestionList, status: newQuestionListStatus } = useQueryNewQuestionList()
   const setIsLoading = useSetAtom(isLoadingAtom)
 
   const setNavTab = useSetAtom(navTabAtom)
@@ -23,7 +23,7 @@ const NewQuestions = () => {
     setNavTab({ main: 'questions', sub: 'new-questions' })
   }, [setNavTab])
 
-  if (questionsStatus === 'loading') return <QuestionLoading />
+  if (newQuestionListStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
@@ -34,9 +34,9 @@ const NewQuestions = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <QuestionLayout>
-        {questions &&
-          questions.map((question: QuestionAndAnswerIdListType, index) => {
-            return <Card key={index} question={question} />
+        {newQuestionList &&
+          newQuestionList.map((newQuestion: NewQuestion) => {
+            return <Card key={newQuestion.id} question={newQuestion} />
           })}
       </QuestionLayout>
     </>

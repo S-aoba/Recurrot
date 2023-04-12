@@ -23,6 +23,19 @@ export type QuestionAndAnswerIdListType = {
   user: UserInfo
 } & Question
 
+export type NewQuestion = {
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  title: string
+  hashtags: string[]
+  user: {
+    userName: string
+    profileImage: string | null
+  }
+  answerCount: number
+}
+
 export type AnswerAndPostedUserInfoType = {
   user: UserInfo
 } & Answer

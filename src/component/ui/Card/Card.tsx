@@ -3,14 +3,14 @@ import { IconMessageDots } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { QuestionAndAnswerIdListType } from '@/common/type'
+import type { NewQuestion } from '@/common/type'
 
 /**
  * @package
  */
 
 type CardProps = {
-  question: QuestionAndAnswerIdListType
+  question: NewQuestion
 }
 
 export const Card: React.FC<CardProps> = ({ question }) => {
@@ -19,7 +19,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
   const month = createdAt.toString().slice(5, 7)
   const day = createdAt.toString().slice(8, 10)
 
-  const defaultUserName = user.email.slice(0, user.email.indexOf('@'))
+  // const defaultUserName = user.email.slice(0, user.email.indexOf('@'))
 
   return (
     <div
@@ -45,13 +45,13 @@ export const Card: React.FC<CardProps> = ({ question }) => {
         <div className='flex w-full flex-col px-4 py-2'>
           <div className=' flex w-full items-center gap-x-3 py-3'>
             <Avatar src={question.user.profileImage} radius='xl' size={30} />
-            <span className=' line-clamp-1'>{user.userName === null ? defaultUserName : user.userName}</span>
+            <span className=' line-clamp-1'>{user.userName === null ? '名無しユーザー' : user.userName}</span>
           </div>
           <div className=' flex w-full gap-x-3 p-2 text-sm '>
             <span>投稿日: {`${year}/${month}/${day}`}</span>
             <div className=' flex gap-x-1'>
               <IconMessageDots />
-              <span>{question.answers.length}</span>
+              <span>{question.answerCount}</span>
             </div>
           </div>
         </div>
