@@ -3,14 +3,14 @@ import { IconMessageDots } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { NewQuestion } from '@/common/type'
+import type { MyAnswer, NewQuestion } from '@/common/type'
 
 /**
  * @package
  */
 
 type CardProps = {
-  question: NewQuestion
+  question: NewQuestion | MyAnswer
 }
 
 export const Card: React.FC<CardProps> = ({ question }) => {
@@ -18,8 +18,6 @@ export const Card: React.FC<CardProps> = ({ question }) => {
   const year = createdAt.toString().slice(0, 4)
   const month = createdAt.toString().slice(5, 7)
   const day = createdAt.toString().slice(8, 10)
-
-  // const defaultUserName = user.email.slice(0, user.email.indexOf('@'))
 
   return (
     <div
