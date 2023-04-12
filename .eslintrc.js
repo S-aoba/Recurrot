@@ -9,7 +9,7 @@ module.exports = {
     'prettier',
     'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
-  ignorePatterns: ['.eslintrc.js', 'postcss.config.js', 'tailwind.config.js'],
+  ignorePatterns: ['.eslintrc.js', 'postcss.config.js', 'tailwind.config.js', 'next.config.js'],
   rules: {
     '@tanstack/query/exhaustive-deps': 'error',
     '@tanstack/query/prefer-query-object-syntax': 'error',
