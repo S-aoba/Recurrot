@@ -3,8 +3,7 @@ import { IconBell, IconCircle } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { useMutateUser } from '@/common/hook/useMutateUser'
-
+import { useMutateNotification } from './hook/useMutateNotification'
 import { useQueryNotification } from './hook/useQueryNotification'
 
 /**
@@ -13,7 +12,7 @@ import { useQueryNotification } from './hook/useQueryNotification'
 
 export const Notification = () => {
   const { data: notification, status: notificationStatus } = useQueryNotification()
-  const { updateReadAnswerMutation } = useMutateUser()
+  const { updateNotificationMutation } = useMutateNotification()
 
   if (notificationStatus === 'loading') return <Loader />
 
@@ -42,7 +41,7 @@ export const Notification = () => {
             notification &&
             notification.map((question) => {
               const handleClick = () => {
-                updateReadAnswerMutation.mutate(question.answerId)
+                updateNotificationMutation.mutate(question.answerId)
               }
               return (
                 <Link
