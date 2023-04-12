@@ -10,7 +10,7 @@ import type { MyAnswer, MyQuestion, NewQuestion } from '@/common/type'
  */
 
 type CardProps = {
-  question: NewQuestion | MyAnswer | MyQuestion
+  question: NewQuestion | MyAnswer | MyQuestion | SearchQuestion
 }
 
 export const Card: React.FC<CardProps> = ({ question }) => {

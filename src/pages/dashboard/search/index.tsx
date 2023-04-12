@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { useQuerySearchQuestions } from '@/common/hook/useQuerySearchQuestions'
-import type { QuestionAndAnswerIdListType } from '@/common/type'
+import type { SearchQuestion } from '@/common/type'
+import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/question-atom'
@@ -21,7 +22,7 @@ const SearchQuestions = () => {
     }
   }, [router])
 
-  const { data: searchQuestions, status: searchQuestionsStatus } = useQuerySearchQuestions(id)
+  const { data: searchQuestionList, status: searchQuestionListStatus } = useQuerySearchQuestions(id)
 
   const setNavTab = useSetAtom(navTabAtom)
 
@@ -29,7 +30,8 @@ const SearchQuestions = () => {
     setNavTab({ main: null, sub: null })
   }, [setNavTab])
 
-  if (searchQuestionsStatus == 'loading') return <QuestionLoading />
+  if (searchQuestionListStatus == 'loading') return <QuestionLoading />
+
   return (
     <>
       <Head>
@@ -38,14 +40,12 @@ const SearchQuestions = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex h-fit flex-1 justify-center'>
-        <div className=' grid w-9/12 grid-cols-3 gap-10 py-5'>
-          {searchQuestions &&
-            searchQuestions.map((question: QuestionAndAnswerIdListType, index) => {
-              return <Card key={index} question={question} />
-            })}
-        </div>
-      </main>
+      <QuestionLayout>
+        {searchQuestionList &&
+          searchQuestionList.map((question: SearchQuestion, index) => {
+            return <Card key={index} question={question} />
+          })}
+      </QuestionLayout>
     </>
   )
 }
