@@ -139,7 +139,7 @@ const QuestionDetail = () => {
               </div>
             </div>
 
-            <AnswerList questionId={id} />
+            <AnswerList questionId={id} userId={user.id} />
 
             <div className=' flex w-full flex-col justify-center sm:w-9/12'>
               <div>

@@ -21,9 +21,10 @@ import { Modal } from '../Modal'
 
 type AnswerListProps = {
   questionId: string
+  userId: string
 }
 
-export const AnswerList: NextPage<AnswerListProps> = ({ questionId }) => {
+export const AnswerList: NextPage<AnswerListProps> = ({ questionId, userId }) => {
   const { data: answers, status: answersStatus } = useQueryAnswers(questionId)
 
   if (answersStatus === 'loading') return <AnswerLoading />
@@ -37,7 +38,7 @@ export const AnswerList: NextPage<AnswerListProps> = ({ questionId }) => {
 
       {answers &&
         answers.map((answer) => {
-          return <Answer key={answer.id} answer={answer} userId={answer.userId} />
+          return <Answer key={answer.id} answer={answer} userId={userId} />
         })}
     </>
   )
