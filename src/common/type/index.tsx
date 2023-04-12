@@ -36,6 +36,8 @@ export type NewQuestion = {
   answerCount: number
 }
 
+export type MyAnswer = NewQuestion
+
 export type AnswerAndPostedUserInfoType = {
   user: UserInfo
 } & Answer

@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { useQueryUserAnswers } from '@/common/hook/useQueryUserAnswers'
-import type { QuestionAndAnswerIdListType } from '@/common/type'
+import type { MyAnswer } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { QuestionLoading } from '@/component/ui/Loading'
@@ -30,7 +30,7 @@ const MyAnswers = () => {
       </Head>
       <QuestionLayout>
         {questions &&
-          questions.map((question: QuestionAndAnswerIdListType, index) => {
+          questions.map((question: MyAnswer, index) => {
             return <Card key={index} question={question} />
           })}
       </QuestionLayout>
