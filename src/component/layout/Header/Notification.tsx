@@ -1,7 +1,9 @@
-import { ActionIcon, Loader, Menu } from '@mantine/core'
+import { ActionIcon, Menu } from '@mantine/core'
 import { IconBell, IconCircle } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { NotificationLoading } from '@/component/ui/Loading'
 
 import { useMutateNotification } from './hook/useMutateNotification'
 import { useQueryNotification } from './hook/useQueryNotification'
@@ -14,7 +16,7 @@ export const Notification = () => {
   const { data: notification, status: notificationStatus } = useQueryNotification()
   const { updateNotificationMutation } = useMutateNotification()
 
-  if (notificationStatus === 'loading') return <Loader />
+  if (notificationStatus === 'loading') return <NotificationLoading />
 
   return (
     <div className=' relative flex items-center'>
