@@ -45,6 +45,16 @@ export type UserType = {
   unreadAnswers?: UnreadAnswer[]
 } & User
 
+export type MyProfile = {
+  id: string
+  userName: string | null
+  selfIntroduction: string | null
+  profileImage: string | null
+  twitterUrl: string | null
+  githubUrl: string | null
+  websiteUrl: string | null
+}
+
 export type HashtagType = {
   hashtag: string
 }

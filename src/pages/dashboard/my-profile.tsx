@@ -2,13 +2,13 @@ import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import { useQueryUser } from '@/common/hook/useQueryUser'
 import { ProfileLoading } from '@/component/ui/Loading'
 import { ProfileCard } from '@/component/ui/ProfileCard'
+import { useQueryMyProfile } from '@/component/ui/ProfileCard/hook/useQueryMyProfile'
 import { navTabAtom } from '@/store/question-atom'
 
 const MyProfile = () => {
-  const { data: user, status: UserStatus } = useQueryUser()
+  const { data: user, status: UserStatus } = useQueryMyProfile()
 
   const setNavTab = useSetAtom(navTabAtom)
 

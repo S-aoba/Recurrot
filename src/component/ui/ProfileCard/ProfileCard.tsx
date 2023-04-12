@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { storage } from 'src/firebase'
 
 import { useMutateUser } from '@/common/hook/useMutateUser'
+import type { MyProfile } from '@/common/type'
 
 import { Modal } from '../Modal'
 
@@ -14,7 +15,7 @@ import { Modal } from '../Modal'
  */
 
 type ProfileCardProps = {
-  user: Omit<User, 'hashedPassword'>
+  user: MyProfile
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
