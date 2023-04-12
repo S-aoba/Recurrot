@@ -11,7 +11,7 @@ export const useQueryUserAnswers = () => {
     return res.data
   }
   return useQuery<MyAnswer[], Error>({
-    queryKey: ['userAnswers'],
+    queryKey: ['my-answered-questionList'],
     queryFn: getAnsweredQuestionList,
     staleTime: 10000, //5分
     onError: (err: any) => {
