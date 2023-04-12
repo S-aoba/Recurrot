@@ -11,7 +11,7 @@ export const useQueryNotification = () => {
     return data
   }
   return useQuery<Notification[], Error>({
-    queryKey: ['notification'],
+    queryKey: ['notifications'],
     queryFn: getNotification,
     staleTime: Infinity,
     onError: (err: any) => {
