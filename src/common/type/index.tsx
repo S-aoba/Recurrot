@@ -34,6 +34,13 @@ export type UnreadAnswer = {
   answerUserProfileImage: string | null
 }
 
+export type Notification = {
+  questionId: string
+  questionTitle: string
+  answerId: string
+  answerUserProfileImage: string | null
+}
+
 export type UserType = {
   unreadAnswers?: UnreadAnswer[]
 } & User
