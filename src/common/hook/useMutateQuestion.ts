@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/question-atom'
 
-import type { EditedQuestion, NewQuestion, QuestionAndAnswerIdListType } from '../type'
+import type { EditedQuestion, NewQuestion } from '../type'
 
 export const useMutateQuestion = () => {
   const queryClient = useQueryClient()
@@ -14,15 +14,15 @@ export const useMutateQuestion = () => {
   const [, resetDescription] = useAtom(resetQuestionDescriptionAtom)
 
   const createQuestionMutation = useMutation({
-    mutationKey: ['questions'],
+    mutationKey: ['new-question-list'],
     mutationFn: async (question: Omit<EditedQuestion, 'id'>) => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/question`, question)
       return res.data
     },
     onSuccess: (res: NewQuestion) => {
-      const previousQuestions = queryClient.getQueryData<NewQuestion[]>(['questions'])
-      if (previousQuestions) {
-        queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
+      const previousQuestionList = queryClient.getQueryData<NewQuestion[]>(['new-question-list'])
+      if (previousQuestionList) {
+        queryClient.setQueriesData(['new-question-list'], [res, ...previousQuestionList])
       }
       router.push('/dashboard/new-questions')
       resetEditedQuestion()
@@ -38,17 +38,17 @@ export const useMutateQuestion = () => {
   })
 
   const updateQuestionMutation = useMutation({
-    mutationKey: ['questions'],
+    mutationKey: ['new-question-list'],
     mutationFn: async (question: EditedQuestion) => {
       const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/question/${question.id}`, question)
       return res.data
     },
     onSuccess: (res: NewQuestion) => {
-      const previousQuestion = queryClient.getQueryData<NewQuestion[]>(['questions'])
-      if (previousQuestion) {
+      const previousQuestionList = queryClient.getQueryData<NewQuestion[]>(['new-question-list'])
+      if (previousQuestionList) {
         queryClient.setQueryData(
-          ['questions'],
-          previousQuestion.map((question) => {
+          ['new-question-list'],
+          previousQuestionList.map((question) => {
             return question.id === res.id ? res : question
           })
         )
@@ -72,17 +72,17 @@ export const useMutateQuestion = () => {
   })
 
   const deleteQuestionMutation = useMutation({
-    mutationKey: ['questions'],
+    mutationKey: ['new-question-list'],
     mutationFn: async (questionId: string) => {
       const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/question/${questionId}`)
       return res.data
     },
     onSuccess: (_, variables) => {
-      const previousQuestion = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
-      if (previousQuestion) {
+      const previousQuestionList = queryClient.getQueryData<NewQuestion[]>(['new-question-list'])
+      if (previousQuestionList) {
         queryClient.setQueryData(
-          ['questions'],
-          previousQuestion.filter((question) => {
+          ['new-question-list'],
+          previousQuestionList.filter((question) => {
             return question.id !== variables
           })
         )

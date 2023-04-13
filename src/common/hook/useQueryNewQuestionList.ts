@@ -11,7 +11,7 @@ export const useQueryNewQuestionList = () => {
     return data
   }
   return useQuery<NewQuestion[], Error>({
-    queryKey: ['questions'],
+    queryKey: ['new-question-list'],
     queryFn: getNewQuestionList,
     staleTime: 10000, //5分
     onError: (err: any) => {
