@@ -100,7 +100,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
 
       {user && (
         <div className=' w-full max-w-[700px] rounded-lg border-[3px] border-solid border-gray-200 shadow-lg'>
-          <div className=' flex flex-col items-center justify-center gap-y-5 rounded-t bg-[#1976d2] p-5'>
+          <div className=' flex flex-col items-center justify-center gap-y-5 rounded-t p-5'>
             <Avatar src={user.profileImage} size={'lg'} radius={'xl'} variant={'outline'} />
             <FileButton onChange={handleUploadImage} accept='image/png,image/jpeg'>
               {(props) => {
