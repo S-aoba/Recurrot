@@ -1,14 +1,14 @@
 import { Avatar, Button, FileButton } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import type { User } from '@prisma/client'
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useState } from 'react'
 import { storage } from 'src/firebase'
 
 import { useMutateUser } from '@/common/hook/useMutateUser'
-import type { MyProfile } from '@/common/type'
+import type { EditedUpdateMyProfile, MyProfile } from '@/common/type'
 
 import { Modal } from '../Modal'
+import { useMutateMyProfile } from './hook/useMutateMyProfile'
 
 /**
  * @package
@@ -22,11 +22,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
   const [isProfileOpened, { open: handleProfileOpen, close: handleProfileClose }] = useDisclosure(false)
   const [isDeleteUserOpened, { open: handleDeleteUserOpen, close: handleDeleteUserClose }] = useDisclosure(false)
 
-  const { updateUserMutation, deleteUserMutation } = useMutateUser()
+  const { deleteUserMutation } = useMutateUser()
+  const { updateMyProfileMutation } = useMutateMyProfile()
 
-  const [editedUser, setEditedUser] = useState<
-    Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'email' | 'hashedPassword'>
-  >({
+  const [editedMyProfile, setEditedMyProfile] = useState<EditedUpdateMyProfile>({
     userName: user.userName == null ? '' : user.userName,
     selfIntroduction: user.selfIntroduction == null ? '' : user.selfIntroduction,
     profileImage: user.profileImage == null ? '' : user.profileImage,
@@ -36,27 +35,27 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
   })
 
   const handleSetUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedUser({ ...editedUser, userName: e.target.value })
+    setEditedMyProfile({ ...editedMyProfile, userName: e.target.value })
   }
 
   const handleSetSelfIntroduction = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setEditedUser({ ...editedUser, selfIntroduction: e.target.value })
+    setEditedMyProfile({ ...editedMyProfile, selfIntroduction: e.target.value })
   }
 
   const handleSetTwitterUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedUser({ ...editedUser, twitterUrl: e.target.value })
+    setEditedMyProfile({ ...editedMyProfile, twitterUrl: e.target.value })
   }
 
   const handleSetGithubUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedUser({ ...editedUser, githubUrl: e.target.value })
+    setEditedMyProfile({ ...editedMyProfile, githubUrl: e.target.value })
   }
 
   const handleSetWebsiteUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedUser({ ...editedUser, websiteUrl: e.target.value })
+    setEditedMyProfile({ ...editedMyProfile, websiteUrl: e.target.value })
   }
 
   const handleSubmit = () => {
-    updateUserMutation.mutate(editedUser)
+    updateMyProfileMutation.mutate(editedMyProfile)
     handleProfileClose()
   }
 
@@ -74,9 +73,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
     uploadBytes(storageRef, file).then((snapshot) => {
       // アップロードが完了したら、画像のURLを取得し、updateUserMutation呼び出し更新する
       getDownloadURL(snapshot.ref).then((downloadURL) => {
-        const updatedUser = { ...editedUser, profileImage: downloadURL }
-        setEditedUser(updatedUser)
-        updateUserMutation.mutate(updatedUser)
+        const updatedMyProfile = { ...editedMyProfile, profileImage: downloadURL }
+        setEditedMyProfile(updatedMyProfile)
+        updateMyProfileMutation.mutate(updatedMyProfile)
       })
     })
   }
@@ -118,13 +117,13 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
               <Input
                 labelWord='ユーザーネーム'
                 type='text'
-                value={editedUser.userName == null ? '' : editedUser.userName}
+                value={editedMyProfile.userName == null ? '' : editedMyProfile.userName}
                 onChange={handleSetUserName}
               />
               <div className=' w-full'>
                 <TextArea
                   labelWord='自己紹介'
-                  value={editedUser.selfIntroduction == null ? '' : editedUser.selfIntroduction}
+                  value={editedMyProfile.selfIntroduction == null ? '' : editedMyProfile.selfIntroduction}
                   onChange={handleSetSelfIntroduction}
                 />
               </div>
@@ -132,21 +131,21 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
                 <Input
                   labelWord='Twitter'
                   type='url'
-                  value={editedUser.twitterUrl == null ? '' : editedUser.twitterUrl}
+                  value={editedMyProfile.twitterUrl == null ? '' : editedMyProfile.twitterUrl}
                   onChange={handleSetTwitterUrl}
                 />
 
                 <Input
                   labelWord='Github'
                   type='url'
-                  value={editedUser.githubUrl == null ? '' : editedUser.githubUrl}
+                  value={editedMyProfile.githubUrl == null ? '' : editedMyProfile.githubUrl}
                   onChange={handleSetGithubUrl}
                 />
               </div>
               <Input
                 labelWord='Website'
                 type='url'
-                value={editedUser.websiteUrl == null ? '' : editedUser.websiteUrl}
+                value={editedMyProfile.websiteUrl == null ? '' : editedMyProfile.websiteUrl}
                 onChange={handleSetWebsiteUrl}
               />
               <div className=' flex w-full justify-between'>

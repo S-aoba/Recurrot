@@ -98,6 +98,15 @@ export type MyProfile = {
   websiteUrl: string | null
 }
 
+export type EditedUpdateMyProfile = {
+  userName: string | null
+  selfIntroduction: string | null
+  profileImage: string | null
+  twitterUrl: string | null
+  githubUrl: string | null
+  websiteUrl: string | null
+}
+
 export type CurrentUser = {
   id: string
   profileImage: string | null
