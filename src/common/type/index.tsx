@@ -52,6 +52,20 @@ export type AnswerType = {
   }
 }
 
+export type SingleQuestion = {
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  title: string
+  description: string
+  hashtags: string[]
+  userId: string
+  user: {
+    userName: string
+    profileImage: string | null
+  }
+}
+
 export type AnswerAndPostedUserInfoType = {
   user: UserInfo
 } & Answer

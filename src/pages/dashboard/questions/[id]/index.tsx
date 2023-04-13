@@ -50,8 +50,6 @@ const QuestionDetail = () => {
   const month = question && question.createdAt.toString().slice(5, 7)
   const day = question && question.createdAt.toString().slice(8, 10)
 
-  const defaultUserName = question && question.user.email.slice(0, question.user.email.indexOf('@'))
-
   const handleSetQuestion = () => {
     if (question) {
       setDescription(question.description)
@@ -95,9 +93,9 @@ const QuestionDetail = () => {
               <div className=' py-5'>
                 <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
                   <div className=' flex items-center gap-x-2 text-sm'>
-                    <Avatar src={currentUser.profileImage} radius={'xl'} />
+                    <Avatar src={question.user.profileImage} radius={'xl'} />
                     <div className=' flex gap-x-2'>
-                      <span>{question.user.userName === null ? defaultUserName : question.user.userName}</span>
+                      <span>{question.user.userName === null ? '名無しユーザー' : question.user.userName}</span>
                       <span>
                         投稿日: {year} / {month} / {day}
                       </span>
