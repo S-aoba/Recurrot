@@ -34,10 +34,12 @@ export const HeaderRight = () => {
         <SearchQuestionForm formClassName=' flex w-full gap-x-3' className=' w-full' />
       ) : (
         <div className=' flex w-full justify-end'>
-          <ActionIcon className=' hover:transform-none hover:bg-blue-500'>
+          <ActionIcon className=' hover:transform-none hover:bg-white'>
             <IconSearch color='black' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
           </ActionIcon>
-          {isOpen && <SearchQuestionForm className=' absolute right-4 top-[3.6rem] w-11/12' setIsOpen={setIsOpen} />}
+          {isOpen && (
+            <SearchQuestionForm className=' absolute right-4 top-[3.6rem] z-10 w-11/12' setIsOpen={setIsOpen} />
+          )}
         </div>
       )}
       <Notification />
