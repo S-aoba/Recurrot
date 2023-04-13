@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/question-atom'
 
-import type { EditedQuestion, QuestionAndAnswerIdListType } from '../type'
+import type { EditedQuestion, NewQuestion, QuestionAndAnswerIdListType } from '../type'
 
 export const useMutateQuestion = () => {
   const queryClient = useQueryClient()
@@ -19,8 +19,8 @@ export const useMutateQuestion = () => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/question`, question)
       return res.data
     },
-    onSuccess: (res: QuestionAndAnswerIdListType) => {
-      const previousQuestions = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
+    onSuccess: (res: NewQuestion) => {
+      const previousQuestions = queryClient.getQueryData<NewQuestion[]>(['questions'])
       if (previousQuestions) {
         queryClient.setQueriesData(['questions'], [res, ...previousQuestions])
       }
