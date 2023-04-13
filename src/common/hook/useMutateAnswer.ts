@@ -24,6 +24,7 @@ export const useMutateAnswer = (questionId: string) => {
         queryClient.setQueriesData(['answer-list'], [res, ...previousAnswerList])
       }
       resetDescription()
+      queryClient.invalidateQueries(['answer-list'])
       queryClient.invalidateQueries(['notification-list'])
       queryClient.invalidateQueries(['my-answered-question-list'])
       router.push(`/dashboard/questions/${questionId}`)
