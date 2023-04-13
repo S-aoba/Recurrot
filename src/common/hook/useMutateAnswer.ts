@@ -1,4 +1,3 @@
-import type { Answer } from '@prisma/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useAtom } from 'jotai'
@@ -66,22 +65,22 @@ export const useMutateAnswer = (questionId: string) => {
   })
 
   const deleteAnswerMutation = useMutation({
-    mutationKey: ['answers'],
+    mutationKey: ['answer-list'],
     mutationFn: async (answerId: string) => {
       await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/answer/${answerId}`)
     },
     onSuccess: (_, variables) => {
-      const previousAnswers = queryClient.getQueryData<Answer[]>(['answers'])
+      const previousAnswers = queryClient.getQueryData<AnswerType[]>(['answer-list'])
       if (previousAnswers) {
         queryClient.setQueryData(
-          ['answers'],
+          ['answer-list'],
           previousAnswers.filter((answer) => {
             return answer.id !== variables
           })
         )
       }
-      queryClient.invalidateQueries(['answers'])
-      queryClient.invalidateQueries(['userAnswers'])
+      queryClient.invalidateQueries(['answer-list'])
+      queryClient.invalidateQueries(['my-answered-question-list'])
       resetDescription()
       router.push(`/dashboard/questions/${questionId}`)
     },
