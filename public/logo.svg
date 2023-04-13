@@ -2,17 +2,20 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="137.45682mm"
-   height="20.436081mm"
-   viewBox="0 0 137.45682 20.436081"
+   width="142.48766mm"
+   height="23.104797mm"
+   viewBox="0 0 142.48766 23.104797"
    version="1.1"
-   id="svg5"
+   id="svg9423"
+   inkscape:export-filename="newLogo2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
-     id="namedview7"
+     id="namedview9425"
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
@@ -23,60 +26,160 @@
      inkscape:document-units="mm"
      showgrid="false" />
   <defs
-     id="defs2">
+     id="defs9420">
     <rect
        x="132.25401"
        y="230.62479"
        width="556.34131"
        height="140.99809"
-       id="rect236" />
+       id="rect236-23-8-8" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-41.683122,-158.73817)">
+     transform="translate(-31.425322,-101.51513)">
     <g
-       id="g3223"
-       transform="translate(-1.4459591,13.013632)">
+       id="g9761-4"
+       transform="translate(-1.4459589,-112.78481)">
       <g
-         id="g3262"
-         inkscape:export-filename="recurrot.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96">
+         id="g9418-8"
+         transform="translate(-8.69727,41.746575)">
         <g
-           id="g3299">
+           id="g10641"
+           transform="translate(-0.86757546,30.075949)">
+          <g
+             id="g10220"
+             transform="matrix(0.73779271,0,0,0.84121382,17.110173,25.531841)">
+            <g
+               id="g3255-0"
+               transform="translate(1.3862149,-107.80038)">
+              <g
+                 id="g3153-4"
+                 transform="translate(-12.435248,-96.87926)" />
+              <g
+                 id="g9359-6"
+                 transform="matrix(0.41740352,0,0,0.3160816,2.6588993,242.95266)"
+                 style="fill:#1976d2;fill-opacity:1">
+                <rect
+                   style="fill:#1976d2;fill-opacity:1;stroke:#1976d2;stroke-width:2.218;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                   id="rect9213-3-0"
+                   width="4.8306866"
+                   height="29.411991"
+                   x="133.50482"
+                   y="13.345611" />
+                <circle
+                   style="fill:#1976d2;fill-opacity:1;stroke:#1976d2;stroke-width:2.04683;stroke-linecap:round;stroke-opacity:1;paint-order:stroke markers fill"
+                   id="path9330-3"
+                   cx="136.35394"
+                   cy="53.355888"
+                   r="4.0914826" />
+              </g>
+            </g>
+            <g
+               id="g5170-2"
+               transform="matrix(-0.10839518,-0.41275696,0.40530216,-0.11038891,7.8231242,206.44536)">
+              <g
+                 id="g2954-6"
+                 transform="matrix(-0.19031711,-0.16623616,0.21696247,-0.29706759,78.974967,172.41039)">
+                <g
+                   id="g934-9"
+                   transform="translate(-1.460519,-49.291535)">
+                  <path
+                     sodipodi:type="star"
+                     style="fill:#1976d2;fill-opacity:0.996078;stroke:#1976d2;stroke-width:8.99999;stroke-linecap:round;stroke-opacity:0.996078;paint-order:stroke markers fill"
+                     id="path236-4"
+                     inkscape:flatsided="true"
+                     sodipodi:sides="3"
+                     sodipodi:cx="61.308662"
+                     sodipodi:cy="70.273605"
+                     sodipodi:r1="59.579834"
+                     sodipodi:r2="29.789917"
+                     sodipodi:arg1="0.91273314"
+                     sodipodi:arg2="1.9599307"
+                     inkscape:rounded="1.09"
+                     inkscape:randomized="0"
+                     d="M 97.746833,117.41187 C 8.7528286,186.20479 17.346046,189.72838 2.2666393,78.260853 -12.812767,-33.206672 -20.160896,-27.526523 83.912515,15.14809 187.98593,57.822703 186.74084,48.618962 97.746833,117.41187 Z"
+                     inkscape:transform-center-x="-13.222085"
+                     inkscape:transform-center-y="4.6897957"
+                     transform="matrix(0.75871679,-0.00358655,-0.00358655,0.77116814,35.780022,115.83749)" />
+                  <ellipse
+                     style="fill:#1976d2;fill-opacity:0.996078;stroke:#1976d2;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
+                     id="path2820-1"
+                     cx="153.31303"
+                     cy="-90.208656"
+                     transform="rotate(104.97293)"
+                     rx="44.101753"
+                     ry="38.462509" />
+                </g>
+                <path
+                   sodipodi:type="star"
+                   style="fill:#1976d2;fill-opacity:0.996078;stroke:#1976d2;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
+                   id="path2907-3"
+                   inkscape:flatsided="true"
+                   sodipodi:sides="3"
+                   sodipodi:cx="116.9519"
+                   sodipodi:cy="158.48624"
+                   sodipodi:r1="90.131783"
+                   sodipodi:r2="45.065891"
+                   sodipodi:arg1="0.39852245"
+                   sodipodi:arg2="1.44572"
+                   inkscape:rounded="1.09"
+                   inkscape:randomized="0"
+                   d="M 200.02054,193.46251 C 133.9876,350.29073 147.928,348.53797 45.127239,212.93765 -57.673517,77.337342 -63.125778,90.286461 105.70792,69.05855 274.54161,47.830639 266.05347,36.634283 200.02054,193.46251 Z"
+                   transform="matrix(-0.21378868,-0.3847809,0.15510864,-0.08618015,140.87757,186.65307)"
+                   inkscape:transform-center-x="-10.722648"
+                   inkscape:transform-center-y="6.1269621" />
+                <ellipse
+                   style="fill:#ffffff;fill-opacity:0.996078;stroke:#1976d2;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
+                   id="path2913-7"
+                   cx="79.322144"
+                   cy="-77.797791"
+                   transform="rotate(104.97293)"
+                   rx="15.037975"
+                   ry="11.567673" />
+                <ellipse
+                   style="fill:#ffffff;fill-opacity:0.996078;stroke:#1976d2;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
+                   id="path2913-6-8"
+                   cx="121.54415"
+                   cy="-91.968185"
+                   transform="rotate(104.97293)"
+                   rx="15.037975"
+                   ry="11.567673" />
+              </g>
+              <g
+                 id="g5111-8"
+                 transform="matrix(0.292692,-0.21249177,0.21076965,0.27786194,55.867963,107.70827)"
+                 style="fill:#ffffff;stroke:#fbffff;stroke-opacity:0">
+                <rect
+                   style="fill:#ffffff;fill-opacity:0.996078;stroke:#fbffff;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0;paint-order:stroke markers fill"
+                   id="rect5085-3"
+                   width="20.532619"
+                   height="2.0243428"
+                   x="63.416603"
+                   y="-65.362541"
+                   transform="rotate(104.97293)" />
+                <rect
+                   style="fill:#ffffff;fill-opacity:0.996078;stroke:#fbffff;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0;paint-order:stroke markers fill"
+                   id="rect5085-9-8"
+                   width="20.532619"
+                   height="2.0243428"
+                   x="-73.781067"
+                   y="-74.897812"
+                   transform="rotate(-165.3394)" />
+              </g>
+            </g>
+          </g>
           <text
              xml:space="preserve"
-             transform="matrix(0.26458333,0,0,0.26458333,29.497566,80.106133)"
-             id="text234"
-             style="font-weight:bold;font-size:101.94px;font-family:'Avenir Next';-inkscape-font-specification:'Avenir Next, Bold';white-space:pre;shape-inside:url(#rect236);fill:#1976d2;fill-opacity:1;stroke:#1976d2;stroke-width:3.02362;stroke-linecap:round;stroke-opacity:1;paint-order:stroke markers fill"><tspan
+             transform="matrix(0.26458333,0,0,0.26458333,33.835443,79.527749)"
+             id="text234-5-1"
+             style="font-weight:bold;font-size:101.94px;font-family:'Avenir Next';-inkscape-font-specification:'Avenir Next, Bold';white-space:pre;shape-inside:url(#rect236-23-8-8);fill:#1976d2;fill-opacity:1;stroke:#1976d2;stroke-width:3.02362;stroke-linecap:round;stroke-opacity:1;paint-order:stroke markers fill"><tspan
                x="132.25391"
                y="322.48907"
-               id="tspan3386"><tspan
+               id="tspan11284"><tspan
                  style="font-weight:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal'"
-                 id="tspan3384">Recurrot</tspan></tspan></text>
-          <path
-             sodipodi:type="star"
-             style="fill:#ffffff;fill-opacity:1;stroke:#1976d2;stroke-width:4.93126;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
-             id="path2868-1"
-             inkscape:flatsided="true"
-             sodipodi:sides="3"
-             sodipodi:cx="19.954235"
-             sodipodi:cy="5.7838364"
-             sodipodi:r1="8.9696093"
-             sodipodi:r2="4.4848046"
-             sodipodi:arg1="2.7790484"
-             sodipodi:arg2="3.826246"
-             inkscape:rounded="1.09"
-             inkscape:randomized="0"
-             d="M 11.567673,8.9649464 C 5.5619425,-6.8683415 4.6776995,-5.7852238 21.392594,-3.0696948 38.107489,-0.35416572 37.611603,-1.6615014 26.902438,11.456257 16.193274,24.574016 17.573403,24.798234 11.567673,8.9649464 Z"
-             inkscape:transform-center-x="-1.4842875"
-             inkscape:transform-center-y="-3.8890412"
-             transform="matrix(0.45805558,0.38421984,-0.36133934,0.45790698,44.419637,146.90635)"
-             inkscape:export-filename="recurrotFavicon.png"
-             inkscape:export-xdpi="96"
-             inkscape:export-ydpi="96" />
+                 id="tspan11282">Recurrot</tspan></tspan></text>
         </g>
       </g>
     </g>
