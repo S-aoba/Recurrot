@@ -39,6 +39,18 @@ export type NewQuestion = {
 export type MyAnswer = NewQuestion
 export type MyQuestion = NewQuestion
 export type SearchQuestion = NewQuestion
+export type AnswerType = {
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  description: string
+  questionId: string
+  userId: string
+  user: {
+    userName: string
+    profileImage: string | null
+  }
+}
 
 export type AnswerAndPostedUserInfoType = {
   user: UserInfo

@@ -6,8 +6,8 @@ import type { NextPage } from 'next'
 import { useState } from 'react'
 
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
-import { useQueryAnswers } from '@/common/hook/useQueryAnswers'
-import type { AnswerAndPostedUserInfoType } from '@/common/type'
+import { useQueryAnswerList } from '@/common/hook/useQueryAnswerList'
+import type { AnswerType } from '@/common/type'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
 
 import { DetailDescription } from '../DetaiDescription'
@@ -25,19 +25,20 @@ type AnswerListProps = {
 }
 
 export const AnswerList: NextPage<AnswerListProps> = ({ questionId, userId }) => {
-  const { data: answers, status: answersStatus } = useQueryAnswers(questionId)
+  const { data: answerList, status: answerListStatus } = useQueryAnswerList(questionId)
 
-  if (answersStatus === 'loading') return <AnswerLoading />
+  if (answerListStatus === 'loading') return <AnswerLoading />
+
   return (
     <>
       <div className=' w-full border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3 sm:w-10/12'>
         <p className=' mb-0 pb-2 text-2xl'>
-          <span className=' font-semibold text-blue-500'>{answers && answers.length}</span> 件の回答
+          <span className=' font-semibold text-blue-500'>{answerList && answerList.length}</span> 件の回答
         </p>
       </div>
 
-      {answers &&
-        answers.map((answer) => {
+      {answerList &&
+        answerList.map((answer: AnswerType) => {
           return <Answer key={answer.id} answer={answer} userId={userId} />
         })}
     </>
@@ -57,7 +58,7 @@ const AnswerBody: React.FC<Props> = ({ answer, isEdit, setIsEdit }) => {
 }
 
 type Props = {
-  answer: AnswerAndPostedUserInfoType
+  answer: AnswerType
   userId?: string
   isEdit?: boolean
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>
@@ -75,8 +76,6 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
   const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
 
   const { deleteAnswerMutation } = useMutateAnswer(answer.questionId)
-
-  const defaultUserName = answer && answer.user.email.slice(0, answer.user.email.indexOf('@'))
 
   const handleSetAnswer = () => {
     if (answer && setIsEdit) {
@@ -110,7 +109,7 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
               <Avatar src={answer.user.profileImage} radius={'xl'} />
               <div className=' flex gap-x-2'>
                 <span>
-                  {answer && answer.user.userName === null ? defaultUserName : answer && answer.user.userName}
+                  {answer && answer.user.userName === null ? '名無しユーザー' : answer && answer.user.userName}
                 </span>
                 <span>
                   回答日: {year} / {month} / {day}
