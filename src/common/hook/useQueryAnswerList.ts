@@ -11,7 +11,7 @@ export const useQueryAnswerList = (questionId: string) => {
     return data
   }
   return useQuery<AnswerType[], Error>({
-    queryKey: ['answers', questionId],
+    queryKey: ['answer-list', questionId],
     queryFn: () => {
       return getAnswerList(questionId)
     },

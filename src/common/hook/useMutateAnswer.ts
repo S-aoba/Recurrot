@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 import { resetAnswerDescriptionAtom } from '@/store/question-atom'
 
-import type { EditedAnswer } from '../type'
+import type { AnswerType, EditedAnswer } from '../type'
 
 export const useMutateAnswer = (questionId: string) => {
   const queryClient = useQueryClient()
@@ -14,21 +14,19 @@ export const useMutateAnswer = (questionId: string) => {
   const [, resetDescription] = useAtom(resetAnswerDescriptionAtom)
 
   const createAnswerMutation = useMutation({
-    mutationKey: ['answers'],
+    mutationKey: ['answer-list'],
     mutationFn: async (answer: Omit<EditedAnswer, 'id'>) => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/answer/${questionId}`, answer)
       return res.data
     },
-    onSuccess: (res: Answer) => {
-      const previousAnswers = queryClient.getQueryData<Answer[]>(['answers'])
-      if (previousAnswers) {
-        queryClient.setQueriesData(['answers'], [res, ...previousAnswers])
+    onSuccess: (res: AnswerType) => {
+      const previousAnswerList = queryClient.getQueryData<AnswerType[]>(['answer-list'])
+      if (previousAnswerList) {
+        queryClient.setQueriesData(['answer-list'], [res, ...previousAnswerList])
       }
-      queryClient.invalidateQueries(['answers'])
-      queryClient.invalidateQueries(['questions'])
-      queryClient.invalidateQueries(['singleQuestion'])
-      queryClient.invalidateQueries(['user'])
       resetDescription()
+      queryClient.invalidateQueries(['notification-list'])
+      queryClient.invalidateQueries(['my-answered-question-list'])
       router.push(`/dashboard/questions/${questionId}`)
     },
     onError: (err: any) => {
