@@ -42,7 +42,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
         </div>
         <div className='flex w-full flex-col px-4 py-2'>
           <div className=' flex w-full items-center gap-x-3 py-3'>
-            <Avatar src={question.user.profileImage} radius='xl' size={30} />
+            <Avatar src={question.user.profileImage} radius='xl' size={'md'} />
             <span className=' line-clamp-1'>{user.userName === null ? '名無しユーザー' : user.userName}</span>
           </div>
           <div className=' flex w-full gap-x-3 p-2 text-sm '>
