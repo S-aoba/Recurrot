@@ -1,17 +1,23 @@
-import type { Editor } from '@tiptap/react'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 
-import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/question-atom'
+import { Editor } from '@/component/ui/Form/Question/Editor'
+import {
+  editedQuestionAtom,
+  questionDescriptionAtom,
+  resetEditedQuestionAtom,
+  resetQuestionDescriptionAtom,
+} from '@/store/question-atom'
 
-import type { EditedQuestion } from '../type'
-
-export const useQuestionForm = (editedQuestion: EditedQuestion, description: string, editor: Editor | null) => {
+export const useQuestionForm = () => {
   const router = useRouter()
 
-  const [, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)
-  const [_, resetDescription] = useAtom(resetQuestionDescriptionAtom)
+  const editedQuestion = useAtomValue(editedQuestionAtom)
+  const description = useAtomValue(questionDescriptionAtom)
+  const [_, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)
+  const [__, resetDescription] = useAtom(resetQuestionDescriptionAtom)
+  const { questionEditor } = Editor()
 
   // フォームの入力中に画面をリロードした場合、アラートを表示する
   const handleBeforeUnload = useCallback(
@@ -30,9 +36,9 @@ export const useQuestionForm = (editedQuestion: EditedQuestion, description: str
   const handleBeforePopState = useCallback(() => {
     if (editedQuestion.title !== '' || editedQuestion.hashtags.length !== 0 || description) {
       const isOK = window.confirm('入力中の内容が失われますが、よろしいですか？')
-      if (isOK && editor) {
+      if (isOK && questionEditor) {
         resetEditedQuestion()
-        editor.commands.setContent('')
+        questionEditor.commands.setContent('')
         resetDescription()
         return true
       }
@@ -41,7 +47,7 @@ export const useQuestionForm = (editedQuestion: EditedQuestion, description: str
       return false
     }
     return true
-  }, [editedQuestion, description, editor, resetEditedQuestion, resetDescription])
+  }, [editedQuestion, description, questionEditor, resetEditedQuestion, resetDescription])
 
   useEffect(() => {
     // ページコンポーネントのマウント時に、beforePopState関数を登録する

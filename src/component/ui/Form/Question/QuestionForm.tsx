@@ -1,11 +1,3 @@
-import { Link } from '@mantine/tiptap'
-import Highlight from '@tiptap/extension-highlight'
-import SubScript from '@tiptap/extension-subscript'
-import Superscript from '@tiptap/extension-superscript'
-import TextAlign from '@tiptap/extension-text-align'
-import Underline from '@tiptap/extension-underline'
-import { useEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
@@ -14,21 +6,13 @@ import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-at
 
 import { Modal } from '../../Modal'
 import { Content } from './Content'
+import { Editor } from './Editor'
 import { Hashtag } from './Hashtag'
 import { Title } from './Title'
 
 /**
  * @package
  */
-
-const escapeHtml = (unsafe: string) => {
-  return unsafe
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, `'`)
-}
 
 type QuestionFormProps = {
   isOpened: boolean
@@ -38,46 +22,32 @@ type QuestionFormProps = {
 export const QuestionForm: React.FC<QuestionFormProps> = ({ isOpened, onHandleClose: handleClose }) => {
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
 
-  const [description, setDescription] = useAtom(questionDescriptionAtom)
+  const [description, _] = useAtom(questionDescriptionAtom)
 
   const { createQuestionMutation, updateQuestionMutation } = useMutateQuestion()
 
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Underline,
-      Link,
-      Superscript,
-      SubScript,
-      Highlight,
-      TextAlign.configure({ types: ['heading', 'paragraph'] }),
-    ],
-    content: editedQuestion.id === '0' ? escapeHtml(description) : description,
-    onUpdate({ editor }) {
-      setDescription(editor.getHTML())
-    },
-  })
+  const { questionEditor } = Editor()
 
   const handleSubmit = () => {
-    if (editedQuestion.id === '0' && editor) {
+    if (editedQuestion.id === '0' && questionEditor) {
       createQuestionMutation.mutate({
         title: editedQuestion.title,
         description,
         hashtags: editedQuestion.hashtags,
       })
-      editor.commands.setContent('')
-    } else if (editedQuestion.id !== '0' && editor) {
+      questionEditor.commands.setContent('')
+    } else if (editedQuestion.id !== '0' && questionEditor) {
       updateQuestionMutation.mutate({
         id: editedQuestion.id,
         title: editedQuestion.title,
         description,
         hashtags: editedQuestion.hashtags,
       })
-      editor.commands.setContent('')
+      questionEditor.commands.setContent('')
     }
   }
 
-  useQuestionForm(editedQuestion, description, editor)
+  useQuestionForm()
 
   return (
     <>
@@ -92,7 +62,7 @@ export const QuestionForm: React.FC<QuestionFormProps> = ({ isOpened, onHandleCl
       <div className=' flex h-fit w-full flex-col items-center gap-y-5 py-5'>
         <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
         <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
-        <Content editor={editor} />
+        <Content editor={questionEditor} />
       </div>
     </>
   )
