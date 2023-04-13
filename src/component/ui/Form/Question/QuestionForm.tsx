@@ -4,11 +4,11 @@ import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useQuestionForm } from '@/common/hook/useQuestionForm'
 import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-atom'
 
+import { useDescriptionEditor } from '../../../../common/hook/useDescriptionEditor'
 import { Modal } from '../../Modal'
 import { Content } from './Content'
 import { Hashtag } from './Hashtag'
 import { Title } from './Title'
-import { useDescriptionEditor } from './useDescriptionEditor'
 
 /**
  * @package

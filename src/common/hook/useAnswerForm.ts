@@ -2,7 +2,7 @@ import { useAtom, useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 
-import { useDescriptionEditor } from '@/component/ui/Form/Question/useDescriptionEditor'
+import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
 import { answerDescriptionAtom, resetAnswerDescriptionAtom } from '@/store/question-atom'
 
 export const useAnswerForm = () => {

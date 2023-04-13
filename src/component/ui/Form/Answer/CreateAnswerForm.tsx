@@ -7,8 +7,8 @@ import { useAnswerForm } from '@/common/hook/useAnswerForm'
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
 
+import { useDescriptionEditor } from '../../../../common/hook/useDescriptionEditor'
 import { Modal } from '../../Modal'
-import { useDescriptionEditor } from '../Question/useDescriptionEditor'
 
 /**
  * @package
