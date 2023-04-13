@@ -10,16 +10,16 @@ export const useMutateNotification = () => {
   const router = useRouter()
 
   const updateNotificationMutation = useMutation({
-    mutationKey: ['notifications'],
+    mutationKey: ['notification-list'],
     mutationFn: async (answerId: string) => {
       const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/notification/${answerId}`)
       return res.data
     },
     onSuccess: (res: UserType) => {
-      const previousNotification = queryClient.getQueryData<User>(['notifications'])
+      const previousNotification = queryClient.getQueryData<User>(['notification-list'])
 
       if (previousNotification) {
-        queryClient.setQueryData(['notifications'], res)
+        queryClient.setQueryData(['notification-list'], res)
       }
     },
     onError: (err: any) => {
