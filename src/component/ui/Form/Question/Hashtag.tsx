@@ -41,9 +41,10 @@ export const Hashtag: React.FC<HashTagProps> = ({ editedQuestion, setEditedQuest
       clearable
       withAsterisk
       maxSelectedValues={5}
-      className=' w-9/12'
+      className=' w-9/12 rounded-md bg-white shadow'
       value={editedQuestion.hashtags}
       onChange={handleSetHashTag}
+      styles={{ input: { border: 'none' } }}
     />
   )
 }

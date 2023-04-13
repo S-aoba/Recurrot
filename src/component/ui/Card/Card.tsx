@@ -22,7 +22,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
   return (
     <div
       key={id}
-      className=' relative col-span-1 box-content flex h-64 w-80 flex-col gap-y-2 rounded-2xl border-[3px] border-solid border-gray-200 bg-white p-3 shadow-lg duration-500 hover:relative hover:translate-x-2 hover:-translate-y-2 hover:cursor-pointer hover:shadow-[-8px_8px_0px_0px_#171717] hover:brightness-95'
+      className=' relative col-span-1 box-content flex h-64 w-80 flex-col gap-y-2 rounded-md border-none bg-white p-3 shadow-md duration-500 hover:relative hover:translate-x-2 hover:-translate-y-2 hover:cursor-pointer hover:shadow-[-8px_8px_0px_0px_#171717]'
     >
       <Link
         href={'/dashboard/questions/[id]'}

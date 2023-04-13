@@ -26,7 +26,7 @@ const MyProfile = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className=' flex h-fit flex-1 justify-center'>
+      <main className=' flex h-fit flex-1 justify-center bg-[#fafafa]'>
         <div className=' flex w-full max-w-[1200px] justify-center px-8 '>
           <div className=' flex h-fit w-full items-center justify-center py-5 '>
             {user && <ProfileCard user={user} />}

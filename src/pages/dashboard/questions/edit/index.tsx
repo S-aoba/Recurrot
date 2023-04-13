@@ -34,7 +34,7 @@ const QuestionEdit = () => {
           </div>
         </div>
       </header>
-      <main className=' flex h-fit min-h-screen flex-1 justify-center  pt-14'>
+      <main className=' flex h-fit min-h-screen flex-1 justify-center bg-[#fafafa] pt-14'>
         <div className=' h-fit w-full max-w-[1200px] px-8'>
           <QuestionForm isOpened={isOpened} onHandleClose={handleClose} />
         </div>

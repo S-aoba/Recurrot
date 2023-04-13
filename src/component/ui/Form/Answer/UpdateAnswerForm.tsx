@@ -89,7 +89,7 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
       />
 
       <div className=' w-full'>
-        <RichTextEditor editor={editor} className=' h-96 w-full'>
+        <RichTextEditor editor={editor} className=' h-96 w-full rounded-md bg-white'>
           <RichTextEditor.Content />
         </RichTextEditor>
         <div className=' mt-3 flex justify-end'>

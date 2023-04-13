@@ -31,7 +31,7 @@ export const AnswerList: NextPage<AnswerListProps> = ({ questionId, userId }) =>
 
   return (
     <>
-      <div className=' w-full border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3 sm:w-10/12'>
+      <div className=' w-full px-3 sm:w-10/12'>
         <p className=' mb-0 pb-2 text-2xl'>
           <span className=' font-semibold text-blue-500'>{answerList && answerList.length}</span> 件の回答
         </p>
@@ -102,9 +102,9 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
         modalTitle='本当に削除してもよろしいですか？'
       />
 
-      <div className=' w-full border border-solid border-gray-200 bg-white p-5 sm:w-9/12'>
+      <div className=' w-full rounded-md bg-white p-5 shadow sm:w-9/12'>
         <div className=' py-5'>
-          <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
+          <div className=' flex items-center justify-between pb-2'>
             <div className=' flex items-center gap-x-2 text-sm'>
               <Avatar src={answer.user.profileImage} radius={'xl'} />
               <div className=' flex gap-x-2'>

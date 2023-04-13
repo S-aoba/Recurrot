@@ -86,7 +86,7 @@ export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
       />
 
       <div className=' w-full'>
-        <RichTextEditor editor={editor} className=' h-96 w-full'>
+        <RichTextEditor editor={editor} className=' h-96 w-full rounded-md border-none bg-white shadow'>
           <RichTextEditor.Content />
         </RichTextEditor>
         <div className=' mt-3 flex justify-end'>
