@@ -31,12 +31,12 @@ export const useAnswerForm = () => {
         answerEditor.commands.setContent('')
         return true
       }
-      // 履歴スタックの最新にhttp://localhost:3000/dashboard/questions/postを追加する
-      window.history.pushState({}, '', '/dashboard/questions/post')
+      // 履歴スタックの最新に、現在のURLを追加して、URLを変更しないようにする
+      router.events.emit('routeChangeComplete', router.asPath, router.asPath)
       return false
     }
     return true
-  }, [description, resetAnswerDescription, answerEditor])
+  }, [description, resetAnswerDescription, answerEditor, router])
 
   useEffect(() => {
     router.beforePopState(handleBeforePopState)
