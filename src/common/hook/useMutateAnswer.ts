@@ -38,22 +38,22 @@ export const useMutateAnswer = (questionId: string) => {
   })
 
   const updateAnswerMutation = useMutation({
-    mutationKey: ['answers'],
+    mutationKey: ['answer-list'],
     mutationFn: async (answer: EditedAnswer) => {
       const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/answer/${answer.id}`, answer)
       return res.data
     },
-    onSuccess: (res: Answer) => {
-      const previousAnswer = queryClient.getQueryData<Answer[]>(['answers'])
-      if (previousAnswer) {
+    onSuccess: (res: AnswerType) => {
+      const previousAnswerList = queryClient.getQueryData<AnswerType[]>(['answer-list'])
+      if (previousAnswerList) {
         queryClient.setQueryData(
-          ['answers'],
-          previousAnswer.map((answer) => {
+          ['answer-list'],
+          previousAnswerList.map((answer) => {
             return answer.id === res.id ? res : answer
           })
         )
       }
-      queryClient.invalidateQueries(['answers'])
+      queryClient.invalidateQueries(['answer-list'])
       resetDescription()
       router.push(`/dashboard/questions/${questionId}`)
     },
