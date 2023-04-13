@@ -43,8 +43,8 @@ export const useMutateQuestion = () => {
       const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/question/${question.id}`, question)
       return res.data
     },
-    onSuccess: (res: QuestionAndAnswerIdListType) => {
-      const previousQuestion = queryClient.getQueryData<QuestionAndAnswerIdListType[]>(['questions'])
+    onSuccess: (res: NewQuestion) => {
+      const previousQuestion = queryClient.getQueryData<NewQuestion[]>(['questions'])
       if (previousQuestion) {
         queryClient.setQueryData(
           ['questions'],
@@ -54,7 +54,11 @@ export const useMutateQuestion = () => {
         )
       }
       router.push(`/dashboard/questions/${res.id}`)
+
       queryClient.invalidateQueries(['singleQuestion', res.id])
+      queryClient.invalidateQueries(['my-question-list'])
+      queryClient.invalidateQueries(['my-answered-question-list'])
+
       resetEditedQuestion()
       resetDescription()
     },

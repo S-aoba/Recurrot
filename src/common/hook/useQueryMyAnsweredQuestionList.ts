@@ -13,7 +13,7 @@ export const useQueryMyAnsweredQuestionList = () => {
   return useQuery<MyAnswer[], Error>({
     queryKey: ['my-answered-question-list'],
     queryFn: getAnsweredQuestionList,
-    staleTime: 10000, //5分
+    staleTime: Infinity, //5分
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) router.push('/')
     },

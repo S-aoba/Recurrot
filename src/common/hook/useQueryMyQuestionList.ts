@@ -15,7 +15,7 @@ export const useQueryMyQuestionList = () => {
   return useQuery<MyQuestion[], Error>({
     queryKey: ['my-question-list'],
     queryFn: getMyQuestionList,
-    staleTime: 10000, //5分
+    staleTime: Infinity,
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) router.push('/')
     },
