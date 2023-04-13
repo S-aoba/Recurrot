@@ -6,9 +6,9 @@ import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-at
 
 import { Modal } from '../../Modal'
 import { Content } from './Content'
-import { Editor } from './Editor'
 import { Hashtag } from './Hashtag'
 import { Title } from './Title'
+import { useDescriptionEditor } from './useDescriptionEditor'
 
 /**
  * @package
@@ -26,7 +26,7 @@ export const QuestionForm: React.FC<QuestionFormProps> = ({ isOpened, onHandleCl
 
   const { createQuestionMutation, updateQuestionMutation } = useMutateQuestion()
 
-  const { questionEditor } = Editor()
+  const { questionEditor } = useDescriptionEditor()
 
   const handleSubmit = () => {
     if (editedQuestion.id === '0' && questionEditor) {

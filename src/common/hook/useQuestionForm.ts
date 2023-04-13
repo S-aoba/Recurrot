@@ -2,7 +2,7 @@ import { useAtom, useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 
-import { Editor } from '@/component/ui/Form/Question/Editor'
+import { useDescriptionEditor } from '@/component/ui/Form/Question/useDescriptionEditor'
 import {
   editedQuestionAtom,
   questionDescriptionAtom,
@@ -17,7 +17,7 @@ export const useQuestionForm = () => {
   const description = useAtomValue(questionDescriptionAtom)
   const [_, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)
   const [__, resetDescription] = useAtom(resetQuestionDescriptionAtom)
-  const { questionEditor } = Editor()
+  const { questionEditor } = useDescriptionEditor()
 
   // フォームの入力中に画面をリロードした場合、アラートを表示する
   const handleBeforeUnload = useCallback(

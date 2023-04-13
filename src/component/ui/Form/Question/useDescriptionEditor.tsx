@@ -8,7 +8,7 @@ import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
 
-import { questionDescriptionAtom } from '@/store/question-atom'
+import { answerDescriptionAtom, questionDescriptionAtom } from '@/store/question-atom'
 
 const escapeHtml = (unsafe: string) => {
   return unsafe
@@ -19,8 +19,9 @@ const escapeHtml = (unsafe: string) => {
     .replace(/&#039;/g, `'`)
 }
 
-export const Editor = () => {
-  const [description, setDescription] = useAtom(questionDescriptionAtom)
+export const useDescriptionEditor = () => {
+  const [questionDescription, setQuestionDescription] = useAtom(questionDescriptionAtom)
+  const [answerDescription, setAnswerDescription] = useAtom(answerDescriptionAtom)
 
   const questionEditor = useEditor({
     extensions: [
@@ -32,15 +33,36 @@ export const Editor = () => {
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
-    content: escapeHtml(description),
+    content: escapeHtml(questionDescription),
     onUpdate({ editor }) {
       // ここでeditorの中身が空の時にdescriptionを空にする
       if (editor.getText() === '') {
-        setDescription('')
+        setQuestionDescription('')
       } else {
-        setDescription(editor.getHTML())
+        setQuestionDescription(editor.getHTML())
       }
     },
   })
-  return { questionEditor }
+
+  const answerEditor = useEditor({
+    extensions: [
+      StarterKit,
+      Underline,
+      Link,
+      Superscript,
+      SubScript,
+      Highlight,
+      TextAlign.configure({ types: ['heading', 'paragraph'] }),
+    ],
+    content: escapeHtml(answerDescription),
+    onUpdate({ editor }) {
+      // ここでeditorの中身が空の時にdescriptionを空にする
+      if (editor.getText() === '') {
+        setAnswerDescription('')
+      } else {
+        setAnswerDescription(editor.getHTML())
+      }
+    },
+  })
+  return { questionEditor, answerEditor }
 }

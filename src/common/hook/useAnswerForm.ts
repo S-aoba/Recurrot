@@ -1,12 +1,16 @@
-import type { Editor } from '@tiptap/react'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 
-import { resetAnswerDescriptionAtom } from '@/store/question-atom'
+import { useDescriptionEditor } from '@/component/ui/Form/Question/useDescriptionEditor'
+import { answerDescriptionAtom, resetAnswerDescriptionAtom } from '@/store/question-atom'
 
-export const useAnswerForm = (description: string, editor: Editor | null) => {
+export const useAnswerForm = () => {
   const router = useRouter()
+  const description = useAtomValue(answerDescriptionAtom)
+
+  const { answerEditor } = useDescriptionEditor()
+
   const [_, resetAnswerDescription] = useAtom(resetAnswerDescriptionAtom)
 
   const handleBeforeUnload = useCallback(
@@ -22,9 +26,9 @@ export const useAnswerForm = (description: string, editor: Editor | null) => {
   const handleBeforePopState = useCallback(() => {
     if (description !== '') {
       const isOK = window.confirm('入力中の内容が失われますが、よろしいですか？')
-      if (isOK && editor) {
+      if (isOK && answerEditor) {
         resetAnswerDescription()
-        editor.commands.setContent('')
+        answerEditor.commands.setContent('')
         return true
       }
       // 履歴スタックの最新にhttp://localhost:3000/dashboard/questions/postを追加する
@@ -32,7 +36,7 @@ export const useAnswerForm = (description: string, editor: Editor | null) => {
       return false
     }
     return true
-  }, [description, resetAnswerDescription, editor])
+  }, [description, resetAnswerDescription, answerEditor])
 
   useEffect(() => {
     router.beforePopState(handleBeforePopState)
