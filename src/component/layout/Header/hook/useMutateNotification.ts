@@ -1,9 +1,8 @@
-import type { User } from '@prisma/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-import type { UserType } from '@/common/type'
+import type { Notification } from '@/common/type'
 
 export const useMutateNotification = () => {
   const queryClient = useQueryClient()
@@ -15,8 +14,8 @@ export const useMutateNotification = () => {
       const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/notification/${answerId}`)
       return res.data
     },
-    onSuccess: (res: UserType) => {
-      const previousNotification = queryClient.getQueryData<User>(['notification-list'])
+    onSuccess: (res: Notification[]) => {
+      const previousNotification = queryClient.getQueryData<Notification[]>(['notification-list'])
 
       if (previousNotification) {
         queryClient.setQueryData(['notification-list'], res)
