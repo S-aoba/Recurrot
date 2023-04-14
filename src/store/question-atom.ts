@@ -1,8 +1,6 @@
 import { atom } from 'jotai'
 
-import type { EditedAnswer, EditedQuestion, MainNavTabStyleType, NavTab } from '@/common/type'
-
-export const mainNavTabStyleAtom = atom<MainNavTabStyleType>('question')
+import type { EditedAnswer, EditedQuestion, NavTab } from '@/common/type'
 
 const initialEditedQuestion: EditedQuestion = { id: '0', title: '', description: '', hashtags: [] }
 export const editedQuestionAtom = atom<EditedQuestion>(initialEditedQuestion)
