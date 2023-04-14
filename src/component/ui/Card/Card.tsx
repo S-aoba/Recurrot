@@ -24,11 +24,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
       key={id}
       className=' relative col-span-1 box-content flex h-64 w-80 flex-col gap-y-2 rounded-md border-none bg-white p-3 shadow-md duration-500 hover:relative hover:translate-x-2 hover:-translate-y-2 hover:cursor-pointer hover:shadow-[-8px_8px_0px_0px_#171717]'
     >
-      <Link
-        href={'/dashboard/questions/[id]'}
-        as={`questions/${id}`}
-        className=' absolute top-0 left-0 h-full w-full rounded-2xl'
-      ></Link>
+      <Link href={`/dashboard/questions/${id}`} className=' absolute top-0 left-0 h-full w-full rounded-2xl'></Link>
       <div className=' flex h-2/4 justify-between pl-2'>
         <div className=' flex h-full items-center'>
           <Image
