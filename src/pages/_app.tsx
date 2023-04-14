@@ -9,8 +9,6 @@ import { useEffect } from 'react'
 
 import { WrapperLayout } from '@/component/layout/WrapperLayout'
 
-// import { WrapperLayout } from '@/component/layout/WrapperLayout'
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
