@@ -12,7 +12,7 @@ export const useMutateUser = () => {
       await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/user`)
     },
     onSuccess: () => {
-      queryClient.removeQueries(['current-user'])
+      queryClient.clear()
       router.push('/')
     },
     onError: (err: any) => {

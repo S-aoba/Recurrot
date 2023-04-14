@@ -1,14 +1,14 @@
-import { Avatar, Button, FileButton } from '@mantine/core'
+import { Avatar, Button, FileButton, Textarea, TextInput } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useState } from 'react'
 import { storage } from 'src/firebase'
 
-import { useMutateUser } from '@/common/hook/useMutateUser'
 import type { EditedUpdateMyProfile, MyProfile } from '@/common/type'
 
 import { Modal } from '../Modal'
 import { useMutateMyProfile } from './hook/useMutateMyProfile'
+import { useProfile } from './hook/useProfile'
 
 /**
  * @package
@@ -22,7 +22,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
   const [isProfileOpened, { open: handleProfileOpen, close: handleProfileClose }] = useDisclosure(false)
   const [isDeleteUserOpened, { open: handleDeleteUserOpen, close: handleDeleteUserClose }] = useDisclosure(false)
 
-  const { deleteUserMutation } = useMutateUser()
   const { updateMyProfileMutation } = useMutateMyProfile()
 
   const [editedMyProfile, setEditedMyProfile] = useState<EditedUpdateMyProfile>({
@@ -34,37 +33,17 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
     websiteUrl: user.websiteUrl == null ? '' : user.websiteUrl,
   })
 
-  const handleSetUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedMyProfile({ ...editedMyProfile, userName: e.target.value })
-  }
+  const { handleSetProfileItem, handleSubmit, handleDeleteUser } = useProfile(
+    editedMyProfile,
+    setEditedMyProfile,
+    handleProfileClose,
+    handleDeleteUserClose,
+    user.id,
+    user.profileImage
+  )
 
-  const handleSetSelfIntroduction = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setEditedMyProfile({ ...editedMyProfile, selfIntroduction: e.target.value })
-  }
-
-  const handleSetTwitterUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedMyProfile({ ...editedMyProfile, twitterUrl: e.target.value })
-  }
-
-  const handleSetGithubUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedMyProfile({ ...editedMyProfile, githubUrl: e.target.value })
-  }
-
-  const handleSetWebsiteUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedMyProfile({ ...editedMyProfile, websiteUrl: e.target.value })
-  }
-
-  const handleSubmit = () => {
-    updateMyProfileMutation.mutate(editedMyProfile)
-    handleProfileClose()
-  }
-
-  const handleDeleteUser = () => {
-    deleteUserMutation.mutate()
-    deleteObject(ref(storage, `images/${user.id}`))
-    handleDeleteUserClose()
-  }
-
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  // profileImageのみを変更するAPIを作成後、firebaseフォルダに移動させる
   // firebase storageに画像を保存する
   const handleUploadImage = async (e: File | null) => {
     if (e == null) return
@@ -79,6 +58,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
       })
     })
   }
+  //////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <>
@@ -114,39 +94,45 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
           </div>
           <div className=' flex flex-col items-center p-5'>
             <div className=' flex w-11/12 flex-col gap-y-5'>
-              <Input
-                labelWord='ユーザーネーム'
+              <TextInput
+                label='ユーザーネーム'
                 type='text'
+                name='userName'
                 value={editedMyProfile.userName == null ? '' : editedMyProfile.userName}
-                onChange={handleSetUserName}
+                onChange={handleSetProfileItem}
               />
               <div className=' w-full'>
-                <TextArea
-                  labelWord='自己紹介'
+                <Textarea
+                  name='selfIntroduction'
+                  label='自己紹介'
+                  styles={{ input: { height: '13rem' } }}
                   value={editedMyProfile.selfIntroduction == null ? '' : editedMyProfile.selfIntroduction}
-                  onChange={handleSetSelfIntroduction}
+                  onChange={handleSetProfileItem}
                 />
               </div>
               <div className=' flex w-full flex-col gap-y-3'>
-                <Input
-                  labelWord='Twitter'
+                <TextInput
+                  label='Twitter'
                   type='url'
+                  name='twitterUrl'
                   value={editedMyProfile.twitterUrl == null ? '' : editedMyProfile.twitterUrl}
-                  onChange={handleSetTwitterUrl}
+                  onChange={handleSetProfileItem}
                 />
 
-                <Input
-                  labelWord='Github'
+                <TextInput
+                  label='Github'
                   type='url'
+                  name='githubUrl'
                   value={editedMyProfile.githubUrl == null ? '' : editedMyProfile.githubUrl}
-                  onChange={handleSetGithubUrl}
+                  onChange={handleSetProfileItem}
                 />
               </div>
-              <Input
-                labelWord='Website'
+              <TextInput
+                label='Website'
                 type='url'
+                name='websiteUrl'
                 value={editedMyProfile.websiteUrl == null ? '' : editedMyProfile.websiteUrl}
-                onChange={handleSetWebsiteUrl}
+                onChange={handleSetProfileItem}
               />
               <div className=' flex w-full justify-between'>
                 <Button color='blue' type='button' onClick={handleProfileOpen} className=' hover:transform-none'>
@@ -161,45 +147,5 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
         </div>
       )}
     </>
-  )
-}
-
-type InputProps = {
-  labelWord: string
-  type?: 'text' | 'url'
-  value: string | null
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-const Input: React.FC<InputProps> = ({ labelWord, type, value, onChange: handleOnChange }) => {
-  return (
-    <label className=' flex flex-col'>
-      {labelWord}
-      <input
-        type={type}
-        value={value == null ? '' : value}
-        onChange={handleOnChange}
-        className=' w-full rounded-md border-2 border-solid border-gray-200 p-3'
-      />
-    </label>
-  )
-}
-
-type TextProps = {
-  labelWord: string
-  value: string | null
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-}
-
-const TextArea: React.FC<TextProps> = ({ labelWord, value, onChange: handleOnChange }) => {
-  return (
-    <label className=' flex flex-col'>
-      {labelWord}
-      <textarea
-        className=' h-52 w-full resize-none rounded-md border-2 border-solid border-gray-200 p-3'
-        value={value == null ? '' : value}
-        onChange={handleOnChange}
-      />
-    </label>
   )
 }
