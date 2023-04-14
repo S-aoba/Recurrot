@@ -1,5 +1,3 @@
-import type { Answer, Question, User } from '@prisma/client'
-
 import type { MAIN_URL, SUB_URL } from '../const'
 
 export type MainUrlKeys = keyof typeof MAIN_URL
@@ -7,21 +5,6 @@ export type MainUrlVal = (typeof MAIN_URL)[MainUrlKeys]
 
 export type SubUrlKeys = keyof typeof SUB_URL
 export type SubUrlVal = (typeof SUB_URL)[SubUrlKeys]
-
-type AnswerId = {
-  id: string
-}
-
-type UserInfo = {
-  userName: string
-  email: string
-  profileImage: string
-}
-
-export type QuestionAndAnswerIdListType = {
-  answers: AnswerId[]
-  user: UserInfo
-} & Question
 
 export type NewQuestion = {
   id: string
@@ -66,10 +49,6 @@ export type SingleQuestion = {
   }
 }
 
-export type AnswerAndPostedUserInfoType = {
-  user: UserInfo
-} & Answer
-
 export type UnreadAnswer = {
   questionId: string
   questionTitle: string
@@ -83,10 +62,6 @@ export type Notification = {
   answerId: string
   answerUserProfileImage: string | null
 }
-
-export type UserType = {
-  unreadAnswers?: UnreadAnswer[]
-} & User
 
 export type MyProfile = {
   id: string
