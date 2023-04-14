@@ -2,7 +2,7 @@ import { Avatar, Button, FileButton, Textarea, TextInput } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useState } from 'react'
-import { storage } from 'src/firebase'
+import { storage } from 'src/firebase/config'
 
 import type { EditedUpdateMyProfile, MyProfile } from '@/common/type'
 

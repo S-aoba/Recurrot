@@ -2,7 +2,7 @@ import { deleteObject, ref } from 'firebase/storage'
 
 import { useMutateUser } from '@/common/hook/useMutateUser'
 import type { EditedUpdateMyProfile } from '@/common/type'
-import { storage } from '@/firebase'
+import { storage } from '@/firebase/config'
 
 import { useMutateMyProfile } from './useMutateMyProfile'
 
