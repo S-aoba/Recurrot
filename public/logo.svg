@@ -2,14 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="142.48766mm"
-   height="23.104797mm"
-   viewBox="0 0 142.48766 23.104797"
+   width="149.04155mm"
+   height="35.267845mm"
+   viewBox="0 0 149.04155 35.267845"
    version="1.1"
    id="svg9423"
    inkscape:export-filename="newLogo2.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   sodipodi:docname="描画-2.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +26,16 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     showgrid="false" />
+     showgrid="false"
+     inkscape:zoom="0.914906"
+     inkscape:cx="308.22838"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1652"
+     inkscape:window-height="1205"
+     inkscape:window-x="440"
+     inkscape:window-y="51"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
   <defs
      id="defs9420">
     <rect
@@ -32,25 +43,25 @@
        y="230.62479"
        width="556.34131"
        height="140.99809"
-       id="rect236-23-8-8" />
+       id="rect236-23-8-8-3" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-31.425322,-101.51513)">
+     transform="translate(-29.412736,-112.19825)">
     <g
-       id="g9761-4"
-       transform="translate(-1.4459589,-112.78481)">
+       id="g11853"
+       transform="translate(-0.28919183,14.748783)">
       <g
-         id="g9418-8"
-         transform="translate(-8.69727,41.746575)">
+         id="g9761-4"
+         transform="matrix(1.5575235,0,0,1.5986481,-25.099251,-258.54791)">
         <g
-           id="g10641"
-           transform="translate(-0.86757546,30.075949)">
+           id="g9418-8"
+           transform="translate(-8.69727,41.746575)">
           <g
              id="g10220"
-             transform="matrix(0.73779271,0,0,0.84121382,17.110173,25.531841)">
+             transform="matrix(0.73779271,0,0,0.84121382,18.556132,63.994353)">
             <g
                id="g3255-0"
                transform="translate(1.3862149,-107.80038)">
@@ -170,18 +181,18 @@
               </g>
             </g>
           </g>
-          <text
-             xml:space="preserve"
-             transform="matrix(0.26458333,0,0,0.26458333,33.835443,79.527749)"
-             id="text234-5-1"
-             style="font-weight:bold;font-size:101.94px;font-family:'Avenir Next';-inkscape-font-specification:'Avenir Next, Bold';white-space:pre;shape-inside:url(#rect236-23-8-8);fill:#1976d2;fill-opacity:1;stroke:#1976d2;stroke-width:3.02362;stroke-linecap:round;stroke-opacity:1;paint-order:stroke markers fill"><tspan
-               x="132.25391"
-               y="322.48907"
-               id="tspan11284"><tspan
-                 style="font-weight:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal'"
-                 id="tspan11282">Recurrot</tspan></tspan></text>
         </g>
       </g>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,27.655151,46.662836)"
+         id="text234-5-1-4"
+         style="font-weight:bold;font-size:101.94px;font-family:'Avenir Next';-inkscape-font-specification:'Avenir Next, Bold';white-space:pre;shape-inside:url(#rect236-23-8-8-3);fill:#1976d2;fill-opacity:1;stroke:#1976d2;stroke-width:3.02362;stroke-linecap:round;stroke-opacity:1;paint-order:stroke markers fill"><tspan
+           x="132.25391"
+           y="322.48907"
+           id="tspan12063"><tspan
+             style="font-weight:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, Normal'"
+             id="tspan12061">Recurrot</tspan></tspan></text>
     </g>
   </g>
 </svg>

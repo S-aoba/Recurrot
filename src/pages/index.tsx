@@ -23,12 +23,12 @@ const Home = () => {
       <div className=' flex min-h-screen flex-col bg-[#fafafa]'>
         <header className=' flex h-14 max-h-14 items-center justify-center bg-white'>
           <div className=' flex w-full max-w-[1200px] items-center justify-between px-8'>
-            <Image src='/logo.svg' height={70} width={150} alt='Recurrot' priority />
+            <Image src='/logo.svg' height={50} width={150} alt='Recurrot' priority />
             {/* height:{windowSize.height} width:{windowSize.width} */}
           </div>
         </header>
         <div className=' flex flex-col items-center justify-center gap-y-5'>
-          <Image src={'/authLogo.svg'} alt='authLogo' width={500} height={300} />
+          <Image src={'/auth.svg'} alt='authLogo' width={500} height={300} />
           <Auth />
         </div>
       </div>
