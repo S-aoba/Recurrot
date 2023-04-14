@@ -42,8 +42,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
     user.profileImage
   )
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////
-  // profileImageのみを変更するAPIを作成後、firebaseフォルダに移動させる
   // firebase storageに画像を保存する
   const handleUploadImage = async (e: File | null) => {
     if (e == null) return
@@ -58,7 +56,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
       })
     })
   }
-  //////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <>
