@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { useQueryAnswerList } from '@/common/hook/useQueryAnswerList'
 import type { AnswerType } from '@/common/type'
-import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
+import { answerDescriptionAtom, editedAnswerAtom } from '@/store/atom'
 
 import { DetailDescription } from '../DetailDescription'
 import { UpdateAnswerForm } from '../Form/Answer'

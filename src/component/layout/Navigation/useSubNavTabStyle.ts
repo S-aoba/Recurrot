@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai'
 
-import { navTabAtom } from '@/store/question-atom'
+import { navTabAtom } from '@/store/atom'
 
 export const useSubNavTabStyle = () => {
   const [navTab, _] = useAtom(navTabAtom)

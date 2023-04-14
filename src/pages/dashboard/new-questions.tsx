@@ -7,7 +7,7 @@ import type { NewQuestion } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { QuestionLoading } from '@/component/ui/Loading'
-import { isLoadingAtom, navTabAtom } from '@/store/question-atom'
+import { isLoadingAtom, navTabAtom } from '@/store/atom'
 
 const NewQuestions = () => {
   const { data: newQuestionList, status: newQuestionListStatus } = useQueryNewQuestionList()

@@ -16,7 +16,7 @@ import { DetailDescription } from '@/component/ui/DetailDescription'
 import { CreateAnswerForm } from '@/component/ui/Form/Answer'
 import { QuestionDetailLoading } from '@/component/ui/Loading'
 import { Modal } from '@/component/ui/Modal'
-import { editedQuestionAtom, navTabAtom, questionDescriptionAtom } from '@/store/question-atom'
+import { editedQuestionAtom, navTabAtom, questionDescriptionAtom } from '@/store/atom'
 
 const QuestionDetail = () => {
   const [isDeleteQuestionOpened, { open: handleDeleteQuestionOpen, close: handleDeleteQuestionClose }] =

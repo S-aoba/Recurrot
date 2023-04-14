@@ -6,7 +6,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { QuestionForm } from '@/component/ui/Form/Question'
-import { editedQuestionAtom, isQuestionDisabledAtom, resetQuestionAtom } from '@/store/question-atom'
+import { editedQuestionAtom, isQuestionDisabledAtom, resetQuestionAtom } from '@/store/atom'
 
 const QuestionPost = () => {
   const editedQuestion = useAtomValue(editedQuestionAtom)

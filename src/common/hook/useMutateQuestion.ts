@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 
-import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/question-atom'
+import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/atom'
 
 import type { EditedQuestion, NewQuestion } from '../type'
 

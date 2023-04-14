@@ -8,7 +8,7 @@ import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useAtom } from 'jotai'
 
-import { answerDescriptionAtom, questionDescriptionAtom } from '@/store/question-atom'
+import { answerDescriptionAtom, questionDescriptionAtom } from '@/store/atom'
 
 const escapeHtml = (unsafe: string) => {
   return unsafe

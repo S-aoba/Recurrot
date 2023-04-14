@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect } from 'react'
 
 import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
-import { answerDescriptionAtom, resetAnswerDescriptionAtom } from '@/store/question-atom'
+import { answerDescriptionAtom, resetAnswerDescriptionAtom } from '@/store/atom'
 
 export const useAnswerForm = () => {
   const router = useRouter()

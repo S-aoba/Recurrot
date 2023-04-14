@@ -7,7 +7,7 @@ import type { MyAnswer } from '@/common/type'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { Card } from '@/component/ui/Card'
 import { QuestionLoading } from '@/component/ui/Loading'
-import { navTabAtom } from '@/store/question-atom'
+import { navTabAtom } from '@/store/atom'
 
 const MyAnswers = () => {
   const { data: questions, status: answersStatus } = useQueryMyAnsweredQuestionList()

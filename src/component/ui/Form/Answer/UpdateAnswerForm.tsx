@@ -6,7 +6,7 @@ import type { Dispatch, SetStateAction } from 'react'
 
 import { useAnswerForm } from '@/common/hook/useAnswerForm'
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
-import { answerDescriptionAtom, editedAnswerAtom } from '@/store/question-atom'
+import { answerDescriptionAtom, editedAnswerAtom } from '@/store/atom'
 
 import { useDescriptionEditor } from '../../../../common/hook/useDescriptionEditor'
 import { Modal } from '../../Modal'

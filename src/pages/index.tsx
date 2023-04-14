@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import * as Yup from 'yup'
 
-import { isLoadingAtom } from '@/store/question-atom'
+import { isLoadingAtom } from '@/store/atom'
 
 const Home = () => {
   return (

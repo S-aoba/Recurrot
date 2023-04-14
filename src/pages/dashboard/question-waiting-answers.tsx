@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 
 // import { Card } from '@/component/ui/Card'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
-import { navTabAtom } from '@/store/question-atom'
+import { navTabAtom } from '@/store/atom'
 
 const QuestionWaitingAnswers = () => {
   const setNavTab = useSetAtom(navTabAtom)

@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { ProfileLoading } from '@/component/ui/Loading'
 import { ProfileCard } from '@/component/ui/ProfileCard'
 import { useQueryMyProfile } from '@/component/ui/ProfileCard/hook/useQueryMyProfile'
-import { navTabAtom } from '@/store/question-atom'
+import { navTabAtom } from '@/store/atom'
 
 const MyProfile = () => {
   const { data: user, status: UserStatus } = useQueryMyProfile()

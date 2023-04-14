@@ -2,7 +2,7 @@ import { useAtom } from 'jotai'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useQuestionForm } from '@/common/hook/useQuestionForm'
-import { editedQuestionAtom, questionDescriptionAtom } from '@/store/question-atom'
+import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
 
 import { useDescriptionEditor } from '../../../../common/hook/useDescriptionEditor'
 import { Modal } from '../../Modal'

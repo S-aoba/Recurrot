@@ -8,7 +8,7 @@ import {
   questionDescriptionAtom,
   resetEditedQuestionAtom,
   resetQuestionDescriptionAtom,
-} from '@/store/question-atom'
+} from '@/store/atom'
 
 export const useQuestionForm = () => {
   const router = useRouter()
