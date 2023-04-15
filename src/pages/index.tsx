@@ -104,6 +104,7 @@ const Auth = () => {
             placeholder='example@gmail.com'
             styles={{ input: { border: 'none' } }}
             className='rounded bg-white py-1 shadow-md'
+            disabled={isLoading}
             {...handleForm.getInputProps('email')}
           />
         </div>
@@ -114,6 +115,7 @@ const Auth = () => {
             placeholder='password'
             styles={{ input: { border: 'none' } }}
             className='rounded bg-white py-1 shadow-md'
+            disabled={isLoading}
             {...handleForm.getInputProps('password')}
           />
         </div>
