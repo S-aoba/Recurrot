@@ -9,9 +9,11 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import * as Yup from 'yup'
 
+import { useGetWindowSize } from '@/common/hook/useGetWindowSize'
 import { isLoadingAtom } from '@/store/atom'
 
 const Home = () => {
+  const { windowSize } = useGetWindowSize()
   return (
     <>
       <Head>
@@ -28,7 +30,11 @@ const Home = () => {
           </div>
         </header>
         <div className=' flex flex-col items-center justify-center gap-y-5'>
-          <Image src={'/auth.svg'} alt='authLogo' width={500} height={300} />
+          {windowSize.width < 500 ? (
+            <Image src={'/auth.svg'} alt='authLogo' width={400} height={300} />
+          ) : (
+            <Image src={'/auth.svg'} alt='authLogo' width={500} height={300} />
+          )}
           <Auth />
         </div>
       </div>
@@ -84,7 +90,7 @@ const Auth = () => {
     }
   }
   return (
-    <main className=' flex h-fit w-full max-w-[500px] justify-center'>
+    <main className=' flex h-fit w-full max-w-[500px] justify-center px-5'>
       {error && (
         <Alert my='md' variant='filled' title='Authorization Error' color='red' radius='md'>
           {error}
