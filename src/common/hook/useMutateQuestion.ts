@@ -24,7 +24,7 @@ export const useMutateQuestion = () => {
       if (previousQuestionList) {
         queryClient.setQueriesData(['new-question-list'], [res, ...previousQuestionList])
       }
-      router.push('/dashboard/new-questions')
+      router.push(`/dashboard/questions/${res.id}`)
       resetEditedQuestion()
       resetDescription()
     },
