@@ -4,7 +4,7 @@ import { IconSearch } from '@tabler/icons-react'
 import { useGetWindowSize } from '@/common/hook/useGetWindowSize'
 
 export const HeaderRightLoading = () => {
-  const windowSize = useGetWindowSize()
+  const { windowSize } = useGetWindowSize()
 
   return (
     <div className=' flex w-6/12 items-center justify-end gap-x-4'>

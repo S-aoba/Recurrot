@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useGetWindowSize } from '@/common/hook/useGetWindowSize'
 
 export const Footer = () => {
-  const windowSize = useGetWindowSize()
+  const { windowSize } = useGetWindowSize()
   return (
     <footer className=' flex justify-center border-t border-r-0 border-b-0 border-l-0 border-solid border-gray-200 py-5'>
       <div className=' flex w-full max-w-[1200px] items-center justify-between px-4'>

@@ -20,7 +20,7 @@ export const HeaderRight = () => {
   const { data: headerRight, status: headerRightStatus } = useQueryHeaderRight()
 
   const [isOpen, setIsOpen] = useState(false)
-  const windowSize = useGetWindowSize()
+  const { windowSize } = useGetWindowSize()
 
   const handleOpenSearchBar = () => {
     setIsOpen(!isOpen)
@@ -97,7 +97,7 @@ type LoginUserIconProps = {
 }
 
 const LoginUserIcon: React.FC<LoginUserIconProps> = ({ userIconURL }) => {
-  const windowSize = useGetWindowSize()
+  const { windowSize } = useGetWindowSize()
   const { logoutMutation } = useMutateUser()
   const handleLogout = () => {
     logoutMutation.mutate()
