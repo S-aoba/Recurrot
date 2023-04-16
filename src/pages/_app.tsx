@@ -1,4 +1,5 @@
 import '../../styles/globals.css'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 import { MantineProvider } from '@mantine/core'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
