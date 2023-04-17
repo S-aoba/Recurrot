@@ -31,9 +31,9 @@ const Home = () => {
         </header>
         <div className=' flex flex-col items-center justify-center gap-y-5'>
           {windowSize.width < 500 ? (
-            <Image src={'/auth.svg'} alt='authLogo' width={400} height={300} />
+            <Image src={'/auth.svg'} alt='authLogo' width={400} height={300} priority />
           ) : (
-            <Image src={'/auth.svg'} alt='authLogo' width={500} height={300} />
+            <Image src={'/auth.svg'} alt='authLogo' width={500} height={300} priority />
           )}
           <Auth />
         </div>
