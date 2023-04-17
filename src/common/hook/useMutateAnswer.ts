@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 import { resetAnswerDescriptionAtom } from '@/store/atom'
 
@@ -23,16 +24,23 @@ export const useMutateAnswer = (questionId: string) => {
       if (previousAnswerList) {
         queryClient.setQueriesData(['answer-list'], [res, ...previousAnswerList])
       }
-      resetDescription()
+      router.push(`/dashboard/questions/${questionId}`)
+
       queryClient.invalidateQueries(['answer-list'])
       queryClient.invalidateQueries(['notification-list'])
       queryClient.invalidateQueries(['my-answered-question-list'])
-      router.push(`/dashboard/questions/${questionId}`)
+
+      resetDescription()
+
+      toast.success('回答を投稿しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
-        resetDescription()
         router.push('/')
+
+        resetDescription()
+
+        toast.error('回答の投稿に失敗しました')
       }
     },
   })
@@ -53,14 +61,21 @@ export const useMutateAnswer = (questionId: string) => {
           })
         )
       }
-      queryClient.invalidateQueries(['answer-list'])
-      resetDescription()
       router.push(`/dashboard/questions/${questionId}`)
+
+      queryClient.invalidateQueries(['answer-list'])
+
+      resetDescription()
+
+      toast.success('回答を更新しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
-        resetDescription()
         router.push('/')
+
+        resetDescription()
+
+        toast.error('回答の更新に失敗しました')
       }
     },
   })
@@ -80,15 +95,20 @@ export const useMutateAnswer = (questionId: string) => {
           })
         )
       }
+      router.push(`/dashboard/questions/${questionId}`)
+
       queryClient.invalidateQueries(['answer-list'])
       queryClient.invalidateQueries(['my-answered-question-list'])
+
       resetDescription()
-      router.push(`/dashboard/questions/${questionId}`)
+
+      toast.success('回答を削除しました')
     },
     onError: (err: any) => {
       resetDescription()
       if (err.response.status === 401 || err.response.status === 403) {
         router.push('/')
+        toast.error('回答の削除に失敗しました')
       }
     },
   })
