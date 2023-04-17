@@ -1,16 +1,37 @@
 import { Button, Tooltip } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconArrowLeft } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import Head from 'next/head'
 import Link from 'next/link'
 
+import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
+import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { QuestionForm } from '@/component/ui/Form/Question'
-import { editedQuestionAtom } from '@/store/atom'
+import { Modal } from '@/component/ui/Modal'
+import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
 
 const QuestionEdit = () => {
   const editedQuestion = useAtomValue(editedQuestionAtom)
   const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
+
+  const [description, _] = useAtom(questionDescriptionAtom)
+
+  const { questionEditor } = useDescriptionEditor()
+
+  const { updateQuestionMutation } = useMutateQuestion()
+
+  const handleSubmit = () => {
+    if (questionEditor) {
+      updateQuestionMutation.mutate({
+        id: editedQuestion.id,
+        title: editedQuestion.title,
+        description,
+        hashtags: editedQuestion.hashtags,
+      })
+      questionEditor.commands.setContent('')
+    }
+  }
 
   return (
     <>
@@ -20,6 +41,15 @@ const QuestionEdit = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      <Modal
+        opened={isOpened}
+        onClose={handleClose}
+        onSubmit={handleSubmit}
+        buttonWord={editedQuestion.id === '0' ? '投稿する' : '更新する'}
+        modalTitle={editedQuestion.id === '0' ? 'Recurrotに投稿する' : '質問を更新する'}
+      />
+
       <header className=' fixed z-10 w-full bg-white shadow'>
         <div className='flex h-14 max-h-14 items-center justify-center'>
           <div className=' flex w-full max-w-[900px] items-center justify-between px-6 py-2'>
@@ -36,7 +66,7 @@ const QuestionEdit = () => {
       </header>
       <main className=' flex h-fit min-h-screen flex-1 justify-center bg-[#fafafa] pt-14'>
         <div className=' h-fit w-full max-w-[1200px] px-8'>
-          <QuestionForm isOpened={isOpened} onHandleClose={handleClose} />
+          <QuestionForm />
         </div>
       </main>
     </>
