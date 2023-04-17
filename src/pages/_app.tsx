@@ -34,9 +34,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <MantineProvider withGlobalStyles withNormalizeCSS>
         <JotaiProvider>
+          <ToastContainer />
           {pageProps.layout === 'WrapperLayout' ? (
             <WrapperLayout>
-              <ToastContainer />
               <Component {...pageProps} />
             </WrapperLayout>
           ) : (
