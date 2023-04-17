@@ -60,7 +60,6 @@ const QuestionDetail = () => {
   const handleDeleteQuestion = () => {
     if (question) {
       deleteQuestionMutation.mutate(question.id)
-      handleDeleteQuestionClose()
     }
   }
 
