@@ -4,7 +4,7 @@ export const QuestionDetailLoading = () => {
   return (
     <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 p-5'>
       <div className=' flex w-full max-w-[1200px] flex-col items-center justify-center gap-y-5'>
-        <div className=' w-full border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 bg-white px-3 sm:w-10/12'>
+        <div className=' w-full bg-white px-3 sm:w-10/12'>
           <Skeleton height={30} />
         </div>
         <div className=' w-full border border-solid border-gray-200 p-5 sm:w-9/12'>

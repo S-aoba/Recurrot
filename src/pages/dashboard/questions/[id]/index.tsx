@@ -64,7 +64,7 @@ const QuestionDetail = () => {
     }
   }
 
-  if (questionStatus == 'loading' || currentUserStatus === 'loading') return <QuestionDetailLoading />
+  if (questionStatus === 'loading' || currentUserStatus === 'loading') return <QuestionDetailLoading />
 
   return (
     <>
