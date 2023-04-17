@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/atom'
 
@@ -24,15 +25,17 @@ export const useMutateQuestion = () => {
       if (previousQuestionList) {
         queryClient.setQueriesData(['new-question-list'], [res, ...previousQuestionList])
       }
-      router.push('/dashboard/new-questions')
+      router.push(`/dashboard/questions/${res.id}`)
       resetEditedQuestion()
       resetDescription()
+      toast.success('質問を投稿しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
         router.push('/')
         resetEditedQuestion()
         resetDescription()
+        toast.success('質問の投稿に失敗しました')
       }
     },
   })
@@ -61,12 +64,14 @@ export const useMutateQuestion = () => {
 
       resetEditedQuestion()
       resetDescription()
+      toast.success('質問を更新しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
+        router.push('/')
         resetEditedQuestion()
         resetDescription()
-        router.push('/')
+        toast.success('質問の更新に失敗しました')
       }
     },
   })
@@ -88,10 +93,12 @@ export const useMutateQuestion = () => {
         )
       }
       router.push('/dashboard/new-questions')
+      toast.success('質問を削除しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
         router.push('/')
+        toast.success('質問の削除に失敗しました')
       }
     },
   })
