@@ -6,19 +6,21 @@ import type { SingleQuestion } from '../type'
 
 export const useQuerySingleQuestion = (id: string) => {
   const router = useRouter()
-  const getSingleQuestion = async (id: string) => {
+  const getSingleQuestion = async () => {
     const res = await axios.get<SingleQuestion>(`${process.env.NEXT_PUBLIC_API_URL}/question/${id}`)
     return res.data
   }
   return useQuery<SingleQuestion, Error>({
     queryKey: ['singleQuestion', id],
-    queryFn: () => {
-      return getSingleQuestion(id)
-    },
+    queryFn: getSingleQuestion,
+
     enabled: !!id,
-    staleTime: 10000, //5分
+    staleTime: Infinity,
     onError: (err: any) => {
-      if (err.response.status === 401 || err.response.status === 403) router.push('/')
+      if (err.response.status === 403) {
+        // 403エラーがきたらurlはそのままで404ページに遷移
+        router.push('/404')
+      } else if (err.response.status === 401) return router.push('/')
     },
   })
 }
