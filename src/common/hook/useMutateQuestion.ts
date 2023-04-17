@@ -28,14 +28,14 @@ export const useMutateQuestion = () => {
       router.push(`/dashboard/questions/${res.id}`)
       resetEditedQuestion()
       resetDescription()
-      toast.success('質問を作成しました')
+      toast.success('質問を投稿しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
         router.push('/')
         resetEditedQuestion()
         resetDescription()
-        toast.success('質問を作成に失敗しました')
+        toast.success('質問の投稿に失敗しました')
       }
     },
   })
@@ -71,7 +71,7 @@ export const useMutateQuestion = () => {
         router.push('/')
         resetEditedQuestion()
         resetDescription()
-        toast.success('質問を更新に失敗しました')
+        toast.success('質問の更新に失敗しました')
       }
     },
   })
@@ -98,7 +98,7 @@ export const useMutateQuestion = () => {
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
         router.push('/')
-        toast.success('質問を削除に失敗しました')
+        toast.success('質問の削除に失敗しました')
       }
     },
   })
