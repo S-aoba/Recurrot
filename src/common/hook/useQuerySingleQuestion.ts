@@ -13,7 +13,6 @@ export const useQuerySingleQuestion = (id: string) => {
   return useQuery<SingleQuestion, Error>({
     queryKey: ['singleQuestion', id],
     queryFn: getSingleQuestion,
-
     enabled: !!id,
     staleTime: Infinity,
     onError: (err: any) => {
