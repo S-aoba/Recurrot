@@ -2,6 +2,7 @@ import type { User } from '@prisma/client'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 import type { EditedUpdateMyProfile } from '@/common/type'
 
@@ -20,15 +21,18 @@ export const useMutateMyProfile = () => {
       if (previousUser) {
         queryClient.setQueryData(['my-profile'], res)
       }
+      router.push('/dashboard/my-profile')
 
       // ここでHeaderの右側のプロフィール画像を更新する
       queryClient.invalidateQueries(['header-right'])
 
-      router.push('/dashboard/my-profile')
+      toast.success('プロフィールを更新しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
         router.push('/')
+
+        toast.error('プロフィールの更新に失敗しました')
       }
     },
   })
