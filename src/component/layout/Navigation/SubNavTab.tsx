@@ -16,8 +16,13 @@ type SubNavTabType = {
 }
 
 export const SubNavTab = () => {
-  const { newQuestionsStyle, questionsWaitingAnswerStyle, myQuestionsStyle, myAnswersStyle, myProfileStyle } =
-    useSubNavTabStyle()
+  const {
+    newQuestionsStyle,
+    questionsWaitingAnswerStyle,
+    postedQuestionsStyle,
+    questionsAnsweredStyle,
+    myProfileStyle,
+  } = useSubNavTabStyle()
 
   const SubNavTabItem: SubNavTabType[] = [
     {
@@ -31,14 +36,14 @@ export const SubNavTab = () => {
       className: questionsWaitingAnswerStyle,
     },
     {
-      href: '/dashboard/my-questions',
-      children: '自分の質問',
-      className: myQuestionsStyle,
+      href: '/dashboard/posted-questions',
+      children: '投稿した質問',
+      className: postedQuestionsStyle,
     },
     {
-      href: '/dashboard/my-answers',
-      children: '自分の回答',
-      className: myAnswersStyle,
+      href: '/dashboard/questions-answered',
+      children: '回答した質問',
+      className: questionsAnsweredStyle,
     },
     {
       href: '/dashboard/my-profile',

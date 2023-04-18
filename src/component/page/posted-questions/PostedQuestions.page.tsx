@@ -7,19 +7,19 @@ import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/atom'
 
-import { MyQuestions } from './MyQuestions'
+import { PostedQuestions } from './PostedQuestions'
 
 /**
  * @package
  */
 
-export const MyQuestionsPage = () => {
+export const PostedQuestionsPage = () => {
   const { data: myQuestionList, status: myQuestionListStatus } = useQueryMyQuestionList()
 
   const setNavTab = useSetAtom(navTabAtom)
 
   useEffect(() => {
-    setNavTab({ main: 'questions', sub: 'my-questions' })
+    setNavTab({ main: 'questions', sub: 'posted-questions' })
   }, [setNavTab])
 
   if (myQuestionListStatus === 'loading') return <QuestionLoading />
@@ -32,7 +32,7 @@ export const MyQuestionsPage = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <QuestionLayout>{myQuestionList && <MyQuestions myQuestionList={myQuestionList} />}</QuestionLayout>
+      <QuestionLayout>{myQuestionList && <PostedQuestions myQuestionList={myQuestionList} />}</QuestionLayout>
     </>
   )
 }

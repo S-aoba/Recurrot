@@ -7,19 +7,19 @@ import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/atom'
 
-import { MyAnswers } from './MyAnswers'
+import { QuestionsAnswered } from './QuestionsAnswered'
 
 /**
  * @package
  */
 
-export const MyAnswersPage = () => {
+export const QuestionsAnsweredPage = () => {
   const { data: questions, status: answersStatus } = useQueryMyAnsweredQuestionList()
 
   const setNavTab = useSetAtom(navTabAtom)
 
   useEffect(() => {
-    setNavTab({ main: 'questions', sub: 'my-answers' })
+    setNavTab({ main: 'questions', sub: 'questions_answered' })
   }, [setNavTab])
 
   if (answersStatus === 'loading') return <QuestionLoading />
@@ -32,7 +32,7 @@ export const MyAnswersPage = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <QuestionLayout>{questions && <MyAnswers questions={questions} />}</QuestionLayout>
+      <QuestionLayout>{questions && <QuestionsAnswered questions={questions} />}</QuestionLayout>
     </>
   )
 }

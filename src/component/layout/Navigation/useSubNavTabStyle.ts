@@ -12,18 +12,18 @@ export const useSubNavTabStyle = () => {
 
   let newQuestionsStyle = defaultSubNavTabStyle
   let questionsWaitingAnswerStyle = defaultSubNavTabStyle
-  let myQuestionsStyle = defaultSubNavTabStyle
-  let myAnswersStyle = defaultSubNavTabStyle
+  let postedQuestionsStyle = defaultSubNavTabStyle
+  let questionsAnsweredStyle = defaultSubNavTabStyle
   let myProfileStyle = defaultSubNavTabStyle
 
   if (navTab.sub === 'new-questions') {
     newQuestionsStyle = selectedSubNavTabStyle
   } else if (navTab.sub === 'question-waiting-answers') {
     questionsWaitingAnswerStyle = selectedSubNavTabStyle
-  } else if (navTab.sub === 'my-questions') {
-    myQuestionsStyle = selectedSubNavTabStyle
-  } else if (navTab.sub === 'my-answers') {
-    myAnswersStyle = selectedSubNavTabStyle
+  } else if (navTab.sub === 'posted-questions') {
+    postedQuestionsStyle = selectedSubNavTabStyle
+  } else if (navTab.sub === 'questions_answered') {
+    questionsAnsweredStyle = selectedSubNavTabStyle
   } else if (navTab.sub === 'my-profile') {
     myProfileStyle = selectedSubNavTabStyle
   }
@@ -31,8 +31,8 @@ export const useSubNavTabStyle = () => {
   return {
     newQuestionsStyle,
     questionsWaitingAnswerStyle,
-    myQuestionsStyle,
-    myAnswersStyle,
+    postedQuestionsStyle,
+    questionsAnsweredStyle,
     myProfileStyle,
   }
 }

@@ -7,11 +7,11 @@ import { Card } from '@/component/ui/Card'
  * @package
  */
 
-type MyQuestionsProps = {
+type PostedQuestionsProps = {
   myQuestionList: MyQuestion[]
 }
 
-export const MyQuestions: NextPage<MyQuestionsProps> = ({ myQuestionList }) => {
+export const PostedQuestions: NextPage<PostedQuestionsProps> = ({ myQuestionList }) => {
   return (
     <>
       {myQuestionList.map((question: MyQuestion) => {
