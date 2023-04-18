@@ -28,7 +28,7 @@ export const useMutateAnswer = (questionId: string) => {
 
       queryClient.invalidateQueries(['answer-list'])
       queryClient.invalidateQueries(['notification-list'])
-      queryClient.invalidateQueries(['my-answered-question-list'])
+      queryClient.invalidateQueries(['questionList-answered'])
 
       resetDescription()
 
@@ -98,7 +98,7 @@ export const useMutateAnswer = (questionId: string) => {
       router.push(`/dashboard/questions/${questionId}`)
 
       queryClient.invalidateQueries(['answer-list'])
-      queryClient.invalidateQueries(['my-answered-question-list'])
+      queryClient.invalidateQueries(['questionList-answered'])
 
       resetDescription()
 

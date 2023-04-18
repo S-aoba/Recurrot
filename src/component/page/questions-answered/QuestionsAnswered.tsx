@@ -8,13 +8,13 @@ import { Card } from '@/component/ui/Card'
  */
 
 type QuestionsAnsweredProps = {
-  questions: MyAnswer[]
+  questionList: MyAnswer[]
 }
 
-export const QuestionsAnswered: NextPage<QuestionsAnsweredProps> = ({ questions }) => {
+export const QuestionsAnswered: NextPage<QuestionsAnsweredProps> = ({ questionList }) => {
   return (
     <>
-      {questions.map((question: MyAnswer) => {
+      {questionList.map((question: MyAnswer) => {
         return <Card key={question.title} question={question} />
       })}
     </>

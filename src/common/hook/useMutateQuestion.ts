@@ -60,7 +60,7 @@ export const useMutateQuestion = () => {
 
       queryClient.invalidateQueries(['singleQuestion', res.id])
       queryClient.invalidateQueries(['my-question-list'])
-      queryClient.invalidateQueries(['my-answered-question-list'])
+      queryClient.invalidateQueries(['questionList-answered'])
 
       resetEditedQuestion()
       resetDescription()

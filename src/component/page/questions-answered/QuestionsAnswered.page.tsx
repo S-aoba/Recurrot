@@ -2,7 +2,7 @@ import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import { useQueryMyAnsweredQuestionList } from '@/common/hook/useQueryMyAnsweredQuestionList'
+import { useQueryQuestionListAnswered } from '@/common/hook/useQueryQuestionListAnswered'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/atom'
@@ -14,7 +14,7 @@ import { QuestionsAnswered } from './QuestionsAnswered'
  */
 
 export const QuestionsAnsweredPage = () => {
-  const { data: questions, status: answersStatus } = useQueryMyAnsweredQuestionList()
+  const { data: questionList, status: questionListStatus } = useQueryQuestionListAnswered()
 
   const setNavTab = useSetAtom(navTabAtom)
 
@@ -22,7 +22,7 @@ export const QuestionsAnsweredPage = () => {
     setNavTab({ main: 'questions', sub: 'questions_answered' })
   }, [setNavTab])
 
-  if (answersStatus === 'loading') return <QuestionLoading />
+  if (questionListStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
@@ -32,7 +32,7 @@ export const QuestionsAnsweredPage = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <QuestionLayout>{questions && <QuestionsAnswered questions={questions} />}</QuestionLayout>
+      <QuestionLayout>{questionList && <QuestionsAnswered questionList={questionList} />}</QuestionLayout>
     </>
   )
 }
