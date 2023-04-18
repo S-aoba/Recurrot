@@ -8,7 +8,7 @@ import { useQueryMyProfile } from '@/component/ui/ProfileCard/hook/useQueryMyPro
 import { navTabAtom } from '@/store/atom'
 
 const MyProfile = () => {
-  const { data: user, status: UserStatus } = useQueryMyProfile()
+  const { data: myProfile, status: UserStatus } = useQueryMyProfile()
 
   const setNavTab = useSetAtom(navTabAtom)
 
@@ -29,7 +29,7 @@ const MyProfile = () => {
       <main className=' flex h-fit flex-1 justify-center bg-[#fafafa]'>
         <div className=' flex w-full max-w-[1200px] justify-center px-8 '>
           <div className=' flex h-fit w-full items-center justify-center py-5 '>
-            {user && <ProfileCard user={user} />}
+            {myProfile && <ProfileCard myProfile={myProfile} />}
           </div>
         </div>
       </main>

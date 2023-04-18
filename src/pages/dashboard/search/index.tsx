@@ -30,7 +30,7 @@ const SearchQuestions = () => {
     setNavTab({ main: null, sub: null })
   }, [setNavTab])
 
-  if (searchQuestionListStatus == 'loading') return <QuestionLoading />
+  if (searchQuestionListStatus === 'loading') return <QuestionLoading />
 
   return (
     <>

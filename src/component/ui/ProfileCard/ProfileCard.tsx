@@ -15,22 +15,22 @@ import { useProfile } from './hook/useProfile'
  */
 
 type ProfileCardProps = {
-  user: MyProfile
+  myProfile: MyProfile
 }
 
-export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
+export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
   const [isProfileOpened, { open: handleProfileOpen, close: handleProfileClose }] = useDisclosure(false)
   const [isDeleteUserOpened, { open: handleDeleteUserOpen, close: handleDeleteUserClose }] = useDisclosure(false)
 
   const { updateMyProfileMutation } = useMutateMyProfile()
 
   const [editedMyProfile, setEditedMyProfile] = useState<EditedUpdateMyProfile>({
-    userName: user.userName == null ? '' : user.userName,
-    selfIntroduction: user.selfIntroduction == null ? '' : user.selfIntroduction,
-    profileImage: user.profileImage == null ? '' : user.profileImage,
-    twitterUrl: user.twitterUrl == null ? '' : user.twitterUrl,
-    githubUrl: user.githubUrl == null ? '' : user.githubUrl,
-    websiteUrl: user.websiteUrl == null ? '' : user.websiteUrl,
+    userName: myProfile.userName == null ? '' : myProfile.userName,
+    selfIntroduction: myProfile.selfIntroduction == null ? '' : myProfile.selfIntroduction,
+    profileImage: myProfile.profileImage == null ? '' : myProfile.profileImage,
+    twitterUrl: myProfile.twitterUrl == null ? '' : myProfile.twitterUrl,
+    githubUrl: myProfile.githubUrl == null ? '' : myProfile.githubUrl,
+    websiteUrl: myProfile.websiteUrl == null ? '' : myProfile.websiteUrl,
   })
 
   const { handleSetProfileItem, handleSubmit, handleDeleteUser } = useProfile(
@@ -38,15 +38,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
     setEditedMyProfile,
     handleProfileClose,
     handleDeleteUserClose,
-    user.id,
-    user.profileImage
+    myProfile.id,
+    myProfile.profileImage
   )
 
   // firebase storageに画像を保存する
   const handleUploadImage = async (e: File | null) => {
     if (e == null) return
     const file = e
-    const storageRef = ref(storage, `images/${user.id}`)
+    const storageRef = ref(storage, `images/${myProfile.id}`)
     uploadBytes(storageRef, file).then((snapshot) => {
       // アップロードが完了したら、画像のURLを取得し、updateUserMutation呼び出し更新する
       getDownloadURL(snapshot.ref).then((downloadURL) => {
@@ -75,10 +75,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ user }) => {
         modalTitle='本当に削除してもよろしいですか？'
       />
 
-      {user && (
+      {myProfile && (
         <div className=' w-full max-w-[700px] rounded-md bg-white shadow-lg'>
           <div className=' flex flex-col items-center justify-center gap-y-5 rounded-t p-5'>
-            <Avatar src={user.profileImage} size={'lg'} radius={'xl'} variant={'outline'} />
+            <Avatar src={myProfile.profileImage} size={'lg'} radius={'xl'} variant={'outline'} />
             <FileButton onChange={handleUploadImage} accept='image/png,image/jpeg'>
               {(props) => {
                 return (
