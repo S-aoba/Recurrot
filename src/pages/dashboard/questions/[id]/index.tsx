@@ -14,7 +14,7 @@ import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { AnswerList } from '@/component/ui/Answer'
 import { DetailDescription } from '@/component/ui/DetailDescription'
 import { CreateAnswerForm } from '@/component/ui/Form/Answer'
-import { QuestionDetailLoading } from '@/component/ui/Loading'
+import { QuestionLoading } from '@/component/ui/Loading'
 import { Modal } from '@/component/ui/Modal'
 import { editedQuestionAtom, navTabAtom, questionDescriptionAtom } from '@/store/atom'
 
@@ -63,7 +63,7 @@ const QuestionDetail = () => {
     }
   }
 
-  if (questionStatus === 'loading' || currentUserStatus === 'loading') return <QuestionDetailLoading />
+  if (questionStatus === 'loading' || currentUserStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
