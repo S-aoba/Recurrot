@@ -59,7 +59,7 @@ export const useMutateQuestion = () => {
       router.push(`/dashboard/questions/${res.id}`)
 
       queryClient.invalidateQueries(['singleQuestion', res.id])
-      queryClient.invalidateQueries(['my-question-list'])
+      queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
 
       resetEditedQuestion()

@@ -2,7 +2,7 @@ import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import { useQueryPostedQuestionList } from '@/common/hook/useQueryMyQuestionList'
+import { useQueryPostedQuestionList } from '@/common/hook/useQueryPostedQuestionList'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/atom'

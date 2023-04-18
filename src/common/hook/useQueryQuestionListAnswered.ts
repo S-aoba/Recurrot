@@ -7,7 +7,7 @@ import type { MyAnswer } from '../type'
 export const useQueryQuestionListAnswered = () => {
   const router = useRouter()
   const getQuestionListAnswered = async () => {
-    const res = await axios.get<MyAnswer[]>(`${process.env.NEXT_PUBLIC_API_URL}/answer/my-answer`)
+    const res = await axios.get<MyAnswer[]>(`${process.env.NEXT_PUBLIC_API_URL}/answer/question-list-answered`)
     return res.data
   }
   return useQuery<MyAnswer[], Error>({
