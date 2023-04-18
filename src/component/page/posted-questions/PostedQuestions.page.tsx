@@ -2,7 +2,7 @@ import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-import { useQueryMyQuestionList } from '@/common/hook/useQueryMyQuestionList'
+import { useQueryPostedQuestionList } from '@/common/hook/useQueryMyQuestionList'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { navTabAtom } from '@/store/atom'
@@ -14,7 +14,7 @@ import { PostedQuestions } from './PostedQuestions'
  */
 
 export const PostedQuestionsPage = () => {
-  const { data: myQuestionList, status: myQuestionListStatus } = useQueryMyQuestionList()
+  const { data: postedQuestionList, status: postedQuestionListStatus } = useQueryPostedQuestionList()
 
   const setNavTab = useSetAtom(navTabAtom)
 
@@ -22,7 +22,7 @@ export const PostedQuestionsPage = () => {
     setNavTab({ main: 'questions', sub: 'posted-questions' })
   }, [setNavTab])
 
-  if (myQuestionListStatus === 'loading') return <QuestionLoading />
+  if (postedQuestionListStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
@@ -32,7 +32,9 @@ export const PostedQuestionsPage = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <QuestionLayout>{myQuestionList && <PostedQuestions myQuestionList={myQuestionList} />}</QuestionLayout>
+      <QuestionLayout>
+        {postedQuestionList && <PostedQuestions postedQuestionList={postedQuestionList} />}
+      </QuestionLayout>
     </>
   )
 }

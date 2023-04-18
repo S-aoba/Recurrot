@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 
 import type { MyQuestion } from '../type'
 
-export const useQueryMyQuestionList = () => {
+export const useQueryPostedQuestionList = () => {
   const router = useRouter()
-  const getMyQuestionList = async () => {
+  const getPostedQuestionList = async () => {
     const res = await axios.get<MyQuestion[]>(`${process.env.NEXT_PUBLIC_API_URL}/question/my-question-list`, {
       withCredentials: true,
     })
@@ -14,7 +14,7 @@ export const useQueryMyQuestionList = () => {
   }
   return useQuery<MyQuestion[], Error>({
     queryKey: ['my-question-list'],
-    queryFn: getMyQuestionList,
+    queryFn: getPostedQuestionList,
     staleTime: Infinity,
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) router.push('/')
