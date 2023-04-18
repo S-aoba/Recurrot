@@ -15,7 +15,7 @@ export const QuestionsAnswered: NextPage<QuestionsAnsweredProps> = ({ questionLi
   return (
     <>
       {questionList.map((question: MyAnswer) => {
-        return <Card key={question.title} question={question} />
+        return <Card key={question.id} question={question} />
       })}
     </>
   )
