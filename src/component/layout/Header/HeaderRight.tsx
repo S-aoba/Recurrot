@@ -35,7 +35,13 @@ export const HeaderRight = () => {
       ) : (
         <div className=' flex w-full justify-end'>
           <ActionIcon className=' hover:transform-none hover:bg-white'>
-            <IconSearch color='black' size={25} className=' hover:cursor-pointer' onClick={handleOpenSearchBar} />
+            <IconSearch
+              color='gray'
+              size={25}
+              stroke={1.5}
+              className=' hover:cursor-pointer'
+              onClick={handleOpenSearchBar}
+            />
           </ActionIcon>
           {isOpen && (
             <SearchQuestionForm className=' absolute right-4 top-[3.6rem] z-10 w-11/12' setIsOpen={setIsOpen} />
@@ -106,7 +112,12 @@ const LoginUserIcon: React.FC<LoginUserIconProps> = ({ userIconURL }) => {
   return (
     <Menu>
       <Menu.Target>
-        <Avatar src={userIconURL} color='cyan' radius='xl' className=' hover: cursor-pointer' />
+        <Avatar
+          src={userIconURL}
+          color='cyan'
+          radius='xl'
+          className=' hover: cursor-pointer border border-solid border-gray-200 shadow-sm'
+        />
       </Menu.Target>
       <Menu.Dropdown>
         {windowSize.width <= 770 && (

@@ -27,8 +27,8 @@ export const Notification = () => {
               color='gray'
               size={30}
               fill='white'
-              stroke={0.5}
-              className=' hover:cursor-pointer hover:fill-blue-500 hover:stroke-blue-500'
+              stroke={1.5}
+              className=' hover:cursor-pointer hover:stroke-blue-500'
             />
           </ActionIcon>
         </Menu.Target>
