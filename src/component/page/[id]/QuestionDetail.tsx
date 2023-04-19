@@ -2,7 +2,7 @@ import { Avatar } from '@mantine/core'
 import type { NextPage } from 'next'
 
 import type { CurrentUser, SingleQuestion } from '@/common/type'
-import { DetailDescription } from '@/component/ui/DetailDescription'
+import { DetailDescription } from '@/component/page/[id]/DetailDescription'
 import { CreateAnswerForm } from '@/component/ui/Form/Answer'
 
 import { AnswerList } from './AnswerList'
