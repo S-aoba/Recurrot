@@ -10,10 +10,10 @@ import { useQueryAnswerList } from '@/common/hook/useQueryAnswerList'
 import type { AnswerType } from '@/common/type'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/atom'
 
-import { DetailDescription } from '../DetailDescription'
-import { UpdateAnswerForm } from '../Form/Answer'
-import { AnswerLoading } from '../Loading'
-import { Modal } from '../Modal'
+import { DetailDescription } from '../../ui/DetailDescription'
+import { UpdateAnswerForm } from '../../ui/Form/Answer'
+import { AnswerLoading } from '../../ui/Loading'
+import { Modal } from '../../ui/Modal'
 
 /**
  * @package

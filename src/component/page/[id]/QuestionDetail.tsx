@@ -2,10 +2,10 @@ import { Avatar } from '@mantine/core'
 import type { NextPage } from 'next'
 
 import type { CurrentUser, SingleQuestion } from '@/common/type'
-import { AnswerList } from '@/component/ui/Answer'
 import { DetailDescription } from '@/component/ui/DetailDescription'
 import { CreateAnswerForm } from '@/component/ui/Form/Answer'
 
+import { AnswerList } from './AnswerList'
 import { HashtagList } from './HashTagList'
 import { QuestionMenu } from './QuestionMenu'
 
