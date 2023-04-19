@@ -19,8 +19,8 @@ export const Edit: NextPage<EditProps> = ({ onClick: handleOpen }) => {
       <header className=' fixed z-10 w-full bg-white shadow'>
         <div className='flex h-14 max-h-14 items-center justify-center'>
           <div className=' flex w-full max-w-[900px] items-center justify-between px-6 py-2'>
-            <Tooltip label='自分の質問一覧へ'>
-              <Link href={'/dashboard/my-questions'} className=' text-black'>
+            <Tooltip label='投稿した質問一覧へ'>
+              <Link href={'/dashboard/posted-questions'} className=' text-black'>
                 <IconArrowLeft size={30} />
               </Link>
             </Tooltip>
