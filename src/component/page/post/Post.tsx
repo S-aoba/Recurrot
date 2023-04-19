@@ -3,7 +3,7 @@ import { IconArrowLeft } from '@tabler/icons-react'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 
-import { QuestionForm } from '@/component/ui/Form/Question'
+import { CreateForm } from '@/component/ui/Form/Question'
 
 /**
  * @package
@@ -44,7 +44,7 @@ export const Post: NextPage<PostProps> = ({
       </header>
       <main className=' flex h-fit min-h-screen flex-1 justify-center bg-[#fafafa] pt-14'>
         <div className=' h-fit w-full max-w-[1200px] px-8'>
-          <QuestionForm />
+          <CreateForm />
         </div>
       </main>
     </>

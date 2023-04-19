@@ -12,7 +12,7 @@ import { Title } from './Title'
  * @package
  */
 
-export const QuestionForm = () => {
+export const CreateForm = () => {
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
 
   const { questionEditor } = useDescriptionEditor()

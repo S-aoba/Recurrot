@@ -1,2 +1,2 @@
-export { QuestionForm } from './QuestionForm'
+export { CreateForm } from './CreateForm'
 export { UpdateForm } from './UpdateForm'
