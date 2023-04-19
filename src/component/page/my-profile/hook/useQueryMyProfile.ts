@@ -4,6 +4,10 @@ import { useRouter } from 'next/router'
 
 import type { MyProfile } from '@/common/type'
 
+/**
+ * @package
+ */
+
 export const useQueryMyProfile = () => {
   const router = useRouter()
   const getMYProfile = async () => {

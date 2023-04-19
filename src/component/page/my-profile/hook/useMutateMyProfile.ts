@@ -6,6 +6,10 @@ import { toast } from 'react-toastify'
 
 import type { EditedUpdateMyProfile } from '@/common/type'
 
+/**
+ * @package
+ */
+
 export const useMutateMyProfile = () => {
   const queryClient = useQueryClient()
   const router = useRouter()

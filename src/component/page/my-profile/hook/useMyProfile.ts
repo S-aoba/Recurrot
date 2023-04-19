@@ -6,7 +6,11 @@ import { storage } from '@/firebase/config'
 
 import { useMutateMyProfile } from './useMutateMyProfile'
 
-export const useProfile = (
+/**
+ * @package
+ */
+
+export const useMyProfile = (
   editedMyProfile: EditedUpdateMyProfile,
   setEditedMyProfile: React.Dispatch<React.SetStateAction<EditedUpdateMyProfile>>,
   handleProfileClose: () => void,

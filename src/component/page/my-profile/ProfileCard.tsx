@@ -6,9 +6,8 @@ import { storage } from 'src/firebase/config'
 
 import type { EditedUpdateMyProfile, MyProfile } from '@/common/type'
 
-import { Modal } from '../Modal'
-import { useMutateMyProfile } from './hook/useMutateMyProfile'
-import { useProfile } from './hook/useProfile'
+import { Modal } from '../../ui/Modal'
+import { useMutateMyProfile, useMyProfile } from './hook'
 
 /**
  * @package
@@ -33,7 +32,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
     websiteUrl: myProfile.websiteUrl == null ? '' : myProfile.websiteUrl,
   })
 
-  const { handleSetProfileItem, handleSubmit, handleDeleteUser } = useProfile(
+  const { handleSetProfileItem, handleSubmit, handleDeleteUser } = useMyProfile(
     editedMyProfile,
     setEditedMyProfile,
     handleProfileClose,

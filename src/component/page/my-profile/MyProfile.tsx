@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 
 import type { MyProfile as MyProfileType } from '@/common/type'
-import { ProfileCard } from '@/component/ui/ProfileCard'
+
+import { ProfileCard } from './ProfileCard'
 
 type MyProfileProps = {
   myProfile: MyProfileType

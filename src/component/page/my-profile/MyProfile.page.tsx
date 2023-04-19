@@ -3,9 +3,9 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { ProfileLoading } from '@/component/ui/Loading'
-import { useQueryMyProfile } from '@/component/ui/ProfileCard/hook/useQueryMyProfile'
 import { navTabAtom } from '@/store/atom'
 
+import { useQueryMyProfile } from './hook'
 import { MyProfile } from './MyProfile'
 
 export const MyProfilePage = () => {
