@@ -1,10 +1,10 @@
-import { useDisclosure } from '@mantine/hooks'
 import { useAtom, useAtomValue } from 'jotai'
 import Head from 'next/head'
+import type { FormEvent } from 'react'
+import { useState } from 'react'
 
 import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
-import { Modal } from '@/component/ui/Modal'
 import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
 
 import { Edit } from './Edit'
@@ -15,7 +15,8 @@ import { Edit } from './Edit'
 
 export const EditPage = () => {
   const editedQuestion = useAtomValue(editedQuestionAtom)
-  const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
+
+  const [isLoading, setIsLoading] = useState(false)
 
   const [description, _] = useAtom(questionDescriptionAtom)
 
@@ -23,15 +24,20 @@ export const EditPage = () => {
 
   const { updateQuestionMutation } = useMutateQuestion()
 
-  const handleSubmit = () => {
-    if (questionEditor) {
-      updateQuestionMutation.mutate({
-        id: editedQuestion.id,
-        title: editedQuestion.title,
-        description,
-        hashtags: editedQuestion.hashtags,
-      })
-      questionEditor.commands.setContent('')
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (questionEditor && editedQuestion.id !== '0') {
+      // 1秒後にupdateQuestionMutationを実行する
+      setTimeout(() => {
+        updateQuestionMutation.mutate({
+          id: editedQuestion.id,
+          title: editedQuestion.title,
+          description,
+          hashtags: editedQuestion.hashtags,
+        })
+        questionEditor.commands.setContent('')
+      }, 1000)
+      setIsLoading(true)
     }
   }
   return (
@@ -43,14 +49,7 @@ export const EditPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Modal
-        opened={isOpened}
-        onClose={handleClose}
-        onSubmit={handleSubmit}
-        buttonWord={editedQuestion.id === '0' ? '投稿する' : '更新する'}
-        modalTitle={editedQuestion.id === '0' ? 'Recurrotに投稿する' : '質問を更新する'}
-      />
-      <Edit onClick={handleOpen} />
+      <Edit onSubmit={handleSubmit} isLoading={isLoading} questionId={editedQuestion.id} />
     </>
   )
 }
