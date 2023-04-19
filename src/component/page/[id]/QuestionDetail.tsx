@@ -1,13 +1,13 @@
-import { ActionIcon, Avatar, Menu, Tooltip } from '@mantine/core'
-import { IconChevronDown, IconEdit, IconTrash } from '@tabler/icons-react'
+import { Avatar } from '@mantine/core'
 import type { NextPage } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 
 import type { CurrentUser, SingleQuestion } from '@/common/type'
 import { AnswerList } from '@/component/ui/Answer'
 import { DetailDescription } from '@/component/ui/DetailDescription'
 import { CreateAnswerForm } from '@/component/ui/Form/Answer'
+
+import { HashtagList } from './HashTagList'
+import { QuestionMenu } from './QuestionMenu'
 
 /**
  * @package
@@ -53,36 +53,13 @@ export const QuestionDetail: NextPage<QuestionDetailProps> = ({
                 </div>
               </div>
               {currentUser.id === question.userId && (
-                <div className=' flex items-center justify-center gap-x-2'>
-                  <Tooltip label='編集する'>
-                    <Link
-                      href={'/dashboard/questions/edit'}
-                      type='button'
-                      className=' flex justify-center text-black no-underline'
-                    >
-                      <IconEdit size={23} className=' hover:cursor-pointer' onClick={handleSetQuestion} />
-                    </Link>
-                  </Tooltip>
-                  <Menu>
-                    <Menu.Target>
-                      <ActionIcon className=' hover:transform-none'>
-                        <IconChevronDown color='black' size={23} className=' hover:cursor-pointer' />
-                      </ActionIcon>
-                    </Menu.Target>
-                    <Menu.Dropdown>
-                      <Menu.Item onClick={handleDeleteQuestionOpen} icon={<IconTrash size={14} />}>
-                        削除する
-                      </Menu.Item>
-                    </Menu.Dropdown>
-                  </Menu>
-                </div>
+                <QuestionMenu onSetQuestion={handleSetQuestion} onDeleteQuestionOpen={handleDeleteQuestionOpen} />
               )}
             </div>
             <div className=' flex gap-x-5 py-5'>
-              {question.hashtags &&
-                question.hashtags.map((hashtag) => {
-                  return <HashtagList key={hashtag} hashtag={hashtag} />
-                })}
+              {question.hashtags.map((hashtag: string) => {
+                return <HashtagList key={hashtag} hashtag={hashtag} />
+              })}
             </div>
             <DetailDescription description={question.description} />
           </div>
@@ -98,28 +75,5 @@ export const QuestionDetail: NextPage<QuestionDetailProps> = ({
         </div>
       </div>
     </main>
-  )
-}
-
-type HashtagListProps = {
-  hashtag: string
-}
-
-const HashtagList: React.FC<HashtagListProps> = ({ hashtag }) => {
-  return (
-    <Link
-      href={'/dashboard/new-questions'}
-      key={hashtag}
-      className=' flex items-center rounded-3xl border border-solid border-gray-200 px-3 py-1 text-black no-underline'
-    >
-      <Image
-        src={`/langIcon/${hashtag}.svg`}
-        width={20}
-        height={20}
-        alt={hashtag == 'csharp' ? 'C#' : `${hashtag}`}
-        className='mr-2 rounded-full'
-      />
-      {hashtag == 'csharp' ? 'C#' : hashtag}
-    </Link>
   )
 }
