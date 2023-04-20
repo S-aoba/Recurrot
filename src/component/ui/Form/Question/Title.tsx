@@ -23,6 +23,7 @@ export const Title: React.FC<TitleProps> = ({ editedQuestion, setEditedQuestion 
       size='md'
       withAsterisk
       className=' w-9/12'
+      maxLength={70}
       onChange={handleChangeTitle}
       styles={{ input: { border: 'none', backgroundColor: '#fafafa', height: '70px', fontSize: '2rem' } }}
     />
