@@ -1,5 +1,4 @@
 import { ActionIcon, Avatar, Menu, Tooltip } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
 import { IconChevronDown, IconEdit, IconTrash } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import type { NextPage } from 'next'
@@ -12,7 +11,6 @@ import { answerDescriptionAtom, editedAnswerAtom } from '@/store/atom'
 
 import { UpdateAnswerForm } from '../../ui/Form/Answer'
 import { AnswerLoading } from '../../ui/Loading'
-import { Modal } from '../../ui/Modal'
 import { DetailDescription } from './DetailDescription'
 
 /**
@@ -69,8 +67,6 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
   const month = answer.createdAt.toString().slice(5, 7)
   const day = answer.createdAt.toString().slice(8, 10)
 
-  const [isDeleteAnswerOpened, { open: handleDeleteAnswerOpen, close: handleDeleteAnswerClose }] = useDisclosure(false)
-
   const [isEdit, setIsEdit] = useState(false)
   const [_, setDescription] = useAtom(answerDescriptionAtom)
   const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
@@ -86,22 +82,11 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
   }
 
   const handleDeleteAnswer = () => {
-    if (answer) {
-      deleteAnswerMutation.mutate(answer.id)
-      handleDeleteAnswerClose()
-    }
+    deleteAnswerMutation.mutate(answer.id)
   }
 
   return (
     <>
-      <Modal
-        opened={isDeleteAnswerOpened}
-        onClose={handleDeleteAnswerClose}
-        onSubmit={handleDeleteAnswer}
-        buttonWord='削除する'
-        modalTitle='本当に削除してもよろしいですか？'
-      />
-
       <div className=' w-full rounded-md bg-white p-5 shadow sm:w-9/12'>
         <div className=' py-5'>
           <div className=' flex items-center justify-between pb-2'>
@@ -128,7 +113,7 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
                     </ActionIcon>
                   </Menu.Target>
                   <Menu.Dropdown>
-                    <Menu.Item onClick={handleDeleteAnswerOpen} icon={<IconTrash size={14} />}>
+                    <Menu.Item onClick={handleDeleteAnswer} icon={<IconTrash size={14} />}>
                       削除する
                     </Menu.Item>
                   </Menu.Dropdown>
