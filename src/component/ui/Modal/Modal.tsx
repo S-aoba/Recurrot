@@ -6,6 +6,7 @@ type ModalProps = {
   buttonWord: string
   onSubmit: () => void
   modalTitle?: string
+  description: string
 }
 
 /**
@@ -18,6 +19,7 @@ export const CustomModal: React.FC<ModalProps> = ({
   buttonWord,
   onSubmit: handleSubmit,
   modalTitle,
+  description,
 }) => {
   return (
     <Modal opened={isOpened} onClose={handleClose} centered withCloseButton={false}>
@@ -27,10 +29,7 @@ export const CustomModal: React.FC<ModalProps> = ({
         </div>
         <div className=' mb-4 border-b border-r-0 border-t-0 border-l-0 border-solid border-gray-200'>
           <div className=' mb-4 rounded-md bg-gray-100 p-3'>
-            <p>
-              コミュニティガイドライン をご確認ください みんながより良い体験をするためのマナーについて書かれています。
-              ご意見やご要望は Recurrot Discussions へお願いします。
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: description }}></div>
           </div>
         </div>
         <div className=' flex w-full justify-end gap-x-3'>

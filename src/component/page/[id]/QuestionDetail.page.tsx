@@ -78,6 +78,7 @@ export const QuestionDetailPage = () => {
         onSubmit={handleDeleteQuestion}
         buttonWord='削除する'
         modalTitle='本当に削除してもよろしいですか？'
+        description='この操作は取り消せません。ご注意ください。'
       />
       {question && currentUser && year && month && day && (
         <QuestionDetail

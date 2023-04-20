@@ -56,6 +56,12 @@ export const PostPage = () => {
         onSubmit={handleSubmit}
         buttonWord={editedQuestion.id === '0' ? '投稿する' : '更新する'}
         modalTitle={editedQuestion.id === '0' ? 'Recurrotに投稿する' : '質問を更新する'}
+        description='
+        <p>
+          コミュニティガイドライン をご確認ください みんながより良い体験をするためのマナーについて書かれています。
+          <br />ご意見やご要望は Recurrot Discussions へお願いします。
+        </p>
+            '
       />
       <Post onHandleOpen={handleOpen} isQuestionReady={isQuestionReady} onHandleClick={handleOnClick} />
     </>
