@@ -1,4 +1,5 @@
 import { deleteObject, ref } from 'firebase/storage'
+import { useState } from 'react'
 
 import { useMutateUser } from '@/common/hook/useMutateUser'
 import type { EditedUpdateMyProfile } from '@/common/type'
@@ -13,11 +14,12 @@ import { useMutateMyProfile } from './useMutateMyProfile'
 export const useMyProfile = (
   editedMyProfile: EditedUpdateMyProfile,
   setEditedMyProfile: React.Dispatch<React.SetStateAction<EditedUpdateMyProfile>>,
-  handleProfileClose: () => void,
   handleDeleteUserClose: () => void,
   userId: string,
   profileImage: string | null
 ) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const { updateMyProfileMutation } = useMutateMyProfile()
 
   const { deleteUserMutation } = useMutateUser()
@@ -28,8 +30,12 @@ export const useMyProfile = (
   }
 
   const handleSubmit = () => {
-    updateMyProfileMutation.mutate(editedMyProfile)
-    handleProfileClose()
+    // 1秒後にupdateMyProfileMutationを実行
+    setIsLoading(true)
+    setTimeout(() => {
+      updateMyProfileMutation.mutate(editedMyProfile)
+      setIsLoading(false)
+    }, 1000)
   }
 
   const handleDeleteUser = async () => {
@@ -41,5 +47,5 @@ export const useMyProfile = (
     handleDeleteUserClose()
   }
 
-  return { handleSetProfileItem, handleSubmit, handleDeleteUser }
+  return { handleSetProfileItem, handleSubmit, handleDeleteUser, isLoading }
 }

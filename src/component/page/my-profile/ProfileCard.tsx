@@ -18,7 +18,6 @@ type ProfileCardProps = {
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
-  const [isProfileOpened, { open: handleProfileOpen, close: handleProfileClose }] = useDisclosure(false)
   const [isDeleteUserOpened, { open: handleDeleteUserOpen, close: handleDeleteUserClose }] = useDisclosure(false)
 
   const { updateMyProfileMutation } = useMutateMyProfile()
@@ -32,10 +31,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
     websiteUrl: myProfile.websiteUrl == null ? '' : myProfile.websiteUrl,
   })
 
-  const { handleSetProfileItem, handleSubmit, handleDeleteUser } = useMyProfile(
+  const { handleSetProfileItem, handleSubmit, handleDeleteUser, isLoading } = useMyProfile(
     editedMyProfile,
     setEditedMyProfile,
-    handleProfileClose,
     handleDeleteUserClose,
     myProfile.id,
     myProfile.profileImage
@@ -58,14 +56,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
 
   return (
     <>
-      <Modal
-        opened={isProfileOpened}
-        onClose={handleProfileClose}
-        onSubmit={handleSubmit}
-        buttonWord='変更する'
-        modalTitle='プロフィールを変更する'
-      />
-
       <Modal
         opened={isDeleteUserOpened}
         onClose={handleDeleteUserClose}
@@ -137,8 +127,14 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                 onChange={handleSetProfileItem}
               />
               <div className=' flex w-full justify-between'>
-                <Button color='blue' type='button' onClick={handleProfileOpen} className=' hover:transform-none'>
-                  変更する
+                <Button
+                  color='blue'
+                  type='button'
+                  onClick={handleSubmit}
+                  className=' hover:transform-none'
+                  loading={isLoading}
+                >
+                  {isLoading ? '更新中' : '更新する'}
                 </Button>
                 <Button color='red' type='button' className=' hover:transform-none' onClick={handleDeleteUserOpen}>
                   ユーザーを削除する
