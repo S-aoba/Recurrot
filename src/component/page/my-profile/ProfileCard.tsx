@@ -77,7 +77,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
             <FileButton onChange={handleUploadImage} accept='image/png,image/jpeg'>
               {(props) => {
                 return (
-                  <Button {...props} className=' hover:transform-none'>
+                  <Button {...props} className=' hover:transform-none' disabled={isLoading}>
                     変更する
                   </Button>
                 )
@@ -136,7 +136,13 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                 >
                   {isLoading ? '更新中' : '更新する'}
                 </Button>
-                <Button color='red' type='button' className=' hover:transform-none' onClick={handleDeleteUserOpen}>
+                <Button
+                  color='red'
+                  type='button'
+                  className=' hover:transform-none'
+                  onClick={handleDeleteUserOpen}
+                  disabled={isLoading}
+                >
                   ユーザーを削除する
                 </Button>
               </div>
