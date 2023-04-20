@@ -1,14 +1,14 @@
 import { Button } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
 import { RichTextEditor } from '@mantine/tiptap'
 import { useAtom, useAtomValue } from 'jotai'
+import type { FormEvent } from 'react'
+import { useState } from 'react'
 
 import { useAnswerForm } from '@/common/hook/useAnswerForm'
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/atom'
 
 import { useDescriptionEditor } from '../../../../common/hook/useDescriptionEditor'
-import { Modal } from '../../Modal'
 
 /**
  * @package
@@ -19,54 +19,51 @@ type AnswerFormProps = {
 }
 
 export const CreateAnswerForm: React.FC<AnswerFormProps> = ({ questionId }) => {
-  const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const [editedAnswer, setEditedAnswer] = useAtom(editedAnswerAtom)
+  const [editedAnswer, _] = useAtom(editedAnswerAtom)
   const description = useAtomValue(answerDescriptionAtom)
 
   const { createAnswerMutation } = useMutateAnswer(questionId)
 
   const { answerEditor } = useDescriptionEditor()
 
-  const handleSubmit = () => {
-    if (editedAnswer.id === '0' && answerEditor) {
-      createAnswerMutation.mutate({
-        description,
-      })
-      answerEditor.commands.setContent('')
-    }
-    setEditedAnswer({ ...editedAnswer, id: '0' })
-    handleClose()
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsLoading(true)
+    // 1秒後にcreateAnswerMutationを実行する
+    setTimeout(() => {
+      if (editedAnswer.id === '0' && answerEditor) {
+        createAnswerMutation.mutate({
+          description,
+        })
+        answerEditor.commands.setContent('')
+        setIsLoading(false)
+      }
+    }, 1000)
   }
 
   useAnswerForm()
 
   return (
     <>
-      <Modal
-        opened={isOpened}
-        onClose={handleClose}
-        onSubmit={handleSubmit}
-        buttonWord='回答する'
-        modalTitle='回答を投稿する'
-      />
-
-      <div className=' w-full'>
+      <form className=' w-full' onSubmit={handleSubmit} id='createAnswer'>
         <RichTextEditor editor={answerEditor} className=' h-96 w-full rounded-md border-none bg-white shadow'>
           <RichTextEditor.Content />
         </RichTextEditor>
         <div className=' mt-3 flex justify-end'>
           <Button
             color='blue'
-            type='button'
-            onClick={handleOpen}
+            type='submit'
             className=' hover:transform-none'
             disabled={description === ''}
+            loading={isLoading}
+            form='createAnswer'
           >
-            投稿する
+            {isLoading ? '回答を投稿中...' : '回答を投稿する'}
           </Button>
         </div>
-      </div>
+      </form>
     </>
   )
 }
