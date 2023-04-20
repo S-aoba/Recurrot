@@ -1,7 +1,6 @@
 import { Button, Tooltip } from '@mantine/core'
 import { IconArrowLeft } from '@tabler/icons-react'
 import type { NextPage } from 'next'
-import Link from 'next/link'
 import type { FormEvent } from 'react'
 
 import { UpdateForm } from '@/component/ui/Form/Question'
@@ -14,18 +13,26 @@ type EditProps = {
   onSubmit: (e: FormEvent<HTMLFormElement>) => void
   isLoading: boolean
   questionId: string
+  onClick: () => void
 }
 
-export const Edit: NextPage<EditProps> = ({ onSubmit: handleSubmit, isLoading, questionId }) => {
+export const Edit: NextPage<EditProps> = ({
+  onSubmit: handleEditQuestion,
+  isLoading,
+  questionId,
+  onClick: handleDiscardChangesAndRedirectToPostedQuestions,
+}) => {
   return (
     <>
       <header className=' fixed z-10 w-full bg-white shadow'>
         <div className='flex h-14 max-h-14 items-center justify-center'>
           <div className=' flex w-full max-w-[900px] items-center justify-between px-6 py-2'>
             <Tooltip label='投稿した質問一覧へ'>
-              <Link href={'/dashboard/posted-questions'} className=' text-black'>
-                <IconArrowLeft size={30} />
-              </Link>
+              <IconArrowLeft
+                size={30}
+                onClick={handleDiscardChangesAndRedirectToPostedQuestions}
+                className=' hover:cursor-pointer'
+              />
             </Tooltip>
             <Button
               color='blue'
@@ -43,7 +50,7 @@ export const Edit: NextPage<EditProps> = ({ onSubmit: handleSubmit, isLoading, q
       </header>
       <form
         className=' flex h-fit min-h-screen flex-1 justify-center bg-[#fafafa] pt-14'
-        onSubmit={handleSubmit}
+        onSubmit={handleEditQuestion}
         id='update'
       >
         <div className=' h-fit w-full max-w-[1200px] px-8'>

@@ -1,11 +1,12 @@
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 
 import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
-import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
+import { editedQuestionAtom, questionDescriptionAtom, resetQuestionAtom } from '@/store/atom'
 
 import { Edit } from './Edit'
 
@@ -14,6 +15,9 @@ import { Edit } from './Edit'
  */
 
 export const EditPage = () => {
+  const router = useRouter()
+  const resetEditedQuestion = useSetAtom(resetQuestionAtom)
+
   const editedQuestion = useAtomValue(editedQuestionAtom)
 
   const [isLoading, setIsLoading] = useState(false)
@@ -24,7 +28,21 @@ export const EditPage = () => {
 
   const { updateQuestionMutation } = useMutateQuestion()
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleDiscardChangesAndRedirectToPostedQuestions = () => {
+    if (editedQuestion.title !== '' || editedQuestion.hashtags.length !== 0 || description) {
+      const isOk = window.confirm('入力した内容は破棄されます。よろしいですか？')
+      if (isOk) {
+        resetEditedQuestion()
+        router.push('/dashboard/posted-questions')
+        return
+      }
+      return
+    }
+    router.push('/dashboard/posted-questions')
+    return
+  }
+
+  const handleEditQuestion = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
     if (questionEditor && editedQuestion.id !== '0') {
@@ -49,7 +67,12 @@ export const EditPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Edit onSubmit={handleSubmit} isLoading={isLoading} questionId={editedQuestion.id} />
+      <Edit
+        onSubmit={handleEditQuestion}
+        isLoading={isLoading}
+        questionId={editedQuestion.id}
+        onClick={handleDiscardChangesAndRedirectToPostedQuestions}
+      />
     </>
   )
 }

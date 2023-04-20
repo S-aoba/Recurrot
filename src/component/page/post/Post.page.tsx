@@ -1,6 +1,7 @@
 import { useDisclosure } from '@mantine/hooks'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
@@ -14,6 +15,8 @@ import { Post } from './Post'
  */
 
 export const PostPage = () => {
+  const router = useRouter()
+
   const editedQuestion = useAtomValue(editedQuestionAtom)
   const isQuestionReady = useAtomValue(isQuestionDisabledAtom)
 
@@ -27,11 +30,21 @@ export const PostPage = () => {
 
   const { questionEditor } = useDescriptionEditor()
 
-  const handleOnClick = () => {
-    resetEditedQuestion()
+  const handleDiscardChangesAndRedirectToPostedQuestions = () => {
+    if (editedQuestion.title !== '' || editedQuestion.hashtags.length !== 0 || description) {
+      const isOk = window.confirm('入力した内容は破棄されます。よろしいですか？')
+      if (isOk) {
+        resetEditedQuestion()
+        router.push('/dashboard/posted-questions')
+        return
+      }
+      return
+    }
+    router.push('/dashboard/posted-questions')
+    return
   }
 
-  const handleSubmit = () => {
+  const handleEditQuestion = () => {
     if (editedQuestion.id === '0' && questionEditor) {
       createQuestionMutation.mutate({
         title: editedQuestion.title,
@@ -53,7 +66,7 @@ export const PostPage = () => {
       <Modal
         opened={isOpened}
         onClose={handleClose}
-        onSubmit={handleSubmit}
+        onSubmit={handleEditQuestion}
         buttonWord={'投稿する'}
         modalTitle={'Recurrotに投稿する'}
         description='
@@ -63,7 +76,11 @@ export const PostPage = () => {
         </p>
             '
       />
-      <Post onHandleOpen={handleOpen} isQuestionReady={isQuestionReady} onHandleClick={handleOnClick} />
+      <Post
+        onHandleOpen={handleOpen}
+        isQuestionReady={isQuestionReady}
+        onHandleClick={handleDiscardChangesAndRedirectToPostedQuestions}
+      />
     </>
   )
 }

@@ -1,7 +1,6 @@
 import { Button, Tooltip } from '@mantine/core'
 import { IconArrowLeft } from '@tabler/icons-react'
 import type { NextPage } from 'next'
-import Link from 'next/link'
 
 import { CreateForm } from '@/component/ui/Form/Question'
 
@@ -18,7 +17,7 @@ type PostProps = {
 export const Post: NextPage<PostProps> = ({
   onHandleOpen: handleOpen,
   isQuestionReady,
-  onHandleClick: handleOnClick,
+  onHandleClick: handleDiscardChangesAndRedirectToPostedQuestions,
 }) => {
   return (
     <>
@@ -26,9 +25,11 @@ export const Post: NextPage<PostProps> = ({
         <div className='flex h-14 max-h-14 items-center justify-center'>
           <div className=' flex w-full max-w-[900px] items-center justify-between px-6 py-2'>
             <Tooltip label='投稿した質問一覧へ'>
-              <Link href={'/dashboard/posted-questions'} className=' text-black' onClick={handleOnClick}>
-                <IconArrowLeft size={30} />
-              </Link>
+              <IconArrowLeft
+                size={30}
+                onClick={handleDiscardChangesAndRedirectToPostedQuestions}
+                className=' hover:cursor-pointer'
+              />
             </Tooltip>
             <Button
               color='blue'
