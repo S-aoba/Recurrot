@@ -54,8 +54,8 @@ export const PostPage = () => {
         opened={isOpened}
         onClose={handleClose}
         onSubmit={handleSubmit}
-        buttonWord={editedQuestion.id === '0' ? '投稿する' : '更新する'}
-        modalTitle={editedQuestion.id === '0' ? 'Recurrotに投稿する' : '質問を更新する'}
+        buttonWord={'投稿する'}
+        modalTitle={'Recurrotに投稿する'}
         description='
         <p>
           コミュニティガイドライン をご確認ください みんながより良い体験をするためのマナーについて書かれています。
