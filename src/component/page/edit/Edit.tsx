@@ -36,7 +36,7 @@ export const Edit: NextPage<EditProps> = ({ onSubmit: handleSubmit, isLoading, q
               // 編集ページで内容が空になった場合は更新ボタンを押せないようにする
               disabled={questionId !== '0' ? false : true}
             >
-              更新する
+              {isLoading ? '更新中です' : '更新する'}
             </Button>
           </div>
         </div>

@@ -26,6 +26,7 @@ export const EditPage = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
     if (questionEditor && editedQuestion.id !== '0') {
       // 1秒後にupdateQuestionMutationを実行する
       setTimeout(() => {
@@ -37,7 +38,6 @@ export const EditPage = () => {
         })
         questionEditor.commands.setContent('')
       }, 1000)
-      setIsLoading(true)
     }
   }
   return (
