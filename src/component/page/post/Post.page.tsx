@@ -23,7 +23,7 @@ export const PostPage = () => {
 
   const [description, _] = useAtom(questionDescriptionAtom)
 
-  const { createQuestionMutation, updateQuestionMutation } = useMutateQuestion()
+  const { createQuestionMutation } = useMutateQuestion()
 
   const { questionEditor } = useDescriptionEditor()
 
@@ -34,14 +34,6 @@ export const PostPage = () => {
   const handleSubmit = () => {
     if (editedQuestion.id === '0' && questionEditor) {
       createQuestionMutation.mutate({
-        title: editedQuestion.title,
-        description,
-        hashtags: editedQuestion.hashtags,
-      })
-      questionEditor.commands.setContent('')
-    } else if (editedQuestion.id !== '0' && questionEditor) {
-      updateQuestionMutation.mutate({
-        id: editedQuestion.id,
         title: editedQuestion.title,
         description,
         hashtags: editedQuestion.hashtags,
