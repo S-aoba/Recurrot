@@ -99,6 +99,7 @@ export const useMutateAnswer = (questionId: string) => {
 
       queryClient.invalidateQueries(['answer-list'])
       queryClient.invalidateQueries(['questionList-answered'])
+      queryClient.invalidateQueries(['notification-list'])
 
       resetDescription()
 
