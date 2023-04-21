@@ -42,7 +42,7 @@ export const EditPage = () => {
     return
   }
 
-  const handleEditQuestion = async (e: FormEvent<HTMLFormElement>) => {
+  const handleUpdateQuestion = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
     if (questionEditor && editedQuestion.id !== '0') {
@@ -54,7 +54,6 @@ export const EditPage = () => {
           description,
           hashtags: editedQuestion.hashtags,
         })
-        questionEditor.commands.setContent('')
       }, 1000)
     }
   }
@@ -68,7 +67,7 @@ export const EditPage = () => {
       </Head>
 
       <Edit
-        onSubmit={handleEditQuestion}
+        onSubmit={handleUpdateQuestion}
         isLoading={isLoading}
         questionId={editedQuestion.id}
         onClick={handleDiscardChangesAndRedirectToPostedQuestions}
