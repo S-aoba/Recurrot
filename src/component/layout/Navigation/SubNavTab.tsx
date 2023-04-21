@@ -56,7 +56,7 @@ export const SubNavTab = () => {
     <>
       {SubNavTabItem.map(({ href, children, className }) => {
         return (
-          <Link key={href} href={href} className={className} datatype='true'>
+          <Link key={href} href={href} className={className}>
             {children}
           </Link>
         )
