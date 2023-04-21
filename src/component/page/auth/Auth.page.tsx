@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useAtom } from 'jotai'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 
 import { useGetWindowSize } from '@/common/hook/useGetWindowSize'
@@ -63,6 +63,12 @@ export const AuthPage = () => {
       setError(e.response.data.message)
     }
   }
+
+  useEffect(() => {
+    return () => {
+      setIsLoading(false)
+    }
+  }, [setIsLoading])
 
   return (
     <>
