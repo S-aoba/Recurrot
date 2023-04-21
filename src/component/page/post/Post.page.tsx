@@ -3,7 +3,6 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { Modal } from '@/component/ui/Modal'
 import { editedQuestionAtom, isQuestionDisabledAtom, questionDescriptionAtom, resetQuestionAtom } from '@/store/atom'
@@ -28,8 +27,6 @@ export const PostPage = () => {
 
   const { createQuestionMutation } = useMutateQuestion()
 
-  const { questionEditor } = useDescriptionEditor()
-
   const handleDiscardChangesAndRedirectToPostedQuestions = () => {
     if (editedQuestion.title !== '' || editedQuestion.hashtags.length !== 0 || description) {
       const isOk = window.confirm('入力した内容は破棄されます。よろしいですか？')
@@ -45,13 +42,12 @@ export const PostPage = () => {
   }
 
   const handleCreateQuestion = () => {
-    if (editedQuestion.id === '0' && questionEditor) {
+    if (editedQuestion.id === '0') {
       createQuestionMutation.mutate({
         title: editedQuestion.title,
         description,
         hashtags: editedQuestion.hashtags,
       })
-      questionEditor.commands.setContent('')
     }
   }
   return (
