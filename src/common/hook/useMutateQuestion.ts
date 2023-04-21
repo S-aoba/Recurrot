@@ -7,12 +7,14 @@ import { toast } from 'react-toastify'
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/atom'
 
 import type { EditedQuestion, NewQuestion } from '../type'
+import { useDescriptionEditor } from './useDescriptionEditor'
 
 export const useMutateQuestion = () => {
   const queryClient = useQueryClient()
   const router = useRouter()
   const [, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)
   const [, resetDescription] = useAtom(resetQuestionDescriptionAtom)
+  const { questionEditor } = useDescriptionEditor()
 
   const createQuestionMutation = useMutation({
     mutationKey: ['new-question-list'],
@@ -20,14 +22,16 @@ export const useMutateQuestion = () => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/question`, question)
       return res.data
     },
-    onSuccess: (res: NewQuestion) => {
+    onSuccess: async (res: NewQuestion) => {
       const previousQuestionList = queryClient.getQueryData<NewQuestion[]>(['new-question-list'])
       if (previousQuestionList) {
         queryClient.setQueriesData(['new-question-list'], [res, ...previousQuestionList])
       }
-      router.push(`/dashboard/questions/${res.id}`)
+      await router.push(`/dashboard/questions/${res.id}`)
       resetEditedQuestion()
       resetDescription()
+      questionEditor?.commands.setContent('')
+
       toast.success('質問を投稿しました')
     },
     onError: (err: any) => {
@@ -93,6 +97,10 @@ export const useMutateQuestion = () => {
         )
       }
       router.push('/dashboard/new-questions')
+
+      queryClient.invalidateQueries(['posted-question-list'])
+      queryClient.invalidateQueries(['questionList-answered'])
+
       toast.success('質問を削除しました')
     },
     onError: (err: any) => {
