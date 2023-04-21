@@ -7,6 +7,7 @@ type ModalProps = {
   onSubmit: () => void
   modalTitle?: string
   description: string
+  isLoading?: boolean
 }
 
 /**
@@ -20,6 +21,7 @@ export const CustomModal: React.FC<ModalProps> = ({
   onSubmit: handleSubmit,
   modalTitle,
   description,
+  isLoading,
 }) => {
   return (
     <Modal opened={isOpened} onClose={handleClose} centered withCloseButton={false}>
@@ -41,6 +43,7 @@ export const CustomModal: React.FC<ModalProps> = ({
             type='button'
             onClick={handleSubmit}
             className=' hover:transform-none'
+            loading={isLoading}
           >
             {buttonWord}
           </Button>

@@ -1,7 +1,7 @@
 import { Avatar, Button, FileButton, Textarea, TextInput } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { storage } from 'src/firebase/config'
 
 import type { EditedUpdateMyProfile, MyProfile } from '@/common/type'
@@ -31,13 +31,14 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
     websiteUrl: myProfile.websiteUrl == null ? '' : myProfile.websiteUrl,
   })
 
-  const { handleSetProfileItem, handleSubmit, handleDeleteUser, isLoading } = useMyProfile(
-    editedMyProfile,
-    setEditedMyProfile,
-    handleDeleteUserClose,
-    myProfile.id,
-    myProfile.profileImage
-  )
+  const {
+    handleSetProfileItem,
+    handleSubmit,
+    handleDeleteUser,
+    isUpdateProfileLoading,
+    isDeleteUserLoading,
+    setIsDeleteUserLoading,
+  } = useMyProfile(editedMyProfile, setEditedMyProfile, handleDeleteUserClose, myProfile.id, myProfile.profileImage)
 
   // firebase storageに画像を保存する
   const handleUploadImage = async (e: File | null) => {
@@ -54,6 +55,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
     })
   }
 
+  useEffect(() => {
+    return () => {
+      setIsDeleteUserLoading(false)
+    }
+  }, [setIsDeleteUserLoading])
+
   return (
     <>
       <Modal
@@ -63,6 +70,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
         buttonWord='削除する'
         modalTitle='本当に削除してもよろしいですか？'
         description='この操作は取り消せません。ご注意ください。'
+        isLoading={isDeleteUserLoading}
       />
 
       {myProfile && (
@@ -78,7 +86,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
             <FileButton onChange={handleUploadImage} accept='image/png,image/jpeg'>
               {(props) => {
                 return (
-                  <Button {...props} className=' hover:transform-none' disabled={isLoading}>
+                  <Button {...props} className=' hover:transform-none' disabled={isUpdateProfileLoading}>
                     変更する
                   </Button>
                 )
@@ -133,18 +141,18 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                   type='button'
                   onClick={handleSubmit}
                   className=' hover:transform-none'
-                  loading={isLoading}
+                  loading={isUpdateProfileLoading}
                 >
-                  {isLoading ? '更新中' : '更新する'}
+                  {isUpdateProfileLoading ? '更新中' : '更新する'}
                 </Button>
                 <Button
                   color='red'
                   type='button'
                   className=' hover:transform-none'
                   onClick={handleDeleteUserOpen}
-                  disabled={isLoading}
+                  disabled={isUpdateProfileLoading}
                 >
-                  ユーザーを削除する
+                  アカウントを削除する
                 </Button>
               </div>
             </div>

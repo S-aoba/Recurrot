@@ -12,12 +12,12 @@ export const useMutateUser = () => {
     mutationFn: async () => {
       await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/user`)
     },
-    onSuccess: () => {
-      router.push('/')
+    onSuccess: async () => {
+      await router.push('/')
 
       queryClient.clear()
 
-      toast.success('ユーザーアカウントを削除しました')
+      toast.success('ユーザーアカウントを削除しました。ご利用ありがとうございました、またね！')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {

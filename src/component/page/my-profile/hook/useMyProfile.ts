@@ -18,7 +18,8 @@ export const useMyProfile = (
   userId: string,
   profileImage: string | null
 ) => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isUpdateProfileLoading, setIsUpdateProfileLoading] = useState(false)
+  const [isDeleteUserLoading, setIsDeleteUserLoading] = useState(false)
 
   const { updateMyProfileMutation } = useMutateMyProfile()
 
@@ -31,10 +32,11 @@ export const useMyProfile = (
 
   const handleSubmit = () => {
     // 1秒後にupdateMyProfileMutationを実行
-    setIsLoading(true)
+    setIsUpdateProfileLoading(true)
     setTimeout(() => {
       updateMyProfileMutation.mutate(editedMyProfile)
-      setIsLoading(false)
+      setIsUpdateProfileLoading(false)
+      handleDeleteUserClose()
     }, 1000)
   }
 
@@ -43,9 +45,17 @@ export const useMyProfile = (
     if (profileImage !== null) {
       await deleteObject(ref(storage, `images/${userId}`))
     }
-    deleteUserMutation.mutate()
-    handleDeleteUserClose()
+    setIsDeleteUserLoading(true)
+    setTimeout(() => {
+      deleteUserMutation.mutate()
+    }, 1000)
   }
-
-  return { handleSetProfileItem, handleSubmit, handleDeleteUser, isLoading }
+  return {
+    handleSetProfileItem,
+    handleSubmit,
+    handleDeleteUser,
+    isUpdateProfileLoading,
+    isDeleteUserLoading,
+    setIsDeleteUserLoading,
+  }
 }
