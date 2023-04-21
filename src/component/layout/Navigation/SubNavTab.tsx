@@ -1,9 +1,9 @@
+import { Tabs } from '@mantine/core'
+import { useAtomValue } from 'jotai'
 import Link from 'next/link'
-import type { ReactNode } from 'react'
 
 import type { SubUrlVal } from '@/common/type'
-
-import { useSubNavTabStyle } from './useSubNavTabStyle'
+import { isActiveTabAtom } from '@/store/atom'
 
 /**
  * @package
@@ -11,56 +11,76 @@ import { useSubNavTabStyle } from './useSubNavTabStyle'
 
 type SubNavTabType = {
   href: SubUrlVal
-  children: ReactNode
-  className?: string
+  value: string
+  children: string
 }
 
 export const SubNavTab = () => {
-  const {
-    newQuestionsStyle,
-    questionsWaitingAnswerStyle,
-    postedQuestionsStyle,
-    questionsAnsweredStyle,
-    myProfileStyle,
-  } = useSubNavTabStyle()
-
   const SubNavTabItem: SubNavTabType[] = [
     {
       href: '/dashboard/new-questions',
+      value: 'new-questions',
       children: '新着',
-      className: newQuestionsStyle,
     },
     {
       href: '/dashboard/question-waiting-answers',
+      value: 'question-waiting-answers',
       children: '回答募集中',
-      className: questionsWaitingAnswerStyle,
     },
     {
       href: '/dashboard/posted-questions',
+      value: 'posted-questions',
       children: '投稿した質問',
-      className: postedQuestionsStyle,
     },
     {
       href: '/dashboard/questions-answered',
+      value: 'questions-answered',
       children: '回答した質問',
-      className: questionsAnsweredStyle,
     },
     {
       href: '/dashboard/my-profile',
+      value: 'my-profile',
       children: 'プロフィール',
-      className: myProfileStyle,
     },
   ]
+  const activeTab = useAtomValue(isActiveTabAtom)
 
   return (
-    <>
-      {SubNavTabItem.map(({ href, children, className }) => {
-        return (
-          <Link key={href} href={href} className={className}>
-            {children}
-          </Link>
-        )
-      })}
-    </>
+    <Tabs
+      value={activeTab}
+      variant='pills'
+      styles={{
+        tabsList: {
+          flexWrap: 'nowrap',
+        },
+        tab: {
+          '&[data-active=true]': {
+            backgroundColor: '#1976d2',
+            borderRadius: '1rem',
+            ':hover': {
+              backgroundColor: '#1976d2',
+              color: 'white',
+            },
+          },
+          ':hover': {
+            color: 'black',
+            backgroundColor: 'white',
+          },
+          color: 'gray',
+        },
+      }}
+    >
+      <Tabs.List>
+        {SubNavTabItem.map(({ href, value, children }) => {
+          return (
+            <Link key={href} href={href} className=' py-1 no-underline'>
+              <Tabs.Tab key={href} value={value}>
+                {children}
+              </Tabs.Tab>
+            </Link>
+          )
+        })}
+      </Tabs.List>
+    </Tabs>
   )
 }

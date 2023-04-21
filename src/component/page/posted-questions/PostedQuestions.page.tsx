@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useQueryPostedQuestionList } from '@/common/hook/useQueryPostedQuestionList'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
-import { navTabAtom } from '@/store/atom'
+import { isActiveTabAtom } from '@/store/atom'
 
 import { PostedQuestions } from './PostedQuestions'
 
@@ -16,11 +16,11 @@ import { PostedQuestions } from './PostedQuestions'
 export const PostedQuestionsPage = () => {
   const { data: postedQuestionList, status: postedQuestionListStatus } = useQueryPostedQuestionList()
 
-  const setNavTab = useSetAtom(navTabAtom)
+  const setActiveTab = useSetAtom(isActiveTabAtom)
 
   useEffect(() => {
-    setNavTab({ main: 'questions', sub: 'posted-questions' })
-  }, [setNavTab])
+    setActiveTab('posted-questions')
+  }, [setActiveTab])
 
   if (postedQuestionListStatus === 'loading') return <QuestionLoading />
 

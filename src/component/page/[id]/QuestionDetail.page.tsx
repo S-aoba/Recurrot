@@ -9,7 +9,7 @@ import { useQueryCurrentUser } from '@/common/hook/useQueryCurrentUser'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { Modal } from '@/component/ui/Modal'
-import { editedQuestionAtom, navTabAtom, questionDescriptionAtom } from '@/store/atom'
+import { editedQuestionAtom, isActiveTabAtom, questionDescriptionAtom } from '@/store/atom'
 
 import { QuestionDetail } from './QuestionDetail'
 
@@ -32,11 +32,11 @@ export const QuestionDetailPage = () => {
     }
   }, [router])
 
-  const setNavTab = useSetAtom(navTabAtom)
+  const setActiveTab = useSetAtom(isActiveTabAtom)
 
   useEffect(() => {
-    setNavTab({ main: null, sub: null })
-  }, [setNavTab])
+    setActiveTab(null)
+  }, [setActiveTab])
 
   const { data: question, status: questionStatus } = useQuerySingleQuestion(id)
   const { data: currentUser, status: currentUserStatus } = useQueryCurrentUser()

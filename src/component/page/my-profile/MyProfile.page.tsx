@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { ProfileLoading } from '@/component/ui/Loading'
-import { navTabAtom } from '@/store/atom'
+import { isActiveTabAtom } from '@/store/atom'
 
 import { useQueryMyProfile } from './hook'
 import { MyProfile } from './MyProfile'
@@ -11,11 +11,11 @@ import { MyProfile } from './MyProfile'
 export const MyProfilePage = () => {
   const { data: myProfile, status: UserStatus } = useQueryMyProfile()
 
-  const setNavTab = useSetAtom(navTabAtom)
+  const setActiveTab = useSetAtom(isActiveTabAtom)
 
   useEffect(() => {
-    setNavTab({ main: 'questions', sub: 'my-profile' })
-  }, [setNavTab])
+    setActiveTab('my-profile')
+  }, [setActiveTab])
 
   if (UserStatus === 'loading') return <ProfileLoading />
 
