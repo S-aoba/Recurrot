@@ -44,7 +44,7 @@ export const PostPage = () => {
     return
   }
 
-  const handleEditQuestion = () => {
+  const handleCreateQuestion = () => {
     if (editedQuestion.id === '0' && questionEditor) {
       createQuestionMutation.mutate({
         title: editedQuestion.title,
@@ -66,7 +66,7 @@ export const PostPage = () => {
       <Modal
         opened={isOpened}
         onClose={handleClose}
-        onSubmit={handleEditQuestion}
+        onSubmit={handleCreateQuestion}
         buttonWord={'投稿する'}
         modalTitle={'Recurrotに投稿する'}
         description='
