@@ -35,7 +35,7 @@ export const QuestionDetailPage = () => {
   const setActiveTab = useSetAtom(isActiveTabAtom)
 
   useEffect(() => {
-    setActiveTab(null)
+    setActiveTab('null')
   }, [setActiveTab])
 
   const { data: question, status: questionStatus } = useQuerySingleQuestion(id)

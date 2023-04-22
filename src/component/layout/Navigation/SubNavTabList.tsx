@@ -2,7 +2,7 @@ import { Tabs } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 
-import type { SubUrlVal } from '@/common/type'
+import type { SubNavTab, SubUrlVal } from '@/common/type'
 import { isActiveTabAtom } from '@/store/atom'
 
 /**
@@ -11,11 +11,11 @@ import { isActiveTabAtom } from '@/store/atom'
 
 type SubNavTabType = {
   href: SubUrlVal
-  value: string
+  value: SubNavTab
   children: string
 }
 
-export const SubNavTab = () => {
+export const SubNavTabList = () => {
   const SubNavTabItem: SubNavTabType[] = [
     {
       href: '/dashboard/new-questions',

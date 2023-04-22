@@ -31,7 +31,7 @@ export const SearchPage = () => {
   const setActiveTab = useSetAtom(isActiveTabAtom)
 
   useEffect(() => {
-    setActiveTab(null)
+    setActiveTab('null')
   }, [setActiveTab])
 
   if (searchQuestionListStatus === 'loading') return <QuestionLoading />
