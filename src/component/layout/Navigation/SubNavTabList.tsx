@@ -55,11 +55,13 @@ export const SubNavTabList = () => {
         },
         tab: {
           '&[data-active=true]': {
+            color: 'white',
             backgroundColor: '#1976d2',
             borderRadius: '1rem',
             ':hover': {
-              backgroundColor: '#1976d2',
               color: 'white',
+              backgroundColor: '#1976d2',
+              borderRadius: '1rem',
             },
           },
           ':hover': {

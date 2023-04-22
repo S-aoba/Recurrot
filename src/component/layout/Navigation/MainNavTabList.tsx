@@ -60,6 +60,8 @@ export const MainNavTabList = () => {
             ':hover': {
               color: 'gray',
               backgroundColor: 'white',
+              borderBottom: '3px solid #1976d2',
+              borderRadius: 0,
             },
           },
           ':hover': {
