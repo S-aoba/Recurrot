@@ -42,6 +42,8 @@ export const QuestionDetailPage = () => {
   const [editedQuestion, setEditedQuestion] = useAtom(editedQuestionAtom)
   const setDescription = useSetAtom(questionDescriptionAtom)
 
+  const [isDeleteQuestionLoading, setIsDeleteQuestionLoading] = useState(false)
+
   const year = question && question.createdAt.toString().slice(0, 4)
   const month = question && question.createdAt.toString().slice(5, 7)
   const day = question && question.createdAt.toString().slice(8, 10)
@@ -54,9 +56,13 @@ export const QuestionDetailPage = () => {
   }
 
   const handleDeleteQuestion = () => {
-    if (question) {
-      deleteQuestionMutation.mutate(question.id)
-    }
+    setIsDeleteQuestionLoading(true)
+    setTimeout(() => {
+      if (question) {
+        deleteQuestionMutation.mutate(question.id)
+        setIsDeleteQuestionLoading(false)
+      }
+    }, 500)
   }
 
   if (questionStatus === 'loading' || currentUserStatus === 'loading') return <QuestionLoading />
@@ -76,6 +82,7 @@ export const QuestionDetailPage = () => {
         buttonWord='削除する'
         modalTitle='本当に削除してもよろしいですか？'
         description='この操作は取り消せません。ご注意ください。'
+        isLoading={isDeleteQuestionLoading}
       />
       {question && currentUser && year && month && day && (
         <QuestionDetail
