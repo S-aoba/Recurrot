@@ -1,11 +1,9 @@
-import { useSetAtom } from 'jotai'
 import Head from 'next/head'
-import { useEffect } from 'react'
 
+import { useNavTab } from '@/common/hook/useNavTab'
 import { useQueryQuestionListAnswered } from '@/common/hook/useQueryQuestionListAnswered'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
-import { isActiveTabAtom, isMainActiveTabAtom } from '@/store/atom'
 
 import { QuestionsAnswered } from './QuestionsAnswered'
 
@@ -16,13 +14,7 @@ import { QuestionsAnswered } from './QuestionsAnswered'
 export const QuestionsAnsweredPage = () => {
   const { data: questionList, status: questionListStatus } = useQueryQuestionListAnswered()
 
-  const setActiveTab = useSetAtom(isActiveTabAtom)
-  const setIsMainActiveTab = useSetAtom(isMainActiveTabAtom)
-
-  useEffect(() => {
-    setIsMainActiveTab('questions')
-    setActiveTab('questions-answered')
-  }, [setActiveTab, setIsMainActiveTab])
+  useNavTab('questions', 'questions-answered')
 
   if (questionListStatus === 'loading') return <QuestionLoading />
 

@@ -5,11 +5,12 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
+import { useNavTab } from '@/common/hook/useNavTab'
 import { useQueryCurrentUser } from '@/common/hook/useQueryCurrentUser'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { Modal } from '@/component/ui/Modal'
-import { editedQuestionAtom, isActiveTabAtom, isMainActiveTabAtom, questionDescriptionAtom } from '@/store/atom'
+import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
 
 import { QuestionDetail } from './QuestionDetail'
 
@@ -32,13 +33,7 @@ export const QuestionDetailPage = () => {
     }
   }, [router])
 
-  const setActiveTab = useSetAtom(isActiveTabAtom)
-  const setIsMainActiveTab = useSetAtom(isMainActiveTabAtom)
-
-  useEffect(() => {
-    setIsMainActiveTab('null')
-    setActiveTab('null')
-  }, [setActiveTab, setIsMainActiveTab])
+  useNavTab('null', 'null')
 
   const { data: question, status: questionStatus } = useQuerySingleQuestion(id)
   const { data: currentUser, status: currentUserStatus } = useQueryCurrentUser()

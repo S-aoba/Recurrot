@@ -1,9 +1,7 @@
-import { useSetAtom } from 'jotai'
 import Head from 'next/head'
-import { useEffect } from 'react'
 
+import { useNavTab } from '@/common/hook/useNavTab'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
-import { isActiveTabAtom, isMainActiveTabAtom } from '@/store/atom'
 
 import { QuestionWaitingAnswers } from './QuestionWaitingAnswers'
 
@@ -12,13 +10,7 @@ import { QuestionWaitingAnswers } from './QuestionWaitingAnswers'
  */
 
 export const QuestionWaitingAnswersPage = () => {
-  const setActiveTab = useSetAtom(isActiveTabAtom)
-  const setIsMainActiveTab = useSetAtom(isMainActiveTabAtom)
-
-  useEffect(() => {
-    setIsMainActiveTab('questions')
-    setActiveTab('question-waiting-answers')
-  }, [setActiveTab, setIsMainActiveTab])
+  useNavTab('questions', 'question-waiting-answers')
 
   return (
     <>

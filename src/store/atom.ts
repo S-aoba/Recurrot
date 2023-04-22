@@ -1,4 +1,4 @@
-import { atom } from 'jotai'
+import { atom } from 'jotai/vanilla'
 
 import type { EditedAnswer, EditedQuestion, MainNavTab, SubNavTab } from '@/common/type'
 

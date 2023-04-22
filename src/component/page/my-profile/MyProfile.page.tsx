@@ -1,9 +1,7 @@
-import { useSetAtom } from 'jotai'
 import Head from 'next/head'
-import { useEffect } from 'react'
 
+import { useNavTab } from '@/common/hook/useNavTab'
 import { ProfileLoading } from '@/component/ui/Loading'
-import { isActiveTabAtom, isMainActiveTabAtom } from '@/store/atom'
 
 import { useQueryMyProfile } from './hook'
 import { MyProfile } from './MyProfile'
@@ -11,13 +9,7 @@ import { MyProfile } from './MyProfile'
 export const MyProfilePage = () => {
   const { data: myProfile, status: UserStatus } = useQueryMyProfile()
 
-  const setActiveTab = useSetAtom(isActiveTabAtom)
-  const setIsMainActiveTab = useSetAtom(isMainActiveTabAtom)
-
-  useEffect(() => {
-    setIsMainActiveTab('questions')
-    setActiveTab('my-profile')
-  }, [setActiveTab, setIsMainActiveTab])
+  useNavTab('questions', 'my-profile')
 
   if (UserStatus === 'loading') return <ProfileLoading />
 

@@ -1,12 +1,11 @@
-import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
+import { useNavTab } from '@/common/hook/useNavTab'
 import { useQuerySearchQuestions } from '@/common/hook/useQuerySearchQuestions'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
-import { isActiveTabAtom, isMainActiveTabAtom } from '@/store/atom'
 
 import { Search } from './Search'
 
@@ -28,13 +27,7 @@ export const SearchPage = () => {
 
   const { data: searchQuestionList, status: searchQuestionListStatus } = useQuerySearchQuestions(id)
 
-  const setActiveTab = useSetAtom(isActiveTabAtom)
-  const setIsMainActiveTab = useSetAtom(isMainActiveTabAtom)
-
-  useEffect(() => {
-    setIsMainActiveTab('null')
-    setActiveTab('null')
-  }, [setActiveTab, setIsMainActiveTab])
+  useNavTab('null', 'null')
 
   if (searchQuestionListStatus === 'loading') return <QuestionLoading />
 
