@@ -12,8 +12,8 @@ export const useMutateUser = () => {
     mutationFn: async () => {
       await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/user`)
     },
-    onSuccess: async () => {
-      await router.push('/')
+    onSuccess: () => {
+      router.push('/')
 
       queryClient.clear()
 
