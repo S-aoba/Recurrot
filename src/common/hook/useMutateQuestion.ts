@@ -28,17 +28,18 @@ export const useMutateQuestion = () => {
         queryClient.setQueriesData(['new-question-list'], [res, ...previousQuestionList])
       }
       router.push(`/dashboard/questions/${res.id}`)
+      queryClient.invalidateQueries(['singleQuestion', res.id])
+      queryClient.invalidateQueries(['posted-question-list'])
       questionEditor?.commands.setContent('')
-
-      resetEditedQuestion()
-      resetDescription()
+      setTimeout(() => {
+        resetEditedQuestion()
+        resetDescription()
+      }, 500)
       toast.success('質問を投稿しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
         router.push('/')
-        resetEditedQuestion()
-        resetDescription()
         toast.success('質問の投稿に失敗しました')
       }
     },
@@ -99,11 +100,11 @@ export const useMutateQuestion = () => {
           })
         )
       }
-      router.push('/dashboard/new-questions')
+      router.push('/dashboard/posted-questions')
 
+      queryClient.removeQueries(['new-question-list'])
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
-      queryClient.removeQueries(['questionList-answered'])
 
       toast.success('質問を削除しました')
     },
