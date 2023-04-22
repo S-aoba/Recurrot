@@ -2,6 +2,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { Modal } from '@/component/ui/Modal'
@@ -27,6 +28,8 @@ export const PostPage = () => {
 
   const { createQuestionMutation } = useMutateQuestion()
 
+  const [isCreateQuestionLoading, setIsCreateQuestionLoading] = useState(false)
+
   const handleDiscardChangesAndRedirectToPostedQuestions = () => {
     if (editedQuestion.title !== '' || editedQuestion.hashtags.length !== 0 || description) {
       const isOk = window.confirm('入力した内容は破棄されます。よろしいですか？')
@@ -42,13 +45,12 @@ export const PostPage = () => {
   }
 
   const handleCreateQuestion = () => {
-    if (editedQuestion.id === '0') {
-      createQuestionMutation.mutate({
-        title: editedQuestion.title,
-        description,
-        hashtags: editedQuestion.hashtags,
-      })
-    }
+    // 1秒後にcreateQuestionMutationを実行する
+    setIsCreateQuestionLoading(true)
+    setTimeout(() => {
+      createQuestionMutation.mutate(editedQuestion)
+      setIsCreateQuestionLoading(false)
+    }, 500)
   }
   return (
     <>
@@ -71,6 +73,7 @@ export const PostPage = () => {
           <br />ご意見やご要望は Recurrot Discussions へお願いします。
         </p>
             '
+        isLoading={isCreateQuestionLoading}
       />
       <Post
         onHandleOpen={handleOpen}
