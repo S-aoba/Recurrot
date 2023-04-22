@@ -19,7 +19,7 @@ export const QuestionsAnsweredPage = () => {
   const setActiveTab = useSetAtom(isActiveTabAtom)
 
   useEffect(() => {
-    setActiveTab('questions_answered')
+    setActiveTab('questions-answered')
   }, [setActiveTab])
 
   if (questionListStatus === 'loading') return <QuestionLoading />
