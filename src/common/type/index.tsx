@@ -84,10 +84,6 @@ export type HashtagType = {
   hashtag: string
 }
 
-export type MainNavTabStyleType = 'auth' | 'question' | 'event' | 'information'
-
-////////////////////////////////////
-
 export type MainNavTab = 'questions' | 'event' | 'information' | 'null'
 
 export type SubNavTab =
@@ -98,12 +94,6 @@ export type SubNavTab =
   | 'my-profile'
   | 'null'
 
-export type NavTab = {
-  main: MainNavTab
-  sub: SubNavTab
-}
-
-////////////////////////////////////
 export type EditedQuestion = {
   id: string
   title: string
