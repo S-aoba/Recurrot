@@ -22,12 +22,12 @@ export const useMutateQuestion = () => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/question`, question)
       return res.data
     },
-    onSuccess: async (res: NewQuestion) => {
+    onSuccess: (res: NewQuestion) => {
       const previousQuestionList = queryClient.getQueryData<NewQuestion[]>(['new-question-list'])
       if (previousQuestionList) {
         queryClient.setQueriesData(['new-question-list'], [res, ...previousQuestionList])
       }
-      await router.push(`/dashboard/questions/${res.id}`)
+      router.push(`/dashboard/questions/${res.id}`)
       resetEditedQuestion()
       resetDescription()
       questionEditor?.commands.setContent('')
@@ -50,7 +50,7 @@ export const useMutateQuestion = () => {
       const res = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/question/${question.id}`, question)
       return res.data
     },
-    onSuccess: async (res: NewQuestion) => {
+    onSuccess: (res: NewQuestion) => {
       const previousQuestionList = queryClient.getQueryData<NewQuestion[]>(['new-question-list'])
       if (previousQuestionList) {
         queryClient.setQueryData(
@@ -60,7 +60,7 @@ export const useMutateQuestion = () => {
           })
         )
       }
-      await router.push(`/dashboard/questions/${res.id}`)
+      router.push(`/dashboard/questions/${res.id}`)
 
       queryClient.invalidateQueries(['singleQuestion', res.id])
       queryClient.invalidateQueries(['posted-question-list'])
