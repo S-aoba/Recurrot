@@ -1,5 +1,5 @@
 import { useDisclosure } from '@mantine/hooks'
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { useAtomValue, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -24,7 +24,7 @@ export const PostPage = () => {
 
   const [isOpened, { open: handleOpen, close: handleClose }] = useDisclosure(false)
 
-  const [description, _] = useAtom(questionDescriptionAtom)
+  const description = useAtomValue(questionDescriptionAtom)
 
   const { createQuestionMutation } = useMutateQuestion()
 
@@ -48,7 +48,11 @@ export const PostPage = () => {
     // 1秒後にcreateQuestionMutationを実行する
     setIsCreateQuestionLoading(true)
     setTimeout(() => {
-      createQuestionMutation.mutate(editedQuestion)
+      createQuestionMutation.mutate({
+        title: editedQuestion.title,
+        hashtags: editedQuestion.hashtags,
+        description,
+      })
       setIsCreateQuestionLoading(false)
       handleClose()
     }, 500)
