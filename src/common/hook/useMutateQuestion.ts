@@ -65,10 +65,11 @@ export const useMutateQuestion = () => {
       queryClient.invalidateQueries(['singleQuestion', res.id])
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
-
-      resetEditedQuestion()
-      resetDescription()
       questionEditor?.commands.setContent('')
+      setTimeout(() => {
+        resetEditedQuestion()
+        resetDescription()
+      }, 500)
 
       toast.success('質問を更新しました')
     },
