@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
-import { isActiveTabAtom } from '@/store/atom'
+import { isActiveTabAtom, isMainActiveTabAtom } from '@/store/atom'
 
 import { QuestionWaitingAnswers } from './QuestionWaitingAnswers'
 
@@ -13,10 +13,12 @@ import { QuestionWaitingAnswers } from './QuestionWaitingAnswers'
 
 export const QuestionWaitingAnswersPage = () => {
   const setActiveTab = useSetAtom(isActiveTabAtom)
+  const setIsMainActiveTab = useSetAtom(isMainActiveTabAtom)
 
   useEffect(() => {
+    setIsMainActiveTab('questions')
     setActiveTab('question-waiting-answers')
-  }, [setActiveTab])
+  }, [setActiveTab, setIsMainActiveTab])
 
   return (
     <>

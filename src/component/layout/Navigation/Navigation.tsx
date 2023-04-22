@@ -1,5 +1,5 @@
-import { MainNavTab } from './MainNavTab'
-import { SubNavTab } from './SubNavTab'
+import { MainNavTabList } from './MainNavTabList'
+import { SubNavTabList } from './SubNavTabList'
 
 /**
  * @package
@@ -9,10 +9,10 @@ export const Navigation = () => {
   return (
     <div className=' flex flex-col items-center justify-center text-sm'>
       <NavigationWrapper>
-        <MainNavTab />
+        <MainNavTabList />
       </NavigationWrapper>
       <NavigationWrapper>
-        <SubNavTab />
+        <SubNavTabList />
       </NavigationWrapper>
     </div>
   )

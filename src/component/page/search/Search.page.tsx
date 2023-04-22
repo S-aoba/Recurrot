@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useQuerySearchQuestions } from '@/common/hook/useQuerySearchQuestions'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
-import { isActiveTabAtom } from '@/store/atom'
+import { isActiveTabAtom, isMainActiveTabAtom } from '@/store/atom'
 
 import { Search } from './Search'
 
@@ -29,10 +29,12 @@ export const SearchPage = () => {
   const { data: searchQuestionList, status: searchQuestionListStatus } = useQuerySearchQuestions(id)
 
   const setActiveTab = useSetAtom(isActiveTabAtom)
+  const setIsMainActiveTab = useSetAtom(isMainActiveTabAtom)
 
   useEffect(() => {
+    setIsMainActiveTab('null')
     setActiveTab('null')
-  }, [setActiveTab])
+  }, [setActiveTab, setIsMainActiveTab])
 
   if (searchQuestionListStatus === 'loading') return <QuestionLoading />
 

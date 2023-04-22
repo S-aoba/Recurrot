@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 
-import type { EditedAnswer, EditedQuestion, NavTab, SubNavTab } from '@/common/type'
+import type { EditedAnswer, EditedQuestion, MainNavTab, SubNavTab } from '@/common/type'
 
 const initialEditedQuestion: EditedQuestion = { id: '0', title: '', description: '', hashtags: [] }
 export const editedQuestionAtom = atom<EditedQuestion>(initialEditedQuestion)
@@ -21,7 +21,7 @@ export const resetAnswerDescriptionAtom = atom(null, (_, set) => {
 const initialEditedAnswer: EditedAnswer = { id: '0', description: '' }
 export const editedAnswerAtom = atom<EditedAnswer>(initialEditedAnswer)
 
-export const navTabAtom = atom<NavTab>({ main: null, sub: null })
+// export const navTabAtom = atom<NavTab>({ main: null, sub: null })
 
 // editedQuestionAtom questionDescriptionAtomのすべての値がセットされたらfalseを返す
 export const isQuestionDisabledAtom = atom((get) => {
@@ -39,4 +39,5 @@ export const resetQuestionAtom = atom(null, (_, set) => {
 
 export const isLoadingAtom = atom<boolean>(false)
 
-export const isActiveTabAtom = atom<SubNavTab>(null)
+export const isActiveTabAtom = atom<SubNavTab>('null')
+export const isMainActiveTabAtom = atom<MainNavTab>('null')

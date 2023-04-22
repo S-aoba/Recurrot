@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useQueryNewQuestionList } from '@/common/hook/useQueryNewQuestionList'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
-import { isActiveTabAtom } from '@/store/atom'
+import { isActiveTabAtom, isMainActiveTabAtom } from '@/store/atom'
 
 import { NewQuestions } from './NewQuestions'
 
@@ -17,10 +17,12 @@ export const NewQuestionsPage = () => {
   const { data: newQuestionList, status: newQuestionListStatus } = useQueryNewQuestionList()
 
   const setActiveTab = useSetAtom(isActiveTabAtom)
+  const setIsMainActiveTab = useSetAtom(isMainActiveTabAtom)
 
   useEffect(() => {
+    setIsMainActiveTab('questions')
     setActiveTab('new-questions')
-  }, [setActiveTab])
+  }, [setActiveTab, setIsMainActiveTab])
 
   if (newQuestionListStatus === 'loading') return <QuestionLoading />
 
