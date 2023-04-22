@@ -29,9 +29,9 @@ export const AnswerList: NextPage<AnswerListProps> = ({ questionId, userId }) =>
 
   return (
     <>
-      <div className=' w-full px-3 sm:w-10/12'>
+      <div className=' w-full'>
         <p className=' mb-0 pb-2 text-2xl'>
-          <span className=' font-semibold text-blue-500'>{answerList && answerList.length}</span> 件の回答
+          <span className=' font-semibold text-[#1976d2]'>{answerList && answerList.length}</span> 件の回答
         </p>
       </div>
 
