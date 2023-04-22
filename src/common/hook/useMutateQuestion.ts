@@ -102,6 +102,7 @@ export const useMutateQuestion = () => {
 
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
+      queryClient.removeQueries(['questionList-answered'])
 
       toast.success('質問を削除しました')
     },
