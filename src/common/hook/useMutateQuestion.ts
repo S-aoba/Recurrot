@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-import { useAtom } from 'jotai'
+import { useSetAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 
@@ -12,8 +12,8 @@ import { useDescriptionEditor } from './useDescriptionEditor'
 export const useMutateQuestion = () => {
   const queryClient = useQueryClient()
   const router = useRouter()
-  const [, resetEditedQuestion] = useAtom(resetEditedQuestionAtom)
-  const [, resetDescription] = useAtom(resetQuestionDescriptionAtom)
+  const resetEditedQuestion = useSetAtom(resetEditedQuestionAtom)
+  const resetDescription = useSetAtom(resetQuestionDescriptionAtom)
   const { questionEditor } = useDescriptionEditor()
 
   const createQuestionMutation = useMutation({
