@@ -30,11 +30,9 @@ export const useMutateQuestion = () => {
       router.push(`/dashboard/questions/${res.id}`)
       questionEditor?.commands.setContent('')
 
-      setTimeout(() => {
-        resetEditedQuestion()
-        resetDescription()
-        toast.success('質問を投稿しました')
-      }, 300)
+      resetEditedQuestion()
+      resetDescription()
+      toast.success('質問を投稿しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {

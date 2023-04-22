@@ -50,6 +50,7 @@ export const PostPage = () => {
     setTimeout(() => {
       createQuestionMutation.mutate(editedQuestion)
       setIsCreateQuestionLoading(false)
+      handleClose()
     }, 500)
   }
   return (

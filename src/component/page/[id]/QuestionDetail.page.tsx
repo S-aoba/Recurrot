@@ -61,6 +61,7 @@ export const QuestionDetailPage = () => {
       if (question) {
         deleteQuestionMutation.mutate(question.id)
         setIsDeleteQuestionLoading(false)
+        handleDeleteQuestionClose()
       }
     }, 500)
   }
