@@ -87,7 +87,7 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
 
   return (
     <>
-      <div className=' w-full rounded-md bg-white p-5 shadow sm:w-9/12'>
+      <div className=' w-full rounded-md bg-white p-5 shadow'>
         <div className=' py-5'>
           <div className=' flex items-center justify-between pb-2'>
             <div className=' flex items-center gap-x-2 text-sm'>

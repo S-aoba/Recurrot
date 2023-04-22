@@ -36,11 +36,11 @@ export const QuestionDetail: NextPage<QuestionDetailProps> = ({
 }) => {
   return (
     <main className=' flex h-fit flex-1 flex-col items-center gap-y-10 bg-[#fafafa] p-5'>
-      <div className=' flex w-full max-w-[1200px] flex-col items-center justify-center gap-y-5'>
-        <div className=' w-full px-3 sm:w-10/12'>
+      <div className=' flex w-full max-w-[850px] flex-col items-center justify-center gap-y-5'>
+        <div className=' w-full px-3'>
           <p className=' text-2xl font-semibold sm:text-3xl'>{question.title}</p>
         </div>
-        <div className=' w-full rounded-md border-gray-200 bg-white p-5 shadow sm:w-9/12'>
+        <div className=' w-full rounded-md border-gray-200 bg-white p-5 shadow'>
           <div className=' py-5'>
             <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
               <div className=' flex items-center gap-x-2 text-sm'>
@@ -67,7 +67,7 @@ export const QuestionDetail: NextPage<QuestionDetailProps> = ({
 
         <AnswerList questionId={id} userId={currentUser.id} />
 
-        <div className=' flex w-full flex-col justify-center sm:w-9/12'>
+        <div className=' flex w-full flex-col justify-center'>
           <div>
             <p className=' text-xl'>あなたの回答</p>
             <CreateAnswerForm questionId={question.id} />
