@@ -60,7 +60,7 @@ export const useMutateQuestion = () => {
 
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
-      queryClient.invalidateQueries(['new-question-list'])
+      queryClient.invalidateQueries(['singleQuestion', res.id])
 
       toast.success('質問を更新しました')
     },

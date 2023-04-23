@@ -1,59 +1,25 @@
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-import type { FormEvent } from 'react'
 import { useState } from 'react'
 
-import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
-import { editedQuestionAtom, questionDescriptionAtom, resetQuestionAtom } from '@/store/atom'
+import { editedQuestionAtom } from '@/store/atom'
 
 import { Edit } from './Edit'
+import { useEdit } from './useEdit'
 
 /**
  * @package
  */
 
 export const EditPage = () => {
-  const router = useRouter()
-  const resetEditedQuestion = useSetAtom(resetQuestionAtom)
-
   const editedQuestion = useAtomValue(editedQuestionAtom)
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isUpdateQuestionLoading, setIsUpdateQuestionLoading] = useState(false)
 
-  const [description, _] = useAtom(questionDescriptionAtom)
+  const { handleDiscardChangesAndRedirectToPostedQuestions, handleUpdateQuestion } = useEdit({
+    setIsUpdateQuestionLoading,
+  })
 
-  const { updateQuestionMutation } = useMutateQuestion()
-
-  const handleDiscardChangesAndRedirectToPostedQuestions = () => {
-    if (editedQuestion.title !== '' || editedQuestion.hashtags.length !== 0 || description) {
-      const isOk = window.confirm('入力した内容は破棄されます。よろしいですか？')
-      if (isOk) {
-        resetEditedQuestion()
-        router.push('/dashboard/posted-questions')
-        return
-      }
-      return
-    }
-    router.push('/dashboard/posted-questions')
-    return
-  }
-
-  const handleUpdateQuestion = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsLoading(true)
-    if (editedQuestion.id !== '0') {
-      // 1秒後にupdateQuestionMutationを実行する
-      setTimeout(() => {
-        updateQuestionMutation.mutate({
-          id: editedQuestion.id,
-          title: editedQuestion.title,
-          description,
-          hashtags: editedQuestion.hashtags,
-        })
-      }, 1000)
-    }
-  }
   return (
     <>
       <Head>
@@ -65,7 +31,7 @@ export const EditPage = () => {
 
       <Edit
         onSubmit={handleUpdateQuestion}
-        isLoading={isLoading}
+        isLoading={isUpdateQuestionLoading}
         questionId={editedQuestion.id}
         onClick={handleDiscardChangesAndRedirectToPostedQuestions}
       />
