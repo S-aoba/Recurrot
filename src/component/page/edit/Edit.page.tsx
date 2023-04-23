@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 
-import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { editedQuestionAtom, questionDescriptionAtom, resetQuestionAtom } from '@/store/atom'
 
@@ -23,8 +22,6 @@ export const EditPage = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const [description, _] = useAtom(questionDescriptionAtom)
-
-  const { questionEditor } = useDescriptionEditor()
 
   const { updateQuestionMutation } = useMutateQuestion()
 
@@ -45,7 +42,7 @@ export const EditPage = () => {
   const handleUpdateQuestion = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
-    if (questionEditor && editedQuestion.id !== '0') {
+    if (editedQuestion.id !== '0') {
       // 1秒後にupdateQuestionMutationを実行する
       setTimeout(() => {
         updateQuestionMutation.mutate({
