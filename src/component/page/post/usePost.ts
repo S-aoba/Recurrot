@@ -1,9 +1,9 @@
-import { useAtomValue, useSetAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import type { Dispatch, SetStateAction } from 'react'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
-import { editedQuestionAtom, questionDescriptionAtom, resetQuestionAtom } from '@/store/atom'
+import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
 
 /**
  * @package
@@ -16,7 +16,6 @@ type UsePostProps = {
 export const usePost = ({ setIsCreateQuestionLoading }: UsePostProps) => {
   const router = useRouter()
 
-  const resetEditedQuestion = useSetAtom(resetQuestionAtom)
   const editedQuestion = useAtomValue(editedQuestionAtom)
   const description = useAtomValue(questionDescriptionAtom)
 
@@ -26,7 +25,6 @@ export const usePost = ({ setIsCreateQuestionLoading }: UsePostProps) => {
     if (editedQuestion.title !== '' || editedQuestion.hashtags.length !== 0 || description) {
       const isOk = window.confirm('入力した内容は破棄されます。よろしいですか？')
       if (isOk) {
-        resetEditedQuestion()
         router.push('/dashboard/posted-questions')
         return
       }
