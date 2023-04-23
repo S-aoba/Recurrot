@@ -1,9 +1,12 @@
+import { useSetAtom } from 'jotai'
 import Head from 'next/head'
 
 import { useNavTab } from '@/common/hook/useNavTab'
 import { useQueryPostedQuestionList } from '@/common/hook/useQueryPostedQuestionList'
+import { useRouterEvent } from '@/common/hook/useRouterEvent'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
+import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/atom'
 
 import { PostedQuestions } from './PostedQuestions'
 
@@ -12,10 +15,15 @@ import { PostedQuestions } from './PostedQuestions'
  */
 
 export const PostedQuestionsPage = () => {
-  const { data: postedQuestionList, status: postedQuestionListStatus } = useQueryPostedQuestionList()
-
   useNavTab('questions', 'posted-questions')
 
+  const resetEditedQuestion = useSetAtom(resetEditedQuestionAtom)
+  const resetDescription = useSetAtom(resetQuestionDescriptionAtom)
+
+  useRouterEvent({ eventName: 'routeChangeComplete', callback: resetEditedQuestion })
+  useRouterEvent({ eventName: 'routeChangeComplete', callback: resetDescription })
+
+  const { data: postedQuestionList, status: postedQuestionListStatus } = useQueryPostedQuestionList()
   if (postedQuestionListStatus === 'loading') return <QuestionLoading />
 
   return (
