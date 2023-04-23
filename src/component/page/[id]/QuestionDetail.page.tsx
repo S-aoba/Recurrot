@@ -8,9 +8,15 @@ import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useNavTab } from '@/common/hook/useNavTab'
 import { useQueryCurrentUser } from '@/common/hook/useQueryCurrentUser'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
+import { useRouterEvent } from '@/common/hook/useRouterEvent'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { Modal } from '@/component/ui/Modal'
-import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
+import {
+  editedQuestionAtom,
+  questionDescriptionAtom,
+  resetEditedQuestionAtom,
+  resetQuestionDescriptionAtom,
+} from '@/store/atom'
 
 import { QuestionDetail } from './QuestionDetail'
 
@@ -24,7 +30,6 @@ export const QuestionDetailPage = () => {
 
   const [id, setId] = useState<string>('')
   const router = useRouter()
-
   useEffect(() => {
     if (router.isReady) {
       if (typeof router.query.id === 'string') {
@@ -32,8 +37,12 @@ export const QuestionDetailPage = () => {
       }
     }
   }, [router])
+  const resetEditedQuestion = useSetAtom(resetEditedQuestionAtom)
+  const resetDescription = useSetAtom(resetQuestionDescriptionAtom)
 
   useNavTab('null', 'null')
+  useRouterEvent({ eventName: 'routeChangeComplete', callback: resetEditedQuestion })
+  useRouterEvent({ eventName: 'routeChangeComplete', callback: resetDescription })
 
   const { data: question, status: questionStatus } = useQuerySingleQuestion(id)
   const { data: currentUser, status: currentUserStatus } = useQueryCurrentUser()

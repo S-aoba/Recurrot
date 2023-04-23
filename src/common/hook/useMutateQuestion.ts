@@ -28,13 +28,10 @@ export const useMutateQuestion = () => {
         queryClient.setQueriesData(['new-question-list'], [res, ...previousQuestionList])
       }
       router.push(`/dashboard/questions/${res.id}`)
+
       queryClient.invalidateQueries(['singleQuestion', res.id])
       queryClient.invalidateQueries(['posted-question-list'])
-      questionEditor?.commands.setContent('')
-      setTimeout(() => {
-        resetEditedQuestion()
-        resetDescription()
-      }, 500)
+
       toast.success('質問を投稿しました')
     },
     onError: (err: any) => {

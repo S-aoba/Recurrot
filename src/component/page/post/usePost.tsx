@@ -2,7 +2,6 @@ import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import type { Dispatch, SetStateAction } from 'react'
 
-import { useDescriptionEditor } from '@/common/hook/useDescriptionEditor'
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { editedQuestionAtom, questionDescriptionAtom, resetQuestionAtom } from '@/store/atom'
 
@@ -22,7 +21,6 @@ export const usePost = ({ setIsCreateQuestionLoading }: UsePostProps) => {
   const description = useAtomValue(questionDescriptionAtom)
 
   const { createQuestionMutation } = useMutateQuestion()
-  const { questionEditor } = useDescriptionEditor()
 
   const handleDiscardChangesAndRedirectToPostedQuestions = () => {
     if (editedQuestion.title !== '' || editedQuestion.hashtags.length !== 0 || description) {
@@ -42,14 +40,11 @@ export const usePost = ({ setIsCreateQuestionLoading }: UsePostProps) => {
     // 1秒後にcreateQuestionMutationを実行する
     setIsCreateQuestionLoading(true)
     setTimeout(() => {
-      if (questionEditor) {
-        createQuestionMutation.mutate({
-          title: editedQuestion.title,
-          hashtags: editedQuestion.hashtags,
-          description,
-        })
-        setIsCreateQuestionLoading(false)
-      }
+      createQuestionMutation.mutate({
+        title: editedQuestion.title,
+        hashtags: editedQuestion.hashtags,
+        description,
+      })
     }, 500)
   }
 
