@@ -7,14 +7,12 @@ import { toast } from 'react-toastify'
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/atom'
 
 import type { EditedQuestion, NewQuestion } from '../type'
-import { useDescriptionEditor } from './useDescriptionEditor'
 
 export const useMutateQuestion = () => {
   const queryClient = useQueryClient()
   const router = useRouter()
   const resetEditedQuestion = useSetAtom(resetEditedQuestionAtom)
   const resetDescription = useSetAtom(resetQuestionDescriptionAtom)
-  const { questionEditor } = useDescriptionEditor()
 
   const createQuestionMutation = useMutation({
     mutationKey: ['new-question-list'],
@@ -60,14 +58,9 @@ export const useMutateQuestion = () => {
       }
       router.push(`/dashboard/questions/${res.id}`)
 
-      queryClient.invalidateQueries(['singleQuestion', res.id])
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
-      questionEditor?.commands.setContent('')
-      setTimeout(() => {
-        resetEditedQuestion()
-        resetDescription()
-      }, 500)
+      queryClient.invalidateQueries(['new-question-list'])
 
       toast.success('質問を更新しました')
     },
