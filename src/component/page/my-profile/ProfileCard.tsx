@@ -89,7 +89,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                 return (
                   <Button
                     {...props}
-                    className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
+                    className=' hover:transform-none'
+                    style={{ backgroundColor: COLOR.main }}
                     disabled={isUpdateProfileLoading}
                   >
                     変更する
@@ -142,10 +143,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
               />
               <div className=' flex w-full justify-between'>
                 <Button
-                  color='blue'
                   type='button'
                   onClick={handleSubmit}
-                  className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
+                  className=' hover:transform-none'
+                  style={{ backgroundColor: COLOR.main }}
                   loading={isUpdateProfileLoading}
                 >
                   {isUpdateProfileLoading ? '更新中' : '更新する'}
