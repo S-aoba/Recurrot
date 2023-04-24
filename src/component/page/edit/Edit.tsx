@@ -3,7 +3,6 @@ import { IconArrowLeft } from '@tabler/icons-react'
 import type { NextPage } from 'next'
 import type { FormEvent } from 'react'
 
-import { COLOR } from '@/common/const'
 import { UpdateForm } from '@/component/ui/Form/Question'
 
 /**
@@ -37,7 +36,7 @@ export const Edit: NextPage<EditProps> = ({
             </Tooltip>
             <Button
               type='submit'
-              className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
+              className=' bg-mainColor hover:transform-none hover:bg-mainColor'
               form='update'
               loading={isLoading}
               // 編集ページで内容が空になった場合は更新ボタンを押せないようにする

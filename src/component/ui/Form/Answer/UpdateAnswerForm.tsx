@@ -4,7 +4,6 @@ import { useAtom, useAtomValue } from 'jotai'
 import type { Dispatch, FormEvent, SetStateAction } from 'react'
 import { useState } from 'react'
 
-import { COLOR } from '@/common/const'
 import { useAnswerForm } from '@/common/hook/useAnswerForm'
 import { useMutateAnswer } from '@/common/hook/useMutateAnswer'
 import { answerDescriptionAtom, editedAnswerAtom } from '@/store/atom'
@@ -57,7 +56,7 @@ export const UpdateAnswerForm: React.FC<AnswerFormProps> = ({ questionId, setIsE
         <div className=' mt-3 flex justify-end'>
           <Button
             type='submit'
-            className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
+            className=' bg-mainColor hover:transform-none hover:bg-mainColor'
             disabled={description === ''}
             loading={isLoading}
           >

@@ -1,7 +1,5 @@
 import { Button, Modal } from '@mantine/core'
 
-import { COLOR } from '@/common/const'
-
 type ModalProps = {
   opened: boolean
   onClose: () => void
@@ -43,7 +41,7 @@ export const CustomModal: React.FC<ModalProps> = ({
           <Button
             type='button'
             onClick={handleSubmit}
-            className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
+            className=' bg-mainColor hover:transform-none hover:bg-mainColor'
             loading={isLoading}
           >
             {buttonWord}

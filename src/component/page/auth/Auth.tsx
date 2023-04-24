@@ -4,8 +4,6 @@ import { IconDatabase } from '@tabler/icons-react'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 
-import { COLOR } from '@/common/const'
-
 import type { AuthForm } from './Auth.page'
 
 /**
@@ -93,7 +91,7 @@ export const Auth: NextPage<AUthProps> = ({
                 {isRegister ? 'ログインはこちら' : '新規作成はこちら'}
               </Anchor>
               <Button
-                className={` hover:transform-none bg-[${COLOR.main}] hover:bg-[${COLOR.main}] `}
+                className=' bg-mainColor hover:transform-none hover:bg-mainColor'
                 leftIcon={<IconDatabase size={14} />}
                 color='blue'
                 type='submit'
