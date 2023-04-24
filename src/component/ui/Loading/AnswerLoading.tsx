@@ -1,5 +1,5 @@
-import { Loader } from '@mantine/core'
+import { COLOR } from '@/common/const'
 
 export const AnswerLoading = () => {
-  return <Loader />
+  return <div className={`h-8 w-8 animate-spin rounded-lg bg-[${COLOR.main}] `}></div>
 }

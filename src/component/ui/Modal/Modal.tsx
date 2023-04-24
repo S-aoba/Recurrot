@@ -1,5 +1,7 @@
 import { Button, Modal } from '@mantine/core'
 
+import { COLOR } from '@/common/const'
+
 type ModalProps = {
   opened: boolean
   onClose: () => void
@@ -39,10 +41,9 @@ export const CustomModal: React.FC<ModalProps> = ({
             キャンセル
           </Button>
           <Button
-            color={buttonWord === '削除する' ? 'red' : 'blue'}
             type='button'
             onClick={handleSubmit}
-            className=' hover:transform-none'
+            className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
             loading={isLoading}
           >
             {buttonWord}

@@ -2,6 +2,7 @@ import { Tabs } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 
+import { COLOR } from '@/common/const'
 import type { SubNavTab, SubUrlVal } from '@/common/type'
 import { isActiveTabAtom } from '@/store/atom'
 
@@ -56,11 +57,11 @@ export const SubNavTabList = () => {
         tab: {
           '&[data-active=true]': {
             color: 'white',
-            backgroundColor: '#1976d2',
+            backgroundColor: `${COLOR.main}`,
             borderRadius: '1rem',
             ':hover': {
               color: 'white',
-              backgroundColor: '#1976d2',
+              backgroundColor: `${COLOR.main}`,
               borderRadius: '1rem',
             },
           },

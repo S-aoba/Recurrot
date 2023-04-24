@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 
+import { COLOR } from '@/common/const'
 import { useGetWindowSize } from '@/common/hook/useGetWindowSize'
 import { useMutateUser } from '@/common/hook/useMutateUser'
 import { HeaderRightLoading } from '@/component/ui/Loading'
@@ -36,10 +37,9 @@ export const HeaderRight = () => {
         <div className=' flex w-full justify-end'>
           <ActionIcon className=' hover:transform-none hover:bg-white'>
             <IconSearch
-              color='gray'
               size={25}
               stroke={1.5}
-              className=' hover:cursor-pointer'
+              className={`hover:cursor-pointer hover:stroke-[${COLOR.main}]`}
               onClick={handleOpenSearchBar}
             />
           </ActionIcon>
@@ -89,7 +89,7 @@ const SearchQuestionForm: React.FC<SearchQuestionFormProps> = ({ formClassName, 
 const QuestionPostButton = () => {
   return (
     <Link href='/dashboard/questions/post'>
-      <Button type='button' className=' hover:transform-none'>
+      <Button type='button' className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}>
         質問する
       </Button>
     </Link>

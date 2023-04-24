@@ -4,6 +4,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useEffect, useState } from 'react'
 import { storage } from 'src/firebase/config'
 
+import { COLOR } from '@/common/const'
 import type { EditedUpdateMyProfile, MyProfile } from '@/common/type'
 
 import { Modal } from '../../ui/Modal'
@@ -86,7 +87,11 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
             <FileButton onChange={handleUploadImage} accept='image/png,image/jpeg'>
               {(props) => {
                 return (
-                  <Button {...props} className=' hover:transform-none' disabled={isUpdateProfileLoading}>
+                  <Button
+                    {...props}
+                    className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
+                    disabled={isUpdateProfileLoading}
+                  >
                     変更する
                   </Button>
                 )
@@ -140,7 +145,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                   color='blue'
                   type='button'
                   onClick={handleSubmit}
-                  className=' hover:transform-none'
+                  className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
                   loading={isUpdateProfileLoading}
                 >
                   {isUpdateProfileLoading ? '更新中' : '更新する'}

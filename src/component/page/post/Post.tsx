@@ -2,6 +2,7 @@ import { Button, Tooltip } from '@mantine/core'
 import { IconArrowLeft } from '@tabler/icons-react'
 import type { NextPage } from 'next'
 
+import { COLOR } from '@/common/const'
 import { CreateForm } from '@/component/ui/Form/Question'
 
 /**
@@ -32,10 +33,9 @@ export const Post: NextPage<PostProps> = ({
               />
             </Tooltip>
             <Button
-              color='blue'
               type='button'
               onClick={handleOpen}
-              className=' hover:transform-none'
+              className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}
               disabled={isQuestionReady}
             >
               投稿する

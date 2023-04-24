@@ -14,3 +14,7 @@ export const SUB_URL = {
   DASHBOARD_QUESTIONS_ANSWERED: '/dashboard/questions-answered',
   DASHBOARD_MY_PROFILE: '/dashboard/my-profile',
 } as const
+
+export const COLOR = {
+  main: '#a09696',
+}
