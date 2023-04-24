@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const question = await getSingleQuestion(id, cookie)
   const currentUser = await getCurrentUser(cookie)
 
-  if (!question) return { notFound: true, redirect: { destination: '/dashboard/new-questions', permanent: false } }
+  // if (!question) return { notFound: true, redirect: { destination: '/dashboard/new-questions', permanent: false } }
 
   return {
     props: {
