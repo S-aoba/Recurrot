@@ -39,7 +39,8 @@ export const HeaderRight = () => {
             <IconSearch
               size={25}
               stroke={1.5}
-              className={`hover:cursor-pointer hover:stroke-[${COLOR.main}]`}
+              fill='white'
+              className=' hover:transform-none hover:stroke-mainColor'
               onClick={handleOpenSearchBar}
             />
           </ActionIcon>
@@ -103,7 +104,7 @@ const SearchQuestionForm: React.FC<SearchQuestionFormProps> = ({ formClassName, 
 const QuestionPostButton = () => {
   return (
     <Link href='/dashboard/questions/post'>
-      <Button type='button' className={` bg-[${COLOR.main}] hover:transform-none hover:bg-[${COLOR.main}]`}>
+      <Button type='button' className=' bg-mainColor hover:transform-none hover:bg-mainColor'>
         質問する
       </Button>
     </Link>

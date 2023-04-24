@@ -3,7 +3,6 @@ import { IconBell, IconCircle } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { COLOR } from '@/common/const'
 import { NotificationLoading } from '@/component/ui/Loading'
 
 import { useMutateNotification } from './hook/useMutateNotification'
@@ -24,7 +23,7 @@ export const Notification = () => {
       <Menu>
         <Menu.Target>
           <ActionIcon className=' hover:transform-none hover:bg-white'>
-            <IconBell size={30} stroke={1.5} className={` hover:cursor-pointer hover:stroke-[${COLOR.main}]`} />
+            <IconBell size={30} fill='white' stroke={1.5} className=' hover:transform-none hover:stroke-mainColor' />
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown className=' mt-1 -ml-3 rounded-2xl p-4 shadow'>
@@ -32,7 +31,7 @@ export const Notification = () => {
           {notification && notification.length === 0 ? (
             <div className=' flex h-40 w-60 flex-col items-center justify-center gap-y-3'>
               <span className=' text-gray-400 hover:cursor-default'>まだ通知はありません</span>
-              <IconBell size={50} stroke={1.2} style={{ stroke: COLOR.main }} />
+              <IconBell color='gray' size={50} fill='white' stroke={0.3} style={{ stroke: '#a09696' }} />
             </div>
           ) : (
             notification &&

@@ -3,7 +3,6 @@ import { IconMessageDots } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { COLOR } from '@/common/const'
 import type { MyAnswer, MyQuestion, NewQuestion, SearchQuestion } from '@/common/type'
 
 /**
@@ -69,7 +68,7 @@ type TitleProps = {
 
 const Title: React.FC<TitleProps> = ({ title }) => {
   return (
-    <div className={` flex h-32 items-center justify-center rounded-2xl bg-[${COLOR.main}] px-2`}>
+    <div className=' flex h-32 items-center justify-center rounded-2xl bg-mainColor px-2'>
       <p className='text-sm text-white line-clamp-3'>{title}</p>
     </div>
   )
