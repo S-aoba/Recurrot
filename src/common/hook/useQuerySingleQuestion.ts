@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import type { SingleQuestion } from '../type'
 
-export const useQuerySingleQuestion = (id: string) => {
+export const useQuerySingleQuestion = (id: string | string[] | undefined) => {
   const router = useRouter()
   const getSingleQuestion = async () => {
     const res = await axios.get<SingleQuestion>(`${process.env.NEXT_PUBLIC_API_URL}/question/${id}`)

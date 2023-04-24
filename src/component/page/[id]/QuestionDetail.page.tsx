@@ -2,7 +2,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { useAtom, useSetAtom } from 'jotai'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { useNavTab } from '@/common/hook/useNavTab'
@@ -28,15 +28,8 @@ export const QuestionDetailPage = () => {
   const [isDeleteQuestionOpened, { open: handleDeleteQuestionOpen, close: handleDeleteQuestionClose }] =
     useDisclosure(false)
 
-  const [id, setId] = useState<string>('')
   const router = useRouter()
-  useEffect(() => {
-    if (router.isReady) {
-      if (typeof router.query.id === 'string') {
-        setId(router.query.id)
-      }
-    }
-  }, [router])
+
   const resetEditedQuestion = useSetAtom(resetEditedQuestionAtom)
   const resetDescription = useSetAtom(resetQuestionDescriptionAtom)
 
@@ -44,7 +37,7 @@ export const QuestionDetailPage = () => {
   useRouterEvent({ eventName: 'routeChangeComplete', callback: resetEditedQuestion })
   useRouterEvent({ eventName: 'routeChangeComplete', callback: resetDescription })
 
-  const { data: question, status: questionStatus } = useQuerySingleQuestion(id)
+  const { data: question, status: questionStatus } = useQuerySingleQuestion(router.query.id)
   const { data: currentUser, status: currentUserStatus } = useQueryCurrentUser()
   const { deleteQuestionMutation } = useMutateQuestion()
 
@@ -96,7 +89,7 @@ export const QuestionDetailPage = () => {
       />
       {question && currentUser && year && month && day && (
         <QuestionDetail
-          id={id}
+          id={question.id}
           question={question}
           currentUser={currentUser}
           onSetQuestion={handleSetQuestion}
