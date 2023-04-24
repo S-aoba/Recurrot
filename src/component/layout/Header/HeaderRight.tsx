@@ -80,7 +80,21 @@ const SearchQuestionForm: React.FC<SearchQuestionFormProps> = ({ formClassName, 
   }
   return (
     <form className={formClassName} onSubmit={handleSearch}>
-      <TextInput value={searchWord} onChange={handleChange} placeholder='質問を検索する' className={className} />
+      <TextInput
+        value={searchWord}
+        onChange={handleChange}
+        placeholder='質問を検索する'
+        className={className}
+        styles={{
+          //  枠線の色を変える
+          input: {
+            border: '1px solid #e2e8f0',
+            '&:focus': {
+              border: `2px solid ${COLOR.main}`,
+            },
+          },
+        }}
+      />
     </form>
   )
 }
