@@ -1,56 +1,17 @@
-import axios from 'axios'
 import type { GetServerSideProps } from 'next'
-import { useEffect } from 'react'
 
-import type { CurrentUser, SingleQuestion } from '@/common/type'
 import { QuestionDetailPage } from '@/component/page/[id]'
 
-const QuestionDetail = (props: { question: SingleQuestion; currentUser: CurrentUser }) => {
-  useEffect(() => {
-    const getCsrfToken = async () => {
-      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/csrf`)
-      axios.defaults.headers.common['csrf-token'] = data.csrfToken
-    }
-    getCsrfToken()
-  }, [])
-  const { question, currentUser } = props
-
-  return <QuestionDetailPage question={question} currentUser={currentUser} />
+const QuestionDetail = () => {
+  return <QuestionDetailPage />
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const id = ctx.query.id
-  const cookie = ctx.req.headers.cookie
-
-  const question = await getSingleQuestion(id, cookie)
-  const currentUser = await getCurrentUser(cookie)
-
-  if (!question) return { notFound: true, redirect: { destination: '/dashboard/new-questions', permanent: false } }
-
+export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
-      question,
-      currentUser,
       layout: 'WrapperLayout',
     },
   }
 }
 
-const getSingleQuestion = async (id: string | string[] | undefined, cookie: string | undefined) => {
-  const res = await axios.get<SingleQuestion>(`${process.env.NEXT_PUBLIC_API_URL}/question/${id}`, {
-    headers: {
-      cookie,
-    },
-  })
-  return res.data
-}
-
-const getCurrentUser = async (cookie: string | undefined) => {
-  const { data } = await axios.get<CurrentUser>(`${process.env.NEXT_PUBLIC_API_URL}/user/current-user`, {
-    headers: {
-      cookie,
-    },
-  })
-  return data
-}
 export default QuestionDetail
