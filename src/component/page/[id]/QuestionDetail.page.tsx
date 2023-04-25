@@ -1,11 +1,11 @@
 import { useSetAtom } from 'jotai'
-import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import { useNavTab } from '@/common/hook/useNavTab'
 import { useQueryCurrentUser } from '@/common/hook/useQueryCurrentUser'
+import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { useRouterEvent } from '@/common/hook/useRouterEvent'
-import type { SingleQuestion } from '@/common/type'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/atom'
 
@@ -15,22 +15,18 @@ import { QuestionDetail } from './QuestionDetail'
  * @package
  */
 
-type Props = {
-  question: SingleQuestion
-}
-
-export const QuestionDetailPage: NextPage<Props> = ({ question }) => {
+export const QuestionDetailPage = () => {
   const resetEditedQuestion = useSetAtom(resetEditedQuestionAtom)
   const resetDescription = useSetAtom(resetQuestionDescriptionAtom)
 
   useNavTab('null', 'null')
   useRouterEvent({ eventName: 'routeChangeComplete', callback: resetEditedQuestion })
   useRouterEvent({ eventName: 'routeChangeComplete', callback: resetDescription })
-  // const router = useRouter()
-  // const { data: question, status: questionStatus } = useQuerySingleQuestion(router.query.id)
+  const router = useRouter()
+  const { data: question, status: questionStatus } = useQuerySingleQuestion(router.query.id)
   const { data: currentUser, status: currentUserStatus } = useQueryCurrentUser()
 
-  if (currentUserStatus === 'loading') return <QuestionLoading />
+  if (questionStatus === 'loading' || currentUserStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
