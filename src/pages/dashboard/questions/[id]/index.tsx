@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!cookie) return { props: { layout: 'WrapperLayout' } }
 
   const res = await axios.get<SingleQuestion>(
-    `${process.env.NEXT_PUBLIC_FRONTEND_URL || process.env.VERCEL_URL}/api/question/${ctx.query.id}`,
+    `${process.env.NEXT_PUBLIC_FRONTEND_URL || process.env.NEXT_PUBLIC_VERCEL_URL}/api/question/${ctx.query.id}`,
     {
       headers: {
         cookie,
