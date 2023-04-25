@@ -9,7 +9,7 @@ import type { SingleQuestion } from '@/common/type'
 import { QuestionLoading } from '@/component/ui/Loading'
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/atom'
 
-import { QuestionDetail } from './QuestionDetail'
+// import { QuestionDetail } from './QuestionDetail'
 
 /**
  * @package
@@ -42,8 +42,9 @@ export const QuestionDetailPage: NextPage<QuestionDetailPageProps> = ({ question
             <meta name='viewport' content='width=device-width, initial-scale=1' />
             <link rel='icon' href='/favicon.ico' />
           </Head>
+          <div>{question.title}</div>
 
-          <QuestionDetail id={question.id} question={question} currentUser={currentUser} />
+          {/* <QuestionDetail id={question.id} question={question} currentUser={currentUser} /> */}
         </>
       )}
     </>
