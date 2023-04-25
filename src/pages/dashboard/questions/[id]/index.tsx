@@ -16,6 +16,8 @@ const QuestionDetail: NextPage<Props> = ({ question }) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const id = ctx.query.id
   const cookies = parseCookies(ctx)
+  // eslint-disable-next-line no-console
+  console.log('cookies', cookies)
   const cookie = Object.keys(cookies)
     .map((cookieName) => {
       return `${cookieName}=${cookies[cookieName]}`
