@@ -10,7 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       cookie: req.headers.cookie,
     },
   })
-  res.status(200).json(response.data)
+  return res.status(200).json(response.data)
 }
 
 export default handler
