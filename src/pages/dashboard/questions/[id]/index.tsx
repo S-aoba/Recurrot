@@ -1,11 +1,14 @@
 import axios from 'axios'
-import type { GetServerSideProps } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 
 import type { SingleQuestion } from '@/common/type'
 import { QuestionDetailPage } from '@/component/page/[id]'
 
-const QuestionDetail = (props: any) => {
-  const { question } = props
+type QuestionDetailProps = {
+  question: SingleQuestion
+}
+
+const QuestionDetail: NextPage<QuestionDetailProps> = ({ question }) => {
   return <QuestionDetailPage question={question} />
 }
 
