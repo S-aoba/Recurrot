@@ -1,9 +1,22 @@
-// import { Card } from '@/component/ui/Card'
+import type { NextPage } from 'next'
+
+import type { QuestionWaitingAnswered } from '@/common/type'
+import { Card } from '@/component/ui/Card'
 
 /**
  * @package
  */
 
-export const QuestionWaitingAnswers = () => {
-  return <>{/* <Card /> */}</>
+type QuestionWaitingAnswersProps = {
+  questionWaitingAnsweredList: QuestionWaitingAnswered[]
+}
+
+export const QuestionWaitingAnswers: NextPage<QuestionWaitingAnswersProps> = ({ questionWaitingAnsweredList }) => {
+  return (
+    <>
+      {questionWaitingAnsweredList.map((questionWaitingAnswered: QuestionWaitingAnswered) => {
+        return <Card key={questionWaitingAnswered.id} question={questionWaitingAnswered} />
+      })}
+    </>
+  )
 }

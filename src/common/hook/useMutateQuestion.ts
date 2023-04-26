@@ -29,6 +29,7 @@ export const useMutateQuestion = () => {
 
       queryClient.invalidateQueries(['singleQuestion', res.id])
       queryClient.invalidateQueries(['posted-question-list'])
+      queryClient.invalidateQueries(['question-waiting-answered'])
 
       toast.success('質問を投稿しました')
     },
@@ -61,6 +62,7 @@ export const useMutateQuestion = () => {
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
       queryClient.invalidateQueries(['singleQuestion', res.id])
+      queryClient.invalidateQueries(['question-waiting-answered'])
 
       toast.success('質問を更新しました')
     },
@@ -95,6 +97,7 @@ export const useMutateQuestion = () => {
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
       queryClient.invalidateQueries(['notification-list'])
+      queryClient.invalidateQueries(['question-waiting-answered'])
 
       toast.success('質問を削除しました')
     },

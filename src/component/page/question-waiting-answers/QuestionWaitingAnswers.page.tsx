@@ -1,7 +1,9 @@
 import Head from 'next/head'
 
 import { useNavTab } from '@/common/hook/useNavTab'
+import { useQueryQuestionWaitingAnswered } from '@/common/hook/useQuesryuseQueryQuestionWaitingAnswered'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
+import { QuestionLoading } from '@/component/ui/Loading'
 
 import { QuestionWaitingAnswers } from './QuestionWaitingAnswers'
 
@@ -11,6 +13,10 @@ import { QuestionWaitingAnswers } from './QuestionWaitingAnswers'
 
 export const QuestionWaitingAnswersPage = () => {
   useNavTab('questions', 'question-waiting-answers')
+  const { data: questionWaitingAnsweredList, status: questionWaitingAnsweredListStatus } =
+    useQueryQuestionWaitingAnswered()
+
+  if (questionWaitingAnsweredListStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
@@ -21,7 +27,9 @@ export const QuestionWaitingAnswersPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <QuestionLayout>
-        <QuestionWaitingAnswers />
+        {questionWaitingAnsweredList && (
+          <QuestionWaitingAnswers questionWaitingAnsweredList={questionWaitingAnsweredList} />
+        )}
       </QuestionLayout>
     </>
   )

@@ -29,6 +29,7 @@ export const useMutateAnswer = (questionId: string) => {
       queryClient.invalidateQueries(['answer-list'])
       queryClient.invalidateQueries(['notification-list'])
       queryClient.invalidateQueries(['questionList-answered'])
+      queryClient.invalidateQueries(['question-waiting-answered'])
 
       resetDescription()
 
@@ -100,6 +101,7 @@ export const useMutateAnswer = (questionId: string) => {
       queryClient.invalidateQueries(['answer-list'])
       queryClient.invalidateQueries(['questionList-answered'])
       queryClient.invalidateQueries(['notification-list'])
+      queryClient.invalidateQueries(['question-waiting-answered'])
 
       resetDescription()
 

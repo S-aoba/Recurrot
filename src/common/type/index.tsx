@@ -18,6 +18,7 @@ export type NewQuestion = {
   }
   answerCount: number
 }
+export type QuestionWaitingAnswered = NewQuestion
 
 export type MyAnswer = NewQuestion
 export type MyQuestion = NewQuestion
