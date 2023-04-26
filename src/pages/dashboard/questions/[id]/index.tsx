@@ -5,14 +5,11 @@ import nookies from 'nookies'
 // import type { SingleQuestion } from '@/common/type'
 import { QuestionDetailPage } from '@/component/page/[id]'
 
-const QuestionDetail = ({ id, cookie2, cookie }: any) => {
+const QuestionDetail = ({ cookie }: any) => {
   // console.log('data', data)
   return (
     <div>
       <p>{cookie}</p>
-      <p>{id}</p>
-      <p>{cookie2}</p>
-
       <QuestionDetailPage />
     </div>
   )
