@@ -92,9 +92,9 @@ export const useMutateQuestion = () => {
       }
       router.push('/dashboard/posted-questions')
 
-      queryClient.removeQueries(['new-question-list'])
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['questionList-answered'])
+      queryClient.invalidateQueries(['notification-list'])
 
       toast.success('質問を削除しました')
     },
