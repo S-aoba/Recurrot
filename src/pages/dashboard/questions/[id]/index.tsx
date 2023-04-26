@@ -5,14 +5,13 @@ import nookies from 'nookies'
 // import type { SingleQuestion } from '@/common/type'
 import { QuestionDetailPage } from '@/component/page/[id]'
 
-const QuestionDetail = ({ id, cookie2, req, cookie }: any) => {
+const QuestionDetail = ({ id, cookie2, cookie }: any) => {
   // console.log('data', data)
   return (
     <div>
       <p>{cookie}</p>
       <p>{id}</p>
       <p>{cookie2}</p>
-      <p>{req}</p>
 
       <QuestionDetailPage />
     </div>
@@ -22,7 +21,7 @@ const QuestionDetail = ({ id, cookie2, req, cookie }: any) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { id } = ctx.query
   const cookie2 = ctx.req.headers.cookie
-  const req = ctx.req
+  // const req = ctx.req
   const cookies = nookies.get(ctx)
   // cookiesをstringに変換して、cookieに入れる
   const cookie = Object.keys(cookies).reduce((acc, cur) => {
@@ -35,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       id,
       cookie2,
-      req,
+      // req,
       // data,
       cookie,
       layout: 'WrapperLayout',
