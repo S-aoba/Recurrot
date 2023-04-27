@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import { useNavTab } from '@/common/hook/useNavTab'
-import { useQueryQuestionWaitingAnswered } from '@/common/hook/useQuesryuseQueryQuestionWaitingAnswered'
+import { useQueryQuestionWaitingAnswered } from '@/common/hook/useQueryQuestionWaitingAnswered'
 import { QuestionLayout } from '@/component/layout/QuestionLayout'
 import { QuestionLoading } from '@/component/ui/Loading'
 
