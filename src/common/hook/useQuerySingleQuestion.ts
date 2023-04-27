@@ -16,9 +16,7 @@ export const useQuerySingleQuestion = (id: string | string[] | undefined) => {
     enabled: !!id,
     staleTime: Infinity,
     onError: (err: any) => {
-      if (err.response.status === 403) {
-        router.push('/404')
-      } else if (err.response.status === 401) return router.push('/')
+      if (err.response.status === 401) return router.push('/')
     },
   })
 }
