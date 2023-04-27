@@ -24,12 +24,16 @@ export const QuestionDetailPage = () => {
   useRouterEvent({ eventName: 'routeChangeComplete', callback: resetEditedQuestion })
   useRouterEvent({ eventName: 'routeChangeComplete', callback: resetDescription })
   const router = useRouter()
-  const { data: question, isLoading, isError } = useQuerySingleQuestion(router.query.id)
-  const { data: currentUser, status: currentUserStatus } = useQueryCurrentUser()
+  const {
+    data: question,
+    isLoading: isQuestionLoading,
+    isError: isQuestionError,
+  } = useQuerySingleQuestion(router.query.id)
+  const { data: currentUser, isLoading: isCurrenUserLoading, isError: isCurrentUserError } = useQueryCurrentUser()
 
-  if (isError) return <NotFoundPage />
+  if (isQuestionError || isCurrentUserError) return <NotFoundPage />
 
-  if (isLoading || currentUserStatus === 'loading') return <QuestionLoading />
+  if (isQuestionLoading || isCurrenUserLoading) return <QuestionLoading />
 
   return (
     <>
