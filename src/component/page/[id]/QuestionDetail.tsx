@@ -59,7 +59,11 @@ export const QuestionDetail: NextPage<QuestionDetailProps> = ({ id, question, cu
             <div className=' py-5'>
               <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
                 <div className=' flex items-center gap-x-2 text-sm'>
-                  <Avatar src={question.user.profileImage} radius={'xl'} />
+                  <Avatar
+                    src={question.user.profileImage}
+                    radius={'xl'}
+                    className=' hover: cursor-pointer border border-solid border-gray-200 shadow-sm'
+                  />
                   <div className=' flex gap-x-2'>
                     <span>{question.user.userName === null ? '名無しユーザー' : question.user.userName}</span>
                     <span>

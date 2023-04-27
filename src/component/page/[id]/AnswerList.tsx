@@ -91,7 +91,11 @@ const Answer: React.FC<Props> = ({ answer, userId }) => {
         <div className=' py-5'>
           <div className=' flex items-center justify-between pb-2'>
             <div className=' flex items-center gap-x-2 text-sm'>
-              <Avatar src={answer.user.profileImage} radius={'xl'} />
+              <Avatar
+                src={answer.user.profileImage}
+                radius={'xl'}
+                className=' hover: cursor-pointer border border-solid border-gray-200 shadow-sm'
+              />
               <div className=' flex gap-x-2'>
                 <span>
                   {answer && answer.user.userName === null ? '名無しユーザー' : answer && answer.user.userName}
