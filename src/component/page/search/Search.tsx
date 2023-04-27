@@ -15,7 +15,7 @@ export const Search: NextPage<SearchProps> = ({ searchQuestionList }) => {
   return (
     <>
       {searchQuestionList.map((question: SearchQuestion, index) => {
-        return <Card key={index} question={question} />
+        return <Card key={question.id} question={question} index={index} />
       })}
     </>
   )
