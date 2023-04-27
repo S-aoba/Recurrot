@@ -3,6 +3,7 @@ import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
+import { COLOR } from '@/common/const'
 import type { MainNavTab, MainUrlVal } from '@/common/type'
 import { isMainActiveTabAtom } from '@/store/atom'
 
@@ -55,12 +56,12 @@ export const MainNavTabList = () => {
           '&[data-active=true]': {
             color: 'gray',
             backgroundColor: 'white',
-            borderBottom: '3px solid #a09696',
+            borderBottom: `3px solid ${COLOR.main}`,
             borderRadius: 0,
             ':hover': {
               color: 'gray',
               backgroundColor: 'white',
-              borderBottom: '3px solid #a09696',
+              borderBottom: `3px solid ${COLOR.main}`,
               borderRadius: 0,
             },
           },

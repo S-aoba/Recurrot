@@ -4,7 +4,6 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useEffect, useState } from 'react'
 import { storage } from 'src/firebase/config'
 
-import { COLOR } from '@/common/const'
 import type { EditedUpdateMyProfile, MyProfile } from '@/common/type'
 
 import { Modal } from '../../ui/Modal'
@@ -89,8 +88,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                 return (
                   <Button
                     {...props}
-                    className=' hover:transform-none'
-                    style={{ backgroundColor: COLOR.main }}
+                    className=' bg-mainColor hover:transform-none hover:bg-mainColor'
                     disabled={isUpdateProfileLoading}
                   >
                     変更する
@@ -145,8 +143,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                 <Button
                   type='button'
                   onClick={handleSubmit}
-                  className=' hover:transform-none'
-                  style={{ backgroundColor: COLOR.main }}
+                  className=' bg-mainColor hover:transform-none hover:bg-mainColor'
                   loading={isUpdateProfileLoading}
                 >
                   {isUpdateProfileLoading ? '更新中' : '更新する'}

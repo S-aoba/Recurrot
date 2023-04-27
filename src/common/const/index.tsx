@@ -16,5 +16,5 @@ export const SUB_URL = {
 } as const
 
 export const COLOR = {
-  main: '#a09696',
+  main: '#7B86AA',
 }
