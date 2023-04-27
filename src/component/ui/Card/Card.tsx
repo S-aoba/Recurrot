@@ -1,5 +1,6 @@
 import { Avatar } from '@mantine/core'
 import { IconMessageDots } from '@tabler/icons-react'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -11,16 +12,20 @@ import type { MyAnswer, MyQuestion, NewQuestion, QuestionWaitingAnswered, Search
 
 type CardProps = {
   question: NewQuestion | MyAnswer | MyQuestion | SearchQuestion | QuestionWaitingAnswered
+  index: number
 }
 
-export const Card: React.FC<CardProps> = ({ question }) => {
+export const Card: React.FC<CardProps> = ({ question, index }) => {
   const { id, createdAt, title, user } = question
   const year = createdAt.toString().slice(0, 4)
   const month = createdAt.toString().slice(5, 7)
   const day = createdAt.toString().slice(8, 10)
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: index * 0.15, duration: 0.9 }}
       key={id}
       className=' relative col-span-1 box-content flex h-60 w-60 flex-col gap-y-2 rounded-3xl border border-solid border-gray-200 bg-white p-2 shadow-md duration-500 hover:relative hover:translate-x-2 hover:-translate-y-2 hover:cursor-pointer hover:shadow-[-8px_8px_0px_0px_#171717]'
     >
@@ -58,7 +63,7 @@ export const Card: React.FC<CardProps> = ({ question }) => {
         </div>
       </div>
       <Title title={title} />
-    </div>
+    </motion.div>
   )
 }
 

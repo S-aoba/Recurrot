@@ -14,8 +14,8 @@ type QuestionsAnsweredProps = {
 export const QuestionsAnswered: NextPage<QuestionsAnsweredProps> = ({ questionList }) => {
   return (
     <>
-      {questionList.map((question: MyAnswer) => {
-        return <Card key={question.id} question={question} />
+      {questionList.map((question: MyAnswer, index) => {
+        return <Card key={question.id} question={question} index={index} />
       })}
     </>
   )

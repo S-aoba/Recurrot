@@ -14,8 +14,8 @@ type NewQuestionsProps = {
 export const NewQuestions: NextPage<NewQuestionsProps> = ({ newQuestionList }) => {
   return (
     <>
-      {newQuestionList.map((newQuestion: NewQuestion) => {
-        return <Card key={newQuestion.id} question={newQuestion} />
+      {newQuestionList.map((newQuestion: NewQuestion, index) => {
+        return <Card key={newQuestion.id} question={newQuestion} index={index} />
       })}
     </>
   )

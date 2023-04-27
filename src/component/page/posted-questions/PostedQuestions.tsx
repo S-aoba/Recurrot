@@ -14,8 +14,8 @@ type PostedQuestionsProps = {
 export const PostedQuestions: NextPage<PostedQuestionsProps> = ({ postedQuestionList }) => {
   return (
     <>
-      {postedQuestionList.map((question: MyQuestion) => {
-        return <Card key={question.id} question={question} />
+      {postedQuestionList.map((question: MyQuestion, index) => {
+        return <Card key={question.id} question={question} index={index} />
       })}
     </>
   )

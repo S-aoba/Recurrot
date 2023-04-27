@@ -14,8 +14,8 @@ type QuestionWaitingAnswersProps = {
 export const QuestionWaitingAnswers: NextPage<QuestionWaitingAnswersProps> = ({ questionWaitingAnsweredList }) => {
   return (
     <>
-      {questionWaitingAnsweredList.map((questionWaitingAnswered: QuestionWaitingAnswered) => {
-        return <Card key={questionWaitingAnswered.id} question={questionWaitingAnswered} />
+      {questionWaitingAnsweredList.map((questionWaitingAnswered: QuestionWaitingAnswered, index) => {
+        return <Card key={questionWaitingAnswered.id} question={questionWaitingAnswered} index={index} />
       })}
     </>
   )
