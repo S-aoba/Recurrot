@@ -30,8 +30,6 @@ export const useMutateQuestion = () => {
       queryClient.invalidateQueries(['singleQuestion', res.id])
       queryClient.invalidateQueries(['posted-question-list'])
       queryClient.invalidateQueries(['question-waiting-answered'])
-
-      toast.success('質問を投稿しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
@@ -63,8 +61,6 @@ export const useMutateQuestion = () => {
       queryClient.invalidateQueries(['questionList-answered'])
       queryClient.invalidateQueries(['singleQuestion', res.id])
       queryClient.invalidateQueries(['question-waiting-answered'])
-
-      toast.success('質問を更新しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {
@@ -98,8 +94,6 @@ export const useMutateQuestion = () => {
       queryClient.invalidateQueries(['questionList-answered'])
       queryClient.invalidateQueries(['notification-list'])
       queryClient.invalidateQueries(['question-waiting-answered'])
-
-      toast.success('質問を削除しました')
     },
     onError: (err: any) => {
       if (err.response.status === 401 || err.response.status === 403) {

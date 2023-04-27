@@ -1,5 +1,6 @@
 import { useAtom, useSetAtom } from 'jotai'
 import type { Dispatch, SetStateAction } from 'react'
+import { toast } from 'react-toastify'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import type { SingleQuestion } from '@/common/type'
@@ -36,6 +37,7 @@ export const useQuestionDetail = ({
       deleteQuestionMutation.mutate(question.id)
       setIsDeleteQuestionLoading(false)
       handleDeleteQuestionClose()
+      toast.success('質問を削除しました')
     }, 500)
   }
 

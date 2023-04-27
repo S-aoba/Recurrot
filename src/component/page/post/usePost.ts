@@ -1,6 +1,7 @@
 import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import type { Dispatch, SetStateAction } from 'react'
+import { toast } from 'react-toastify'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
@@ -43,6 +44,7 @@ export const usePost = ({ setIsCreateQuestionLoading }: UsePostProps) => {
         hashtags: editedQuestion.hashtags,
         description,
       })
+      toast.success('質問を投稿しました')
     }, 500)
   }
 

@@ -1,6 +1,7 @@
 import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/router'
 import type { Dispatch, FormEvent, SetStateAction } from 'react'
+import { toast } from 'react-toastify'
 
 import { useMutateQuestion } from '@/common/hook/useMutateQuestion'
 import { editedQuestionAtom, questionDescriptionAtom } from '@/store/atom'
@@ -45,6 +46,7 @@ export const useEdit = ({ setIsUpdateQuestionLoading }: UseEditProps) => {
           description,
           hashtags: editedQuestion.hashtags,
         })
+        toast.success('質問を更新しました')
       }, 500)
     }
   }
