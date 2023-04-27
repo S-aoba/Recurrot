@@ -38,6 +38,7 @@
     "babel-plugin-prismjs": "^2.1.0",
     "eslint": "8.33.0",
     "firebase": "^9.19.1",
+    "framer-motion": "^10.12.4",
     "highlight.js": "^11.7.0",
     "jotai": "^2.0.3",
     "lowlight": "^2.8.1",
