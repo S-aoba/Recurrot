@@ -7,6 +7,7 @@ import { useQueryCurrentUser } from '@/common/hook/useQueryCurrentUser'
 import { useQuerySingleQuestion } from '@/common/hook/useQuerySingleQuestion'
 import { useRouterEvent } from '@/common/hook/useRouterEvent'
 import { QuestionLoading } from '@/component/ui/Loading'
+import NotFoundPage from '@/pages/404'
 import { resetEditedQuestionAtom, resetQuestionDescriptionAtom } from '@/store/atom'
 
 import { QuestionDetail } from './QuestionDetail'
@@ -23,10 +24,12 @@ export const QuestionDetailPage = () => {
   useRouterEvent({ eventName: 'routeChangeComplete', callback: resetEditedQuestion })
   useRouterEvent({ eventName: 'routeChangeComplete', callback: resetDescription })
   const router = useRouter()
-  const { data: question, status: questionStatus } = useQuerySingleQuestion(router.query.id)
+  const { data: question, isLoading } = useQuerySingleQuestion(router.query.id)
   const { data: currentUser, status: currentUserStatus } = useQueryCurrentUser()
 
-  if (questionStatus === 'loading' || currentUserStatus === 'loading') return <QuestionLoading />
+  if (!question) return <NotFoundPage />
+
+  if (isLoading || currentUserStatus === 'loading') return <QuestionLoading />
 
   return (
     <>
