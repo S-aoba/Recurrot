@@ -50,13 +50,13 @@
          d="m 516.79053,248.78833 v 147.54443 h 73.314 V 248.78833 Z m 58.65118,132.8816 h -43.9884 V 263.45118 h 43.9884 z"
          fill="#6c63ff"
          id="path12143"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <polygon
          points="313.344,381.67 313.344,249.705 298.681,249.705 298.681,381.67 298.681,396.333 313.344,396.333 371.995,396.333 371.995,381.67 "
          fill="#6c63ff"
          id="polygon12145"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <polygon
          points="192.376,396.333 207.039,396.333 265.69,396.333 265.69,381.67 207.039,381.67 207.039,329.434 265.69,329.434 265.69,314.771 207.039,314.771 207.039,263.451 265.69,263.451 265.69,248.788 192.376,248.788 192.376,249.705 192.376,263.451 192.376,314.771 192.376,329.434 192.376,381.67 "
@@ -67,7 +67,7 @@
          points="766.058,396.333 780.721,396.333 839.372,396.333 839.372,381.67 780.721,381.67 780.721,329.434 839.372,329.434 839.372,314.771 780.721,314.771 780.721,263.451 839.372,263.451 839.372,248.788 766.058,248.788 766.058,249.705 766.058,263.451 766.058,314.771 766.058,329.434 766.058,381.67 "
          fill="#6c63ff"
          id="polygon12149"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <polygon
          points="49.872,395.875 64.535,395.875 64.535,392.496 104.147,352.884 142.889,391.627 142.889,396.333 157.552,396.333 157.552,249.705 142.889,249.705 142.889,370.89 104.228,332.23 104.14,332.319 104.058,332.237 64.535,371.76 64.535,249.247 49.872,249.247 "
@@ -85,7 +85,7 @@
          r="9"
          fill="#6c63ff"
          id="circle12155"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <circle
          cx="113.07556"
@@ -93,7 +93,7 @@
          r="9"
          fill="#6c63ff"
          id="circle12157"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <circle
          cx="291.07556"
@@ -101,7 +101,7 @@
          r="9"
          fill="#6c63ff"
          id="circle12159"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <circle
          cx="517.07556"
@@ -109,7 +109,7 @@
          r="9"
          fill="#6c63ff"
          id="circle12161"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <circle
          cx="782.07556"
@@ -117,7 +117,7 @@
          r="9"
          fill="#6c63ff"
          id="circle12163"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <circle
          cx="791.07556"
@@ -125,7 +125,7 @@
          r="9"
          fill="#6c63ff"
          id="circle12165"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <circle
          cx="677.07556"
@@ -133,29 +133,29 @@
          r="9"
          fill="#6c63ff"
          id="circle12167"
-         style="fill:#a09696;fill-opacity:1"
+         style="fill:#7B86AA;fill-opacity:1"
          transform="matrix(0.11470796,0,0,0.10985693,-31.90488,216.13385)" />
       <g
          id="g3255-0-8"
          transform="matrix(0.73779271,0,0,0.84121382,10.881601,15.057761)"
-         style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-opacity:1">
+         style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-opacity:1">
         <g
            id="g3153-4-8"
            transform="translate(-12.435248,-96.87926)"
-           style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-opacity:1" />
+           style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-opacity:1" />
         <g
            id="g9359-6-3"
            transform="matrix(0.41740352,0,0,0.3160816,2.6588993,242.95266)"
-           style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-opacity:1">
+           style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-opacity:1">
           <rect
-             style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-width:2.218;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+             style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-width:2.218;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
              id="rect9213-3-0-5"
              width="4.8306866"
              height="29.411991"
              x="133.50482"
              y="13.345611" />
           <circle
-             style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-width:2.04683;stroke-linecap:round;stroke-opacity:1;paint-order:stroke markers fill"
+             style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-width:2.04683;stroke-linecap:round;stroke-opacity:1;paint-order:stroke markers fill"
              id="path9330-3-2"
              cx="136.35394"
              cy="53.355888"
@@ -165,10 +165,10 @@
       <g
          id="g934-9-6"
          transform="matrix(-0.03448917,0.08151811,-0.10618299,-0.04774713,66.154826,238.2085)"
-         style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-opacity:0">
+         style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-opacity:0">
         <path
            sodipodi:type="star"
-           style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-width:8.99999;stroke-linecap:round;stroke-opacity:0;paint-order:stroke markers fill"
+           style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-width:8.99999;stroke-linecap:round;stroke-opacity:0;paint-order:stroke markers fill"
            id="path236-4-7"
            inkscape:flatsided="true"
            sodipodi:sides="3"
@@ -185,7 +185,7 @@
            inkscape:transform-center-y="4.6897957"
            transform="matrix(0.75871679,-0.00358655,-0.00358655,0.77116814,35.780022,115.83749)" />
         <ellipse
-           style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0;paint-order:stroke markers fill"
+           style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0;paint-order:stroke markers fill"
            id="path2820-1-8"
            cx="153.31303"
            cy="-90.208656"
@@ -195,7 +195,7 @@
       </g>
       <path
          sodipodi:type="star"
-         style="fill:#a09696;fill-opacity:1;stroke:#a09696;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
+         style="fill:#7B86AA;fill-opacity:1;stroke:#7B86AA;stroke-width:3;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
          id="path2907-3-4"
          inkscape:flatsided="true"
          sodipodi:sides="3"
@@ -212,7 +212,7 @@
          inkscape:transform-center-x="-10.722648"
          inkscape:transform-center-y="6.1269621" />
       <ellipse
-         style="fill:#ffffff;fill-opacity:0.996078;stroke:#a09696;stroke-width:0.305581;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
+         style="fill:#ffffff;fill-opacity:0.996078;stroke:#7B86AA;stroke-width:0.305581;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
          id="path2913-7-1"
          cx="-196.4875"
          cy="-164.37666"
@@ -220,7 +220,7 @@
          rx="1.7334592"
          ry="1.0411971" />
       <ellipse
-         style="fill:#ffffff;fill-opacity:0.996078;stroke:#a09696;stroke-width:0.305581;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
+         style="fill:#ffffff;fill-opacity:0.996078;stroke:#7B86AA;stroke-width:0.305581;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:0.996078;paint-order:stroke markers fill"
          id="path2913-6-8-7"
          cx="-191.62048"
          cy="-165.65213"
