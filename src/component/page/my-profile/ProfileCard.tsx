@@ -4,6 +4,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useEffect, useState } from 'react'
 import { storage } from 'src/firebase/config'
 
+import { COLOR } from '@/common/const'
 import type { EditedUpdateMyProfile, MyProfile } from '@/common/type'
 
 import { Modal } from '../../ui/Modal'
@@ -105,14 +106,32 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                 name='userName'
                 value={editedMyProfile.userName == null ? '' : editedMyProfile.userName}
                 onChange={handleSetProfileItem}
+                styles={{
+                  //  枠線の色を変える
+                  input: {
+                    border: '1px solid #e2e8f0',
+                    '&:focus': {
+                      border: `2px solid ${COLOR.main}`,
+                    },
+                  },
+                }}
               />
               <div className=' w-full'>
                 <Textarea
                   name='selfIntroduction'
                   label='自己紹介'
-                  styles={{ input: { height: '13rem' } }}
                   value={editedMyProfile.selfIntroduction == null ? '' : editedMyProfile.selfIntroduction}
                   onChange={handleSetProfileItem}
+                  styles={{
+                    //  枠線の色を変える
+                    input: {
+                      height: '13rem',
+                      border: '1px solid #e2e8f0',
+                      '&:focus': {
+                        border: `2px solid ${COLOR.main}`,
+                      },
+                    },
+                  }}
                 />
               </div>
               <div className=' flex w-full flex-col gap-y-3'>
@@ -122,6 +141,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                   name='twitterUrl'
                   value={editedMyProfile.twitterUrl == null ? '' : editedMyProfile.twitterUrl}
                   onChange={handleSetProfileItem}
+                  styles={{
+                    //  枠線の色を変える
+                    input: {
+                      border: '1px solid #e2e8f0',
+                      '&:focus': {
+                        border: `2px solid ${COLOR.main}`,
+                      },
+                    },
+                  }}
                 />
 
                 <TextInput
@@ -130,6 +158,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                   name='githubUrl'
                   value={editedMyProfile.githubUrl == null ? '' : editedMyProfile.githubUrl}
                   onChange={handleSetProfileItem}
+                  styles={{
+                    //  枠線の色を変える
+                    input: {
+                      border: '1px solid #e2e8f0',
+                      '&:focus': {
+                        border: `2px solid ${COLOR.main}`,
+                      },
+                    },
+                  }}
                 />
               </div>
               <TextInput
@@ -138,6 +175,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ myProfile }) => {
                 name='websiteUrl'
                 value={editedMyProfile.websiteUrl == null ? '' : editedMyProfile.websiteUrl}
                 onChange={handleSetProfileItem}
+                styles={{
+                  //  枠線の色を変える
+                  input: {
+                    border: '1px solid #e2e8f0',
+                    '&:focus': {
+                      border: `2px solid ${COLOR.main}`,
+                    },
+                  },
+                }}
               />
               <div className=' flex w-full justify-between'>
                 <Button
