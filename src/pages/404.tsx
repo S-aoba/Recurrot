@@ -1,8 +1,6 @@
 import { Button, Container, createStyles, Group, rem, Text, Title } from '@mantine/core'
 import Link from 'next/link'
 
-import { WrapperLayout } from '@/component/layout/WrapperLayout'
-
 const useStyles = createStyles((theme) => {
   return {
     root: {
@@ -52,31 +50,29 @@ const NotFoundPage = () => {
   const { classes } = useStyles()
 
   return (
-    <WrapperLayout>
-      <main className=' flex h-fit flex-1 justify-center bg-[#fafafa]'>
-        <div className=' flex w-full max-w-[1200px] justify-center px-8'>
-          <div className=' flex h-full w-full max-w-[850px] justify-center '>
-            <Container className={classes.root}>
-              <div className={classes.inner}>
-                <div className={classes.content}>
-                  <Title className={classes.title}>404</Title>
-                  <Text color='dimmed' size='lg' align='center' className={classes.description}>
-                    どうやらこのページは存在しないようです。残念。
-                  </Text>
-                  <Group position='center'>
-                    <Link href={'/dashboard/new-questions'}>
-                      <Button size='md' className=' bg-mainColor hover:transform-none hover:bg-mainColor'>
-                        トップへ戻る
-                      </Button>
-                    </Link>
-                  </Group>
-                </div>
+    <main className=' flex h-fit flex-1 justify-center bg-[#fafafa]'>
+      <div className=' flex w-full max-w-[1200px] justify-center px-8'>
+        <div className=' flex h-full w-full max-w-[850px] justify-center '>
+          <Container className={classes.root}>
+            <div className={classes.inner}>
+              <div className={classes.content}>
+                <Title className={classes.title}>404</Title>
+                <Text color='dimmed' size='lg' align='center' className={classes.description}>
+                  どうやらこのページは存在しないようです。残念。
+                </Text>
+                <Group position='center'>
+                  <Link href={'/dashboard/new-questions'}>
+                    <Button size='md' className=' bg-mainColor hover:transform-none hover:bg-mainColor'>
+                      トップへ戻る
+                    </Button>
+                  </Link>
+                </Group>
               </div>
-            </Container>
-          </div>
+            </div>
+          </Container>
         </div>
-      </main>
-    </WrapperLayout>
+      </div>
+    </main>
   )
 }
 export default NotFoundPage
