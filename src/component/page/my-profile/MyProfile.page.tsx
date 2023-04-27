@@ -7,11 +7,11 @@ import { useQueryMyProfile } from './hook'
 import { MyProfile } from './MyProfile'
 
 export const MyProfilePage = () => {
-  const { data: myProfile, status: UserStatus } = useQueryMyProfile()
+  const { data: myProfile, status: myProfileStatus } = useQueryMyProfile()
 
   useNavTab('questions', 'my-profile')
 
-  if (UserStatus === 'loading') return <ProfileLoading />
+  if (myProfileStatus == 'loading') return <ProfileLoading />
 
   return (
     <>
