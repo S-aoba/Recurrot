@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'mainColor': '#7B86AA',
-      }
+        mainColor: '#7B86AA',
+      },
     },
     screens: {
       xs: '592px',
