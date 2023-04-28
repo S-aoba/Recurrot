@@ -45,7 +45,7 @@ export const Card: React.FC<CardProps> = ({ question, index }) => {
             className=' absolute -top-3 -left-3 z-10 rounded-xl'
             priority
           />
-          <span className=' absolute -top-3 right-0 z-10 w-10/12 rounded-lg bg-[#000080] p-1 text-sm text-white line-clamp-1'>
+          <span className=' absolute -top-3 right-0 z-10 w-10/12 rounded-lg bg-mainColor p-1 text-sm text-white line-clamp-1'>
             問題1:メートルをマイルに変換する
           </span>
           <div className='flex w-full flex-col gap-y-2 pt-5 pl-6'>
