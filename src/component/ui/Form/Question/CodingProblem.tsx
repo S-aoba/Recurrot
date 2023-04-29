@@ -8,7 +8,7 @@ export const CodingProblem = () => {
   return (
     <Select
       data={codingProblemList}
-      placeholder='問題を選んでください'
+      defaultValue='0'
       className=' w-9/12 rounded-md bg-white shadow'
       styles={{ input: { border: 'none' } }}
       searchable
@@ -17,6 +17,7 @@ export const CodingProblem = () => {
 }
 
 const codingProblemList = [
+  { value: '0', label: '問題以外の質問' },
   { value: '1', label: '問題1: 引き算' },
   { value: '2', label: '問題2: 掛け算' },
   { value: '3', label: '問題3: 3乗' },
@@ -213,13 +214,13 @@ const codingProblemList = [
   { value: '195', label: '問題195: カレンダー' },
   { value: '196', label: '問題196: 駅のプラットフォーム' },
   { value: '197', label: '問題197: 信用スコア' },
-  { value: '198', label: '問題198: Quadrilateral Shape', difficulty: 'hard' },
+  { value: '198', label: '問題198: Quadrilateral Shape' },
   { value: '199', label: '問題199: 二分探索木内探索' },
   { value: '200', label: '問題200: 二分探索木内のキー' },
   { value: '201', label: '問題201: 二分探索木内の最小値' },
   { value: '202', label: '問題202: 二分探索木内の最大値' },
-  { value: '203', label: '問題203: 二分探索木内の後続ノード', difficulty: 'medium' },
-  { value: '204', label: '問題204: 二分探索木内の先行ノード', difficulty: 'medium' },
+  { value: '203', label: '問題203: 二分探索木内の後続ノード' },
+  { value: '204', label: '問題204: 二分探索木内の先行ノード' },
   { value: '205', label: '問題205: ソート済み配列を二分探索木へ変換' },
   { value: '206', label: '問題206: 前順（二分木）' },
   { value: '207', label: '問題207: 間順（二分木）' },
