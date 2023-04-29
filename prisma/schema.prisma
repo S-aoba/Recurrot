@@ -8,15 +8,16 @@ datasource db {
 }
 
 model Question {
-  id          String   @id
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime
-  title       String
-  description String
-  userId      String
-  hashtags    String[]
-  Answer      Answer[]
-  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id            String   @id
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime
+  title         String
+  description   String
+  userId        String
+  hashtags      String[]
+  codingProblem String
+  Answer        Answer[]
+  User          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
