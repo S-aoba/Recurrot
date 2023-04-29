@@ -1,5 +1,9 @@
 import { Select } from '@mantine/core'
 
+/**
+ * @package
+ */
+
 export const CodingProblem = () => {
   return (
     <Select
