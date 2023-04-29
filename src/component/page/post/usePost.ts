@@ -42,6 +42,7 @@ export const usePost = ({ setIsCreateQuestionLoading }: UsePostProps) => {
       createQuestionMutation.mutate({
         title: editedQuestion.title,
         hashtags: editedQuestion.hashtags,
+        codingProblem: editedQuestion.codingProblem,
         description,
       })
       toast.success('質問を投稿しました')

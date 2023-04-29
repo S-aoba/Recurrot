@@ -1,14 +1,29 @@
 import { Select } from '@mantine/core'
+import type { NextPage } from 'next'
+import type { Dispatch, SetStateAction } from 'react'
+
+import type { EditedQuestion } from '@/common/type'
 
 /**
  * @package
  */
 
-export const CodingProblem = () => {
+type CodingProblemProps = {
+  editedQuestion: EditedQuestion
+  setEditedQuestion: Dispatch<SetStateAction<EditedQuestion>>
+}
+
+export const CodingProblem: NextPage<CodingProblemProps> = ({ editedQuestion, setEditedQuestion }) => {
+  const handleChangeCodingProblem = (evt: string) => {
+    setEditedQuestion({ ...editedQuestion, codingProblem: evt })
+  }
+
   return (
     <Select
       data={codingProblemList}
       defaultValue='0'
+      value={editedQuestion.codingProblem}
+      onChange={handleChangeCodingProblem}
       className=' w-9/12 rounded-md bg-white shadow'
       styles={{ input: { border: 'none' } }}
       searchable

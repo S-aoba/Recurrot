@@ -28,7 +28,13 @@ export const useQuestionDetail = ({
 
   const handleSetQuestion = () => {
     setDescription(question.description)
-    setEditedQuestion({ ...editedQuestion, id: question.id, title: question.title, hashtags: question.hashtags })
+    setEditedQuestion({
+      ...editedQuestion,
+      id: question.id,
+      title: question.title,
+      hashtags: question.hashtags,
+      codingProblem: question.codingProblem,
+    })
   }
 
   const handleDeleteQuestion = () => {

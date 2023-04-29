@@ -25,7 +25,7 @@ export const CreateForm = () => {
       <div className=' flex h-fit w-full flex-col items-center gap-y-5 py-5'>
         <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
         <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
-        <CodingProblem />
+        <CodingProblem editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
         <Content editor={questionEditor} />
       </div>
     </>

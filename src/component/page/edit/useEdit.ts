@@ -45,6 +45,7 @@ export const useEdit = ({ setIsUpdateQuestionLoading }: UseEditProps) => {
           title: editedQuestion.title,
           description,
           hashtags: editedQuestion.hashtags,
+          codingProblem: editedQuestion.codingProblem,
         })
         toast.success('質問を更新しました')
       }, 500)

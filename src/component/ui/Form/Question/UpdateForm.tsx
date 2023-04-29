@@ -4,6 +4,7 @@ import { useQuestionForm } from '@/common/hook/useQuestionForm'
 import { editedQuestionAtom } from '@/store/atom'
 
 import { useDescriptionEditor } from '../../../../common/hook/useDescriptionEditor'
+import { CodingProblem } from './CodingProblem'
 import { Content } from './Content'
 import { Hashtag } from './Hashtag'
 import { Title } from './Title'
@@ -24,6 +25,7 @@ export const UpdateForm = () => {
       <div className=' flex h-fit w-full flex-col items-center gap-y-5 py-5'>
         <Title editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
         <Hashtag editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
+        <CodingProblem editedQuestion={editedQuestion} setEditedQuestion={setEditedQuestion} />
         <Content editor={questionEditor} />
       </div>
     </>

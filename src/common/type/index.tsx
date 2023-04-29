@@ -12,6 +12,7 @@ export type NewQuestion = {
   updatedAt: Date
   title: string
   hashtags: string[]
+  codingProblem: string
   user: {
     userName: string
     profileImage: string | null
@@ -43,6 +44,7 @@ export type SingleQuestion = {
   title: string
   description: string
   hashtags: string[]
+  codingProblem: string
   userId: string
   user: {
     userName: string
@@ -100,6 +102,7 @@ export type EditedQuestion = {
   title: string
   description: string
   hashtags: string[]
+  codingProblem: string
 }
 
 export type EditedAnswer = {
