@@ -64,18 +64,23 @@ export const QuestionDetail: NextPage<QuestionDetailProps> = ({ id, question, cu
                     radius={'xl'}
                     className=' hover: cursor-pointer border border-solid border-gray-200 shadow-sm'
                   />
-                  <div className=' flex gap-x-2'>
-                    <span>{question.user.userName === null ? '名無しユーザー' : question.user.userName}</span>
-                    <span>
-                      投稿日: {year} / {month} / {day}
-                    </span>
+                  <div className=' flex flex-col items-start gap-2 sm:flex-row sm:items-center'>
+                    <div className=' gap-x-3W flex'>
+                      <span>{question.user.userName === null ? '名無しユーザー' : question.user.userName}</span>
+                      <span>
+                        投稿日: {year} / {month} / {day}
+                      </span>
+                    </div>
+                    <div className=' w-fit rounded-lg bg-mainColor py-1 px-2 text-center line-clamp-1'>
+                      <p className=' mt-0 mb-0 text-sm text-white'>{question.codingProblem}</p>
+                    </div>
                   </div>
                 </div>
                 {currentUser.id === question.userId && (
                   <QuestionMenu onSetQuestion={handleSetQuestion} onDeleteQuestionOpen={handleDeleteQuestionOpen} />
                 )}
               </div>
-              <div className=' flex gap-x-5 py-5'>
+              <div className=' flex flex-wrap gap-5 py-5'>
                 {question.hashtags.map((hashtag: string) => {
                   return <HashtagList key={hashtag} hashtag={hashtag} />
                 })}
