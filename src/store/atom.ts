@@ -2,7 +2,13 @@ import { atom } from 'jotai/vanilla'
 
 import type { EditedAnswer, EditedQuestion, MainNavTab, SubNavTab } from '@/common/type'
 
-const initialEditedQuestion: EditedQuestion = { id: '0', title: '', description: '', hashtags: [], codingProblem: '0' }
+const initialEditedQuestion: EditedQuestion = {
+  id: '0',
+  title: '',
+  description: '',
+  hashtags: [],
+  codingProblem: '問題以外の質問',
+}
 export const editedQuestionAtom = atom<EditedQuestion>(initialEditedQuestion)
 export const resetEditedQuestionAtom = atom(null, (_, set) => {
   return set(editedQuestionAtom, initialEditedQuestion)
