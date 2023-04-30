@@ -56,24 +56,18 @@ export const QuestionDetail: NextPage<QuestionDetailProps> = ({ id, question, cu
             <p className=' text-2xl font-semibold sm:text-3xl'>{question.title}</p>
           </div>
           <div className=' w-full rounded-md border-gray-200 bg-white p-5 shadow'>
-            <div className=' py-5'>
+            <div>
               <div className=' flex items-center justify-between border-t-0 border-r-0 border-b border-l-0 border-solid border-gray-200 pb-2'>
-                <div className=' flex items-center gap-x-2 text-sm'>
-                  <Avatar
-                    src={question.user.profileImage}
-                    radius={'xl'}
-                    className=' hover: cursor-pointer border border-solid border-gray-200 shadow-sm'
+                <div className=' flex flex-col gap-y-3'>
+                  <UserIconUserNamePostedDay
+                    profileImage={question.user.profileImage}
+                    userName={question.user.userName}
+                    year={year}
+                    month={month}
+                    day={day}
                   />
-                  <div className=' flex flex-col items-start gap-2 sm:flex-row sm:items-center'>
-                    <div className=' gap-x-3W flex'>
-                      <span>{question.user.userName === null ? '名無しユーザー' : question.user.userName}</span>
-                      <span>
-                        投稿日: {year} / {month} / {day}
-                      </span>
-                    </div>
-                    <div className=' w-fit rounded-lg bg-mainColor py-1 px-2 text-center line-clamp-1'>
-                      <p className=' mt-0 mb-0 text-sm text-white'>{question.codingProblem}</p>
-                    </div>
+                  <div className=' w-fit rounded-lg bg-mainColor py-1 px-2 text-center line-clamp-1'>
+                    <p className=' mt-0 mb-0 text-sm text-white'>{question.codingProblem}</p>
                   </div>
                 </div>
                 {currentUser.id === question.userId && (
@@ -100,5 +94,38 @@ export const QuestionDetail: NextPage<QuestionDetailProps> = ({ id, question, cu
         </div>
       </main>
     </>
+  )
+}
+
+type UserIconUserNamePostedDayProps = {
+  profileImage: string | null
+  userName: string
+  year: string
+  month: string
+  day: string
+}
+
+const UserIconUserNamePostedDay: NextPage<UserIconUserNamePostedDayProps> = ({
+  profileImage,
+  userName,
+  year,
+  month,
+  day,
+}) => {
+  return (
+    <div className=' flex items-center gap-x-5'>
+      <div className=' flex gap-x-2'>
+        <Avatar
+          src={profileImage}
+          radius={'xl'}
+          size={'sm'}
+          className=' hover: cursor-pointer border border-solid border-gray-200 shadow-sm'
+        />
+        <span>{userName === null ? '名無しユーザー' : userName}</span>
+      </div>
+      <span>
+        投稿日: {year} / {month} / {day}
+      </span>
+    </div>
   )
 }
