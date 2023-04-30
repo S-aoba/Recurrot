@@ -17,10 +17,12 @@ type CardProps = {
 }
 
 export const Card: React.FC<CardProps> = ({ question, index }) => {
-  const { id, createdAt, title, user } = question
+  const { id, createdAt, title, user, codingProblem } = question
   const year = createdAt.toString().slice(0, 4)
   const month = createdAt.toString().slice(5, 7)
   const day = createdAt.toString().slice(8, 10)
+
+  const codingProblemNumber = codingProblem.split(':')
 
   return (
     <motion.div
@@ -45,13 +47,15 @@ export const Card: React.FC<CardProps> = ({ question, index }) => {
             className=' absolute -top-3 -left-3 z-10 rounded-xl'
             priority
           />
-          <div className=' absolute -top-3 left-10 z-10 w-16 rounded-lg bg-mainColor p-1 text-center line-clamp-1'>
-            <p className=' mt-0 mb-0 text-sm text-white'>問題111</p>
+          <div className=' absolute -top-3 left-10 z-10 w-fit rounded-lg bg-mainColor py-1 px-2 text-center line-clamp-1'>
+            <p className=' mt-0 mb-0 text-sm text-white'>{codingProblemNumber[0]}</p>
           </div>
           <div className='flex w-full flex-col gap-y-2 pt-5 pl-6'>
             <AvatarUserName profileImage={question.user.profileImage} userName={user.userName} />
             <div className=' flex w-full gap-x-3 text-sm text-gray-500'>
-              <span>投稿日: {`${year}/${month}/${day}`}</span>
+              <span>
+                投稿日: {year}/{month}/{day}
+              </span>
               <div className=' flex items-center gap-x-1'>
                 <IconMessageDots size={18} />
                 <span>{question.answerCount}</span>
